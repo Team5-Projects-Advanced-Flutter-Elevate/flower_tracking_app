@@ -35,6 +35,51 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
 
+  # App Initialization & Splash Screen
+  flutter_native_splash: ^2.4.6
+
+  # Dependency Injection
+  injectable: ^2.5.0
+  get_it: ^8.0.3
+
+  # Networking & API
+  dio: ^5.8.0+1
+  retrofit: ^4.4.2
+  json_annotation: ^4.9.0
+  talker_dio_logger: ^4.7.5
+  http_parser: ^4.1.2
+
+  # State Management
+  provider: ^6.1.5
+  flutter_bloc: ^9.1.1
+  equatable: ^2.0.7
+
+  # Local Storage & Caching
+  flutter_secure_storage: ^9.2.4
+  cached_network_image: ^3.4.1
+  path_provider: ^2.1.5
+
+  # UI & Animation
+  lottie: ^3.3.1
+  google_fonts: ^6.2.1
+  auto_size_text: ^3.0.0
+  flutter_timer_countdown: ^1.0.7
+  otp_text_field: ^1.1.3
+
+  # Testing
+  bloc_test: ^10.0.0
+  mockito: ^5.4.6
+
+  # Device Features & Permissions
+  image_picker: ^1.1.2
+  permission_handler: ^12.0.0+1
+  device_info_plus: ^11.4.0
+  back_button_interceptor: ^8.0.4
+
+  # Image Processing
+  flutter_image_compress: ^2.4.0
+
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -45,6 +90,21 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^5.0.0
+
+  # App Branding & Assets
+  flutter_launcher_icons: ^0.14.3
+
+  # API Client Generation (Retrofit)
+  retrofit_generator: ^9.1.9
+
+  # Code Generation & Build Tools
+  build_runner: ^2.4.15
+
+  # JSON Serialization
+  json_serializable: ^6.9.5
+
+  # Dependency Injection (Codegen)
+  injectable_generator: ^2.7.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -58,7 +118,8 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
+  assets:
+    - assets/icons/
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 
