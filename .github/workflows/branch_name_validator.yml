@@ -10,7 +10,7 @@ jobs:
       - name: Check branch name format
         run: |
           BRANCH_NAME="${{ github.event.pull_request.head.ref }}"
-          if [[ ! "$BRANCH_NAME" =~ ^(feature|bugfix|hotfix|release)/[A-Z]+-[0-9]+-[a-z]+([-_ ][a-z]+)*$ ]]; then
+          if [[ ! "$BRANCH_NAME" =~ ^(master|develop|((feature|bugfix|hotfix|release)/[A-Z]+-[0-9]+-[a-z]+([-_ ][a-z]+)*))$ ]]; then
             echo "❌ **Invalid branch name format:** $BRANCH_NAME"
             echo "Please use the format: branch-type/{Ticket-Id - TicketNum}-task_name (e.g., feature/ECOM-27-initialize project)"
             exit 1
@@ -18,3 +18,6 @@ jobs:
             echo "✅ **Valid branch name format:** $BRANCH_NAME"
           fi
         shell: bash
+
+
+
