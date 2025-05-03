@@ -18,6 +18,3 @@ jobs:
             echo "✅ **Valid branch name format:** $BRANCH_NAME"
           fi
         shell: bash
-
-
-
