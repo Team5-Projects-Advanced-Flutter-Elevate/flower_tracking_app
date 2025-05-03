@@ -40,4 +40,5 @@ jobs:
           git add .
           git commit -m "Apply Dart formatting changes"
           git push
-        if: success() && steps.format.outputs.changes == 'true'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
