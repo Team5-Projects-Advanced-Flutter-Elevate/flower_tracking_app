@@ -1,5 +1,8 @@
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
+import 'package:flower_tracking_app/main.dart';
 import 'package:flutter/material.dart';
 
+import '../colors/app_colors.dart';
 import 'base_inherited_widget.dart';
 
 late BuildContext _context;
@@ -19,7 +22,32 @@ abstract class BaseStatelessWidget extends StatelessWidget {
 
   Widget customBuild(BuildContext context, BaseInheritedWidget inherit);
 
-  Future<void> displayAlertDialog() async {}
+  Future<void> displaySnackBar({
+    required ContentType contentType,
+    required String title,
+    String? message,
+  }) async {
+    final snackBar = SnackBar(
+      elevation: 0,
+      behavior: SnackBarBehavior.floating,
+      backgroundColor: Colors.transparent,
+      duration: const Duration(seconds: 2),
+      content: AwesomeSnackbarContent(
+        title: title,
+        titleTextStyle: _theme.textTheme.titleMedium!.copyWith(
+          color: Colors.white,
+        ),
+        message: message ?? "",
+        messageTextStyle: _theme.textTheme.labelMedium!.copyWith(
+          color: AppColors.white,
+        ),
+        contentType: contentType,
+      ),
+    );
+    ScaffoldMessenger.of(globalNavigatorKey.currentContext!)
+      ..hideCurrentSnackBar()
+      ..showSnackBar(snackBar);
+  }
 
   void hideAlertDialog() {
     Navigator.of(_context, rootNavigator: true).pop();

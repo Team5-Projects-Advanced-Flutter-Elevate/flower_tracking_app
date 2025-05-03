@@ -1,14 +1,16 @@
 
 
+import 'package:flower_tracking_app/shared_layers/localization/generated/app_localizations.dart';
 import 'package:flutter/material.dart';
 
+import '../../shared_layers/localization/l10n_manager/localization_manager.dart';
 import '../validation/validation_functions.dart';
 
 class BaseInheritedWidget extends InheritedWidget {
   final ThemeData theme;
   final double screenWidth, screenHeight;
-  final InheritedWidget easyLocalization;
-  //final LocalizationManager localizationManager;
+  final AppLocalizations appLocalizations;
+  final LocalizationManager localizationManager;
   final ValidateFunctions validateFunctions;
 
   const BaseInheritedWidget({
@@ -16,8 +18,8 @@ class BaseInheritedWidget extends InheritedWidget {
     required this.theme,
     required this.screenWidth,
     required this.screenHeight,
-    required this.easyLocalization,
-    //required this.localizationManager,
+    required this.appLocalizations,
+    required this.localizationManager,
     required this.validateFunctions,
     required super.child,
   });
@@ -32,8 +34,8 @@ class BaseInheritedWidget extends InheritedWidget {
     return oldWidget.theme != theme ||
         oldWidget.screenWidth != screenWidth ||
         oldWidget.screenHeight != screenHeight ||
-        oldWidget.easyLocalization != easyLocalization ||
-        //oldWidget.localizationManager != localizationManager ||
+        oldWidget.appLocalizations != appLocalizations ||
+        oldWidget.localizationManager != localizationManager ||
         oldWidget.validateFunctions != validateFunctions;
   }
 }
