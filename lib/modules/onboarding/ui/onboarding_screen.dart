@@ -53,7 +53,7 @@ class _OnboardingScreenState extends BaseStatefulWidgetState<OnboardingScreen> {
                       width: screenWidth,
                     ),
                   ),
-                  SizedBox(height: screenHeight * 0.03,),
+                  SizedBox(height: screenHeight * 0.03),
                   Form(
                     key: formKey,
                     child: TextFormField(
@@ -109,7 +109,6 @@ class _OnboardingScreenState extends BaseStatefulWidgetState<OnboardingScreen> {
                     groupValue: "value2",
                     onChanged: (value) {},
                   ),
-
                 ],
               ),
             ),

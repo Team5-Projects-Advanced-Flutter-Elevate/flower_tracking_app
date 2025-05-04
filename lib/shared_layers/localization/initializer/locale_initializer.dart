@@ -10,9 +10,11 @@ abstract class LocaleInitializer {
   @preResolve
   @Named(L10nConstants.initCurrentLocal)
   Future<String> initCurrentLocal(
-      SecureStorageService secureStorageService) async {
-    var savedLocale =
-        await secureStorageService.getStringValue(StorageConstants.localeKey);
+    SecureStorageService secureStorageService,
+  ) async {
+    var savedLocale = await secureStorageService.getStringValue(
+      StorageConstants.localeKey,
+    );
     return savedLocale ?? LanguagesEnum.en.getLanguageCode();
   }
 }
