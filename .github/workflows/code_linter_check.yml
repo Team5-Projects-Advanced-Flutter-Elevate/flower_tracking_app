@@ -49,10 +49,3 @@ jobs:
           git add .
           git commit -m "Automated code formatting"
           git push origin ${GITHUB_REF#refs/heads/}
-#          git config --global user.name "github-actions[bot]"
-#          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-#          git add .
-#          git commit -m "Apply Dart formatting changes"
-#          git push https://MoK369:${{ secrets.PAT }}@github.com/Team5-Projects-Advanced-Flutter-Elevate/flower_tracking_app.git
-#        env:
-#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
