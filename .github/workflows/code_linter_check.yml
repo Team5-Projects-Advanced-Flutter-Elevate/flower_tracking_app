@@ -35,7 +35,10 @@ jobs:
 
       - name: Get current branch name
         id: get_branch
-        run: echo "branch_name=$(echo ${GITHUB_REF#refs/heads/})" >> $GITHUB_ENV
+        run: |
+          echo "GITHUB_REF=${GITHUB_REF}"
+          echo "branch_name=$(echo ${GITHUB_REF#refs/heads/})" >> $GITHUB_ENV
+          echo "Branch name: $(echo ${GITHUB_REF#refs/heads/})"
 
       - name: Commit changes
         run: |
