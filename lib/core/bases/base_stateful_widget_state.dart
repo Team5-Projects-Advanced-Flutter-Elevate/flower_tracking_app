@@ -1,5 +1,10 @@
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
+import 'package:flower_tracking_app/core/colors/app_colors.dart';
 import 'package:flower_tracking_app/main.dart';
 import 'package:flutter/material.dart';
+import '../../shared_layers/localization/generated/app_localizations.dart';
+import '../../shared_layers/localization/l10n_manager/localization_manager.dart';
+import '../di/injectable_initializer.dart';
 import '../validation/validation_functions.dart';
 
 typedef VoidFunction = void Function()?;
@@ -9,7 +14,9 @@ abstract class BaseStatefulWidgetState<T extends StatefulWidget>
   late ThemeData theme;
   late double screenWidth, screenHeight;
   late InheritedWidget easyLocalization;
-  //late LocalizationManager localizationManager;
+  late LocalizationManager localizationManager;
+
+  late AppLocalizations appLocalizations;
   late ValidateFunctions validateFunctions;
 
   // This will always point to the correct context
@@ -19,9 +26,9 @@ abstract class BaseStatefulWidgetState<T extends StatefulWidget>
     theme = Theme.of(context);
     screenWidth = MediaQuery.of(context).size.width;
     screenHeight = MediaQuery.of(context).size.height;
-    //localizationManager = getIt.get<LocalizationManager>();
-
-    validateFunctions = ValidateFunctions.getInstance();
+    localizationManager = getIt.get<LocalizationManager>();
+    appLocalizations = AppLocalizations.of(context)!;
+    validateFunctions = getIt.get<ValidateFunctions>();
   }
 
   // Current fresh context with runtime check
@@ -41,9 +48,31 @@ abstract class BaseStatefulWidgetState<T extends StatefulWidget>
         .currentContext!; //getIt.get<GlobalKey<NavigatorState>>().currentContext!;
   }
 
-  Future<void> displayAlertDialog() async {}
+  Future<void> displaySnackBar({
+    required ContentType contentType,
+    required String title,
+    String? message,
+  }) async {
+    final snackBar = SnackBar(
+      elevation: 0,
+      behavior: SnackBarBehavior.floating,
+      backgroundColor: Colors.transparent,
+      duration: const Duration(seconds: 2),
+      content: AwesomeSnackbarContent(
+        title: title,
+        titleTextStyle: theme.textTheme.titleMedium!.copyWith(
+          color: Colors.white,
+        ),
+        message: message ?? "",
+        messageTextStyle: theme.textTheme.labelMedium!.copyWith(
+          color: AppColors.white,
+        ),
+        contentType: contentType,
+      ),
+    );
 
-  void hideAlertDialog() {
-    Navigator.of(context).pop();
+    ScaffoldMessenger.of(safeContext)
+      ..hideCurrentSnackBar()
+      ..showSnackBar(snackBar);
   }
 }
