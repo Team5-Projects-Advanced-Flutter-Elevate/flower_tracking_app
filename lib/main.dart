@@ -4,6 +4,7 @@ import 'package:flower_tracking_app/core/themes/app_themes.dart';
 import 'package:flutter/material.dart';
 
 GlobalKey<NavigatorState> globalNavigatorKey = GlobalKey<NavigatorState>();
+
 void main() {
   runApp(const MyApp());
 }
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
       themeMode: ThemeMode.light,
       navigatorKey: globalNavigatorKey,
       onGenerateRoute: GenerateRoute.onGenerateRoute,
-      initialRoute: DefinedRoutes.onboardingScreenRoute,
+      initialRoute: DefinedRoutes.apply,
       // onGenerateInitialRoutes: (initialRoute) {
       //   return GenerateRoute.onGenerateInitialRoutes(
       //     initialRoute: initialRoute,

@@ -1,4 +1,5 @@
 import 'package:flower_tracking_app/core/routing/defined_routes.dart';
+import 'package:flower_tracking_app/modules/apply/ui/apply_view.dart';
 import 'package:flower_tracking_app/modules/onboarding/ui/onboarding_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -12,6 +13,9 @@ abstract class GenerateRoute {
         return MaterialPageRoute(
           builder: (context) => const OnboardingScreen(),
         );
+
+      case DefinedRoutes.apply:
+        return MaterialPageRoute(builder: (context) => const ApplyView());
       default:
         return _errorRoute();
     }

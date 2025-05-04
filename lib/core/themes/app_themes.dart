@@ -6,11 +6,19 @@ abstract class AppThemes {
   static ThemeData lightTheme = ThemeData(
     useMaterial3: true,
     // scaffoldBackgroundColor: AppColors.white,
-    // appBarTheme: AppBarTheme(
-    //   backgroundColor: AppColors.white,
-    //   surfaceTintColor: AppColors.white,
-    // ),
+    appBarTheme: AppBarTheme(
+      backgroundColor: AppColors.white,
+      surfaceTintColor: AppColors.white,
+      titleSpacing: 0,
+
+    ),
     textTheme: TextTheme(
+      headlineMedium: TextStyle(
+        fontSize: 20,
+        color: AppColors.black,
+        fontWeight: FontWeight.w500,
+        fontFamily: GoogleFonts.inter().fontFamily,
+      ),
       titleLarge: TextStyle(
         fontSize: 22,
         color: AppColors.black,
