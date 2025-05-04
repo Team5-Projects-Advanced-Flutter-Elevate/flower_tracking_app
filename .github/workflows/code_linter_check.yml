@@ -33,6 +33,17 @@ jobs:
       - name: Format code
         run: dart format .
 
+      - name: Check for changes
+        id: check_changes
+        run: |
+          if git diff --quiet; then
+            echo "No changes detected."
+            echo "commit_changes=false" >> $GITHUB_ENV
+          else
+            echo "Changes detected."
+            echo "commit_changes=true" >> $GITHUB_ENV
+          fi
+
       - name: Get current branch name
         id: get_branch
         run: |
@@ -41,6 +52,7 @@ jobs:
           echo "Branch name: $(echo ${GITHUB_REF#refs/heads/})"
 
       - name: Commit changes
+        if: env.commit_changes == 'true'
         env:
           GITHUB_TOKEN: ${{ secrets.PAT }}
         run: |
