@@ -41,6 +41,8 @@ jobs:
           echo "Branch name: $(echo ${GITHUB_REF#refs/heads/})"
 
       - name: Commit changes
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT }}
         run: |
           git config --global user.email "bot@example.com"
           git config --global user.name "GitHub Bot"
