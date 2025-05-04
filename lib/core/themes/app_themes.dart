@@ -10,7 +10,6 @@ abstract class AppThemes {
       backgroundColor: AppColors.white,
       surfaceTintColor: AppColors.white,
       titleSpacing: 0,
-
     ),
     textTheme: TextTheme(
       headlineMedium: TextStyle(
@@ -114,6 +113,7 @@ abstract class AppThemes {
     ),
     inputDecorationTheme: InputDecorationTheme(
       errorMaxLines: 4,
+      contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
       border: OutlineInputBorder(borderRadius: BorderRadius.circular(4)),
       enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(4)),
       disabledBorder: OutlineInputBorder(
@@ -137,7 +137,7 @@ abstract class AppThemes {
       labelStyle: TextStyle(
         fontSize: 16,
         fontWeight: FontWeight.w400,
-        color: AppColors.white[90],
+        color: AppColors.gray,
       ),
       floatingLabelBehavior: FloatingLabelBehavior.always,
       floatingLabelStyle: WidgetStateTextStyle.resolveWith((states) {
@@ -158,7 +158,7 @@ abstract class AppThemes {
     filledButtonTheme: FilledButtonThemeData(
       style: ButtonStyle(
         padding: const WidgetStatePropertyAll(
-          EdgeInsets.symmetric(vertical: 10, horizontal: 24),
+          EdgeInsets.symmetric(vertical: 16, horizontal: 24),
         ),
         textStyle: WidgetStatePropertyAll(
           TextStyle(
@@ -197,4 +197,5 @@ abstract class AppThemes {
       ),
     ),
   );
+
 }
