@@ -1,5 +1,6 @@
 class ApiErrorModel {
-  ApiErrorModel({required this.error});
+  ApiErrorModel({required this.error,
+  });
 
   final String? error;
 
