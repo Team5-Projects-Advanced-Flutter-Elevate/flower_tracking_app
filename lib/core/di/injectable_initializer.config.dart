@@ -14,6 +14,17 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart' as _i558;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 
+import '../../modules/apply/data/api/api_client/apply_api_client.dart' as _i780;
+import '../../modules/apply/data/api/api_provider/apply_api_provider.dart'
+    as _i594;
+import '../../modules/apply/data/datasource_contract/apply_datasource.dart'
+    as _i843;
+import '../../modules/apply/data/datasource_impl/apply_datasouce_impl.dart'
+    as _i684;
+import '../../modules/apply/data/repo_impl/apply_repo_impl.dart' as _i792;
+import '../../modules/apply/domain/repo_contract/apply_repo_contract.dart'
+    as _i61;
+import '../../modules/apply/domain/usecases/apply_use_case.dart' as _i637;
 import '../../modules/apply/ui/view_model/apply_cubit.dart' as _i172;
 import '../../shared_layers/localization/generated/app_localizations.dart'
     as _i543;
@@ -42,19 +53,31 @@ extension GetItInjectableX on _i174.GetIt {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
     final dioService = _$DioService();
     final storagesInitializer = _$StoragesInitializer();
+    final applyApiClientProvider = _$ApplyApiClientProvider();
     final localeInitializer = _$LocaleInitializer();
     final appLocalizationsProvider = _$AppLocalizationsProvider();
     await gh.factoryAsync<_i361.Dio>(
       () => dioService.provideDio(),
       preResolve: true,
     );
-    gh.factory<_i172.ApplyCubit>(() => _i172.ApplyCubit());
     await gh.factoryAsync<_i558.FlutterSecureStorage>(
       () => storagesInitializer.initFlutterSecureStorage(),
       preResolve: true,
     );
+    gh.lazySingleton<_i780.ApplyApiClient>(
+      () => applyApiClientProvider.providerApiClient(gh<_i361.Dio>()),
+    );
+    gh.factory<_i843.ApplyDataSource>(
+      () => _i684.ApplyDataSourceImpl(gh<_i780.ApplyApiClient>()),
+    );
+    gh.factory<_i61.ApplyRepo>(
+      () => _i792.ApplyRepoImpl(applyDataSource: gh<_i843.ApplyDataSource>()),
+    );
     gh.singleton<_i629.SecureStorageService<dynamic>>(
       () => _i701.SecureStorageServiceImp(gh<_i558.FlutterSecureStorage>()),
+    );
+    gh.factory<_i637.ApplyDriverUseCase>(
+      () => _i637.ApplyDriverUseCase(gh<_i61.ApplyRepo>()),
     );
     await gh.factoryAsync<String>(
       () => localeInitializer.initCurrentLocal(
@@ -68,6 +91,9 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i629.SecureStorageService<dynamic>>(),
         gh<String>(instanceName: 'initCurrentLocal'),
       ),
+    );
+    gh.lazySingleton<_i172.ApplyCubit>(
+      () => _i172.ApplyCubit(gh<_i637.ApplyDriverUseCase>()),
     );
     await gh.factoryAsync<_i543.AppLocalizations>(
       () => appLocalizationsProvider.provideAppLocalizations(
@@ -88,6 +114,8 @@ extension GetItInjectableX on _i174.GetIt {
 class _$DioService extends _i738.DioService {}
 
 class _$StoragesInitializer extends _i241.StoragesInitializer {}
+
+class _$ApplyApiClientProvider extends _i594.ApplyApiClientProvider {}
 
 class _$LocaleInitializer extends _i631.LocaleInitializer {}
 

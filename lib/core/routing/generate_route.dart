@@ -1,7 +1,10 @@
+import 'package:flower_tracking_app/core/di/injectable_initializer.dart';
 import 'package:flower_tracking_app/core/routing/defined_routes.dart';
 import 'package:flower_tracking_app/modules/apply/ui/apply_view.dart';
+import 'package:flower_tracking_app/modules/apply/ui/view_model/apply_cubit.dart';
 import 'package:flower_tracking_app/modules/onboarding/ui/onboarding_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 abstract class GenerateRoute {
   static Route<dynamic>? onGenerateRoute(RouteSettings routeSettings) {
@@ -15,7 +18,11 @@ abstract class GenerateRoute {
         );
 
       case DefinedRoutes.apply:
-        return MaterialPageRoute(builder: (context) => const ApplyView());
+        ApplyCubit cubit = getIt<ApplyCubit>()..loadCountries();
+        return MaterialPageRoute(
+          builder:
+              (context) => BlocProvider.value(value: cubit, child:const  ApplyView()),
+        );
       default:
         return _errorRoute();
     }
