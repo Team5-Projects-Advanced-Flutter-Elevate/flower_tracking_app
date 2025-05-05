@@ -5,5 +5,5 @@ import '../../data/models/apply_response.dart';
 import '../entities/apply_response_entity.dart';
 
 abstract interface class ApplyRepo {
-  Future<ApiResult<ApplyResponseEntity>> applyDriver(FormData formData);
+  Future<ApiResult<ApplyResponseEntity>> applyDriver(DriverRequestModel model);
 }

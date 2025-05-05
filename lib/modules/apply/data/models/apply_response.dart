@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:flower_tracking_app/modules/apply/domain/entities/apply_response_entity.dart';
 import 'package:http_parser/http_parser.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:mime_type/mime_type.dart';
 
 part 'apply_response.g.dart';
 
@@ -119,45 +120,53 @@ class DriverRequestModel {
     this.phone,
   });
 
-  void validate() {
-    if (vehicleType == null || vehicleType!.isEmpty) {
-      throw Exception('Vehicle type is required');
-    }
-    if (nIDImg == null) {
-      throw Exception('National ID image is required');
-    }
-    if (vehicleLicense == null) {
-      throw Exception('Vehicle license image is required');
-    }
-    // Add other validations as needed
-  }
-
   Future<FormData> toFormData() async {
-    // Validate that both required images exist
+    // Validate required fields
     if (nIDImg == null) throw Exception('National ID image is required');
-    if (vehicleLicense == null) throw Exception('Vehicle license image is required');
+    if (vehicleLicense == null) throw Exception('Vehicle license is required');
+    if (vehicleType == null) throw Exception('Vehicle type is required');
 
-    // Create form data with ONLY images first
-    final formData = FormData.fromMap({
-      'NIDImg': await MultipartFile.fromFile(
-        nIDImg!.path,
-        filename: 'nid_${DateTime.now().millisecondsSinceEpoch}.jpg',
-      ),
-      'vehicleLicense': await MultipartFile.fromFile(
-        vehicleLicense!.path,
-        filename: 'license_${DateTime.now().millisecondsSinceEpoch}.jpg',
-      ),
-    });
+    final formData = FormData();
 
-    // Add other fields ONLY if they're not causing the error
-    // Some APIs want images first, then other data
+    // Add ONLY fields that your server expects
+    // Based on errors, your server wants very specific field names
     formData.fields.addAll([
-      if (vehicleType != null) MapEntry('vehicleType', vehicleType!),
+      MapEntry('vehicleType', vehicleType!),
+      if (country != null) MapEntry('country', country!),
       if (firstName != null) MapEntry('firstName', firstName!),
       if (lastName != null) MapEntry('lastName', lastName!),
-      // Add other fields carefully
+      if (vehicleNumber != null) MapEntry('vehicleNumber', vehicleNumber!),
+      if (nid != null) MapEntry('NID', nid!),
+      if (email != null) MapEntry('email', email!),
+      if (password != null) MapEntry('password', password!),
+      if (gender != null) MapEntry('gender', gender!),
+      if (phone != null) MapEntry('phone', phone!),
+      if (rePassword != null) MapEntry('rePassword', rePassword!),
+    ]);
+
+    // Add files with EXACT field names the server expects
+    formData.files.addAll([
+      MapEntry(
+        'NIDImg', // Note: different from previous 'NIDImg'
+        await _createMultipartFile(nIDImg!),
+      ),
+      MapEntry(
+        'vehicleLicense', // Not in array format
+        await _createMultipartFile(vehicleLicense!),
+      ),
     ]);
 
     return formData;
+  }
+
+  Future<MultipartFile> _createMultipartFile(File file) async {
+    final extension = file.path.split('.').last.toLowerCase();
+    final mimeType = extension == 'png' ? 'png' : 'jpeg';
+
+    return await MultipartFile.fromFile(
+      file.path,
+      filename: '${file.path.split('.').first}.$extension',
+      contentType: MediaType('image', mimeType),
+    );
   }
 }

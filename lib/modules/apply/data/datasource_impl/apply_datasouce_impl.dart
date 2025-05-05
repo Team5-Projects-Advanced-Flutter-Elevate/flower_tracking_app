@@ -16,10 +16,10 @@ class ApplyDataSourceImpl implements ApplyDataSource {
 
   @override
   Future<ApiResult<ApplyResponseEntity>> applyDriver(
-    FormData formData,
+   DriverRequestModel model,
   ) async {
     var result = await ApiExecutor.executeApi(
-      () => applyApiClient.applyDriver(formData),
+      () => applyApiClient.applyDriver(model),
     );
 
     switch (result) {

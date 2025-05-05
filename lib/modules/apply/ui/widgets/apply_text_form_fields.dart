@@ -381,30 +381,37 @@ class _ApplyTextFormFieldsState
         const SelectGenderRow(),
         SizedBox(height: screenHeight * 0.02),
 
-        SizedBox(
-          width: double.infinity,
-          child: FilledButton(
-            onPressed: () async {
-              if (!widget.formKey.currentState!.validate()) return;
-              cubit.applyDriver(
-                DriverRequestModel(
-                  country: cubit.state.selectedCountry,
-                  vehicleType: cubit.state.selectedVehicle,
-                  firstName: firstNameController.text,
-                  lastName: lastNameController.text,
-                  vehicleNumber: vehicleNumberController.text,
-                  vehicleLicense: cubit.state.pickedLicenseImage,
-                  nid: vehicleNumberController.text,
-                  nIDImg: cubit.state.pickedIdImage,
-                  email: emailController.text,
-                  password: passwordController.text,
-                  rePassword: confirmPasswordController.text,
-                  gender: cubit.state.selectedGender,
-                ),
-              );
-            },
-            child: Text('Continue'),
-          ),
+        BlocBuilder<ApplyCubit, ApplyState>(
+          builder: (context, state) {
+            return SizedBox(
+              width: double.infinity,
+              child: FilledButton(
+                onPressed: () async {
+                  if (!widget.formKey.currentState!.validate()) return;
+                  cubit.applyDriver(
+                    DriverRequestModel(
+                      country: cubit.state.selectedCountry,
+                      vehicleType: '676b31a45d05310ca82657ad',
+                      firstName: firstNameController.text,
+                      lastName: lastNameController.text,
+                      vehicleNumber: vehicleNumberController.text,
+                      vehicleLicense: cubit.state.pickedLicenseImage,
+                      nid: idNumberController.text,
+                      nIDImg: cubit.state.pickedIdImage,
+                      email: emailController.text,
+                      password: passwordController.text,
+                      rePassword: confirmPasswordController.text,
+                      gender: cubit.state.selectedGender,
+                    ),
+                  );
+                },
+                child:
+                    state.applyDriverStatus == ApplyDriverStatus.loading
+                        ? CircularProgressIndicator(color: AppColors.white)
+                        : const Text('Continue'),
+              ),
+            );
+          },
         ),
       ],
     );

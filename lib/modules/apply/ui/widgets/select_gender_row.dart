@@ -43,12 +43,12 @@ class _SelectGenderRowState extends BaseStatefulWidgetState<SelectGenderRow> {
                         'Female',
                         style: theme.textTheme.labelSmall?.copyWith(
                           color:
-                              state.selectedGender == 'Female'
+                              state.selectedGender == 'female'
                                   ? AppColors.black
                                   : AppColors.white[90],
                         ),
                       ),
-                      value: 'Female',
+                      value: 'female',
                       groupValue: state.selectedGender,
                       onChanged: (value) {
                         cubit.selectGender(value);
@@ -62,12 +62,12 @@ class _SelectGenderRowState extends BaseStatefulWidgetState<SelectGenderRow> {
                         'Male',
                         style: theme.textTheme.labelSmall?.copyWith(
                           color:
-                              cubit.state.selectedGender == 'Male'
+                              cubit.state.selectedGender == 'male'
                                   ? AppColors.black
                                   : AppColors.white[90],
                         ),
                       ),
-                      value: 'Male',
+                      value: 'male',
                       groupValue: cubit.state.selectedGender,
                       onChanged: (value) {
                         cubit.selectGender(value);

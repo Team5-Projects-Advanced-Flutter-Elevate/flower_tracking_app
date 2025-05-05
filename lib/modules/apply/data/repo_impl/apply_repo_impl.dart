@@ -17,8 +17,8 @@ class ApplyRepoImpl implements ApplyRepo {
 
   @override
   Future<ApiResult<ApplyResponseEntity>> applyDriver(
-    FormData formData,
+    DriverRequestModel model,
   ) {
-    return applyDataSource.applyDriver(formData);
+    return applyDataSource.applyDriver(model);
   }
 }

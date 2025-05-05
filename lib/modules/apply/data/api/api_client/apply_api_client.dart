@@ -1,16 +1,20 @@
-import 'package:dio/dio.dart';
-import 'package:retrofit/error_logger.dart';
-import 'package:retrofit/http.dart';
+import 'package:dio/dio.dart' hide DioMediaType;
+import 'package:flower_tracking_app/core/apis/apis_endpoints/apis_endpoints.dart';
+import 'package:flower_tracking_app/modules/apply/data/models/apply_response.dart';
 
-import '../../../../../core/apis/apis_endpoints/apis_endpoints.dart';
-import '../../models/apply_response.dart';
+class ApplyApiClient {
+  final Dio _dio;
 
-part 'apply_api_client.g.dart';
+  ApplyApiClient(this._dio);
 
-@RestApi()
-abstract class ApplyApiClient {
-  factory ApplyApiClient(Dio dio) = _ApplyApiClient;
+  Future<ApplyResponse> applyDriver(DriverRequestModel model) async {
+    final formData = await model.toFormData();
 
-  @POST(ApisEndpoints.applyDriver)
-  Future<ApplyResponse> applyDriver(@Body() FormData formData);
+    final response = await _dio.post(
+      ApisEndpoints.applyDriver,
+      data: formData,
+    );
+
+    return ApplyResponse.fromJson(response.data);
+  }
 }

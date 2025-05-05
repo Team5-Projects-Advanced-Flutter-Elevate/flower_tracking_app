@@ -2,7 +2,7 @@ part of 'apply_cubit.dart';
 
 enum LoadCountryStatus { initial, loading, success, error }
 
-enum PickImageStatus { initial, loading, success, error }
+enum PickImageStatus { initial, loading, success, error , unPicked}
 
 enum ApplyDriverStatus { initial, loading, success, error }
 

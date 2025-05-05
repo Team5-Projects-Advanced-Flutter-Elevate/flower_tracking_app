@@ -51,13 +51,12 @@ class ApplyCubit extends Cubit<ApplyState> {
 
   Future<void> applyDriver(DriverRequestModel driverRequestModel) async {
     emit(state.copyWith(applyDriverStatus: ApplyDriverStatus.loading));
-    var result = await applyDriverUseCase.execute(
-      await driverRequestModel.toFormData(),
-    );
+    var result = await applyDriverUseCase.execute(driverRequestModel);
     switch (result) {
       case Success<ApplyResponseEntity>():
         emit(state.copyWith(applyDriverStatus: ApplyDriverStatus.success));
       case Error<ApplyResponseEntity>():
+        log(result.error.toString());
         emit(
           state.copyWith(
             applyDriverStatus: ApplyDriverStatus.error,
@@ -92,10 +91,20 @@ class ApplyCubit extends Cubit<ApplyState> {
   void unPickImage(bool isLicenseImagePicked) {
     if (isLicenseImagePicked) {
       emit(
-        state.copyWith(pickedLicenseImage: null, isLicenseImagePicked: false),
+        state.copyWith(
+          pickedLicenseImage: null,
+          isLicenseImagePicked: false,
+          pickImageStatus: PickImageStatus.unPicked,
+        ),
       );
     } else {
-      emit(state.copyWith(pickedIdImage: null, isIdImagePicked: false));
+      emit(
+        state.copyWith(
+          pickedIdImage: null,
+          isIdImagePicked: false,
+          pickImageStatus: PickImageStatus.unPicked,
+        ),
+      );
     }
   }
 
