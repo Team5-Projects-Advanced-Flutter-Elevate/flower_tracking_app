@@ -20,7 +20,7 @@ void main() async {
           create: (context) => getIt.get<LocalizationManager>(),
         ),
       ],
-      child: const MyApp(),
+      child:  const MyApp(),
     ),
   );
 }
