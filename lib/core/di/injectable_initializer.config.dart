@@ -25,6 +25,8 @@ import '../../modules/apply/data/repo_impl/apply_repo_impl.dart' as _i792;
 import '../../modules/apply/domain/repo_contract/apply_repo_contract.dart'
     as _i61;
 import '../../modules/apply/domain/usecases/apply_use_case.dart' as _i637;
+import '../../modules/apply/domain/usecases/get_vehicles_use_case.dart'
+    as _i900;
 import '../../modules/apply/ui/view_model/apply_cubit.dart' as _i172;
 import '../../shared_layers/localization/generated/app_localizations.dart'
     as _i543;
@@ -79,6 +81,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i637.ApplyDriverUseCase>(
       () => _i637.ApplyDriverUseCase(gh<_i61.ApplyRepo>()),
     );
+    gh.factory<_i900.GetVehiclesUseCase>(
+      () => _i900.GetVehiclesUseCase(gh<_i61.ApplyRepo>()),
+    );
     await gh.factoryAsync<String>(
       () => localeInitializer.initCurrentLocal(
         gh<_i629.SecureStorageService<dynamic>>(),
@@ -92,14 +97,17 @@ extension GetItInjectableX on _i174.GetIt {
         gh<String>(instanceName: 'initCurrentLocal'),
       ),
     );
-    gh.lazySingleton<_i172.ApplyCubit>(
-      () => _i172.ApplyCubit(gh<_i637.ApplyDriverUseCase>()),
-    );
     await gh.factoryAsync<_i543.AppLocalizations>(
       () => appLocalizationsProvider.provideAppLocalizations(
         gh<String>(instanceName: 'initCurrentLocal'),
       ),
       preResolve: true,
+    );
+    gh.lazySingleton<_i172.ApplyCubit>(
+      () => _i172.ApplyCubit(
+        gh<_i637.ApplyDriverUseCase>(),
+        gh<_i900.GetVehiclesUseCase>(),
+      ),
     );
     gh.lazySingleton<_i439.ApiErrorHandler>(
       () => _i439.ApiErrorHandler(gh<_i543.AppLocalizations>()),

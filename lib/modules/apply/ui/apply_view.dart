@@ -5,7 +5,6 @@ import 'package:flower_tracking_app/core/colors/app_colors.dart';
 import 'package:flower_tracking_app/core/di/injectable_initializer.dart';
 import 'package:flower_tracking_app/modules/apply/ui/view_model/apply_cubit.dart';
 import 'package:flower_tracking_app/modules/apply/ui/widgets/apply_text_form_fields.dart';
-import 'package:flower_tracking_app/modules/apply/ui/widgets/select_gender_row.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -43,7 +42,9 @@ class _ApplyViewState extends BaseStatefulWidgetState<ApplyView> {
               displaySnackBar(
                 contentType: ContentType.failure,
                 title: 'Error',
-                message: getIt<ApiErrorHandler>().handle(state.error!),
+                message: getIt<ApiErrorHandler>().handle(
+                  state.applyDriverError!,
+                ),
               );
             }
             if (state.pickImageStatus == PickImageStatus.success) {
@@ -62,7 +63,6 @@ class _ApplyViewState extends BaseStatefulWidgetState<ApplyView> {
               displaySnackBar(
                 contentType: ContentType.failure,
                 title: 'Removed ID image',
-
               );
             }
 

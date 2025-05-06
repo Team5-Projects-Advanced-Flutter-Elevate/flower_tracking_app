@@ -51,7 +51,7 @@ class _SelectGenderRowState extends BaseStatefulWidgetState<SelectGenderRow> {
                       value: 'female',
                       groupValue: state.selectedGender,
                       onChanged: (value) {
-                        cubit.selectGender(value);
+                        cubit.doIntent(SelectGenderIntent(value));
                       },
                     ),
                   ),
@@ -70,7 +70,7 @@ class _SelectGenderRowState extends BaseStatefulWidgetState<SelectGenderRow> {
                       value: 'male',
                       groupValue: cubit.state.selectedGender,
                       onChanged: (value) {
-                        cubit.selectGender(value);
+                        cubit.doIntent(SelectGenderIntent(value));
                       },
                     ),
                   ),

@@ -18,10 +18,11 @@ abstract class GenerateRoute {
         );
 
       case DefinedRoutes.apply:
-        ApplyCubit cubit = getIt<ApplyCubit>()..loadCountries();
+        ApplyCubit cubit = getIt<ApplyCubit>();
         return MaterialPageRoute(
           builder:
-              (context) => BlocProvider.value(value: cubit, child:const  ApplyView()),
+              (context) =>
+                  BlocProvider.value(value: cubit, child: const ApplyView()),
         );
       default:
         return _errorRoute();
