@@ -45,6 +45,7 @@ abstract class BaseStatefulWidgetState<T extends StatefulWidget>
     return globalNavigatorKey
         .currentContext!; //getIt.get<GlobalKey<NavigatorState>>().currentContext!;
   }
+
   Future<void> displaySnackBar({
     required ContentType contentType,
     required String title,
