@@ -8,6 +8,7 @@ import 'dart:ui' as _i5;
 
 import 'package:flower_tracking_app/shared_layers/localization/l10n_manager/localization_manager.dart'
     as _i2;
+import 'package:flutter/material.dart' as _i6;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:mockito/src/dummies.dart' as _i3;
 
@@ -99,6 +100,74 @@ class MockLocalizationManager extends _i1.Mock
   @override
   void notifyListeners() => super.noSuchMethod(
     Invocation.method(#notifyListeners, []),
+    returnValueForMissingStub: null,
+  );
+}
+
+/// A class which mocks [NavigatorObserver].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockNavigatorObserver extends _i1.Mock implements _i6.NavigatorObserver {
+  MockNavigatorObserver() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  void didPush(_i6.Route<dynamic>? route, _i6.Route<dynamic>? previousRoute) =>
+      super.noSuchMethod(
+        Invocation.method(#didPush, [route, previousRoute]),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void didPop(_i6.Route<dynamic>? route, _i6.Route<dynamic>? previousRoute) =>
+      super.noSuchMethod(
+        Invocation.method(#didPop, [route, previousRoute]),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void didRemove(
+    _i6.Route<dynamic>? route,
+    _i6.Route<dynamic>? previousRoute,
+  ) => super.noSuchMethod(
+    Invocation.method(#didRemove, [route, previousRoute]),
+    returnValueForMissingStub: null,
+  );
+
+  @override
+  void didReplace({
+    _i6.Route<dynamic>? newRoute,
+    _i6.Route<dynamic>? oldRoute,
+  }) => super.noSuchMethod(
+    Invocation.method(#didReplace, [], {
+      #newRoute: newRoute,
+      #oldRoute: oldRoute,
+    }),
+    returnValueForMissingStub: null,
+  );
+
+  @override
+  void didChangeTop(
+    _i6.Route<dynamic>? topRoute,
+    _i6.Route<dynamic>? previousTopRoute,
+  ) => super.noSuchMethod(
+    Invocation.method(#didChangeTop, [topRoute, previousTopRoute]),
+    returnValueForMissingStub: null,
+  );
+
+  @override
+  void didStartUserGesture(
+    _i6.Route<dynamic>? route,
+    _i6.Route<dynamic>? previousRoute,
+  ) => super.noSuchMethod(
+    Invocation.method(#didStartUserGesture, [route, previousRoute]),
+    returnValueForMissingStub: null,
+  );
+
+  @override
+  void didStopUserGesture() => super.noSuchMethod(
+    Invocation.method(#didStopUserGesture, []),
     returnValueForMissingStub: null,
   );
 }

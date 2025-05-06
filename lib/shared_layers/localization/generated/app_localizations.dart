@@ -302,7 +302,7 @@ abstract class AppLocalizations {
   /// No description provided for @onboardingWelcomeMessage.
   ///
   /// In en, this message translates to:
-  /// **'Welcome to Flowery Rider app'**
+  /// **'Welcome to\nFlowery Rider app'**
   String get onboardingWelcomeMessage;
 
   /// No description provided for @login.

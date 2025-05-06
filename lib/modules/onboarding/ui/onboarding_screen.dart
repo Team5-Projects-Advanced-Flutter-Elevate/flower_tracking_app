@@ -2,6 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flower_tracking_app/core/bases/base_stateful_widget_state.dart';
 import 'package:flower_tracking_app/core/constants/assets_paths/assets_paths.dart';
 import 'package:flower_tracking_app/modules/onboarding/ui/constants/onboarding_keys_value.dart';
+import 'package:flower_tracking_app/modules/onboarding/ui/new_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
@@ -45,27 +46,23 @@ class _OnboardingScreenState extends BaseStatefulWidgetState<OnboardingScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      Row(
-                        children: [
-                          SizedBox(
-                            width: (screenWidth - 16) / 2,
-                            child: AutoSizeText(
-                              appLocalizations.onboardingWelcomeMessage,
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
-                              minFontSize: 14,
-                              style: theme.textTheme.titleLarge!.copyWith(
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                          ),
-                        ],
+                      AutoSizeText(
+                        appLocalizations.onboardingWelcomeMessage,
+                        maxLines: 2,
+                        minFontSize: 14,
+                        style: theme.textTheme.titleLarge!.copyWith(
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
                       SizedBox(height: screenHeight * 0.03),
                       FilledButton(
                         key: const Key(OnboardingKeysValues.loginButton),
-                        onPressed: () async{
-                          // Todo: navigate to login screen
+                        onPressed: () async {
+                          final route = MaterialPageRoute(
+                            builder: (context) => const NewScreen(),
+                          );
+                          print(route.toString());
+                          Navigator.push(context, route);
                         },
                         child: Text(appLocalizations.login),
                       ),

@@ -111,7 +111,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get onboardingScreen____________ => '\$\$\$ تعليق \$\$\$';
 
   @override
-  String get onboardingWelcomeMessage => 'مرحبًا بك في تطبيق Flowery Rider';
+  String get onboardingWelcomeMessage => 'مرحبًا بك في\nتطبيق Flowery Rider';
 
   @override
   String get login => 'تسجيل الدخول';

@@ -1,6 +1,7 @@
 import 'package:flower_tracking_app/core/di/injectable_initializer.dart';
 import 'package:flower_tracking_app/core/validation/validation_functions.dart';
 import 'package:flower_tracking_app/modules/onboarding/ui/constants/onboarding_keys_value.dart';
+import 'package:flower_tracking_app/modules/onboarding/ui/new_screen.dart';
 import 'package:flower_tracking_app/modules/onboarding/ui/onboarding_screen.dart';
 import 'package:flower_tracking_app/shared_layers/localization/enums/languages_enum.dart';
 import 'package:flower_tracking_app/shared_layers/localization/generated/app_localizations.dart';
@@ -13,11 +14,15 @@ import 'package:mockito/mockito.dart';
 
 import 'onboarding_screen_test.mocks.dart';
 
-@GenerateMocks([LocalizationManager])
+@GenerateMocks([LocalizationManager, NavigatorObserver])
 void main() {
   group("Onboarding Screen Testing Items", () {
     late AppLocalizations appLocalizations;
     late String languageCode;
+    late NavigatorObserver navigatorObserver;
+    setUp(() {
+      navigatorObserver = MockNavigatorObserver();
+    });
     setUpAll(() async {
       languageCode = LanguagesEnum.ar.getLanguageCode();
       appLocalizations = await AppLocalizations.delegate.load(
@@ -36,6 +41,7 @@ void main() {
         supportedLocales: AppLocalizations.supportedLocales,
         locale: Locale(languageCode),
         home: const OnboardingScreen(),
+        navigatorObservers: [navigatorObserver],
       );
     }
 
@@ -82,6 +88,27 @@ void main() {
         expect(loginButton, findsOneWidget);
       },
     );
+    testWidgets("Navigating to new screen when clicking on login button", (
+      widgetTester,
+    ) async {
+      final navigatedRoute = MaterialPageRoute(
+        builder: (context) => const NewScreen(),
+      );
+      // arrange
+      when(navigatorObserver.didPush(navigatedRoute, any)).thenReturn(null);
+
+      await widgetTester.pumpWidget(buildWidget());
+
+      // act
+      Finder loginButton = find.byKey(
+        const Key(OnboardingKeysValues.loginButton),
+      );
+      expect(loginButton, findsOneWidget);
+      await widgetTester.press(loginButton);
+      await widgetTester.pumpAndSettle();
+
+      verify(navigatorObserver.didPush(navigatedRoute, any)).called(1);
+    });
     testWidgets(
       "When the onboarding screen is opened, the apply now button should be rendered",
       (widgetTester) async {
