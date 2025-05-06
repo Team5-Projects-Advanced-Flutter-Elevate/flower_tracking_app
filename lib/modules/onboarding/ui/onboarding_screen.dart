@@ -54,6 +54,7 @@ class _OnboardingScreenState extends BaseStatefulWidgetState<OnboardingScreen> {
                         ),
                       ),
                       SizedBox(height: screenHeight * 0.03),
+
                       FilledButton(
                         key: const Key(OnboardingKeysValues.loginButton),
                         onPressed: () async {
