@@ -9,9 +9,6 @@ class AppLocalizationsAr extends AppLocalizations {
   AppLocalizationsAr([String locale = 'ar']) : super(locale);
 
   @override
-  String get login => 'تسجيل الدخول';
-
-  @override
   String get errorMessages________ => '\$\$\$ تعليق \$\$\$';
 
   @override
@@ -109,4 +106,31 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get pleaseEnterValidRecipient => 'الرجاء إدخال مستلم صالح';
+
+  @override
+  String get loginScreen___________ => '\$\$ Comment \$\$';
+
+  @override
+  String get login => 'تسجيل الدخول';
+
+  @override
+  String get email => 'Email';
+
+  @override
+  String get enterEmail => 'Enter your email';
+
+  @override
+  String get password => 'Password';
+
+  @override
+  String get enterPassword => 'Enter your password';
+
+  @override
+  String get rememberMe => 'Remember me';
+
+  @override
+  String get forgetPassword => 'Forget password?';
+
+  @override
+  String get continueWord => 'Continue';
 }

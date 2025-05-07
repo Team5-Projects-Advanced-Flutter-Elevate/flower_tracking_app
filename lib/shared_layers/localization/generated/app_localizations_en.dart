@@ -9,9 +9,6 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
-  String get login => 'Login';
-
-  @override
   String get errorMessages________ => '\$\$\$ Comment \$\$\$';
 
   @override
@@ -109,4 +106,31 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get pleaseEnterValidRecipient => 'Please enter a valid recipient';
+
+  @override
+  String get loginScreen___________ => '\$\$ Comment \$\$';
+
+  @override
+  String get login => 'Login';
+
+  @override
+  String get email => 'Email';
+
+  @override
+  String get enterEmail => 'Enter your email';
+
+  @override
+  String get password => 'Password';
+
+  @override
+  String get enterPassword => 'Enter your password';
+
+  @override
+  String get rememberMe => 'Remember me';
+
+  @override
+  String get forgetPassword => 'Forget password?';
+
+  @override
+  String get continueWord => 'Continue';
 }

@@ -1,6 +1,4 @@
 {
-  "login": "Login",
-
   "errorMessages________": "$$$ Comment $$$",
   "connectionTimeout": "Connection timeout with server ⌛",
   "sendTimeout": "Send timeout in connection with server ⏱",
@@ -34,5 +32,16 @@
   "noMatch": "No Match!",
   "pleaseEnterAddress": "Please enter the address",
   "pleaseEnterValidAddress": "Please enter a valid address",
-  "pleaseEnterValidRecipient": "Please enter a valid recipient"
+  "pleaseEnterValidRecipient": "Please enter a valid recipient",
+
+  "loginScreen___________": "$$ Comment $$",
+  "login": "Login",
+  "email": "Email",
+  "enterEmail": "Enter your email",
+  "password": "Password",
+  "enterPassword": "Enter your password",
+  "rememberMe": "Remember me",
+  "forgetPassword": "Forget password?",
+  "continueWord": "Continue"
+
 }
