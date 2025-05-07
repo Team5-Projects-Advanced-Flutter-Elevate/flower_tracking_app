@@ -59,7 +59,11 @@ class _ApplicationApprovedState
                   height: screenHeight * 0.047,
                   child: FilledButton(
                     onPressed: () {},
-                    child: Text(appLocalizations.login,style: AppThemes.lightTheme.textTheme.titleMedium!.copyWith(color: AppColors.white,fontSize: 13,),),
+                    child: Text(
+                      appLocalizations.login,
+                      style: AppThemes.lightTheme.textTheme.titleMedium!
+                          .copyWith(color: AppColors.white, fontSize: 13),
+                    ),
                   ),
                 ),
               ],

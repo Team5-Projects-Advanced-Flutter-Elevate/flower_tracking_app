@@ -16,7 +16,7 @@ abstract class GenerateRoute {
       case DefinedRoutes.applicationApproved:
         return MaterialPageRoute(
           builder: (context) => const ApplicationApproved(),
-        );  
+        );
       default:
         return _errorRoute();
     }
