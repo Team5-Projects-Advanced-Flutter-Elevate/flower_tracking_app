@@ -1,9 +1,6 @@
-import 'dart:io';
-
 import 'package:flower_tracking_app/core/bases/base_stateful_widget_state.dart';
 import 'package:flower_tracking_app/core/colors/app_colors.dart';
 import 'package:flower_tracking_app/core/themes/app_themes.dart';
-import 'package:flower_tracking_app/shared_layers/localization/enums/languages_enum.dart';
 import 'package:flutter/material.dart';
 
 class ApplicationApproved extends StatefulWidget {
