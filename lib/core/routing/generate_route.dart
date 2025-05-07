@@ -14,9 +14,7 @@ abstract class GenerateRoute {
           builder: (context) => const OnboardingScreen(),
         );
       case DefinedRoutes.loginScreenRoute:
-        return MaterialPageRoute(
-          builder: (context) => const LoginScreen(),
-        );
+        return MaterialPageRoute(builder: (context) => const LoginScreen());
       default:
         return _errorRoute();
     }

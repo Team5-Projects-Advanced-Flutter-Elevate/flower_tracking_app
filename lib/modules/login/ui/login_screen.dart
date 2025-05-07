@@ -59,13 +59,22 @@ class _LoginScreenState extends BaseStatefulWidgetState<LoginScreen> {
                         });
                       },
                     ),
-                    Text(appLocalizations.rememberMe, style: theme.textTheme.bodyMedium),
+                    Text(
+                      appLocalizations.rememberMe,
+                      style: theme.textTheme.bodyMedium,
+                    ),
                     const Spacer(),
-                    Text(appLocalizations.forgetPassword, style: theme.textTheme.bodyMedium),
+                    Text(
+                      appLocalizations.forgetPassword,
+                      style: theme.textTheme.bodyMedium,
+                    ),
                   ],
                 ),
                 SizedBox(height: screenHeight * 0.25),
-                FilledButton(onPressed: () {}, child: Text(appLocalizations.continueWord)),
+                FilledButton(
+                  onPressed: () {},
+                  child: Text(appLocalizations.continueWord),
+                ),
               ],
             ),
           ),
