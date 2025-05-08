@@ -33,6 +33,17 @@ jobs:
       - name: Format code
         run: dart format .
 
+      - name: Check for changes
+        id: check_changes
+        run: |
+          if git diff --quiet; then
+            echo "No changes detected."
+            echo "commit_changes=false" >> $GITHUB_ENV
+          else
+            echo "Changes detected."
+            echo "commit_changes=true" >> $GITHUB_ENV
+          fi
+
       - name: Get current branch name
         id: get_branch
         run: |
@@ -41,11 +52,12 @@ jobs:
           echo "Branch name: $(echo ${GITHUB_REF#refs/heads/})"
 
       - name: Commit changes
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add .
-          git commit -m "Apply Dart formatting changes"
-          git push https://MoK369:${{ secrets.PAT }}@github.com/Team5-Projects-Advanced-Flutter-Elevate/flower_tracking_app.git
+        if: env.commit_changes == 'true'
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.PAT }}
+        run: |
+          git config --global user.email "bot@example.com"
+          git config --global user.name "GitHub Bot"
+          git add .
+          git commit -m "Automated code formatting"
+          git push origin ${GITHUB_REF#refs/heads/}

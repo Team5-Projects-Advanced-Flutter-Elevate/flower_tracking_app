@@ -5,7 +5,7 @@ import 'package:injectable/injectable.dart';
 class ValidateFunctions {
   AppLocalizations _appLocalizations;
 
-   set appLocalizations(AppLocalizations appLocalizations) {
+  set appLocalizations(AppLocalizations appLocalizations) {
     _appLocalizations = appLocalizations;
   }
 

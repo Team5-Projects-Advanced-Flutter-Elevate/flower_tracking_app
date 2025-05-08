@@ -13,9 +13,7 @@ abstract class BaseStatefulWidgetState<T extends StatefulWidget>
     extends State<T> {
   late ThemeData theme;
   late double screenWidth, screenHeight;
-  late InheritedWidget easyLocalization;
   late LocalizationManager localizationManager;
-
   late AppLocalizations appLocalizations;
   late ValidateFunctions validateFunctions;
 

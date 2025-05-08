@@ -32,7 +32,7 @@ abstract class AppColors {
     70: Color(0xFF8C1447),
     80: Color(0xFF690F35),
     90: Color(0xFF460A23),
-    100: Color(0xFF2A0615)
+    100: Color(0xFF2A0615),
   });
 
   static const MaterialColor _black = MaterialColor(0xFF000000, {
@@ -45,7 +45,7 @@ abstract class AppColors {
     70: Color(0xFF080B0E),
     80: Color(0xFF06080B),
     90: Color(0xFF040507),
-    100: Color(0xFF020304)
+    100: Color(0xFF020304),
   });
 
   static MaterialColor get white => _white;
@@ -56,5 +56,4 @@ abstract class AppColors {
   static Color get green => _green;
   static Color get lightPink => _lightPink;
   static Color get transparent => Colors.transparent;
-
 }
