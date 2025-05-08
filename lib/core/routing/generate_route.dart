@@ -7,13 +7,17 @@ abstract class GenerateRoute {
     // var args = routeSettings.arguments;
     var name = routeSettings.name;
 
-    switch (name) {
-      case DefinedRoutes.onboardingScreenRoute:
-        return MaterialPageRoute(
-          builder: (context) => const OnboardingScreen(),
-        );
-      default:
-        return _errorRoute();
+    try {
+      switch (name) {
+        case DefinedRoutes.onboardingScreenRoute:
+          return MaterialPageRoute(
+            builder: (context) => const OnboardingScreen(),
+          );
+        default:
+          return _errorRoute();
+      }
+    } catch (e) {
+      return _errorRoute();
     }
   }
 
@@ -37,13 +41,24 @@ abstract class GenerateRoute {
   static Route<dynamic> _errorRoute() {
     return MaterialPageRoute(
       builder: (context) {
-        return Center(
+        return Material(
           child: Container(
             color: Colors.red,
-            child: const Text(
-              "Error! You Have Navigated To A Wrong Route. Or Navigated With Wrong Arguments",
-              textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 30, color: Colors.white),
+            child: const Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Center(
+                  child: Text(
+                    "Error! You Have Navigated To A Wrong Route. Or Navigated With Wrong Arguments",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 30,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
         );
