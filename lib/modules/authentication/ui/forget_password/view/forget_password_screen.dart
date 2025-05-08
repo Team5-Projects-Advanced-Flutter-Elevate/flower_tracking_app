@@ -53,7 +53,7 @@ class _ForgetPasswordScreenState
             titleSpacing: 0.0,
             leading: IconButton(
               onPressed: () {
-
+                     Navigator.pop(context);
               },
               icon: Icon(Icons.arrow_back_ios, size: screenWidth * 0.06),
             ),

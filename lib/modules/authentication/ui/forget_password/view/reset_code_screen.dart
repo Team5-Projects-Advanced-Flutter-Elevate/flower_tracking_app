@@ -42,7 +42,9 @@ class _ResetCodeScreenState extends BaseStatefulWidgetState<ResetCodeScreen> {
                 title: Row(
                   children: [
                     InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
                       child: Icon(
                         Icons.arrow_back_ios,
                         size: screenWidth * 0.05,
