@@ -5,7 +5,6 @@ abstract interface class LoginLocalDataSource {
     required LoggedDriverDataResponseEntity loggedDriverDataResponseEntity,
   });
 
-
   Future<LoggedDriverDataResponseEntity> getDriverData();
 
   Future<void> deleteDriverData();

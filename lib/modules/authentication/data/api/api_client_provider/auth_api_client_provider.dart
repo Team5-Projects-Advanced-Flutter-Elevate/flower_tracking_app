@@ -4,7 +4,6 @@ import 'package:injectable/injectable.dart';
 
 @module
 abstract class AuthApiClientProvider {
-
   @lazySingleton
   AuthApiClient provideApiClient(Dio dio) {
     return AuthApiClient(dio);

@@ -1,5 +1,5 @@
 class LoggedDriverDataResponseEntity {
-  LoggedDriverDataResponseEntity({this.message, this.driver,this.token});
+  LoggedDriverDataResponseEntity({this.message, this.driver, this.token});
 
   String? message;
   DriverEntity? driver;
