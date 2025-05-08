@@ -3,12 +3,18 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i3;
+import 'dart:async' as _i5;
 
 import 'package:flower_tracking_app/modules/authentication/data/api/api_client/auth_api_client.dart'
-    as _i2;
-import 'package:flower_tracking_app/modules/authentication/data/models/forget_password/forget_password_response.dart'
     as _i4;
+import 'package:flower_tracking_app/modules/authentication/data/models/forget_password/forget_password_response.dart'
+    as _i7;
+import 'package:flower_tracking_app/modules/authentication/data/models/logged_driver_data/logged_driver_data_response_dto.dart'
+    as _i3;
+import 'package:flower_tracking_app/modules/authentication/data/models/login/request/login_request_dto.dart'
+    as _i6;
+import 'package:flower_tracking_app/modules/authentication/data/models/login/response/login_response_dto.dart'
+    as _i2;
 import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: type=lint
@@ -25,41 +31,81 @@ import 'package:mockito/mockito.dart' as _i1;
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
+class _FakeLoginResponseDto_0 extends _i1.SmartFake
+    implements _i2.LoginResponseDto {
+  _FakeLoginResponseDto_0(Object parent, Invocation parentInvocation)
+    : super(parent, parentInvocation);
+}
+
+class _FakeLoggedDriverDataResponseDto_1 extends _i1.SmartFake
+    implements _i3.LoggedDriverDataResponseDto {
+  _FakeLoggedDriverDataResponseDto_1(Object parent, Invocation parentInvocation)
+    : super(parent, parentInvocation);
+}
+
 /// A class which mocks [AuthApiClient].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockAuthApiClient extends _i1.Mock implements _i2.AuthApiClient {
+class MockAuthApiClient extends _i1.Mock implements _i4.AuthApiClient {
   MockAuthApiClient() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i3.Future<_i4.ForgetPasswordResponse?> forgetPassword(
+  _i5.Future<_i2.LoginResponseDto> login(
+    _i6.LoginRequestDto? loginRequestDto,
+  ) =>
+      (super.noSuchMethod(
+            Invocation.method(#login, [loginRequestDto]),
+            returnValue: _i5.Future<_i2.LoginResponseDto>.value(
+              _FakeLoginResponseDto_0(
+                this,
+                Invocation.method(#login, [loginRequestDto]),
+              ),
+            ),
+          )
+          as _i5.Future<_i2.LoginResponseDto>);
+
+  @override
+  _i5.Future<_i7.ForgetPasswordResponse?> forgetPassword(
     Map<String, dynamic>? body,
   ) =>
       (super.noSuchMethod(
             Invocation.method(#forgetPassword, [body]),
-            returnValue: _i3.Future<_i4.ForgetPasswordResponse?>.value(),
+            returnValue: _i5.Future<_i7.ForgetPasswordResponse?>.value(),
           )
-          as _i3.Future<_i4.ForgetPasswordResponse?>);
+          as _i5.Future<_i7.ForgetPasswordResponse?>);
 
   @override
-  _i3.Future<_i4.ForgetPasswordResponse?> resetPassword(
+  _i5.Future<_i3.LoggedDriverDataResponseDto> getLoggedDriverData() =>
+      (super.noSuchMethod(
+            Invocation.method(#getLoggedDriverData, []),
+            returnValue: _i5.Future<_i3.LoggedDriverDataResponseDto>.value(
+              _FakeLoggedDriverDataResponseDto_1(
+                this,
+                Invocation.method(#getLoggedDriverData, []),
+              ),
+            ),
+          )
+          as _i5.Future<_i3.LoggedDriverDataResponseDto>);
+
+  @override
+  _i5.Future<_i7.ForgetPasswordResponse?> resetPassword(
     Map<String, dynamic>? body,
   ) =>
       (super.noSuchMethod(
             Invocation.method(#resetPassword, [body]),
-            returnValue: _i3.Future<_i4.ForgetPasswordResponse?>.value(),
+            returnValue: _i5.Future<_i7.ForgetPasswordResponse?>.value(),
           )
-          as _i3.Future<_i4.ForgetPasswordResponse?>);
+          as _i5.Future<_i7.ForgetPasswordResponse?>);
 
   @override
-  _i3.Future<_i4.ForgetPasswordResponse?> resetCode(
+  _i5.Future<_i7.ForgetPasswordResponse?> resetCode(
     Map<String, dynamic>? body,
   ) =>
       (super.noSuchMethod(
             Invocation.method(#resetCode, [body]),
-            returnValue: _i3.Future<_i4.ForgetPasswordResponse?>.value(),
+            returnValue: _i5.Future<_i7.ForgetPasswordResponse?>.value(),
           )
-          as _i3.Future<_i4.ForgetPasswordResponse?>);
+          as _i5.Future<_i7.ForgetPasswordResponse?>);
 }

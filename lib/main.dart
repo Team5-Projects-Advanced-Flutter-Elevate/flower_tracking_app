@@ -85,7 +85,7 @@ class _MyAppState extends State<MyApp> {
                 loginInfo: loggedDriverData,
               );
             },
-            home: ForgetPasswordScreen(),
+            //home: ForgetPasswordScreen(),
             // navigatorKey: globalNavigatorKey,
             // onGenerateRoute: GenerateRoute.onGenerateRoute,
             // initialRoute: DefinedRoutes.onboardingScreenRoute,

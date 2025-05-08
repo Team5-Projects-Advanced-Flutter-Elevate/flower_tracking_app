@@ -4,15 +4,12 @@ import 'package:flower_tracking_app/modules/authentication/data/models/logged_dr
 import 'package:flower_tracking_app/modules/authentication/data/models/login/request/login_request_dto.dart';
 import 'package:flower_tracking_app/modules/authentication/data/models/login/response/login_response_dto.dart';
 import 'package:retrofit/retrofit.dart';
-import '../../../../../core/apis/apis_endpoints/apis_endpoints.dart';
 import '../../models/forget_password/forget_password_response.dart';
-import 'package:dio/dio.dart';
 
 part 'auth_api_client.g.dart';
 
 @RestApi(baseUrl: ApisEndpoints.baseUrl)
 abstract class AuthApiClient {
-abstract interface class AuthApiClient {
   factory AuthApiClient(Dio dio) = _AuthApiClient;
 
   @POST(ApisEndpoints.loginEndPoint)
@@ -20,19 +17,16 @@ abstract interface class AuthApiClient {
 
   @POST(ApisEndpoints.forgetPasswordEndPoint)
   Future<ForgetPasswordResponse?> forgetPassword(
-      @Body()Map<String, dynamic> body,
-      );
+    @Body() Map<String, dynamic> body,
+  );
   @GET(ApisEndpoints.loggedDriverDataEndPoint)
   Future<LoggedDriverDataResponseDto> getLoggedDriverData();
-}
 
   @PUT(ApisEndpoints.resetPasswordEndPoint)
   Future<ForgetPasswordResponse?> resetPassword(
-      @Body()Map<String, dynamic> body,
-      );
+    @Body() Map<String, dynamic> body,
+  );
 
   @POST(ApisEndpoints.resetCodeEndPoint)
-  Future<ForgetPasswordResponse?> resetCode(
-      @Body()Map<String, dynamic> body,
-      );
+  Future<ForgetPasswordResponse?> resetCode(@Body() Map<String, dynamic> body);
 }
