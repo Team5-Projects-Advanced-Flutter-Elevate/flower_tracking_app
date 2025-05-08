@@ -87,5 +87,7 @@
   "gender": "Gender",
   "male": "Male",
   "female": "Female",
-  "removedImage": "Removed image"
+  "removedImage": "Removed image",
+  "applicationSubmitted": "Your application has been submitted!",
+  "thanksForProvidingApplication": "Thank you for providing your application, we will review your application and will get back to you soon."
 }

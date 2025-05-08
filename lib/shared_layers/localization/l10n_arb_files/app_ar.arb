@@ -87,5 +87,7 @@
   "gender": "الجنس",
   "male": "ذكر",
   "female": "أنثى",
-  "removedImage": "تمت إزالة الصورة"
+  "removedImage": "تمت إزالة الصورة",
+  "applicationSubmitted": "لقد تم تقديم طلبك!",
+  "thanksForProvidingApplication": "نشكرك على تقديم طلبك، وسوف نقوم بمراجعة طلبك وسنرد عليك قريبًا."
 }
