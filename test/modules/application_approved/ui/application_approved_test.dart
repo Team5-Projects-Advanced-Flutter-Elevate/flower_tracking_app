@@ -64,6 +64,12 @@ void main() {
         checkIcon,
         findsWidgets,
       ); // Image used for both background and icon
+      final descriptionText =
+          find.text(appLocalizations.thanksForProvidingApplication);
+      final loginButton = find.text(appLocalizations.login);
+
+      // Assert
+      expect(checkIcon, findsWidgets); // Image used for both background and icon
       expect(titleText, findsOneWidget);
       expect(descriptionText, findsOneWidget);
       expect(loginButton, findsOneWidget);
