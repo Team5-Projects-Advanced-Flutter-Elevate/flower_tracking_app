@@ -1,4 +1,3 @@
-import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flower_tracking_app/core/bases/base_stateful_widget_state.dart';
 import 'package:flower_tracking_app/core/colors/app_colors.dart';
 import 'package:flower_tracking_app/core/constants/assets_paths/assets_paths.dart';
@@ -36,8 +35,13 @@ class _ApplicationApprovedState
               right: 30,
             ),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                Image.asset(AssetsPaths.applicationApprovedCheckCircle),
+                Image.asset(
+                  AssetsPaths.applicationApprovedCheckCircle,
+                  width: screenWidth * 0.17,
+                  height: screenHeight * 0.17,
+                ),
                 SizedBox(height: screenHeight * 0.020),
                 Text(
                   appLocalizations.applicationSubmitted,
@@ -59,7 +63,6 @@ class _ApplicationApprovedState
                 SizedBox(height: screenHeight * 0.020),
                 SizedBox(
                   width: screenWidth,
-                  height: screenHeight * 0.047,
                   child: FilledButton(
                     onPressed: () {},
                     child: Text(
