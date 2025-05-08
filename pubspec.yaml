@@ -85,6 +85,11 @@ dependencies:
   # Image Processing
   flutter_image_compress: ^2.4.0
   device_preview: ^1.2.0
+  dropdown_button2: ^2.3.9
+  country_flags: ^3.2.0
+  mime_type: ^1.0.1
+
+
 
 
 dev_dependencies:

@@ -70,7 +70,7 @@ class _OnboardingScreenState extends BaseStatefulWidgetState<OnboardingScreen> {
                       OutlinedButton(
                         key: const Key(OnboardingKeysValues.applyButton),
                         onPressed: () {
-                          // Todo: Navigate To Apply Screen
+                          Navigator.pushNamed(context, DefinedRoutes.apply);
                         },
                         child: Text(appLocalizations.applyNow),
                       ),

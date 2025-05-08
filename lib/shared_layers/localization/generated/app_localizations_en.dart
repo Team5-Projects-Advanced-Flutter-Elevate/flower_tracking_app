@@ -30,7 +30,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get unknown => 'Something Went Wrong 🤔';
 
   @override
-  String get badCertificate => 'The certificate provided by the server is not valid 📑';
+  String get badCertificate =>
+      'The certificate provided by the server is not valid 📑';
 
   @override
   String get somethingWentWrong => 'Something Went Wrong 🤔';
@@ -45,10 +46,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get pleaseEnterUserName => 'Please enter user name.';
 
   @override
-  String get userNameLength => 'Username must be between 3 and 16 characters long.';
+  String get userNameLength =>
+      'Username must be between 3 and 16 characters long.';
 
   @override
-  String get userNameRules => 'Username can only contain letters, numbers, and underscores.';
+  String get userNameRules =>
+      'Username can only contain letters, numbers, and underscores.';
 
   @override
   String get pleaseEnterFirstName => 'Please enter first name.';
@@ -69,7 +72,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get pleaseEnterPhoneNumber => 'Please enter your phone number.';
 
   @override
-  String get phoneNumberRules => 'Number must start with one of the valid prefixes:\n010, 011, 012, or 015\nfollowed by 8 digits.';
+  String get phoneNumberRules =>
+      'Number must start with one of the valid prefixes:\n010, 011, 012, or 015\nfollowed by 8 digits.';
 
   @override
   String get pleaseEnterPassword => 'Please enter your password.';
@@ -87,7 +91,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get digitRulePassword => 'At least one digit must be there.';
 
   @override
-  String get specialCharactersRulePassword => 'At least one special character(e.g., #?!@\$%^&*-) must be included.';
+  String get specialCharactersRulePassword =>
+      'At least one special character(e.g., #?!@\$%^&*-) must be included.';
 
   @override
   String get pleaseConfirmPassword => 'Please confirm password.';
@@ -145,4 +150,121 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get loggedSuccessfully => 'Logged In Successfully!';
+
+  @override
+  String get applyScreen____________ => '\$\$ Comment \$\$';
+
+  @override
+  String get apply => 'Apply';
+
+  @override
+  String get error => 'Error';
+
+  @override
+  String get imagePickedSuccess => 'Image picked successfully';
+
+  @override
+  String get imagePickFailed => 'Failed to pick image';
+
+  @override
+  String get removedIdImage => 'Removed ID image';
+
+  @override
+  String get removedLicenseImage => 'Removed license image';
+
+  @override
+  String get welcome => 'Welcome !!';
+
+  @override
+  String get joinQuestion => 'You want to be a delivery man?';
+
+  @override
+  String get joinOurTeam => 'Join our team';
+
+  @override
+  String get country => 'Country';
+
+  @override
+  String get firstName => 'First legal name';
+
+  @override
+  String get firstNameHint => 'Enter your first legal name';
+
+  @override
+  String get secondName => 'Second legal name';
+
+  @override
+  String get secondNameHint => 'Enter your second legal name';
+
+  @override
+  String get vehicleType => 'Vehicle type';
+
+  @override
+  String get vehicleNumberPrompt => 'Please enter vehicle number';
+
+  @override
+  String get vehicleNumber => 'Vehicle number';
+
+  @override
+  String get vehicleNumberHint => 'Enter vehicle number';
+
+  @override
+  String get vehicleLicensePrompt => 'Please upload vehicle license';
+
+  @override
+  String get vehicleLicense => 'Vehicle license';
+
+  @override
+  String get vehicleLicenseHint => 'Upload license photo';
+
+  @override
+  String get idNumberPrompt => 'Please enter ID number';
+
+  @override
+  String get idNumberLength => 'ID number must be 14 characters';
+
+  @override
+  String get idNumber => 'ID number';
+
+  @override
+  String get idNumberHint => 'Enter national ID number';
+
+  @override
+  String get idImagePrompt => 'Please upload ID image';
+
+  @override
+  String get idImage => 'ID image';
+
+  @override
+  String get idImageHint => 'Upload ID image';
+
+  @override
+  String get selectGender => 'Please select gender';
+
+  @override
+  String get continueButton => 'Continue';
+
+  @override
+  String get emailHint => 'Enter your email';
+
+  @override
+  String get passwordHint => 'Enter your password';
+
+  @override
+  String get confirmPassword => 'Confirm password';
+
+  @override
+  String get confirmPasswordHint => 'Confirm your password';
+
+  @override
+  String get gender => 'Gender';
+
+  @override
+  String get male => 'Male';
+
+  @override
+  String get female => 'Female';
+
+  @override
+  String get removedImage => 'Removed image';
 }
