@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flower_tracking_app/core/bases/base_stateful_widget_state.dart';
 import 'package:flower_tracking_app/core/constants/assets_paths/assets_paths.dart';
+import 'package:flower_tracking_app/core/routing/defined_routes.dart';
 import 'package:flower_tracking_app/modules/onboarding/ui/constants/onboarding_keys_value.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
@@ -58,7 +59,10 @@ class _OnboardingScreenState extends BaseStatefulWidgetState<OnboardingScreen> {
                       FilledButton(
                         key: const Key(OnboardingKeysValues.loginButton),
                         onPressed: () async {
-                          // Todo: Navigate To Login Screen
+                          Navigator.pushNamed(
+                            context,
+                            DefinedRoutes.loginScreenRoute,
+                          );
                         },
                         child: Text(appLocalizations.login),
                       ),

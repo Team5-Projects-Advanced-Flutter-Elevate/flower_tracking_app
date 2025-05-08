@@ -35,7 +35,7 @@ abstract class GenerateRoute {
       if (loginInfo != null)
         MaterialPageRoute(builder: (context) => const HomeScreen())
       else
-        MaterialPageRoute(builder: (context) => const LoginScreen()),
+        MaterialPageRoute(builder: (context) => const OnboardingScreen()),
     ];
   }
 
