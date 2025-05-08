@@ -8,13 +8,16 @@ import 'package:flower_tracking_app/modules/authentication/domain/entities/logge
 import 'package:flower_tracking_app/shared_layers/localization/generated/app_localizations.dart';
 import 'package:flower_tracking_app/shared_layers/localization/l10n_manager/localization_manager.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:provider/provider.dart';
 import 'core/utilities/dio/dio_service/dio_service.dart';
 
 GlobalKey<NavigatorState> globalNavigatorKey = GlobalKey<NavigatorState>();
 LoggedDriverDataResponseEntity? loggedDriverData;
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(
+    widgetsBinding: WidgetsFlutterBinding.ensureInitialized(),
+  );
   await configureDependencies();
 
   final loginLocaleDataSource = getIt.get<LoginLocalDataSource>();
@@ -38,8 +41,19 @@ void main() async {
   );
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  @override
+  void initState() {
+    super.initState();
+    FlutterNativeSplash.remove();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -61,6 +75,7 @@ class MyApp extends StatelessWidget {
             supportedLocales: AppLocalizations.supportedLocales,
             locale: Locale(localizationManager.currentLocale),
             navigatorKey: globalNavigatorKey,
+            //initialRoute: DefinedRoutes.onboardingScreenRoute,
             onGenerateRoute: GenerateRoute.onGenerateRoute,
             onGenerateInitialRoutes: (initialRoute) {
               return GenerateRoute.onGenerateInitialRoutes(
