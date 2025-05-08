@@ -53,6 +53,7 @@ dependencies:
   ansicolor: ^2.0.3
   http_parser: ^4.1.2
 
+
   # State Management
   provider: ^6.1.5
   flutter_bloc: ^9.1.1
