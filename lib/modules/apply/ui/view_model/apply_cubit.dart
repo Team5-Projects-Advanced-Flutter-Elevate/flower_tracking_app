@@ -11,7 +11,6 @@ import 'package:flower_tracking_app/modules/apply/domain/usecases/apply_use_case
 import 'package:flower_tracking_app/modules/apply/domain/usecases/get_vehicles_use_case.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../../../core/utilities/image_picker.dart';
 import '../../data/models/apply_response.dart';
 import '../../data/models/country_model.dart';
 
@@ -218,9 +217,7 @@ class ApplyCubit extends Cubit<ApplyState> {
     try {
       emit(state.copyWith(pickImageStatus: PickImageStatus.loading));
       final pickedFile = await imagePickerService.pickImageFromGallery();
-      late File compressedImage;
       if (pickedFile != null) {
-        compressedImage = await compressAndResizeImage(pickedFile);
         emit(
           state.copyWith(
             pickImageStatus: PickImageStatus.success,
@@ -228,7 +225,7 @@ class ApplyCubit extends Cubit<ApplyState> {
           ),
         );
       }
-      return pickedFile != null ? compressedImage : null;
+      return pickedFile != null ? File(pickedFile.path) : null;
     } catch (error) {
       emit(
         state.copyWith(

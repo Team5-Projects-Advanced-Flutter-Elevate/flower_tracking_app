@@ -65,6 +65,8 @@ class AssetCountryLoaderService implements CountryLoaderService {
 
 @LazySingleton(as: ImagePickerService)
 class DefaultImagePickerService implements ImagePickerService {
+
+
   @override
   Future<File?> pickImageFromGallery() async {
     final pickedFile = await ImagePicker().pickImage(source: ImageSource.gallery);
