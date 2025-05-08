@@ -6,7 +6,7 @@ import 'package:retrofit/retrofit.dart';
 import 'package:dio/dio.dart';
 part 'auth_api_client.g.dart';
 
-@RestApi()
+@RestApi(baseUrl: ApisEndpoints.baseUrl)
 abstract interface class AuthApiClient {
   factory AuthApiClient(Dio dio) = _AuthApiClient;
 
