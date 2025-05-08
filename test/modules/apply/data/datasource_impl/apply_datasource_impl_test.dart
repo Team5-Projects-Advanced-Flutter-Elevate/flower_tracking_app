@@ -51,7 +51,7 @@ void main() {
             rePassword: 'password',
             gender: 'male',
           );
-          final mockResponse = ApplyResponse(message: 'Success');
+          const  mockResponse =  ApplyResponse(message: 'Success');
           when(
             mockApplyApiClient.applyDriver(mockRequestModel),
           ).thenAnswer((_) async => mockResponse);

@@ -14,7 +14,7 @@ class VehicleResponse extends Equatable {
   @JsonKey(name: "vehicles")
   final List<Vehicle>? vehicles;
 
-  VehicleResponse({this.message, this.metadata, this.vehicles});
+  const VehicleResponse({this.message, this.metadata, this.vehicles});
 
   factory VehicleResponse.fromJson(Map<String, dynamic> json) {
     return _$VehicleResponseFromJson(json);
@@ -49,7 +49,7 @@ class Metadata extends Equatable {
   @JsonKey(name: "totalItems")
   final int? totalItems;
 
-  Metadata({this.currentPage, this.totalPages, this.limit, this.totalItems});
+ const  Metadata({this.currentPage, this.totalPages, this.limit, this.totalItems});
 
   factory Metadata.fromJson(Map<String, dynamic> json) {
     return _$MetadataFromJson(json);

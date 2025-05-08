@@ -53,7 +53,7 @@ void main() {
       'toEntity with null values should return ApplyResponseEntity with null fields',
       () {
         // Arrange
-        final applyResponse = ApplyResponse();
+        const applyResponse = ApplyResponse();
 
         // Act
         final result = applyResponse.toEntity();

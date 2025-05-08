@@ -66,7 +66,7 @@ void main() {
               state.copyWith(loadCountryStatus: LoadCountryStatus.loading),
               state.copyWith(
                 loadCountryStatus: LoadCountryStatus.success,
-                countries: [CountryModel(name: 'Country A', isoCode: 'CA')],
+                countries: [const CountryModel(name: 'Country A', isoCode: 'CA')],
               ),
             ],
       );
@@ -151,7 +151,7 @@ void main() {
         'applyDriver success',
         build: () => applyCubit,
         setUp: () {
-          applyResponseEntity = ApplyResponseEntity();
+          applyResponseEntity = const ApplyResponseEntity();
           provideDummy<ApiResult<ApplyResponseEntity>>(
             Success<ApplyResponseEntity>(data: applyResponseEntity),
           );

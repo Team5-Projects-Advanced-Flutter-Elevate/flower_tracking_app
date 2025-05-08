@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 
 class CountryModel extends Equatable {
-  CountryModel({
+  const CountryModel({
     this.isoCode,
     this.name,
     this.phoneCode,
@@ -12,30 +12,29 @@ class CountryModel extends Equatable {
     this.timezones,
   });
 
-  CountryModel.fromJson(dynamic json) {
-    isoCode = json['isoCode'];
-    name = json['name'];
-    phoneCode = json['phoneCode'];
-    flag = json['flag'];
-    currency = json['currency'];
-    latitude = json['latitude'];
-    longitude = json['longitude'];
-    if (json['timezones'] != null) {
-      timezones = [];
-      json['timezones'].forEach((v) {
-        timezones?.add(Timezones.fromJson(v));
-      });
-    }
-  }
+  CountryModel.fromJson(dynamic json)
+    : isoCode = json['isoCode'],
+      name = json['name'],
+      phoneCode = json['phoneCode'],
+      flag = json['flag'],
+      currency = json['currency'],
+      latitude = json['latitude'],
+      longitude = json['longitude'],
+      timezones =
+          json['timezones'] != null
+              ? (json['timezones'] as List)
+                  .map((v) => Timezones.fromJson(v))
+                  .toList()
+              : null;
 
-  String? isoCode;
-  String? name;
-  String? phoneCode;
-  String? flag;
-  String? currency;
-  String? latitude;
-  String? longitude;
-  List<Timezones>? timezones;
+  final String? isoCode;
+  final String? name;
+  final String? phoneCode;
+  final String? flag;
+  final String? currency;
+  final String? latitude;
+  final String? longitude;
+  final List<Timezones>? timezones;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
@@ -67,7 +66,7 @@ class CountryModel extends Equatable {
 }
 
 class Timezones {
-  Timezones({
+  const Timezones({
     this.zoneName,
     this.gmtOffset,
     this.gmtOffsetName,
@@ -75,19 +74,21 @@ class Timezones {
     this.tzName,
   });
 
-  Timezones.fromJson(dynamic json) {
-    zoneName = json['zoneName'];
-    gmtOffset = json['gmtOffset'];
-    gmtOffsetName = json['gmtOffsetName'];
-    abbreviation = json['abbreviation'];
-    tzName = json['tzName'];
+  factory Timezones.fromJson(Map<String, dynamic> json) {
+    return Timezones(
+      zoneName: json['zoneName'],
+      gmtOffset: json['gmtOffset'],
+      gmtOffsetName: json['gmtOffsetName'],
+      abbreviation: json['abbreviation'],
+      tzName: json['tzName'],
+    );
   }
 
-  String? zoneName;
-  num? gmtOffset;
-  String? gmtOffsetName;
-  String? abbreviation;
-  String? tzName;
+  final String? zoneName;
+  final num? gmtOffset;
+  final String? gmtOffsetName;
+  final String? abbreviation;
+  final String? tzName;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};

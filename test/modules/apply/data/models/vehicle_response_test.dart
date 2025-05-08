@@ -20,7 +20,7 @@ void main() {
               v: 0,
             )
           ],
-          metadata: Metadata(
+          metadata: const Metadata(
             currentPage: 1,
             totalPages: 3,
             limit: 10,
@@ -49,7 +49,7 @@ void main() {
       'toEntity with null values should return VehicleResponseEntity with null fields',
           () {
         // Arrange
-        final vehicleResponse = VehicleResponse();
+        const  vehicleResponse =  VehicleResponse();
 
         // Act
         final result = vehicleResponse.toEntity();

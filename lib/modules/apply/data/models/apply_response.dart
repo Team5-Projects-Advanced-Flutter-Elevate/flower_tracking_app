@@ -5,19 +5,18 @@ import 'package:equatable/equatable.dart';
 import 'package:flower_tracking_app/modules/apply/domain/entities/apply_response_entity.dart';
 import 'package:http_parser/http_parser.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:mime_type/mime_type.dart';
 
 part 'apply_response.g.dart';
 
 @JsonSerializable()
 class ApplyResponse extends Equatable {
-  ApplyResponse({this.message, this.driver, this.token});
+  const ApplyResponse({this.message, this.driver, this.token});
 
   factory ApplyResponse.fromJson(dynamic json) => _$ApplyResponseFromJson(json);
 
-  String? message;
-  Driver? driver;
-  String? token;
+  final String? message;
+  final Driver? driver;
+  final String? token;
 
   Map<String, dynamic> toJson() => _$ApplyResponseToJson(this);
 

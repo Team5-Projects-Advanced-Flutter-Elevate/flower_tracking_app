@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'package:flower_tracking_app/core/apis/api_result/api_result.dart';
 
 import '../../data/models/apply_response.dart';
