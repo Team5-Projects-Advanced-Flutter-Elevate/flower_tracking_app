@@ -21,18 +21,20 @@ abstract class GenerateRoute {
             builder: (context) => const OnboardingScreen(),
           );
         case DefinedRoutes.loginScreenRoute:
-        return MaterialPageRoute(builder: (context) => const LoginScreen());
-      case DefinedRoutes.homeScreenRoute:
-        return MaterialPageRoute(builder: (context) => const HomeScreen());
+          return MaterialPageRoute(builder: (context) => const LoginScreen());
+        case DefinedRoutes.homeScreenRoute:
+          return MaterialPageRoute(builder: (context) => const HomeScreen());
         case DefinedRoutes.apply:
-          ApplyCubit cubit = getIt<ApplyCubit>()..doIntent(LoadApplyDataIntent());
+          ApplyCubit cubit =
+              getIt<ApplyCubit>()..doIntent(LoadApplyDataIntent());
           return MaterialPageRoute(
             builder:
                 (context) =>
-                BlocProvider.value(value: cubit, child: const ApplyView()),
+                    BlocProvider.value(value: cubit, child: const ApplyView()),
           );
-      default:
-        return _errorRoute();}
+        default:
+          return _errorRoute();
+      }
     } catch (e) {
       return _errorRoute();
     }

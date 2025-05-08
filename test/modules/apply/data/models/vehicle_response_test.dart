@@ -6,7 +6,7 @@ void main() {
   group('VehicleResponse', () {
     test(
       'toEntity with non-null values should return VehicleResponseEntity with all fields',
-          () {
+      () {
         // Arrange
         final vehicleResponse = VehicleResponse(
           message: 'Success',
@@ -18,7 +18,7 @@ void main() {
               createdAt: '2023-01-01',
               updatedAt: '2023-01-02',
               v: 0,
-            )
+            ),
           ],
           metadata: const Metadata(
             currentPage: 1,
@@ -47,9 +47,9 @@ void main() {
 
     test(
       'toEntity with null values should return VehicleResponseEntity with null fields',
-          () {
+      () {
         // Arrange
-        const  vehicleResponse =  VehicleResponse();
+        const vehicleResponse = VehicleResponse();
 
         // Act
         final result = vehicleResponse.toEntity();
@@ -71,7 +71,7 @@ void main() {
   group('Vehicle', () {
     test(
       'toEntity with non-null values should return VehicleEntity with all fields',
-          () {
+      () {
         // Arrange
         final vehicle = Vehicle(
           id: 'veh_123',
@@ -100,7 +100,7 @@ void main() {
 
     test(
       'toEntity with null values should return VehicleEntity with null fields',
-          () {
+      () {
         // Arrange
         final vehicle = Vehicle();
 

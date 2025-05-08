@@ -18,7 +18,6 @@ abstract class DioService {
       ),
     );
 
-
     dio.interceptors.add(
       TalkerDioLogger(
         settings: TalkerDioLoggerSettings(

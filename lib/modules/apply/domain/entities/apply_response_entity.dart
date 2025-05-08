@@ -3,17 +3,13 @@ import 'package:equatable/equatable.dart';
 class ApplyResponseEntity extends Equatable {
   const ApplyResponseEntity({this.message, this.driver, this.token});
 
-final String? message;
-final DriverEntity? driver;
-final String? token;
+  final String? message;
+  final DriverEntity? driver;
+  final String? token;
 
   @override
   // TODO: implement props
-  List<Object?> get props => [
-        message,
-        driver,
-        token,
-  ];
+  List<Object?> get props => [message, driver, token];
 }
 
 class DriverEntity extends Equatable {
@@ -35,39 +31,39 @@ class DriverEntity extends Equatable {
     this.createdAt,
   });
 
-final String? country;
-final String? firstName;
-final String? lastName;
-final String? vehicleType;
-final String? vehicleNumber;
-final String? vehicleLicense;
-final String? nid;
-final String? nIDImg;
-final String? email;
-final String? gender;
-final String? phone;
-final String? photo;
-final String? role;
-final String? id;
-final String? createdAt;
+  final String? country;
+  final String? firstName;
+  final String? lastName;
+  final String? vehicleType;
+  final String? vehicleNumber;
+  final String? vehicleLicense;
+  final String? nid;
+  final String? nIDImg;
+  final String? email;
+  final String? gender;
+  final String? phone;
+  final String? photo;
+  final String? role;
+  final String? id;
+  final String? createdAt;
 
   @override
   // TODO: implement props
   List<Object?> get props => [
-        country,
-        firstName,
-        lastName,
-        vehicleType,
-        vehicleNumber,
-        vehicleLicense,
-        nid,
-        nIDImg,
-        email,
-        gender,
-        phone,
-        photo,
-        role,
-        id,
-        createdAt,
+    country,
+    firstName,
+    lastName,
+    vehicleType,
+    vehicleNumber,
+    vehicleLicense,
+    nid,
+    nIDImg,
+    email,
+    gender,
+    phone,
+    photo,
+    role,
+    id,
+    createdAt,
   ];
 }

@@ -112,6 +112,5 @@ class ApplyState extends Equatable {
     applyDriverError,
     loadVehicleError,
     loadApplyDataStatus,
-
   ];
 }

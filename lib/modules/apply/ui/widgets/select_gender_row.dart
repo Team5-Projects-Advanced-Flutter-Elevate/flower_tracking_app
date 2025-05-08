@@ -1,4 +1,3 @@
-
 import 'package:flower_tracking_app/core/di/injectable_initializer.dart';
 import 'package:flower_tracking_app/modules/apply/ui/view_model/apply_cubit.dart';
 import 'package:flower_tracking_app/shared_layers/localization/generated/app_localizations.dart';

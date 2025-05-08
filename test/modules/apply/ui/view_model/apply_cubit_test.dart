@@ -66,7 +66,9 @@ void main() {
               state.copyWith(loadCountryStatus: LoadCountryStatus.loading),
               state.copyWith(
                 loadCountryStatus: LoadCountryStatus.success,
-                countries: [const CountryModel(name: 'Country A', isoCode: 'CA')],
+                countries: [
+                  const CountryModel(name: 'Country A', isoCode: 'CA'),
+                ],
               ),
             ],
       );
@@ -411,7 +413,7 @@ void main() {
         },
         expect:
             () => [
-                state.copyWith(pickImageStatus: PickImageStatus.loading),
+              state.copyWith(pickImageStatus: PickImageStatus.loading),
               state.copyWith(
                 pickImageStatus: PickImageStatus.error,
                 pickImageError: exception,

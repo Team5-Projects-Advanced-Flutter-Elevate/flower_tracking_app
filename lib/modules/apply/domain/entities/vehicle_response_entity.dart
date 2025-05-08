@@ -8,10 +8,7 @@ class VehicleResponseEntity extends Equatable {
 
   @override
   // TODO: implement props
-  List<Object?> get props => [
-    message,
-    vehicles,
-  ];
+  List<Object?> get props => [message, vehicles];
 }
 
 class VehicleEntity extends Equatable {
@@ -23,9 +20,5 @@ class VehicleEntity extends Equatable {
 
   @override
   // TODO: implement props
-  List<Object?> get props => [
-    id,
-    type,
-    image
-  ];
+  List<Object?> get props => [id, type, image];
 }

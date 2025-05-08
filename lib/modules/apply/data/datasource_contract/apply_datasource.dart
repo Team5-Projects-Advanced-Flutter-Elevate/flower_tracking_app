@@ -5,22 +5,16 @@ import 'package:flower_tracking_app/modules/apply/data/models/apply_response.dar
 import 'package:flower_tracking_app/modules/apply/domain/entities/apply_response_entity.dart';
 import 'package:flower_tracking_app/modules/apply/domain/entities/vehicle_response_entity.dart';
 
-
 abstract interface class ApplyDataSource {
   Future<ApiResult<ApplyResponseEntity>> applyDriver(DriverRequestModel model);
 
   Future<ApiResult<VehicleResponseEntity>> getVehicles();
 }
 
-
-
 abstract class CountryLoaderService {
   Future<String> loadCountryJson();
 }
 
-
 abstract class ImagePickerService {
   Future<File?> pickImageFromGallery();
 }
-
-

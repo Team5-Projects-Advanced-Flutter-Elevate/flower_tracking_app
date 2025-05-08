@@ -28,12 +28,7 @@ class ApplyResponse extends Equatable {
 
   @override
   // TODO: implement props
-  List<Object?> get props => [
-    message,
-    driver,
-    token,
-
-  ];
+  List<Object?> get props => [message, driver, token];
 }
 
 @JsonSerializable()

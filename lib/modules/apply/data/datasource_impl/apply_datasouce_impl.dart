@@ -50,8 +50,6 @@ class ApplyDataSourceImpl implements ApplyDataSource {
   }
 }
 
-
-
 @LazySingleton(as: CountryLoaderService)
 class AssetCountryLoaderService implements CountryLoaderService {
   @override
@@ -60,14 +58,13 @@ class AssetCountryLoaderService implements CountryLoaderService {
   }
 }
 
-
 @LazySingleton(as: ImagePickerService)
 class DefaultImagePickerService implements ImagePickerService {
-
-
   @override
   Future<File?> pickImageFromGallery() async {
-    final pickedFile = await ImagePicker().pickImage(source: ImageSource.gallery);
+    final pickedFile = await ImagePicker().pickImage(
+      source: ImageSource.gallery,
+    );
     return pickedFile != null ? File(pickedFile.path) : null;
   }
 }

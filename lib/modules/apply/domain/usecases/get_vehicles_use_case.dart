@@ -3,7 +3,6 @@ import 'package:flower_tracking_app/modules/apply/domain/entities/vehicle_respon
 import 'package:flower_tracking_app/modules/apply/domain/repo_contract/apply_repo_contract.dart';
 import 'package:injectable/injectable.dart';
 
-
 @injectable
 class GetVehiclesUseCase {
   final ApplyRepo applyRepo;

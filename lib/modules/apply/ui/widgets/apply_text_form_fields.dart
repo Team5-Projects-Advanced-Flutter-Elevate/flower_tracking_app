@@ -424,7 +424,7 @@ class _ApplyTextFormFieldsState
                           if (!widget.formKey.currentState!.validate()) {
                             return;
                           }
-                          if(state.selectedGender == null) return;
+                          if (state.selectedGender == null) return;
 
                           cubit.doIntent(
                             ApplyDriverIntent(

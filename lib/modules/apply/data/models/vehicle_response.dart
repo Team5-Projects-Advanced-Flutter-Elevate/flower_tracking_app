@@ -31,11 +31,7 @@ class VehicleResponse extends Equatable {
 
   @override
   // TODO: implement props
-  List<Object?> get props => [
-    message,
-    metadata,
-    vehicles,
-  ];
+  List<Object?> get props => [message, metadata, vehicles];
 }
 
 @JsonSerializable()
@@ -49,7 +45,12 @@ class Metadata extends Equatable {
   @JsonKey(name: "totalItems")
   final int? totalItems;
 
- const  Metadata({this.currentPage, this.totalPages, this.limit, this.totalItems});
+  const Metadata({
+    this.currentPage,
+    this.totalPages,
+    this.limit,
+    this.totalItems,
+  });
 
   factory Metadata.fromJson(Map<String, dynamic> json) {
     return _$MetadataFromJson(json);
@@ -61,12 +62,7 @@ class Metadata extends Equatable {
 
   @override
   // TODO: implement props
-  List<Object?> get props => [
-    currentPage,
-    totalPages,
-    limit,
-    totalItems
-  ];
+  List<Object?> get props => [currentPage, totalPages, limit, totalItems];
 }
 
 @JsonSerializable()
