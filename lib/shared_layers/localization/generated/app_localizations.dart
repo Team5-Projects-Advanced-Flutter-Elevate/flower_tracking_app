@@ -95,12 +95,6 @@ abstract class AppLocalizations {
     Locale('en')
   ];
 
-  /// No description provided for @errorMessages________.
-  ///
-  /// In en, this message translates to:
-  /// **'\$\$\$ Comment \$\$\$'**
-  String get errorMessages________;
-
   /// No description provided for @connectionTimeout.
   ///
   /// In en, this message translates to:
@@ -148,12 +142,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Something Went Wrong 🤔'**
   String get somethingWentWrong;
-
-  /// No description provided for @validationFunctions____________.
-  ///
-  /// In en, this message translates to:
-  /// **'\$\$\$ Comment \$\$\$'**
-  String get validationFunctions____________;
 
   /// No description provided for @pleaseEnterName.
   ///
@@ -287,89 +275,11 @@ abstract class AppLocalizations {
   /// **'Please enter a valid address'**
   String get pleaseEnterValidAddress;
 
-  /// No description provided for @onboardingScreen____________.
+  /// No description provided for @removedImage.
   ///
   /// In en, this message translates to:
-  /// **'\$\$\$ Comment \$\$\$'**
-  String get onboardingScreen____________;
-
-  /// No description provided for @onboardingWelcomeMessage.
-  ///
-  /// In en, this message translates to:
-  /// **'Welcome to\nFlowery Rider app'**
-  String get onboardingWelcomeMessage;
-
-  /// No description provided for @applyNow.
-  ///
-  /// In en, this message translates to:
-  /// **'Apply Now'**
-  String get applyNow;
-
-  /// No description provided for @pleaseEnterValidRecipient.
-  ///
-  /// In en, this message translates to:
-  /// **'Please enter a valid recipient'**
-  String get pleaseEnterValidRecipient;
-
-  /// No description provided for @loginScreen___________.
-  ///
-  /// In en, this message translates to:
-  /// **'\$\$ Comment \$\$'**
-  String get loginScreen___________;
-
-  /// No description provided for @login.
-  ///
-  /// In en, this message translates to:
-  /// **'Login'**
-  String get login;
-
-  /// No description provided for @email.
-  ///
-  /// In en, this message translates to:
-  /// **'Email'**
-  String get email;
-
-  /// No description provided for @enterEmail.
-  ///
-  /// In en, this message translates to:
-  /// **'Enter your email'**
-  String get enterEmail;
-
-  /// No description provided for @password.
-  ///
-  /// In en, this message translates to:
-  /// **'Password'**
-  String get password;
-
-  /// No description provided for @enterPassword.
-  ///
-  /// In en, this message translates to:
-  /// **'Enter your password'**
-  String get enterPassword;
-
-  /// No description provided for @rememberMe.
-  ///
-  /// In en, this message translates to:
-  /// **'Remember me'**
-  String get rememberMe;
-
-  /// No description provided for @forgetPassword.
-  ///
-  /// In en, this message translates to:
-  /// **'Forget password?'**
-  String get forgetPassword;
-
-  /// No description provided for @continueWord.
-  ///
-  /// In en, this message translates to:
-  /// **'Continue'**
-  String get continueWord;
-
-  /// No description provided for @loggedSuccessfully.
-  ///
-  /// In en, this message translates to:
-  /// **'Logged In Successfully!'**
-  String get loggedSuccessfully;
+  /// **'Removed image'**
+  String get removedImage;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

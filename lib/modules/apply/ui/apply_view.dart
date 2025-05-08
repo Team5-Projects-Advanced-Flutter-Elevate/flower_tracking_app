@@ -39,11 +39,10 @@ class _ApplyViewState extends BaseStatefulWidgetState<ApplyView> {
         ),
         body: BlocListener<ApplyCubit, ApplyState>(
           listener: (context, state) {
-
             if (state.applyDriverStatus == ApplyDriverStatus.success) {
               displaySnackBar(
                 contentType: ContentType.success,
-                title: 'success'
+                title: 'success',
               );
             }
             if (state.applyDriverStatus == ApplyDriverStatus.error) {
@@ -72,7 +71,6 @@ class _ApplyViewState extends BaseStatefulWidgetState<ApplyView> {
                 title: AppLocalizations.of(context)!.removedImage,
               );
             }
-
           },
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),

@@ -14,6 +14,20 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart' as _i558;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 
+import '../../modules/apply/data/api/api_client/apply_api_client.dart' as _i780;
+import '../../modules/apply/data/api/api_provider/apply_api_provider.dart'
+    as _i594;
+import '../../modules/apply/data/datasource_contract/apply_datasource.dart'
+    as _i843;
+import '../../modules/apply/data/datasource_impl/apply_datasouce_impl.dart'
+    as _i684;
+import '../../modules/apply/data/repo_impl/apply_repo_impl.dart' as _i792;
+import '../../modules/apply/domain/repo_contract/apply_repo_contract.dart'
+    as _i61;
+import '../../modules/apply/domain/usecases/apply_use_case.dart' as _i637;
+import '../../modules/apply/domain/usecases/get_vehicles_use_case.dart'
+    as _i900;
+import '../../modules/apply/ui/view_model/apply_cubit.dart' as _i172;
 import '../../modules/authentication/data/api/api_client/auth_api_client.dart'
     as _i343;
 import '../../modules/authentication/data/api/api_client_provider/auth_api_client_provider.dart'
@@ -69,6 +83,7 @@ extension GetItInjectableX on _i174.GetIt {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
     final dioService = _$DioService();
     final storagesInitializer = _$StoragesInitializer();
+    final applyApiClientProvider = _$ApplyApiClientProvider();
     final authApiClientProvider = _$AuthApiClientProvider();
     final localeInitializer = _$LocaleInitializer();
     final appLocalizationsProvider = _$AppLocalizationsProvider();
@@ -80,8 +95,23 @@ extension GetItInjectableX on _i174.GetIt {
       () => storagesInitializer.initFlutterSecureStorage(),
       preResolve: true,
     );
+    gh.lazySingleton<_i843.ImagePickerService>(
+      () => _i684.DefaultImagePickerService(),
+    );
+    gh.lazySingleton<_i780.ApplyApiClient>(
+      () => applyApiClientProvider.providerApiClient(gh<_i361.Dio>()),
+    );
     gh.lazySingleton<_i343.AuthApiClient>(
       () => authApiClientProvider.provideApiClient(gh<_i361.Dio>()),
+    );
+    gh.factory<_i843.ApplyDataSource>(
+      () => _i684.ApplyDataSourceImpl(gh<_i780.ApplyApiClient>()),
+    );
+    gh.lazySingleton<_i843.CountryLoaderService>(
+      () => _i684.AssetCountryLoaderService(),
+    );
+    gh.factory<_i61.ApplyRepo>(
+      () => _i792.ApplyRepoImpl(applyDataSource: gh<_i843.ApplyDataSource>()),
     );
     gh.singleton<_i629.SecureStorageService<dynamic>>(
       () => _i701.SecureStorageServiceImp(gh<_i558.FlutterSecureStorage>()),
@@ -93,9 +123,23 @@ extension GetItInjectableX on _i174.GetIt {
       () =>
           _i493.LoggedDriverDataRemoteDataSourceImp(gh<_i343.AuthApiClient>()),
     );
+    gh.factory<_i637.ApplyDriverUseCase>(
+      () => _i637.ApplyDriverUseCase(gh<_i61.ApplyRepo>()),
+    );
+    gh.factory<_i900.GetVehiclesUseCase>(
+      () => _i900.GetVehiclesUseCase(gh<_i61.ApplyRepo>()),
+    );
     gh.factory<_i34.LoginLocalDataSource>(
       () => _i443.LoginLocalDataSourceImp(
         gh<_i629.SecureStorageService<dynamic>>(),
+      ),
+    );
+    gh.lazySingleton<_i172.ApplyCubit>(
+      () => _i172.ApplyCubit(
+        gh<_i637.ApplyDriverUseCase>(),
+        gh<_i900.GetVehiclesUseCase>(),
+        gh<_i843.CountryLoaderService>(),
+        gh<_i843.ImagePickerService>(),
       ),
     );
     await gh.factoryAsync<String>(
@@ -132,11 +176,11 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i543.LoginUseCase>(
       () => _i543.LoginUseCase(gh<_i450.LoginRepo>()),
     );
-    gh.lazySingleton<_i166.ValidateFunctions>(
-      () => _i166.ValidateFunctions(gh<_i543.AppLocalizations>()),
-    );
     gh.lazySingleton<_i439.ApiErrorHandler>(
       () => _i439.ApiErrorHandler(gh<_i543.AppLocalizations>()),
+    );
+    gh.lazySingleton<_i166.ValidateFunctions>(
+      () => _i166.ValidateFunctions(gh<_i543.AppLocalizations>()),
     );
     gh.factory<_i108.LoginViewModel>(
       () => _i108.LoginViewModel(gh<_i543.LoginUseCase>()),
@@ -148,6 +192,8 @@ extension GetItInjectableX on _i174.GetIt {
 class _$DioService extends _i738.DioService {}
 
 class _$StoragesInitializer extends _i241.StoragesInitializer {}
+
+class _$ApplyApiClientProvider extends _i594.ApplyApiClientProvider {}
 
 class _$AuthApiClientProvider extends _i1019.AuthApiClientProvider {}
 
