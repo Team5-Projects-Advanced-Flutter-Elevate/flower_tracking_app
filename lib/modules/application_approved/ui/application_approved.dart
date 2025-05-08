@@ -28,11 +28,11 @@ class _ApplicationApprovedState
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(
-              bottom: 281,
-              top: 149,
-              left: 30,
-              right: 30,
+            padding: EdgeInsets.only(
+              bottom: screenHeight * 0.281,
+              top: screenHeight * 0.149,
+              left: screenWidth * 0.1,
+              right: screenWidth * 0.1,
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -56,7 +56,8 @@ class _ApplicationApprovedState
                   appLocalizations.thanksForProvidingApplication,
                   textAlign: TextAlign.center,
                   style: AppThemes.lightTheme.textTheme.titleMedium!.copyWith(
-                    fontSize: 14,
+                    color: AppColors.gray,
+                    fontSize: 15,
                     fontWeight: FontWeight.w400,
                   ),
                 ),
