@@ -12,6 +12,8 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:provider/provider.dart';
 import 'core/utilities/dio/dio_service/dio_service.dart';
 
+import 'modules/authentication/ui/forget_password/view/forget_password_screen.dart';
+
 GlobalKey<NavigatorState> globalNavigatorKey = GlobalKey<NavigatorState>();
 LoggedDriverDataResponseEntity? loggedDriverData;
 void main() async {
@@ -83,6 +85,17 @@ class _MyAppState extends State<MyApp> {
                 loginInfo: loggedDriverData,
               );
             },
+            //home: ForgetPasswordScreen(),
+            // navigatorKey: globalNavigatorKey,
+            // onGenerateRoute: GenerateRoute.onGenerateRoute,
+            // initialRoute: DefinedRoutes.onboardingScreenRoute,
+            // onGenerateInitialRoutes: (initialRoute) {
+            //   return GenerateRoute.onGenerateInitialRoutes(
+            //     initialRoute: initialRoute,
+            //     loginInfo: null,
+            //     rememberMe: false
+            //   );
+            // },
           ),
         );
       },
