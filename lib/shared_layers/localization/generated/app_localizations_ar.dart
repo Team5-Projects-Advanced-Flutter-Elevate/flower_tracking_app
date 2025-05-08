@@ -48,8 +48,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get userNameLength => 'يجب أن يكون اسم المستخدم بين 3 و16 حرفًا.';
 
   @override
-  String get userNameRules =>
-      'يمكن أن يحتوي اسم المستخدم على أحرف وأرقام وشرطات سفلية فقط.';
+  String get userNameRules => 'يمكن أن يحتوي اسم المستخدم على أحرف وأرقام وشرطات سفلية فقط.';
 
   @override
   String get pleaseEnterFirstName => 'الرجاء إدخال الاسم الأول.';
@@ -70,8 +69,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get pleaseEnterPhoneNumber => 'الرجاء إدخال رقم الهاتف.';
 
   @override
-  String get phoneNumberRules =>
-      'يجب أن يبدأ الرقم بأحد البادئات الصالحة:\n010 أو 011 أو 012 أو 015\nويتبعها 8 أرقام.';
+  String get phoneNumberRules => 'يجب أن يبدأ الرقم بأحد البادئات الصالحة:\n010 أو 011 أو 012 أو 015\nويتبعها 8 أرقام.';
 
   @override
   String get pleaseEnterPassword => 'الرجاء إدخال كلمة المرور.';
@@ -89,15 +87,13 @@ class AppLocalizationsAr extends AppLocalizations {
   String get digitRulePassword => 'رقم واحد على الأقل.';
 
   @override
-  String get specialCharactersRulePassword =>
-      'يجب إدراج حرف خاص واحد على الأقل (مثل #?!@\$%^&*-).';
+  String get specialCharactersRulePassword => 'يجب إدراج حرف خاص واحد على الأقل (مثل #?!@\$%^&*-).';
 
   @override
   String get pleaseConfirmPassword => 'الرجاء تأكيد كلمة المرور.';
 
   @override
-  String get namesLengthRule =>
-      'يجب أن يكون الاسم مكونًا من ثلاثة أحرف على الأقل.';
+  String get namesLengthRule => 'يجب أن يكون الاسم مكونًا من ثلاثة أحرف على الأقل.';
 
   @override
   String get noMatch => 'غير متطابق!';
@@ -109,17 +105,44 @@ class AppLocalizationsAr extends AppLocalizations {
   String get pleaseEnterValidAddress => 'الرجاء إدخال عنوان صالح';
 
   @override
-  String get pleaseEnterValidRecipient => 'الرجاء إدخال مستلم صالح';
-
-  @override
   String get onboardingScreen____________ => '\$\$\$ تعليق \$\$\$';
 
   @override
   String get onboardingWelcomeMessage => 'مرحبًا بك في\nتطبيق Flowery Rider';
 
   @override
+  String get applyNow => 'قدم الآن';
+
+  @override
+  String get pleaseEnterValidRecipient => 'الرجاء إدخال مستلم صالح';
+
+  @override
+  String get loginScreen___________ => '\$\$ تعليق \$\$';
+
+  @override
   String get login => 'تسجيل الدخول';
 
   @override
-  String get applyNow => 'قدم الآن';
+  String get email => 'البريد الإلكتروني';
+
+  @override
+  String get enterEmail => 'أدخل بريدك الإلكتروني';
+
+  @override
+  String get password => 'كلمة المرور';
+
+  @override
+  String get enterPassword => 'أدخل كلمة المرور';
+
+  @override
+  String get rememberMe => 'تذكرني';
+
+  @override
+  String get forgetPassword => 'نسيت كلمة المرور؟';
+
+  @override
+  String get continueWord => 'متابعة';
+
+  @override
+  String get loggedSuccessfully => 'تم تسجيل الدخول بنجاح!';
 }

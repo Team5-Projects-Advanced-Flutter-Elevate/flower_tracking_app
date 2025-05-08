@@ -36,6 +36,16 @@
 
   "onboardingScreen____________": "$$$ تعليق $$$",
   "onboardingWelcomeMessage": "مرحبًا بك في\nتطبيق Flowery Rider",
+  "applyNow": "قدم الآن",
+
+  "loginScreen___________": "$$ تعليق $$",
   "login": "تسجيل الدخول",
-  "applyNow": "قدم الآن"
+  "email": "البريد الإلكتروني",
+  "enterEmail": "أدخل بريدك الإلكتروني",
+  "password": "كلمة المرور",
+  "enterPassword": "أدخل كلمة المرور",
+  "rememberMe": "تذكرني",
+  "forgetPassword": "نسيت كلمة المرور؟",
+  "continueWord": "متابعة",
+  "loggedSuccessfully": "تم تسجيل الدخول بنجاح!"
 }
