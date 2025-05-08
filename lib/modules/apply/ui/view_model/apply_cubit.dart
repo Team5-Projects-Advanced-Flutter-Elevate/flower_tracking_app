@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
-import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flower_tracking_app/core/apis/api_result/api_result.dart';
 import 'package:flower_tracking_app/modules/apply/data/datasource_contract/apply_datasource.dart';
@@ -9,6 +8,7 @@ import 'package:flower_tracking_app/modules/apply/domain/entities/apply_response
 import 'package:flower_tracking_app/modules/apply/domain/entities/vehicle_response_entity.dart';
 import 'package:flower_tracking_app/modules/apply/domain/usecases/apply_use_case.dart';
 import 'package:flower_tracking_app/modules/apply/domain/usecases/get_vehicles_use_case.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../data/models/apply_response.dart';
