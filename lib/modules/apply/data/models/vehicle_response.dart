@@ -1,3 +1,4 @@
+import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 import '../../domain/entities/vehicle_response_entity.dart';
@@ -5,7 +6,7 @@ import '../../domain/entities/vehicle_response_entity.dart';
 part 'vehicle_response.g.dart';
 
 @JsonSerializable()
-class VehicleResponse {
+class VehicleResponse extends Equatable {
   @JsonKey(name: "message")
   final String? message;
   @JsonKey(name: "metadata")
@@ -27,10 +28,18 @@ class VehicleResponse {
     message: message,
     vehicles: vehicles?.map((vehicle) => vehicle.toEntity()).toList(),
   );
+
+  @override
+  // TODO: implement props
+  List<Object?> get props => [
+    message,
+    metadata,
+    vehicles,
+  ];
 }
 
 @JsonSerializable()
-class Metadata {
+class Metadata extends Equatable {
   @JsonKey(name: "currentPage")
   final int? currentPage;
   @JsonKey(name: "totalPages")
@@ -49,6 +58,15 @@ class Metadata {
   Map<String, dynamic> toJson() {
     return _$MetadataToJson(this);
   }
+
+  @override
+  // TODO: implement props
+  List<Object?> get props => [
+    currentPage,
+    totalPages,
+    limit,
+    totalItems
+  ];
 }
 
 @JsonSerializable()

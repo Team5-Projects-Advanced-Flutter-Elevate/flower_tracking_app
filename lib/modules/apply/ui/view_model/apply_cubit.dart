@@ -4,13 +4,11 @@ import 'dart:io';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flower_tracking_app/core/apis/api_result/api_result.dart';
-import 'package:flower_tracking_app/core/constants/assets_paths/assets_paths.dart';
+import 'package:flower_tracking_app/modules/apply/data/datasource_contract/apply_datasource.dart';
 import 'package:flower_tracking_app/modules/apply/domain/entities/apply_response_entity.dart';
 import 'package:flower_tracking_app/modules/apply/domain/entities/vehicle_response_entity.dart';
 import 'package:flower_tracking_app/modules/apply/domain/usecases/apply_use_case.dart';
 import 'package:flower_tracking_app/modules/apply/domain/usecases/get_vehicles_use_case.dart';
-import 'package:flutter/services.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../data/models/apply_response.dart';
@@ -20,16 +18,24 @@ part 'apply_state.dart';
 
 @lazySingleton
 class ApplyCubit extends Cubit<ApplyState> {
-  ApplyCubit(this.applyDriverUseCase, this.getVehiclesUseCase)
-    : super(const ApplyState()) {
-    _loadApplyData();
+  ApplyCubit(
+    this.applyDriverUseCase,
+    this.getVehiclesUseCase,
+    this.countryLoaderService,
+    this.imagePickerService,
+  ) : super(const ApplyState()) {
+    // _loadApplyData();
   }
 
   ApplyDriverUseCase applyDriverUseCase;
   GetVehiclesUseCase getVehiclesUseCase;
+  CountryLoaderService countryLoaderService;
+  ImagePickerService imagePickerService;
 
-  void doIntent(ApplyIntent intent) {
+  Future<void> doIntent(ApplyIntent intent) async {
     switch (intent) {
+      case LoadApplyDataIntent():
+        _loadApplyData();
       case LoadCountriesIntent():
         _loadCountries();
       case ApplyDriverIntent():
@@ -37,7 +43,7 @@ class ApplyCubit extends Cubit<ApplyState> {
       case SelectCountryIntent():
         _selectCountry(intent.countryName);
       case SelectVehicleIntent():
-        _selectVehicle(intent.vehicleName);
+        _selectVehicle(intent.vehicleEntity);
       case SelectGenderIntent():
         _selectGender(intent.gender);
       case PickLicenseImageIntent():
@@ -48,6 +54,8 @@ class ApplyCubit extends Cubit<ApplyState> {
         _unPickImage(intent.isLicenseImagePicked);
       case LoadVehiclesIntent():
         _loadVehicles();
+      case PickImageIntent():
+        _pickImage();
     }
   }
 
@@ -67,9 +75,7 @@ class ApplyCubit extends Cubit<ApplyState> {
     try {
       emit(state.copyWith(loadCountryStatus: LoadCountryStatus.loading));
 
-      final String jsonString = await rootBundle.loadString(
-        AssetsPaths.countryJson,
-      );
+      final String jsonString = await countryLoaderService.loadCountryJson();
       final List<dynamic> jsonList = json.decode(jsonString);
       List<CountryModel> countryList =
           jsonList.map((json) => CountryModel.fromJson(json)).toList();
@@ -112,7 +118,12 @@ class ApplyCubit extends Cubit<ApplyState> {
   }
 
   Future<void> _applyDriver(DriverRequestModel driverRequestModel) async {
-    emit(state.copyWith(applyDriverStatus: ApplyDriverStatus.loading));
+    emit(
+      state.copyWith(
+        applyDriverStatus: ApplyDriverStatus.loading,
+        pickImageStatus: PickImageStatus.initial,
+      ),
+    );
     var result = await applyDriverUseCase.execute(driverRequestModel);
     switch (result) {
       case Success<ApplyResponseEntity>():
@@ -129,23 +140,53 @@ class ApplyCubit extends Cubit<ApplyState> {
   }
 
   void _selectCountry(String? countryName) {
-    emit(state.copyWith(selectedCountry: countryName));
+    emit(
+      state.copyWith(
+        selectedCountry: countryName,
+        applyDriverStatus: ApplyDriverStatus.initial,
+        pickImageStatus: PickImageStatus.initial,
+      ),
+    );
   }
 
-  void _selectVehicle(String? vehicleName) {
-    emit(state.copyWith(selectedVehicle: vehicleName));
+  void _selectVehicle(VehicleEntity? vehicle) {
+    emit(
+      state.copyWith(
+        selectedVehicle: vehicle,
+        applyDriverStatus: ApplyDriverStatus.initial,
+        pickImageStatus: PickImageStatus.initial,
+      ),
+    );
   }
 
   void _selectGender(String? gender) {
-    emit(state.copyWith(selectedGender: gender));
+    emit(
+      state.copyWith(
+        selectedGender: gender,
+        applyDriverStatus: ApplyDriverStatus.initial,
+        pickImageStatus: PickImageStatus.initial,
+      ),
+    );
   }
 
   void _pickLicenseImage() async {
-    var pickedImage = await pickImage();
+    var pickedImage = await _pickImage();
     emit(
       state.copyWith(
         pickedLicenseImage: pickedImage,
         isLicenseImagePicked: pickedImage != null ? true : false,
+        applyDriverStatus: ApplyDriverStatus.initial,
+      ),
+    );
+  }
+
+  void _pickIdImage() async {
+    var pickedImage = await _pickImage();
+    emit(
+      state.copyWith(
+        pickedIdImage: pickedImage,
+        isIdImagePicked: pickedImage != null ? true : false,
+        applyDriverStatus: ApplyDriverStatus.initial,
       ),
     );
   }
@@ -157,6 +198,7 @@ class ApplyCubit extends Cubit<ApplyState> {
           pickedLicenseImage: null,
           isLicenseImagePicked: false,
           pickImageStatus: PickImageStatus.unPicked,
+          applyDriverStatus: ApplyDriverStatus.initial,
         ),
       );
     } else {
@@ -165,29 +207,23 @@ class ApplyCubit extends Cubit<ApplyState> {
           pickedIdImage: null,
           isIdImagePicked: false,
           pickImageStatus: PickImageStatus.unPicked,
+          applyDriverStatus: ApplyDriverStatus.initial,
         ),
       );
     }
   }
 
-  void _pickIdImage() async {
-    var pickedImage = await pickImage();
-    emit(
-      state.copyWith(
-        pickedIdImage: pickedImage,
-        isIdImagePicked: pickedImage != null ? true : false,
-      ),
-    );
-  }
-
-  Future<File?> pickImage() async {
+  Future<File?> _pickImage() async {
     try {
       emit(state.copyWith(pickImageStatus: PickImageStatus.loading));
-      final pickedFile = await ImagePicker().pickImage(
-        source: ImageSource.gallery,
-      );
+      final pickedFile = await imagePickerService.pickImageFromGallery();
       if (pickedFile != null) {
-        emit(state.copyWith(pickImageStatus: PickImageStatus.success));
+        emit(
+          state.copyWith(
+            pickImageStatus: PickImageStatus.success,
+            applyDriverStatus: ApplyDriverStatus.initial,
+          ),
+        );
       }
       return pickedFile != null ? File(pickedFile.path) : null;
     } catch (error) {
@@ -195,6 +231,7 @@ class ApplyCubit extends Cubit<ApplyState> {
         state.copyWith(
           pickImageStatus: PickImageStatus.error,
           pickImageError: error,
+          applyDriverStatus: ApplyDriverStatus.initial,
         ),
       );
     }
@@ -203,6 +240,8 @@ class ApplyCubit extends Cubit<ApplyState> {
 }
 
 sealed class ApplyIntent {}
+
+class LoadApplyDataIntent extends ApplyIntent {}
 
 class LoadCountriesIntent extends ApplyIntent {}
 
@@ -221,9 +260,9 @@ class SelectCountryIntent extends ApplyIntent {
 }
 
 class SelectVehicleIntent extends ApplyIntent {
-  final String? vehicleName;
+  final VehicleEntity? vehicleEntity;
 
-  SelectVehicleIntent(this.vehicleName);
+  SelectVehicleIntent(this.vehicleEntity);
 }
 
 class SelectGenderIntent extends ApplyIntent {
@@ -235,6 +274,8 @@ class SelectGenderIntent extends ApplyIntent {
 class PickLicenseImageIntent extends ApplyIntent {}
 
 class PickIdImageIntent extends ApplyIntent {}
+
+class PickImageIntent extends ApplyIntent {}
 
 class UnPickImageIntent extends ApplyIntent {
   final bool isLicenseImagePicked;

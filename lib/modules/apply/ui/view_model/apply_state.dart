@@ -17,7 +17,7 @@ class ApplyState extends Equatable {
   final LoadVehicleStatus loadVehicleStatus;
   final LoadApplyDataStatus loadApplyDataStatus;
   final String? selectedCountry;
-  final String? selectedVehicle;
+  final VehicleEntity? selectedVehicle;
   final File? pickedLicenseImage;
   final File? pickedIdImage;
   final bool? isIdImagePicked;
@@ -29,7 +29,6 @@ class ApplyState extends Equatable {
   final Object? pickImageError;
   final Object? applyDriverError;
   final Object? loadVehicleError;
-
 
   const ApplyState({
     this.loadCountryStatus = LoadCountryStatus.initial,
@@ -59,7 +58,7 @@ class ApplyState extends Equatable {
     ApplyDriverStatus? applyDriverStatus,
 
     String? selectedCountry,
-    String? selectedVehicle,
+    VehicleEntity? selectedVehicle,
     File? pickedLicenseImage,
     File? pickedIdImage,
     bool? isIdImagePicked,
@@ -71,7 +70,7 @@ class ApplyState extends Equatable {
     Object? pickImageError,
     Object? applyDriverError,
     Object? loadVehicleError,
-    LoadApplyDataStatus ? loadApplyDataStatus
+    LoadApplyDataStatus? loadApplyDataStatus,
   }) => ApplyState(
     loadCountryStatus: loadCountryStatus ?? this.loadCountryStatus,
     countries: countries ?? this.countries,
@@ -90,7 +89,7 @@ class ApplyState extends Equatable {
     pickImageError: pickImageError ?? this.pickImageError,
     applyDriverError: applyDriverError ?? this.applyDriverError,
     loadVehicleError: loadVehicleError ?? this.loadVehicleError,
-    loadApplyDataStatus: loadApplyDataStatus ?? this.loadApplyDataStatus
+    loadApplyDataStatus: loadApplyDataStatus ?? this.loadApplyDataStatus,
   );
 
   @override
@@ -101,8 +100,8 @@ class ApplyState extends Equatable {
     applyDriverStatus,
     selectedCountry,
     selectedVehicle,
-    pickedLicenseImage,
-    pickedIdImage,
+    pickedLicenseImage?.path,
+    pickedIdImage?.path,
     isIdImagePicked,
     isLicenseImagePicked,
     selectedGender,
@@ -113,5 +112,6 @@ class ApplyState extends Equatable {
     applyDriverError,
     loadVehicleError,
     loadApplyDataStatus,
+
   ];
 }

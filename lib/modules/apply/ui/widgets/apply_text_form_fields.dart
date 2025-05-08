@@ -1,9 +1,10 @@
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:country_flags/country_flags.dart';
 import 'package:flower_tracking_app/core/di/injectable_initializer.dart';
+import 'package:flower_tracking_app/modules/apply/domain/entities/vehicle_response_entity.dart';
 import 'package:flower_tracking_app/modules/apply/ui/widgets/select_gender_row.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../../../core/bases/base_stateful_widget_state.dart';
 import '../../../../core/colors/app_colors.dart';
 import '../../../../core/constants/assets_paths/assets_paths.dart';
@@ -91,7 +92,12 @@ class _ApplyTextFormFieldsState
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ApplyCubit, ApplyState>(
+    return BlocConsumer<ApplyCubit, ApplyState>(
+      listener: (context, state) {
+        if (state.applyDriverStatus == ApplyDriverStatus.success) {
+          /// navigate to apply successfully screen
+        }
+      },
       builder: (context, state) {
         switch (state.loadApplyDataStatus) {
           case LoadApplyDataStatus.initial:
@@ -176,22 +182,21 @@ class _ApplyTextFormFieldsState
                   ),
                 ),
                 SizedBox(height: screenHeight * 0.02),
-                CustomDropDown(
+                CustomDropDown<VehicleEntity>(
                   onChanged: (val) {
                     cubit.doIntent(SelectVehicleIntent(val));
                   },
                   items:
                       state.vehicles!
                           .map(
-                            (vehicle) => DropdownMenuItem<String>(
-                              value: vehicle.type,
+                            (vehicle) => DropdownMenuItem<VehicleEntity>(
+                              value: vehicle,
                               child: Text(vehicle.type ?? ''),
                             ),
                           )
                           .toList(),
                   label: 'Vehicle type',
-                  value:
-                      cubit.state.selectedVehicle ?? state.vehicles?.first.type,
+                  value: cubit.state.selectedVehicle ?? state.vehicles?.first,
                 ),
                 SizedBox(height: screenHeight * 0.02),
                 TextFormField(
@@ -271,7 +276,7 @@ class _ApplyTextFormFieldsState
                   onFieldSubmitted: (value) => idImageFocusNode.requestFocus(),
                   decoration: const InputDecoration(
                     labelText: 'Email',
-                    hintText: 'Enter phone number',
+                    hintText: 'Enter email',
                   ),
                 ),
                 SizedBox(height: screenHeight * 0.02),
@@ -284,6 +289,8 @@ class _ApplyTextFormFieldsState
                   validator: (val) {
                     if (val!.isEmpty) {
                       return 'Please enter ID number';
+                    } else if (val.length < 14) {
+                      return "ID number must be 14 characters ";
                     }
                     return null;
                   },
@@ -351,6 +358,7 @@ class _ApplyTextFormFieldsState
                         focusNode: passwordFocusNode,
                         onFieldSubmitted:
                             (value) => confirmPasswordFocusNode.requestFocus(),
+                        obscureText: true,
                         decoration: const InputDecoration(
                           labelText: 'Password',
                           hintText: 'Enter password',
@@ -367,6 +375,7 @@ class _ApplyTextFormFieldsState
                             passwordController.text,
                           );
                         },
+                        obscureText: true,
                         autovalidateMode: AutovalidateMode.onUserInteraction,
                         keyboardType: TextInputType.visiblePassword,
                         focusNode: confirmPasswordFocusNode,
@@ -396,12 +405,25 @@ class _ApplyTextFormFieldsState
                       width: double.infinity,
                       child: FilledButton(
                         onPressed: () async {
+                          if (state.selectedGender == null) {
+                            displaySnackBar(
+                              contentType: ContentType.failure,
+                              title: 'Error',
+                              message: 'Please select gender',
+                            );
+                            return;
+                          }
                           if (!widget.formKey.currentState!.validate()) return;
+
                           cubit.doIntent(
                             ApplyDriverIntent(
                               DriverRequestModel(
-                                country: cubit.state.selectedCountry,
-                                vehicleType: '676b31a45d05310ca82657ad',
+                                country:
+                                    cubit.state.selectedCountry ??
+                                    cubit.state.countries.first.name,
+                                vehicleType:
+                                    cubit.state.selectedVehicle?.id ??
+                                    cubit.state.vehicles?.first.id,
                                 firstName: firstNameController.text,
                                 lastName: lastNameController.text,
                                 vehicleNumber: vehicleNumberController.text,
@@ -438,5 +460,17 @@ class _ApplyTextFormFieldsState
         }
       },
     );
+  }
+
+  void clearControllers() {
+    firstNameController.clear();
+    lastNameController.clear();
+    vehicleNumberController.clear();
+    vehicleLicenseController.clear();
+    emailController.clear();
+    idNumberController.clear();
+    idImageController.clear();
+    passwordController.clear();
+    confirmPasswordController.clear();
   }
 }

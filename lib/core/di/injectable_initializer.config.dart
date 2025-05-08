@@ -66,11 +66,17 @@ extension GetItInjectableX on _i174.GetIt {
       () => storagesInitializer.initFlutterSecureStorage(),
       preResolve: true,
     );
+    gh.lazySingleton<_i843.ImagePickerService>(
+      () => _i684.DefaultImagePickerService(),
+    );
     gh.lazySingleton<_i780.ApplyApiClient>(
       () => applyApiClientProvider.providerApiClient(gh<_i361.Dio>()),
     );
     gh.factory<_i843.ApplyDataSource>(
       () => _i684.ApplyDataSourceImpl(gh<_i780.ApplyApiClient>()),
+    );
+    gh.lazySingleton<_i843.CountryLoaderService>(
+      () => _i684.AssetCountryLoaderService(),
     );
     gh.factory<_i61.ApplyRepo>(
       () => _i792.ApplyRepoImpl(applyDataSource: gh<_i843.ApplyDataSource>()),
@@ -83,6 +89,14 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i900.GetVehiclesUseCase>(
       () => _i900.GetVehiclesUseCase(gh<_i61.ApplyRepo>()),
+    );
+    gh.lazySingleton<_i172.ApplyCubit>(
+      () => _i172.ApplyCubit(
+        gh<_i637.ApplyDriverUseCase>(),
+        gh<_i900.GetVehiclesUseCase>(),
+        gh<_i843.CountryLoaderService>(),
+        gh<_i843.ImagePickerService>(),
+      ),
     );
     await gh.factoryAsync<String>(
       () => localeInitializer.initCurrentLocal(
@@ -102,12 +116,6 @@ extension GetItInjectableX on _i174.GetIt {
         gh<String>(instanceName: 'initCurrentLocal'),
       ),
       preResolve: true,
-    );
-    gh.lazySingleton<_i172.ApplyCubit>(
-      () => _i172.ApplyCubit(
-        gh<_i637.ApplyDriverUseCase>(),
-        gh<_i900.GetVehiclesUseCase>(),
-      ),
     );
     gh.lazySingleton<_i439.ApiErrorHandler>(
       () => _i439.ApiErrorHandler(gh<_i543.AppLocalizations>()),

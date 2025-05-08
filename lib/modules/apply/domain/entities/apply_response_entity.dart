@@ -1,12 +1,22 @@
-class ApplyResponseEntity {
+import 'package:equatable/equatable.dart';
+
+class ApplyResponseEntity extends Equatable {
   ApplyResponseEntity({this.message, this.driver, this.token});
 
   String? message;
   DriverEntity? driver;
   String? token;
+
+  @override
+  // TODO: implement props
+  List<Object?> get props => [
+        message,
+        driver,
+        token,
+  ];
 }
 
-class DriverEntity {
+class DriverEntity extends Equatable {
   DriverEntity({
     this.country,
     this.firstName,
@@ -40,4 +50,24 @@ class DriverEntity {
   String? role;
   String? id;
   String? createdAt;
+
+  @override
+  // TODO: implement props
+  List<Object?> get props => [
+        country,
+        firstName,
+        lastName,
+        vehicleType,
+        vehicleNumber,
+        vehicleLicense,
+        nid,
+        nIDImg,
+        email,
+        gender,
+        phone,
+        photo,
+        role,
+        id,
+        createdAt,
+  ];
 }

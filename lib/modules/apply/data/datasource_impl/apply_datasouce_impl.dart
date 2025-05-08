@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 import 'package:flower_tracking_app/core/apis/api_executor/api_executor.dart';
 import 'package:flower_tracking_app/core/apis/api_result/api_result.dart';
@@ -6,8 +8,11 @@ import 'package:flower_tracking_app/modules/apply/data/models/apply_response.dar
 import 'package:flower_tracking_app/modules/apply/data/models/vehicle_response.dart';
 import 'package:flower_tracking_app/modules/apply/domain/entities/apply_response_entity.dart';
 import 'package:flower_tracking_app/modules/apply/domain/entities/vehicle_response_entity.dart';
+import 'package:flutter/services.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../../../core/constants/assets_paths/assets_paths.dart';
 import '../datasource_contract/apply_datasource.dart';
 
 @Injectable(as: ApplyDataSource)
@@ -44,5 +49,25 @@ class ApplyDataSourceImpl implements ApplyDataSource {
       case Error<VehicleResponse>():
         return Error(error: result.error);
     }
+  }
+}
+
+
+
+@LazySingleton(as: CountryLoaderService)
+class AssetCountryLoaderService implements CountryLoaderService {
+  @override
+  Future<String> loadCountryJson() {
+    return rootBundle.loadString(AssetsPaths.countryJson);
+  }
+}
+
+
+@LazySingleton(as: ImagePickerService)
+class DefaultImagePickerService implements ImagePickerService {
+  @override
+  Future<File?> pickImageFromGallery() async {
+    final pickedFile = await ImagePicker().pickImage(source: ImageSource.gallery);
+    return pickedFile != null ? File(pickedFile.path) : null;
   }
 }

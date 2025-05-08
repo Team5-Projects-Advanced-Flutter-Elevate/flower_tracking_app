@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:equatable/equatable.dart';
 import 'package:flower_tracking_app/modules/apply/domain/entities/apply_response_entity.dart';
 import 'package:http_parser/http_parser.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -9,7 +10,7 @@ import 'package:mime_type/mime_type.dart';
 part 'apply_response.g.dart';
 
 @JsonSerializable()
-class ApplyResponse {
+class ApplyResponse extends Equatable {
   ApplyResponse({this.message, this.driver, this.token});
 
   factory ApplyResponse.fromJson(dynamic json) => _$ApplyResponseFromJson(json);
@@ -25,6 +26,15 @@ class ApplyResponse {
     driver: driver?.toEntity(),
     token: token,
   );
+
+  @override
+  // TODO: implement props
+  List<Object?> get props => [
+    message,
+    driver,
+    token,
+
+  ];
 }
 
 @JsonSerializable()
@@ -148,18 +158,18 @@ class DriverRequestModel {
     formData.files.addAll([
       MapEntry(
         'NIDImg', // Note: different from previous 'NIDImg'
-        await _createMultipartFile(nIDImg!),
+        await createMultipartFile(nIDImg!),
       ),
       MapEntry(
         'vehicleLicense', // Not in array format
-        await _createMultipartFile(vehicleLicense!),
+        await createMultipartFile(vehicleLicense!),
       ),
     ]);
 
     return formData;
   }
 
-  Future<MultipartFile> _createMultipartFile(File file) async {
+  Future<MultipartFile> createMultipartFile(File file) async {
     final extension = file.path.split('.').last.toLowerCase();
     final mimeType = extension == 'png' ? 'png' : 'jpeg';
 
@@ -168,5 +178,23 @@ class DriverRequestModel {
       filename: '${file.path.split('.').first}.$extension',
       contentType: MediaType('image', mimeType),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final map = <String, dynamic>{};
+    map['country'] = country;
+    map['firstName'] = firstName;
+    map['lastName'] = lastName;
+    map['vehicleType'] = vehicleType;
+    map['vehicleNumber'] = vehicleNumber;
+    map['vehicleLicense'] = vehicleLicense;
+    map['NID'] = nid;
+    map['NIDImg'] = nIDImg;
+    map['email'] = email;
+    map['password'] = password;
+    map['rePassword'] = rePassword;
+    map['gender'] = gender;
+    map['phone'] = phone;
+    return map;
   }
 }

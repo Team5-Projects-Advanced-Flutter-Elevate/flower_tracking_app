@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import '../../../../core/colors/app_colors.dart';
 import '../../../../core/constants/assets_paths/assets_paths.dart';
 
-class CustomDropDown extends StatelessWidget {
+class CustomDropDown<T> extends StatelessWidget {
   const CustomDropDown({
     super.key,
     required this.items,
@@ -13,14 +13,14 @@ class CustomDropDown extends StatelessWidget {
     required this.value,
   });
 
-  final List<DropdownMenuItem<String?>> items;
-  final void Function(String?)? onChanged;
+  final List<DropdownMenuItem<T>> items;
+  final void Function(T?)? onChanged;
   final String label;
-  final String? value;
+  final T? value;
 
   @override
   Widget build(BuildContext context) {
-    return DropdownButtonFormField2<String?>(
+    return DropdownButtonFormField2<T>(
       value: value,
       items: items,
       onChanged: onChanged,

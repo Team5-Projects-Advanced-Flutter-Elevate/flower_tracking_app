@@ -18,7 +18,7 @@ abstract class GenerateRoute {
         );
 
       case DefinedRoutes.apply:
-        ApplyCubit cubit = getIt<ApplyCubit>();
+        ApplyCubit cubit = getIt<ApplyCubit>()..doIntent(LoadApplyDataIntent());
         return MaterialPageRoute(
           builder:
               (context) =>

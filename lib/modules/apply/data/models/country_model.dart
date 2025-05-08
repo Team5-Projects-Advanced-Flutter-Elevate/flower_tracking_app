@@ -1,14 +1,16 @@
+import 'package:equatable/equatable.dart';
 
-class CountryModel {
+class CountryModel extends Equatable {
   CountryModel({
-      this.isoCode,
-      this.name,
-      this.phoneCode,
-      this.flag,
-      this.currency,
-      this.latitude,
-      this.longitude,
-      this.timezones,});
+    this.isoCode,
+    this.name,
+    this.phoneCode,
+    this.flag,
+    this.currency,
+    this.latitude,
+    this.longitude,
+    this.timezones,
+  });
 
   CountryModel.fromJson(dynamic json) {
     isoCode = json['isoCode'];
@@ -25,6 +27,7 @@ class CountryModel {
       });
     }
   }
+
   String? isoCode;
   String? name;
   String? phoneCode;
@@ -49,6 +52,18 @@ class CountryModel {
     return map;
   }
 
+  @override
+  // TODO: implement props
+  List<Object?> get props => [
+    isoCode,
+    name,
+    phoneCode,
+    flag,
+    currency,
+    latitude,
+    longitude,
+    timezones,
+  ];
 }
 
 class Timezones {
@@ -57,7 +72,8 @@ class Timezones {
     this.gmtOffset,
     this.gmtOffsetName,
     this.abbreviation,
-    this.tzName,});
+    this.tzName,
+  });
 
   Timezones.fromJson(dynamic json) {
     zoneName = json['zoneName'];
@@ -66,6 +82,7 @@ class Timezones {
     abbreviation = json['abbreviation'];
     tzName = json['tzName'];
   }
+
   String? zoneName;
   num? gmtOffset;
   String? gmtOffsetName;
@@ -81,5 +98,4 @@ class Timezones {
     map['tzName'] = tzName;
     return map;
   }
-
 }
