@@ -109,4 +109,11 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get pleaseEnterValidRecipient => 'الرجاء إدخال مستلم صالح';
+
+  @override
+  String get applicationSubmitted => 'لقد تم تقديم طلبك!';
+
+  @override
+  String get thanksForProvidingApplication =>
+      'نشكرك على تقديم طلبك، وسوف نقوم بمراجعة طلبك وسنرد عليك قريبًا.';
 }

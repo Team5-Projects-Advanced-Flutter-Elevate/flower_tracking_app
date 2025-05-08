@@ -73,11 +73,11 @@ extension GetItInjectableX on _i174.GetIt {
       ),
       preResolve: true,
     );
-    gh.lazySingleton<_i166.ValidateFunctions>(
-      () => _i166.ValidateFunctions(gh<_i543.AppLocalizations>()),
-    );
     gh.lazySingleton<_i439.ApiErrorHandler>(
       () => _i439.ApiErrorHandler(gh<_i543.AppLocalizations>()),
+    );
+    gh.lazySingleton<_i166.ValidateFunctions>(
+      () => _i166.ValidateFunctions(gh<_i543.AppLocalizations>()),
     );
     return this;
   }

@@ -298,6 +298,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Please enter a valid recipient'**
   String get pleaseEnterValidRecipient;
+
+  /// No description provided for @applicationSubmitted.
+  ///
+  /// In en, this message translates to:
+  /// **'Your application has been submitted!'**
+  String get applicationSubmitted;
+
+  /// No description provided for @thanksForProvidingApplication.
+  ///
+  /// In en, this message translates to:
+  /// **'Thank you for providing your application, we will review your application and will get back to you soon.'**
+  String get thanksForProvidingApplication;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

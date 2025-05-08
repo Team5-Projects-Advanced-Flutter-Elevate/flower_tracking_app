@@ -1,0 +1,82 @@
+import 'package:flower_tracking_app/core/bases/base_stateful_widget_state.dart';
+import 'package:flower_tracking_app/core/colors/app_colors.dart';
+import 'package:flower_tracking_app/core/constants/assets_paths/assets_paths.dart';
+import 'package:flower_tracking_app/core/themes/app_themes.dart';
+import 'package:flutter/material.dart';
+
+class ApplicationApproved extends StatefulWidget {
+  const ApplicationApproved({super.key});
+
+  @override
+  State<ApplicationApproved> createState() => _ApplicationApprovedState();
+}
+
+class _ApplicationApprovedState
+    extends BaseStatefulWidgetState<ApplicationApproved> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: AppColors.white,
+      body: Stack(
+        children: [
+          Positioned.fill(
+            child: Image.asset(
+              AssetsPaths.applicationApprovedBackground,
+              fit: BoxFit.fitWidth,
+              width: screenWidth,
+              alignment: Alignment.bottomCenter,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(
+              bottom: 281,
+              top: 149,
+              left: 30,
+              right: 30,
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Image.asset(
+                  AssetsPaths.applicationApprovedCheckCircle,
+                  width: screenWidth * 0.17,
+                  height: screenHeight * 0.17,
+                ),
+                SizedBox(height: screenHeight * 0.020),
+                Text(
+                  appLocalizations.applicationSubmitted,
+                  textAlign: TextAlign.center,
+                  style: AppThemes.lightTheme.textTheme.titleLarge!.copyWith(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                SizedBox(height: screenHeight * 0.020),
+                Text(
+                  appLocalizations.thanksForProvidingApplication,
+                  textAlign: TextAlign.center,
+                  style: AppThemes.lightTheme.textTheme.titleMedium!.copyWith(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+                SizedBox(height: screenHeight * 0.020),
+                SizedBox(
+                  width: screenWidth,
+                  child: FilledButton(
+                    onPressed: () {},
+                    child: Text(
+                      appLocalizations.login,
+                      style: AppThemes.lightTheme.textTheme.titleMedium!
+                          .copyWith(color: AppColors.white, fontSize: 12),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
