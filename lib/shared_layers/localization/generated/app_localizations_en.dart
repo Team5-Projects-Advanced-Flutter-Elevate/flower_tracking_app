@@ -229,4 +229,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get female => 'Female';
+
+  @override
+  String get removedImage => 'Removed image';
 }

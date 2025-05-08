@@ -39,6 +39,13 @@ class _ApplyViewState extends BaseStatefulWidgetState<ApplyView> {
         ),
         body: BlocListener<ApplyCubit, ApplyState>(
           listener: (context, state) {
+
+            if (state.applyDriverStatus == ApplyDriverStatus.success) {
+              displaySnackBar(
+                contentType: ContentType.success,
+                title: 'success'
+              );
+            }
             if (state.applyDriverStatus == ApplyDriverStatus.error) {
               displaySnackBar(
                 contentType: ContentType.failure,
@@ -59,21 +66,13 @@ class _ApplyViewState extends BaseStatefulWidgetState<ApplyView> {
                 title: AppLocalizations.of(context)!.imagePickFailed,
               );
             }
-            if (state.pickImageStatus == PickImageStatus.unPicked &&
-                state.isIdImagePicked == false) {
+            if (state.pickImageStatus == PickImageStatus.unPicked) {
               displaySnackBar(
                 contentType: ContentType.failure,
-                title: AppLocalizations.of(context)!.removedIdImage,
+                title: AppLocalizations.of(context)!.removedImage,
               );
             }
 
-            if (state.pickImageStatus == PickImageStatus.unPicked &&
-                state.isLicenseImagePicked == false) {
-              displaySnackBar(
-                contentType: ContentType.failure,
-                title: AppLocalizations.of(context)!.removedLicenseImage,
-              );
-            }
           },
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),

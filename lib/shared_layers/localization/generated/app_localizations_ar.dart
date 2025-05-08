@@ -126,7 +126,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get imagePickFailed => 'فشل في اختيار الصورة';
 
   @override
-  String get removedIdImage => 'تمت إزالة صورة الهوية';
+  String get removedIdImage => 'تمت ازالة صورة الهوية';
 
   @override
   String get removedLicenseImage => 'تمت إزالة صورة الرخصة';
@@ -229,4 +229,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get female => 'انثى';
+
+  @override
+  String get removedImage => 'Removed image';
 }

@@ -538,6 +538,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Female'**
   String get female;
+
+  /// No description provided for @removedImage.
+  ///
+  /// In en, this message translates to:
+  /// **'Removed image'**
+  String get removedImage;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

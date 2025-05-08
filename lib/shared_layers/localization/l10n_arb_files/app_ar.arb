@@ -74,6 +74,7 @@
    "confirmPasswordHint": "ادخل تاكيد كلمة المرور",
    "gender": "الجنس",
    "male": "ذكر",
-   "female": "انثى"
+   "female": "انثى",
+   "removedIdImage": "تمت ازالة صورة الهوية"
 
 }
