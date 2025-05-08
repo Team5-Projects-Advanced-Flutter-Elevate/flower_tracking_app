@@ -9,6 +9,8 @@ import 'package:flower_tracking_app/shared_layers/localization/l10n_manager/loca
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'modules/authentication/ui/forget_password/view/forget_password_screen.dart';
+
 GlobalKey<NavigatorState> globalNavigatorKey = GlobalKey<NavigatorState>();
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -47,9 +49,10 @@ class MyApp extends StatelessWidget {
             localizationsDelegates: AppLocalizations.localizationsDelegates,
             supportedLocales: AppLocalizations.supportedLocales,
             locale: Locale(localizationManager.currentLocale),
-            navigatorKey: globalNavigatorKey,
-            onGenerateRoute: GenerateRoute.onGenerateRoute,
-            initialRoute: DefinedRoutes.onboardingScreenRoute,
+            home: ForgetPasswordScreen(),
+            // navigatorKey: globalNavigatorKey,
+            // onGenerateRoute: GenerateRoute.onGenerateRoute,
+            // initialRoute: DefinedRoutes.onboardingScreenRoute,
             // onGenerateInitialRoutes: (initialRoute) {
             //   return GenerateRoute.onGenerateInitialRoutes(
             //     initialRoute: initialRoute,

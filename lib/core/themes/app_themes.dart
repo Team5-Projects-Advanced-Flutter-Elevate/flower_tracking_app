@@ -99,6 +99,23 @@ abstract class AppThemes {
         }
       }),
     ),
+
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        disabledBackgroundColor: AppColors.black[30],
+        disabledForegroundColor: AppColors.white,
+        foregroundColor: AppColors.white,
+        padding: const EdgeInsets.all(14),
+        backgroundColor: AppColors.mainColor,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20),
+        ),
+        textStyle: const TextStyle(
+          fontSize: 16,
+          fontWeight: FontWeight.w500,
+        ),
+      ),
+    ),
     inputDecorationTheme: InputDecorationTheme(
       errorMaxLines: 4,
       border: OutlineInputBorder(borderRadius: BorderRadius.circular(4)),
@@ -157,17 +174,17 @@ abstract class AppThemes {
         ),
       ),
     ),
-    elevatedButtonTheme: ElevatedButtonThemeData(
-      style: ElevatedButton.styleFrom(
-        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 24),
-        textStyle: TextStyle(
-          fontSize: 16,
-          color: AppColors.mainColor,
-          fontWeight: FontWeight.w600,
-          fontFamily: GoogleFonts.inter().fontFamily,
-        ),
-      ),
-    ),
+    // elevatedButtonTheme: ElevatedButtonThemeData(
+    //   style: ElevatedButton.styleFrom(
+    //     padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 24),
+    //     textStyle: TextStyle(
+    //       fontSize: 16,
+    //       color: AppColors.mainColor,
+    //       fontWeight: FontWeight.w600,
+    //       fontFamily: GoogleFonts.inter().fontFamily,
+    //     ),
+    //   ),
+    // ),
     outlinedButtonTheme: OutlinedButtonThemeData(
       style: OutlinedButton.styleFrom(
         foregroundColor: AppColors.black,
