@@ -1,5 +1,7 @@
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flower_tracking_app/core/bases/base_stateful_widget_state.dart';
 import 'package:flower_tracking_app/core/colors/app_colors.dart';
+import 'package:flower_tracking_app/core/constants/assets_paths/assets_paths.dart';
 import 'package:flower_tracking_app/core/themes/app_themes.dart';
 import 'package:flutter/material.dart';
 
@@ -20,7 +22,7 @@ class _ApplicationApprovedState
         children: [
           Positioned.fill(
             child: Image.asset(
-              "assets/icons/bg.png",
+              AssetsPaths.applicationApprovedBackground,
               fit: BoxFit.fitWidth,
               width: screenWidth,
               alignment: Alignment.bottomCenter,
@@ -35,8 +37,8 @@ class _ApplicationApprovedState
             ),
             child: Column(
               children: [
-                Image.asset('assets/icons/check-circle.png'),
-                SizedBox(height: screenHeight * 0.024),
+                Image.asset(AssetsPaths.applicationApprovedCheckCircle),
+                SizedBox(height: screenHeight * 0.020),
                 Text(
                   appLocalizations.applicationSubmitted,
                   textAlign: TextAlign.center,
@@ -45,21 +47,26 @@ class _ApplicationApprovedState
                     fontWeight: FontWeight.w600,
                   ),
                 ),
-                SizedBox(height: screenHeight * 0.024),
+                SizedBox(height: screenHeight * 0.020),
                 Text(
                   appLocalizations.thanksForProvidingApplication,
                   textAlign: TextAlign.center,
                   style: AppThemes.lightTheme.textTheme.titleMedium!.copyWith(
+                    fontSize: 14,
                     fontWeight: FontWeight.w400,
                   ),
                 ),
-                SizedBox(height: screenHeight * 0.022),
+                SizedBox(height: screenHeight * 0.020),
                 SizedBox(
                   width: screenWidth,
                   height: screenHeight * 0.047,
                   child: FilledButton(
                     onPressed: () {},
-                    child: Text(appLocalizations.login,style: AppThemes.lightTheme.textTheme.titleMedium!.copyWith(color: AppColors.white,fontSize: 13,),),
+                    child: Text(
+                      appLocalizations.login,
+                      style: AppThemes.lightTheme.textTheme.titleMedium!
+                          .copyWith(color: AppColors.white, fontSize: 12),
+                    ),
                   ),
                 ),
               ],

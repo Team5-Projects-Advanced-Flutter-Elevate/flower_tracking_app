@@ -3,4 +3,6 @@ abstract class AssetsPaths {
       "assets/animations/onboarding_animation.json";
   static const String countyJsonFile = "assets/files/country.json";
   static const String splashScreenIcon = "assets/icons/splash_screen_icon.png";
+  static const String applicationApprovedBackground = "assets/icons/bg.png";
+  static const String applicationApprovedCheckCircle = "assets/icons/check-circle.png";
 }
