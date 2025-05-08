@@ -5,6 +5,7 @@ import 'package:flower_tracking_app/core/colors/app_colors.dart';
 import 'package:flower_tracking_app/core/di/injectable_initializer.dart';
 import 'package:flower_tracking_app/modules/apply/ui/view_model/apply_cubit.dart';
 import 'package:flower_tracking_app/modules/apply/ui/widgets/apply_text_form_fields.dart';
+import 'package:flower_tracking_app/shared_layers/localization/generated/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -30,7 +31,7 @@ class _ApplyViewState extends BaseStatefulWidgetState<ApplyView> {
             icon: const Icon(Icons.arrow_back_ios_new_outlined),
           ),
           title: Text(
-            "Apply",
+            AppLocalizations.of(context)!.apply,
             style: theme.textTheme.titleLarge?.copyWith(
               fontSize: 20 * (screenWidth / 375),
             ),
@@ -41,7 +42,7 @@ class _ApplyViewState extends BaseStatefulWidgetState<ApplyView> {
             if (state.applyDriverStatus == ApplyDriverStatus.error) {
               displaySnackBar(
                 contentType: ContentType.failure,
-                title: 'Error',
+                title: AppLocalizations.of(context)!.error,
                 message: getIt<ApiErrorHandler>().handle(
                   state.applyDriverError!,
                 ),
@@ -50,19 +51,19 @@ class _ApplyViewState extends BaseStatefulWidgetState<ApplyView> {
             if (state.pickImageStatus == PickImageStatus.success) {
               displaySnackBar(
                 contentType: ContentType.success,
-                title: 'Image picked successfully',
+                title: AppLocalizations.of(context)!.imagePickedSuccess,
               );
             } else if (state.pickImageStatus == PickImageStatus.error) {
               displaySnackBar(
                 contentType: ContentType.failure,
-                title: 'Failed to pick image',
+                title: AppLocalizations.of(context)!.imagePickFailed,
               );
             }
             if (state.pickImageStatus == PickImageStatus.unPicked &&
                 state.isIdImagePicked == false) {
               displaySnackBar(
                 contentType: ContentType.failure,
-                title: 'Removed ID image',
+                title: AppLocalizations.of(context)!.removedIdImage,
               );
             }
 
@@ -70,7 +71,7 @@ class _ApplyViewState extends BaseStatefulWidgetState<ApplyView> {
                 state.isLicenseImagePicked == false) {
               displaySnackBar(
                 contentType: ContentType.failure,
-                title: 'Removed License image',
+                title: AppLocalizations.of(context)!.removedLicenseImage,
               );
             }
           },
@@ -83,14 +84,14 @@ class _ApplyViewState extends BaseStatefulWidgetState<ApplyView> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Welcome!!',
+                      AppLocalizations.of(context)!.welcome,
                       style: theme.textTheme.titleLarge?.copyWith(
                         fontSize: 16 * (screenWidth / 375),
                       ),
                     ),
                     SizedBox(height: screenHeight * 0.01),
                     Text(
-                      'You want to be a delivery man? \n join our team',
+                      '${AppLocalizations.of(context)!.joinQuestion} \n ${AppLocalizations.of(context)!.joinOurTeam}',
                       style: theme.textTheme.titleMedium?.copyWith(
                         color: AppColors.gray,
                         fontSize: 12 * (screenWidth / 375),

@@ -298,6 +298,246 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Please enter a valid recipient'**
   String get pleaseEnterValidRecipient;
+
+  /// No description provided for @apply____________.
+  ///
+  /// In en, this message translates to:
+  /// **'\$\$\$ Comment \$\$\$'**
+  String get apply____________;
+
+  /// No description provided for @apply.
+  ///
+  /// In en, this message translates to:
+  /// **'Apply'**
+  String get apply;
+
+  /// No description provided for @error.
+  ///
+  /// In en, this message translates to:
+  /// **'Error'**
+  String get error;
+
+  /// No description provided for @imagePickedSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Image picked successfully'**
+  String get imagePickedSuccess;
+
+  /// No description provided for @imagePickFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to pick image'**
+  String get imagePickFailed;
+
+  /// No description provided for @removedIdImage.
+  ///
+  /// In en, this message translates to:
+  /// **'Removed ID image'**
+  String get removedIdImage;
+
+  /// No description provided for @removedLicenseImage.
+  ///
+  /// In en, this message translates to:
+  /// **'Removed license image'**
+  String get removedLicenseImage;
+
+  /// No description provided for @welcome.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome !!'**
+  String get welcome;
+
+  /// No description provided for @joinQuestion.
+  ///
+  /// In en, this message translates to:
+  /// **'You want to be a delivery man?'**
+  String get joinQuestion;
+
+  /// No description provided for @joinOurTeam.
+  ///
+  /// In en, this message translates to:
+  /// **'Join our team'**
+  String get joinOurTeam;
+
+  /// No description provided for @country.
+  ///
+  /// In en, this message translates to:
+  /// **'Country'**
+  String get country;
+
+  /// No description provided for @firstName.
+  ///
+  /// In en, this message translates to:
+  /// **'First legal name'**
+  String get firstName;
+
+  /// No description provided for @firstNameHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your first legal name'**
+  String get firstNameHint;
+
+  /// No description provided for @secondName.
+  ///
+  /// In en, this message translates to:
+  /// **'Second legal name'**
+  String get secondName;
+
+  /// No description provided for @secondNameHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your second legal name'**
+  String get secondNameHint;
+
+  /// No description provided for @vehicleType.
+  ///
+  /// In en, this message translates to:
+  /// **'Vehicle type'**
+  String get vehicleType;
+
+  /// No description provided for @vehicleNumberPrompt.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter vehicle number'**
+  String get vehicleNumberPrompt;
+
+  /// No description provided for @vehicleNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Vehicle number'**
+  String get vehicleNumber;
+
+  /// No description provided for @vehicleNumberHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter vehicle number'**
+  String get vehicleNumberHint;
+
+  /// No description provided for @vehicleLicensePrompt.
+  ///
+  /// In en, this message translates to:
+  /// **'Please upload vehicle license'**
+  String get vehicleLicensePrompt;
+
+  /// No description provided for @vehicleLicense.
+  ///
+  /// In en, this message translates to:
+  /// **'Vehicle license'**
+  String get vehicleLicense;
+
+  /// No description provided for @vehicleLicenseHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Upload license photo'**
+  String get vehicleLicenseHint;
+
+  /// No description provided for @idNumberPrompt.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter ID number'**
+  String get idNumberPrompt;
+
+  /// No description provided for @idNumberLength.
+  ///
+  /// In en, this message translates to:
+  /// **'ID number must be 14 characters'**
+  String get idNumberLength;
+
+  /// No description provided for @idNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'ID number'**
+  String get idNumber;
+
+  /// No description provided for @idNumberHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter national ID number'**
+  String get idNumberHint;
+
+  /// No description provided for @idImagePrompt.
+  ///
+  /// In en, this message translates to:
+  /// **'Please upload ID image'**
+  String get idImagePrompt;
+
+  /// No description provided for @idImage.
+  ///
+  /// In en, this message translates to:
+  /// **'ID image'**
+  String get idImage;
+
+  /// No description provided for @idImageHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Upload ID image'**
+  String get idImageHint;
+
+  /// No description provided for @selectGender.
+  ///
+  /// In en, this message translates to:
+  /// **'Please select gender'**
+  String get selectGender;
+
+  /// No description provided for @continueButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue'**
+  String get continueButton;
+
+  /// No description provided for @email.
+  ///
+  /// In en, this message translates to:
+  /// **'Email'**
+  String get email;
+
+  /// No description provided for @emailHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your email'**
+  String get emailHint;
+
+  /// No description provided for @password.
+  ///
+  /// In en, this message translates to:
+  /// **'Password'**
+  String get password;
+
+  /// No description provided for @passwordHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your password'**
+  String get passwordHint;
+
+  /// No description provided for @confirmPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm password'**
+  String get confirmPassword;
+
+  /// No description provided for @confirmPasswordHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm your password'**
+  String get confirmPasswordHint;
+
+  /// No description provided for @gender.
+  ///
+  /// In en, this message translates to:
+  /// **'Gender'**
+  String get gender;
+
+  /// No description provided for @male.
+  ///
+  /// In en, this message translates to:
+  /// **'Male'**
+  String get male;
+
+  /// No description provided for @female.
+  ///
+  /// In en, this message translates to:
+  /// **'Female'**
+  String get female;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

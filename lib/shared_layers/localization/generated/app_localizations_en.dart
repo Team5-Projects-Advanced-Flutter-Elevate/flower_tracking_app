@@ -109,4 +109,124 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get pleaseEnterValidRecipient => 'Please enter a valid recipient';
+
+  @override
+  String get apply____________ => '\$\$\$ Comment \$\$\$';
+
+  @override
+  String get apply => 'Apply';
+
+  @override
+  String get error => 'Error';
+
+  @override
+  String get imagePickedSuccess => 'Image picked successfully';
+
+  @override
+  String get imagePickFailed => 'Failed to pick image';
+
+  @override
+  String get removedIdImage => 'Removed ID image';
+
+  @override
+  String get removedLicenseImage => 'Removed license image';
+
+  @override
+  String get welcome => 'Welcome !!';
+
+  @override
+  String get joinQuestion => 'You want to be a delivery man?';
+
+  @override
+  String get joinOurTeam => 'Join our team';
+
+  @override
+  String get country => 'Country';
+
+  @override
+  String get firstName => 'First legal name';
+
+  @override
+  String get firstNameHint => 'Enter your first legal name';
+
+  @override
+  String get secondName => 'Second legal name';
+
+  @override
+  String get secondNameHint => 'Enter your second legal name';
+
+  @override
+  String get vehicleType => 'Vehicle type';
+
+  @override
+  String get vehicleNumberPrompt => 'Please enter vehicle number';
+
+  @override
+  String get vehicleNumber => 'Vehicle number';
+
+  @override
+  String get vehicleNumberHint => 'Enter vehicle number';
+
+  @override
+  String get vehicleLicensePrompt => 'Please upload vehicle license';
+
+  @override
+  String get vehicleLicense => 'Vehicle license';
+
+  @override
+  String get vehicleLicenseHint => 'Upload license photo';
+
+  @override
+  String get idNumberPrompt => 'Please enter ID number';
+
+  @override
+  String get idNumberLength => 'ID number must be 14 characters';
+
+  @override
+  String get idNumber => 'ID number';
+
+  @override
+  String get idNumberHint => 'Enter national ID number';
+
+  @override
+  String get idImagePrompt => 'Please upload ID image';
+
+  @override
+  String get idImage => 'ID image';
+
+  @override
+  String get idImageHint => 'Upload ID image';
+
+  @override
+  String get selectGender => 'Please select gender';
+
+  @override
+  String get continueButton => 'Continue';
+
+  @override
+  String get email => 'Email';
+
+  @override
+  String get emailHint => 'Enter your email';
+
+  @override
+  String get password => 'Password';
+
+  @override
+  String get passwordHint => 'Enter your password';
+
+  @override
+  String get confirmPassword => 'Confirm password';
+
+  @override
+  String get confirmPasswordHint => 'Confirm your password';
+
+  @override
+  String get gender => 'Gender';
+
+  @override
+  String get male => 'Male';
+
+  @override
+  String get female => 'Female';
 }

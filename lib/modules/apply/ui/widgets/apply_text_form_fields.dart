@@ -3,6 +3,7 @@ import 'package:country_flags/country_flags.dart';
 import 'package:flower_tracking_app/core/di/injectable_initializer.dart';
 import 'package:flower_tracking_app/modules/apply/domain/entities/vehicle_response_entity.dart';
 import 'package:flower_tracking_app/modules/apply/ui/widgets/select_gender_row.dart';
+import 'package:flower_tracking_app/shared_layers/localization/generated/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/bases/base_stateful_widget_state.dart';
@@ -141,7 +142,7 @@ class _ApplyTextFormFieldsState
                             ),
                           )
                           .toList(),
-                  label: 'Country',
+                  label: AppLocalizations.of(context)!.country,
                   value:
                       cubit.state.selectedCountry ?? state.countries[64].name,
                 ),
@@ -158,9 +159,9 @@ class _ApplyTextFormFieldsState
                   keyboardType: TextInputType.text,
                   focusNode: firstNameFocusNode,
                   onFieldSubmitted: (value) => lastNameFocusNode.requestFocus(),
-                  decoration: const InputDecoration(
-                    labelText: 'First legal name',
-                    hintText: 'Enter your first legal name',
+                  decoration: InputDecoration(
+                    labelText: AppLocalizations.of(context)!.firstName,
+                    hintText: AppLocalizations.of(context)!.firstNameHint,
                   ),
                 ),
                 SizedBox(height: screenHeight * 0.02),
@@ -176,9 +177,9 @@ class _ApplyTextFormFieldsState
                   keyboardType: TextInputType.text,
                   focusNode: lastNameFocusNode,
 
-                  decoration: const InputDecoration(
-                    labelText: 'Second legal name',
-                    hintText: 'Enter your second legal name',
+                  decoration: InputDecoration(
+                    labelText: AppLocalizations.of(context)!.secondName,
+                    hintText: AppLocalizations.of(context)!.secondNameHint,
                   ),
                 ),
                 SizedBox(height: screenHeight * 0.02),
@@ -195,7 +196,7 @@ class _ApplyTextFormFieldsState
                             ),
                           )
                           .toList(),
-                  label: 'Vehicle type',
+                  label: AppLocalizations.of(context)!.vehicleType,
                   value: cubit.state.selectedVehicle ?? state.vehicles?.first,
                 ),
                 SizedBox(height: screenHeight * 0.02),
@@ -209,13 +210,13 @@ class _ApplyTextFormFieldsState
                       (value) => vehicleLicenseFocusNode.requestFocus(),
                   validator: (val) {
                     if (val!.isEmpty) {
-                      return 'Please enter vehicle number';
+                      return AppLocalizations.of(context)!.vehicleNumberPrompt;
                     }
                     return null;
                   },
-                  decoration: const InputDecoration(
-                    labelText: 'Vehicle number',
-                    hintText: 'Enter vehicle number',
+                  decoration: InputDecoration(
+                    labelText: AppLocalizations.of(context)!.vehicleNumber,
+                    hintText: AppLocalizations.of(context)!.vehicleNumberHint,
                   ),
                 ),
                 SizedBox(height: screenHeight * 0.02),
@@ -230,7 +231,9 @@ class _ApplyTextFormFieldsState
                           (value) => vehicleLicenseFocusNode.requestFocus(),
                       validator: (val) {
                         if (!state.isLicenseImagePicked!) {
-                          return 'Please upload vehicle license';
+                          return AppLocalizations.of(
+                            context,
+                          )!.vehicleLicensePrompt;
                         }
                         return null;
                       },
@@ -255,10 +258,12 @@ class _ApplyTextFormFieldsState
                             !state.isLicenseImagePicked!
                                 ? null
                                 : Icon(Icons.image, color: AppColors.mainColor),
-                        labelText: 'Vehicle license',
+                        labelText: AppLocalizations.of(context)!.vehicleLicense,
                         hintText:
                             !state.isLicenseImagePicked!
-                                ? 'Upload license photo'
+                                ? AppLocalizations.of(
+                                  context,
+                                )!.vehicleLicenseHint
                                 : '',
                       ),
                     );
@@ -274,9 +279,9 @@ class _ApplyTextFormFieldsState
                   keyboardType: TextInputType.emailAddress,
                   focusNode: emailFocusNode,
                   onFieldSubmitted: (value) => idImageFocusNode.requestFocus(),
-                  decoration: const InputDecoration(
-                    labelText: 'Email',
-                    hintText: 'Enter email',
+                  decoration: InputDecoration(
+                    labelText: AppLocalizations.of(context)!.email,
+                    hintText: AppLocalizations.of(context)!.emailHint,
                   ),
                 ),
                 SizedBox(height: screenHeight * 0.02),
@@ -288,15 +293,15 @@ class _ApplyTextFormFieldsState
                   onFieldSubmitted: (value) => idImageFocusNode.requestFocus(),
                   validator: (val) {
                     if (val!.isEmpty) {
-                      return 'Please enter ID number';
+                      return AppLocalizations.of(context)!.idNumberPrompt;
                     } else if (val.length < 14) {
-                      return "ID number must be 14 characters ";
+                      return AppLocalizations.of(context)!.idNumberLength;
                     }
                     return null;
                   },
-                  decoration: const InputDecoration(
-                    labelText: 'ID number',
-                    hintText: 'Enter national ID number',
+                  decoration: InputDecoration(
+                    labelText: AppLocalizations.of(context)!.idNumber,
+                    hintText: AppLocalizations.of(context)!.idNumberHint,
                   ),
                 ),
                 SizedBox(height: screenHeight * 0.02),
@@ -311,7 +316,7 @@ class _ApplyTextFormFieldsState
                           (value) => passwordFocusNode.requestFocus(),
                       validator: (val) {
                         if (!state.isIdImagePicked!) {
-                          return 'Please upload ID image';
+                          return AppLocalizations.of(context)!.idImagePrompt;
                         }
                         return null;
                       },
@@ -331,13 +336,15 @@ class _ApplyTextFormFieldsState
                                   )
                                   : const Icon(Icons.close),
                         ),
-                        labelText: 'ID image',
+                        labelText: AppLocalizations.of(context)!.idImage,
                         prefixIcon:
                             !state.isIdImagePicked!
                                 ? null
                                 : Icon(Icons.image, color: AppColors.mainColor),
                         hintText:
-                            !state.isIdImagePicked! ? 'UploadID image' : '',
+                            !state.isIdImagePicked!
+                                ? AppLocalizations.of(context)!.idImageHint
+                                : '',
                       ),
                     );
                   },
@@ -359,9 +366,9 @@ class _ApplyTextFormFieldsState
                         onFieldSubmitted:
                             (value) => confirmPasswordFocusNode.requestFocus(),
                         obscureText: true,
-                        decoration: const InputDecoration(
-                          labelText: 'Password',
-                          hintText: 'Enter password',
+                        decoration: InputDecoration(
+                          labelText: AppLocalizations.of(context)!.password,
+                          hintText: AppLocalizations.of(context)!.passwordHint,
                         ),
                       ),
                     ),
@@ -383,13 +390,14 @@ class _ApplyTextFormFieldsState
                             (value) => confirmPasswordFocusNode.unfocus(),
                         decoration: InputDecoration(
                           label: Text(
-                            'Confirm password',
+                            AppLocalizations.of(context)!.confirmPassword,
                             style: theme.textTheme.bodyMedium?.copyWith(
                               color: AppColors.gray,
                               fontSize: 12 * (screenWidth / 375),
                             ),
                           ),
-                          hintText: 'Confirm password',
+                          hintText:
+                              AppLocalizations.of(context)!.confirmPasswordHint,
                         ),
                       ),
                     ),
@@ -408,12 +416,15 @@ class _ApplyTextFormFieldsState
                           if (state.selectedGender == null) {
                             displaySnackBar(
                               contentType: ContentType.failure,
-                              title: 'Error',
-                              message: 'Please select gender',
+                              title: AppLocalizations.of(context)!.error,
+                              message:
+                                  AppLocalizations.of(context)!.selectGender,
                             );
+                          }
+                          if (!widget.formKey.currentState!.validate()) {
                             return;
                           }
-                          if (!widget.formKey.currentState!.validate()) return;
+                          if(state.selectedGender == null) return;
 
                           cubit.doIntent(
                             ApplyDriverIntent(
@@ -443,7 +454,9 @@ class _ApplyTextFormFieldsState
                                 ? CircularProgressIndicator(
                                   color: AppColors.white,
                                 )
-                                : const Text('Continue'),
+                                : Text(
+                                  AppLocalizations.of(context)!.continueButton,
+                                ),
                       ),
                     );
                   },

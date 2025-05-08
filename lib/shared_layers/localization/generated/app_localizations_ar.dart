@@ -109,4 +109,124 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get pleaseEnterValidRecipient => 'الرجاء إدخال مستلم صالح';
+
+  @override
+  String get apply____________ => '\$\$\$ تعليق \$\$\$';
+
+  @override
+  String get apply => 'قدّم';
+
+  @override
+  String get error => 'خطأ';
+
+  @override
+  String get imagePickedSuccess => 'تم اختيار الصورة بنجاح';
+
+  @override
+  String get imagePickFailed => 'فشل في اختيار الصورة';
+
+  @override
+  String get removedIdImage => 'تمت إزالة صورة الهوية';
+
+  @override
+  String get removedLicenseImage => 'تمت إزالة صورة الرخصة';
+
+  @override
+  String get welcome => 'مرحباً !!';
+
+  @override
+  String get joinQuestion => 'هل ترغب في أن تكون رجل توصيل؟';
+
+  @override
+  String get joinOurTeam => 'انضم إلى فريقنا';
+
+  @override
+  String get country => 'الدولة';
+
+  @override
+  String get firstName => 'الاسم الأول القانوني';
+
+  @override
+  String get firstNameHint => 'أدخل اسمك الأول القانوني';
+
+  @override
+  String get secondName => 'الاسم الثاني القانوني';
+
+  @override
+  String get secondNameHint => 'أدخل اسمك الثاني القانوني';
+
+  @override
+  String get vehicleType => 'نوع المركبة';
+
+  @override
+  String get vehicleNumberPrompt => 'يرجى إدخال رقم المركبة';
+
+  @override
+  String get vehicleNumber => 'رقم المركبة';
+
+  @override
+  String get vehicleNumberHint => 'أدخل رقم المركبة';
+
+  @override
+  String get vehicleLicensePrompt => 'يرجى تحميل رخصة المركبة';
+
+  @override
+  String get vehicleLicense => 'رخصة المركبة';
+
+  @override
+  String get vehicleLicenseHint => 'قم بتحميل صورة الرخصة';
+
+  @override
+  String get idNumberPrompt => 'يرجى إدخال رقم الهوية';
+
+  @override
+  String get idNumberLength => 'يجب أن يتكون رقم الهوية من 14 رقمًا';
+
+  @override
+  String get idNumber => 'رقم الهوية';
+
+  @override
+  String get idNumberHint => 'أدخل رقم الهوية الوطنية';
+
+  @override
+  String get idImagePrompt => 'يرجى تحميل صورة الهوية';
+
+  @override
+  String get idImage => 'صورة الهوية';
+
+  @override
+  String get idImageHint => 'قم بتحميل صورة الهوية';
+
+  @override
+  String get selectGender => 'يرجى تحديد الجنس';
+
+  @override
+  String get continueButton => 'استمرار';
+
+  @override
+  String get email => 'البريد الألكتروني';
+
+  @override
+  String get emailHint => 'ادخل بريدك الالكتروني';
+
+  @override
+  String get password => 'كلمة المرور';
+
+  @override
+  String get passwordHint => 'ادخل كلمة المرور';
+
+  @override
+  String get confirmPassword => 'تاكيد كلمة المرور';
+
+  @override
+  String get confirmPasswordHint => 'ادخل تاكيد كلمة المرور';
+
+  @override
+  String get gender => 'الجنس';
+
+  @override
+  String get male => 'ذكر';
+
+  @override
+  String get female => 'انثى';
 }
