@@ -133,4 +133,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get continueWord => 'Continue';
+
+  @override
+  String get loggedSuccessfully => 'Logged In Successfully!';
 }

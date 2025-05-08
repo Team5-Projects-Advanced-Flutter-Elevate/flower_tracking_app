@@ -42,6 +42,7 @@
   "enterPassword": "Enter your password",
   "rememberMe": "Remember me",
   "forgetPassword": "Forget password?",
-  "continueWord": "Continue"
+  "continueWord": "Continue",
+  "loggedSuccessfully": "Logged In Successfully!"
 
 }

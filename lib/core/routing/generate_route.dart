@@ -1,7 +1,10 @@
 import 'package:flower_tracking_app/core/routing/defined_routes.dart';
-import 'package:flower_tracking_app/modules/login/ui/login_screen.dart';
+import 'package:flower_tracking_app/modules/authentication/domain/entities/logged_driver_data/logged_driver_data_response_entity.dart';
 import 'package:flower_tracking_app/modules/onboarding/ui/onboarding_screen.dart';
 import 'package:flutter/material.dart';
+
+import '../../modules/authentication/ui/login/login_screen.dart';
+import '../../modules/home/ui/home_screen.dart';
 
 abstract class GenerateRoute {
   static Route<dynamic>? onGenerateRoute(RouteSettings routeSettings) {
@@ -14,9 +17,9 @@ abstract class GenerateRoute {
           builder: (context) => const OnboardingScreen(),
         );
       case DefinedRoutes.loginScreenRoute:
-        return MaterialPageRoute(
-          builder: (context) => const LoginScreen(),
-        );
+        return MaterialPageRoute(builder: (context) => const LoginScreen());
+      case DefinedRoutes.homeScreenRoute:
+        return MaterialPageRoute(builder: (context) => const HomeScreen());
       default:
         return _errorRoute();
     }
@@ -24,18 +27,13 @@ abstract class GenerateRoute {
 
   static List<Route<dynamic>> onGenerateInitialRoutes({
     String? initialRoute,
-    dynamic loginInfo,
-    bool rememberMe = false,
+    LoggedDriverDataResponseEntity? loginInfo,
   }) {
     return [
       if (loginInfo != null)
-        MaterialPageRoute(
-          builder: (context) => const SizedBox(), //HomeScreen(),
-        )
+        MaterialPageRoute(builder: (context) => const HomeScreen())
       else
-        MaterialPageRoute(
-          builder: (context) => const SizedBox(), //const LoginScreen(),
-        ),
+        MaterialPageRoute(builder: (context) => const LoginScreen()),
     ];
   }
 

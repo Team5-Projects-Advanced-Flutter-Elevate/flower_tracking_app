@@ -1,6 +1,4 @@
 {
-  "login": "تسجيل الدخول",
-
   "errorMessages________": "$$$ تعليق $$$",
   "connectionTimeout": "انتهت مهلة الاتصال بالخادم ⌛",
   "sendTimeout": "انتهت مهلة الإرسال في الاتصال بالخادم ⏱",
@@ -34,5 +32,16 @@
   "noMatch": "غير متطابق!",
   "pleaseEnterAddress": "الرجاء إدخال العنوان",
   "pleaseEnterValidAddress": "الرجاء إدخال عنوان صالح",
-  "pleaseEnterValidRecipient": "الرجاء إدخال مستلم صالح"
+  "pleaseEnterValidRecipient": "الرجاء إدخال مستلم صالح",
+
+  "loginScreen___________": "$$ تعليق $$",
+  "login": "تسجيل الدخول",
+  "email": "البريد الإلكتروني",
+  "enterEmail": "أدخل بريدك الإلكتروني",
+  "password": "كلمة المرور",
+  "enterPassword": "أدخل كلمة المرور",
+  "rememberMe": "تذكرني",
+  "forgetPassword": "نسيت كلمة المرور؟",
+  "continueWord": "متابعة",
+  "loggedSuccessfully": "تم تسجيل الدخول بنجاح!"
 }

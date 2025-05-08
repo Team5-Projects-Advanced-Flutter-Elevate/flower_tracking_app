@@ -346,6 +346,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Continue'**
   String get continueWord;
+
+  /// No description provided for @loggedSuccessfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Logged In Successfully!'**
+  String get loggedSuccessfully;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

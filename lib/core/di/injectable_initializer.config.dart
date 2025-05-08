@@ -14,6 +14,34 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart' as _i558;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 
+import '../../modules/authentication/data/api/api_client/auth_api_client.dart'
+    as _i343;
+import '../../modules/authentication/data/api/api_client_provider/auth_api_client_provider.dart'
+    as _i1019;
+import '../../modules/authentication/data/data_sources_contracts/logged_driver_data/logged_drivr_data_remote_data_source.dart'
+    as _i504;
+import '../../modules/authentication/data/data_sources_contracts/login/local/login_local_data_source.dart'
+    as _i34;
+import '../../modules/authentication/data/data_sources_contracts/login/remote/login_remote_data_source.dart'
+    as _i477;
+import '../../modules/authentication/data/data_sources_imp/logged_driver_data/logged_driver_data_remote_data_source_imp.dart'
+    as _i493;
+import '../../modules/authentication/data/data_sources_imp/login/local/login_local_data_source_imp.dart'
+    as _i443;
+import '../../modules/authentication/data/data_sources_imp/login/remote/login_remote_data_source_imp.dart'
+    as _i120;
+import '../../modules/authentication/data/repositories_imp/logged_driver_data/logged_driver_data_repo_imp.dart'
+    as _i234;
+import '../../modules/authentication/data/repositories_imp/login/login_repo_imp.dart'
+    as _i641;
+import '../../modules/authentication/domain/repositories_contracts/logged_driver_data/logged_driver_data_repo.dart'
+    as _i103;
+import '../../modules/authentication/domain/repositories_contracts/login/login_repo.dart'
+    as _i450;
+import '../../modules/authentication/domain/use_cases/login/login_use_case.dart'
+    as _i543;
+import '../../modules/authentication/ui/login/view_model/login_view_model.dart'
+    as _i108;
 import '../../shared_layers/localization/generated/app_localizations.dart'
     as _i543;
 import '../../shared_layers/localization/initializer/locale_initializer.dart'
@@ -41,6 +69,7 @@ extension GetItInjectableX on _i174.GetIt {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
     final dioService = _$DioService();
     final storagesInitializer = _$StoragesInitializer();
+    final authApiClientProvider = _$AuthApiClientProvider();
     final localeInitializer = _$LocaleInitializer();
     final appLocalizationsProvider = _$AppLocalizationsProvider();
     await gh.factoryAsync<_i361.Dio>(
@@ -51,8 +80,23 @@ extension GetItInjectableX on _i174.GetIt {
       () => storagesInitializer.initFlutterSecureStorage(),
       preResolve: true,
     );
+    gh.lazySingleton<_i343.AuthApiClient>(
+      () => authApiClientProvider.provideApiClient(gh<_i361.Dio>()),
+    );
     gh.singleton<_i629.SecureStorageService<dynamic>>(
       () => _i701.SecureStorageServiceImp(gh<_i558.FlutterSecureStorage>()),
+    );
+    gh.factory<_i477.LoginRemoteDataSource>(
+      () => _i120.LoginRemoteDataSourceImp(gh<_i343.AuthApiClient>()),
+    );
+    gh.factory<_i504.LoggedDriverDataRemoteDataSource>(
+      () =>
+          _i493.LoggedDriverDataRemoteDataSourceImp(gh<_i343.AuthApiClient>()),
+    );
+    gh.factory<_i34.LoginLocalDataSource>(
+      () => _i443.LoginLocalDataSourceImp(
+        gh<_i629.SecureStorageService<dynamic>>(),
+      ),
     );
     await gh.factoryAsync<String>(
       () => localeInitializer.initCurrentLocal(
@@ -67,17 +111,35 @@ extension GetItInjectableX on _i174.GetIt {
         gh<String>(instanceName: 'initCurrentLocal'),
       ),
     );
+    gh.factory<_i450.LoginRepo>(
+      () => _i641.LoginRepoImp(
+        gh<_i477.LoginRemoteDataSource>(),
+        gh<_i34.LoginLocalDataSource>(),
+        gh<_i504.LoggedDriverDataRemoteDataSource>(),
+      ),
+    );
+    gh.factory<_i103.LoggedDriverDataRepo>(
+      () => _i234.LoggedDriverDataRepoImp(
+        gh<_i504.LoggedDriverDataRemoteDataSource>(),
+      ),
+    );
     await gh.factoryAsync<_i543.AppLocalizations>(
       () => appLocalizationsProvider.provideAppLocalizations(
         gh<String>(instanceName: 'initCurrentLocal'),
       ),
       preResolve: true,
     );
+    gh.factory<_i543.LoginUseCase>(
+      () => _i543.LoginUseCase(gh<_i450.LoginRepo>()),
+    );
     gh.lazySingleton<_i166.ValidateFunctions>(
       () => _i166.ValidateFunctions(gh<_i543.AppLocalizations>()),
     );
     gh.lazySingleton<_i439.ApiErrorHandler>(
       () => _i439.ApiErrorHandler(gh<_i543.AppLocalizations>()),
+    );
+    gh.factory<_i108.LoginViewModel>(
+      () => _i108.LoginViewModel(gh<_i543.LoginUseCase>()),
     );
     return this;
   }
@@ -86,6 +148,8 @@ extension GetItInjectableX on _i174.GetIt {
 class _$DioService extends _i738.DioService {}
 
 class _$StoragesInitializer extends _i241.StoragesInitializer {}
+
+class _$AuthApiClientProvider extends _i1019.AuthApiClientProvider {}
 
 class _$LocaleInitializer extends _i631.LocaleInitializer {}
 

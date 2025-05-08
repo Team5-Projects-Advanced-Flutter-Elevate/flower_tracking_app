@@ -108,29 +108,32 @@ class AppLocalizationsAr extends AppLocalizations {
   String get pleaseEnterValidRecipient => 'الرجاء إدخال مستلم صالح';
 
   @override
-  String get loginScreen___________ => '\$\$ Comment \$\$';
+  String get loginScreen___________ => '\$\$ تعليق \$\$';
 
   @override
   String get login => 'تسجيل الدخول';
 
   @override
-  String get email => 'Email';
+  String get email => 'البريد الإلكتروني';
 
   @override
-  String get enterEmail => 'Enter your email';
+  String get enterEmail => 'أدخل بريدك الإلكتروني';
 
   @override
-  String get password => 'Password';
+  String get password => 'كلمة المرور';
 
   @override
-  String get enterPassword => 'Enter your password';
+  String get enterPassword => 'أدخل كلمة المرور';
 
   @override
-  String get rememberMe => 'Remember me';
+  String get rememberMe => 'تذكرني';
 
   @override
-  String get forgetPassword => 'Forget password?';
+  String get forgetPassword => 'نسيت كلمة المرور؟';
 
   @override
-  String get continueWord => 'Continue';
+  String get continueWord => 'متابعة';
+
+  @override
+  String get loggedSuccessfully => 'تم تسجيل الدخول بنجاح!';
 }
