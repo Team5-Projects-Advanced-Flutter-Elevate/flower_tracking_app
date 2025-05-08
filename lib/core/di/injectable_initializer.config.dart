@@ -14,42 +14,48 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart' as _i558;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 
+import '../../modules/apply/data/api/api_client/apply_api_client.dart' as _i780;
+import '../../modules/apply/data/api/api_provider/apply_api_provider.dart'
+    as _i594;
+import '../../modules/apply/data/datasource_contract/apply_datasource.dart'
+    as _i843;
+import '../../modules/apply/data/datasource_impl/apply_datasouce_impl.dart'
+    as _i684;
+import '../../modules/apply/data/repo_impl/apply_repo_impl.dart' as _i792;
+import '../../modules/apply/domain/repo_contract/apply_repo_contract.dart'
+    as _i61;
+import '../../modules/apply/domain/usecases/apply_use_case.dart' as _i637;
+import '../../modules/apply/domain/usecases/get_vehicles_use_case.dart'
+    as _i900;
+import '../../modules/apply/ui/view_model/apply_cubit.dart' as _i172;
 import '../../modules/authentication/data/api/api_client/auth_api_client.dart'
     as _i343;
 import '../../modules/authentication/data/api/api_client_provider/auth_api_client_provider.dart'
     as _i1019;
-import '../../modules/authentication/data/data_sources_contracts/forget_password/forget_password_remote_data_source.dart'
-    as _i150;
-import '../../modules/authentication/data/data_sources_contracts/forget_password/reset_code_remote_data_source.dart'
-    as _i779;
-import '../../modules/authentication/data/data_sources_contracts/forget_password/reset_password_remote_data_source.dart'
-    as _i881;
-import '../../modules/authentication/data/data_sources_imp/forget_password/forget_password_remote_data_source_imp.dart'
-    as _i191;
-import '../../modules/authentication/data/data_sources_imp/forget_password/reset_code_remote_data_source_impl.dart'
-    as _i808;
-import '../../modules/authentication/data/data_sources_imp/forget_password/reset_password_remote_data_source_impl.dart'
-    as _i956;
-import '../../modules/authentication/data/respositoies_imp/forget_password/forget_password_repo_imp.dart'
-    as _i811;
-import '../../modules/authentication/data/respositoies_imp/forget_password/reset_code_repo_impl.dart'
-    as _i196;
-import '../../modules/authentication/data/respositoies_imp/forget_password/reset_password_repo_impl.dart'
-    as _i940;
-import '../../modules/authentication/domain/repositories_contracts/forget_password/forget_password_repo.dart'
-    as _i1013;
-import '../../modules/authentication/domain/repositories_contracts/forget_password/reset_code_repo.dart'
-    as _i251;
-import '../../modules/authentication/domain/repositories_contracts/forget_password/reset_password_repo.dart'
-    as _i731;
-import '../../modules/authentication/domain/use_cases/forget_password/forget_password_use_case.dart'
-    as _i823;
-import '../../modules/authentication/domain/use_cases/forget_password/reset_code_use_case.dart'
-    as _i9;
-import '../../modules/authentication/domain/use_cases/forget_password/reset_password_use_case.dart'
-    as _i110;
-import '../../modules/authentication/ui/forget_password/view_model/forget_password_screen_view_model.dart'
-    as _i105;
+import '../../modules/authentication/data/data_sources_contracts/logged_driver_data/logged_drivr_data_remote_data_source.dart'
+    as _i504;
+import '../../modules/authentication/data/data_sources_contracts/login/local/login_local_data_source.dart'
+    as _i34;
+import '../../modules/authentication/data/data_sources_contracts/login/remote/login_remote_data_source.dart'
+    as _i477;
+import '../../modules/authentication/data/data_sources_imp/logged_driver_data/logged_driver_data_remote_data_source_imp.dart'
+    as _i493;
+import '../../modules/authentication/data/data_sources_imp/login/local/login_local_data_source_imp.dart'
+    as _i443;
+import '../../modules/authentication/data/data_sources_imp/login/remote/login_remote_data_source_imp.dart'
+    as _i120;
+import '../../modules/authentication/data/repositories_imp/logged_driver_data/logged_driver_data_repo_imp.dart'
+    as _i234;
+import '../../modules/authentication/data/repositories_imp/login/login_repo_imp.dart'
+    as _i641;
+import '../../modules/authentication/domain/repositories_contracts/logged_driver_data/logged_driver_data_repo.dart'
+    as _i103;
+import '../../modules/authentication/domain/repositories_contracts/login/login_repo.dart'
+    as _i450;
+import '../../modules/authentication/domain/use_cases/login/login_use_case.dart'
+    as _i543;
+import '../../modules/authentication/ui/login/view_model/login_view_model.dart'
+    as _i108;
 import '../../shared_layers/localization/generated/app_localizations.dart'
     as _i543;
 import '../../shared_layers/localization/initializer/locale_initializer.dart'
@@ -77,6 +83,7 @@ extension GetItInjectableX on _i174.GetIt {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
     final dioService = _$DioService();
     final storagesInitializer = _$StoragesInitializer();
+    final applyApiClientProvider = _$ApplyApiClientProvider();
     final authApiClientProvider = _$AuthApiClientProvider();
     final localeInitializer = _$LocaleInitializer();
     final appLocalizationsProvider = _$AppLocalizationsProvider();
@@ -88,28 +95,52 @@ extension GetItInjectableX on _i174.GetIt {
       () => storagesInitializer.initFlutterSecureStorage(),
       preResolve: true,
     );
-    gh.singleton<_i343.AuthApiClient>(
+    gh.lazySingleton<_i843.ImagePickerService>(
+      () => _i684.DefaultImagePickerService(),
+    );
+    gh.lazySingleton<_i780.ApplyApiClient>(
+      () => applyApiClientProvider.providerApiClient(gh<_i361.Dio>()),
+    );
+    gh.lazySingleton<_i343.AuthApiClient>(
       () => authApiClientProvider.provideApiClient(gh<_i361.Dio>()),
     );
-    gh.factory<_i881.ResetPasswordRemoteDataSource>(
-      () => _i956.ResetPasswordRemoteDataSourceImpl(gh<_i343.AuthApiClient>()),
+    gh.factory<_i843.ApplyDataSource>(
+      () => _i684.ApplyDataSourceImpl(gh<_i780.ApplyApiClient>()),
     );
-    gh.factory<_i731.ResetPasswordRepo>(
-      () => _i940.ResetPasswordRepoImpl(
-        gh<_i881.ResetPasswordRemoteDataSource>(),
-      ),
+    gh.lazySingleton<_i843.CountryLoaderService>(
+      () => _i684.AssetCountryLoaderService(),
+    );
+    gh.factory<_i61.ApplyRepo>(
+      () => _i792.ApplyRepoImpl(applyDataSource: gh<_i843.ApplyDataSource>()),
     );
     gh.singleton<_i629.SecureStorageService<dynamic>>(
       () => _i701.SecureStorageServiceImp(gh<_i558.FlutterSecureStorage>()),
     );
-    gh.factory<_i779.ResetCodeRemoteDataSource>(
-      () => _i808.ResetCodeRemoteDataSourceImpl(gh<_i343.AuthApiClient>()),
+    gh.factory<_i477.LoginRemoteDataSource>(
+      () => _i120.LoginRemoteDataSourceImp(gh<_i343.AuthApiClient>()),
     );
-    gh.factory<_i251.ResetCodeRepo>(
-      () => _i196.ResetCodeRepoImpl(gh<_i779.ResetCodeRemoteDataSource>()),
+    gh.factory<_i504.LoggedDriverDataRemoteDataSource>(
+      () =>
+          _i493.LoggedDriverDataRemoteDataSourceImp(gh<_i343.AuthApiClient>()),
     );
-    gh.factory<_i150.ForgetPasswordRemoteDataSource>(
-      () => _i191.ForgetPasswordRemoteDataSourceImpl(gh<_i343.AuthApiClient>()),
+    gh.factory<_i637.ApplyDriverUseCase>(
+      () => _i637.ApplyDriverUseCase(gh<_i61.ApplyRepo>()),
+    );
+    gh.factory<_i900.GetVehiclesUseCase>(
+      () => _i900.GetVehiclesUseCase(gh<_i61.ApplyRepo>()),
+    );
+    gh.factory<_i34.LoginLocalDataSource>(
+      () => _i443.LoginLocalDataSourceImp(
+        gh<_i629.SecureStorageService<dynamic>>(),
+      ),
+    );
+    gh.lazySingleton<_i172.ApplyCubit>(
+      () => _i172.ApplyCubit(
+        gh<_i637.ApplyDriverUseCase>(),
+        gh<_i900.GetVehiclesUseCase>(),
+        gh<_i843.CountryLoaderService>(),
+        gh<_i843.ImagePickerService>(),
+      ),
     );
     await gh.factoryAsync<String>(
       () => localeInitializer.initCurrentLocal(
@@ -124,11 +155,17 @@ extension GetItInjectableX on _i174.GetIt {
         gh<String>(instanceName: 'initCurrentLocal'),
       ),
     );
-    gh.factory<_i9.ResetCodeUseCase>(
-      () => _i9.ResetCodeUseCase(gh<_i251.ResetCodeRepo>()),
+    gh.factory<_i450.LoginRepo>(
+      () => _i641.LoginRepoImp(
+        gh<_i477.LoginRemoteDataSource>(),
+        gh<_i34.LoginLocalDataSource>(),
+        gh<_i504.LoggedDriverDataRemoteDataSource>(),
+      ),
     );
-    gh.factory<_i110.ResetPasswordUseCase>(
-      () => _i110.ResetPasswordUseCase(gh<_i731.ResetPasswordRepo>()),
+    gh.factory<_i103.LoggedDriverDataRepo>(
+      () => _i234.LoggedDriverDataRepoImp(
+        gh<_i504.LoggedDriverDataRemoteDataSource>(),
+      ),
     );
     await gh.factoryAsync<_i543.AppLocalizations>(
       () => appLocalizationsProvider.provideAppLocalizations(
@@ -136,10 +173,8 @@ extension GetItInjectableX on _i174.GetIt {
       ),
       preResolve: true,
     );
-    gh.factory<_i1013.ForgetPasswordRepo>(
-      () => _i811.ForgetPasswordRepoImpl(
-        gh<_i150.ForgetPasswordRemoteDataSource>(),
-      ),
+    gh.factory<_i543.LoginUseCase>(
+      () => _i543.LoginUseCase(gh<_i450.LoginRepo>()),
     );
     gh.lazySingleton<_i439.ApiErrorHandler>(
       () => _i439.ApiErrorHandler(gh<_i543.AppLocalizations>()),
@@ -147,15 +182,8 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i166.ValidateFunctions>(
       () => _i166.ValidateFunctions(gh<_i543.AppLocalizations>()),
     );
-    gh.factory<_i823.ForgetPasswordUseCase>(
-      () => _i823.ForgetPasswordUseCase(gh<_i1013.ForgetPasswordRepo>()),
-    );
-    gh.factory<_i105.ForgetPasswordViewModel>(
-      () => _i105.ForgetPasswordViewModel(
-        gh<_i823.ForgetPasswordUseCase>(),
-        gh<_i110.ResetPasswordUseCase>(),
-        gh<_i9.ResetCodeUseCase>(),
-      ),
+    gh.factory<_i108.LoginViewModel>(
+      () => _i108.LoginViewModel(gh<_i543.LoginUseCase>()),
     );
     return this;
   }
@@ -164,6 +192,8 @@ extension GetItInjectableX on _i174.GetIt {
 class _$DioService extends _i738.DioService {}
 
 class _$StoragesInitializer extends _i241.StoragesInitializer {}
+
+class _$ApplyApiClientProvider extends _i594.ApplyApiClientProvider {}
 
 class _$AuthApiClientProvider extends _i1019.AuthApiClientProvider {}
 

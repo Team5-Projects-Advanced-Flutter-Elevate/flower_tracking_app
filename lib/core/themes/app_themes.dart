@@ -5,7 +5,19 @@ import 'package:google_fonts/google_fonts.dart';
 abstract class AppThemes {
   static ThemeData lightTheme = ThemeData(
     useMaterial3: true,
+    // scaffoldBackgroundColor: AppColors.white,
+    appBarTheme: AppBarTheme(
+      backgroundColor: AppColors.white,
+      surfaceTintColor: AppColors.white,
+      titleSpacing: 0,
+    ),
     textTheme: TextTheme(
+      headlineMedium: TextStyle(
+        fontSize: 20,
+        color: AppColors.black,
+        fontWeight: FontWeight.w500,
+        fontFamily: GoogleFonts.inter().fontFamily,
+      ),
       titleLarge: TextStyle(
         fontSize: 22,
         color: AppColors.black,
@@ -118,6 +130,7 @@ abstract class AppThemes {
     ),
     inputDecorationTheme: InputDecorationTheme(
       errorMaxLines: 4,
+      contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
       border: OutlineInputBorder(borderRadius: BorderRadius.circular(4)),
       enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(4)),
       disabledBorder: OutlineInputBorder(
@@ -141,7 +154,7 @@ abstract class AppThemes {
       labelStyle: TextStyle(
         fontSize: 16,
         fontWeight: FontWeight.w400,
-        color: AppColors.white[90],
+        color: AppColors.gray,
       ),
       floatingLabelBehavior: FloatingLabelBehavior.always,
       floatingLabelStyle: WidgetStateTextStyle.resolveWith((states) {
@@ -162,7 +175,7 @@ abstract class AppThemes {
     filledButtonTheme: FilledButtonThemeData(
       style: ButtonStyle(
         padding: const WidgetStatePropertyAll(
-          EdgeInsets.symmetric(vertical: 10, horizontal: 24),
+          EdgeInsets.symmetric(vertical: 16, horizontal: 24),
         ),
         textStyle: WidgetStatePropertyAll(
           TextStyle(

@@ -62,7 +62,8 @@ import 'app_localizations_en.dart';
 /// be consistent with the languages listed in the AppLocalizations.supportedLocales
 /// property.
 abstract class AppLocalizations {
-  AppLocalizations(String locale) : localeName = intl.Intl.canonicalizedLocale(locale.toString());
+  AppLocalizations(String locale)
+    : localeName = intl.Intl.canonicalizedLocale(locale.toString());
 
   final String localeName;
 
@@ -70,7 +71,8 @@ abstract class AppLocalizations {
     return Localizations.of<AppLocalizations>(context, AppLocalizations);
   }
 
-  static const LocalizationsDelegate<AppLocalizations> delegate = _AppLocalizationsDelegate();
+  static const LocalizationsDelegate<AppLocalizations> delegate =
+      _AppLocalizationsDelegate();
 
   /// A list of this localizations delegate along with the default localizations
   /// delegates.
@@ -82,24 +84,19 @@ abstract class AppLocalizations {
   /// Additional delegates can be added by appending to this list in
   /// MaterialApp. This list does not have to be used at all if a custom list
   /// of delegates is preferred or required.
-  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates = <LocalizationsDelegate<dynamic>>[
-    delegate,
-    GlobalMaterialLocalizations.delegate,
-    GlobalCupertinoLocalizations.delegate,
-    GlobalWidgetsLocalizations.delegate,
-  ];
+  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates =
+      <LocalizationsDelegate<dynamic>>[
+        delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ];
 
   /// A list of this localizations delegate's supported locales.
   static const List<Locale> supportedLocales = <Locale>[
     Locale('ar'),
-    Locale('en')
+    Locale('en'),
   ];
-
-  /// No description provided for @login.
-  ///
-  /// In en, this message translates to:
-  /// **'Login'**
-  String get login;
 
   /// No description provided for @errorMessages________.
   ///
@@ -293,14 +290,327 @@ abstract class AppLocalizations {
   /// **'Please enter a valid address'**
   String get pleaseEnterValidAddress;
 
+  /// No description provided for @onboardingScreen____________.
+  ///
+  /// In en, this message translates to:
+  /// **'\$\$\$ Comment \$\$\$'**
+  String get onboardingScreen____________;
+
+  /// No description provided for @onboardingWelcomeMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome to\nFlowery Rider app'**
+  String get onboardingWelcomeMessage;
+
+  /// No description provided for @applyNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Apply Now'**
+  String get applyNow;
+
   /// No description provided for @pleaseEnterValidRecipient.
   ///
   /// In en, this message translates to:
   /// **'Please enter a valid recipient'**
   String get pleaseEnterValidRecipient;
+
+  /// No description provided for @loginScreen___________.
+  ///
+  /// In en, this message translates to:
+  /// **'\$\$ Comment \$\$'**
+  String get loginScreen___________;
+
+  /// No description provided for @login.
+  ///
+  /// In en, this message translates to:
+  /// **'Login'**
+  String get login;
+
+  /// No description provided for @email.
+  ///
+  /// In en, this message translates to:
+  /// **'Email'**
+  String get email;
+
+  /// No description provided for @enterEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your email'**
+  String get enterEmail;
+
+  /// No description provided for @password.
+  ///
+  /// In en, this message translates to:
+  /// **'Password'**
+  String get password;
+
+  /// No description provided for @enterPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your password'**
+  String get enterPassword;
+
+  /// No description provided for @rememberMe.
+  ///
+  /// In en, this message translates to:
+  /// **'Remember me'**
+  String get rememberMe;
+
+  /// No description provided for @forgetPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Forget password?'**
+  String get forgetPassword;
+
+  /// No description provided for @continueWord.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue'**
+  String get continueWord;
+
+  /// No description provided for @loggedSuccessfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Logged In Successfully!'**
+  String get loggedSuccessfully;
+
+  /// No description provided for @applyScreen____________.
+  ///
+  /// In en, this message translates to:
+  /// **'\$\$ Comment \$\$'**
+  String get applyScreen____________;
+
+  /// No description provided for @apply.
+  ///
+  /// In en, this message translates to:
+  /// **'Apply'**
+  String get apply;
+
+  /// No description provided for @error.
+  ///
+  /// In en, this message translates to:
+  /// **'Error'**
+  String get error;
+
+  /// No description provided for @imagePickedSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Image picked successfully'**
+  String get imagePickedSuccess;
+
+  /// No description provided for @imagePickFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to pick image'**
+  String get imagePickFailed;
+
+  /// No description provided for @removedIdImage.
+  ///
+  /// In en, this message translates to:
+  /// **'Removed ID image'**
+  String get removedIdImage;
+
+  /// No description provided for @removedLicenseImage.
+  ///
+  /// In en, this message translates to:
+  /// **'Removed license image'**
+  String get removedLicenseImage;
+
+  /// No description provided for @welcome.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome !!'**
+  String get welcome;
+
+  /// No description provided for @joinQuestion.
+  ///
+  /// In en, this message translates to:
+  /// **'You want to be a delivery man?'**
+  String get joinQuestion;
+
+  /// No description provided for @joinOurTeam.
+  ///
+  /// In en, this message translates to:
+  /// **'Join our team'**
+  String get joinOurTeam;
+
+  /// No description provided for @country.
+  ///
+  /// In en, this message translates to:
+  /// **'Country'**
+  String get country;
+
+  /// No description provided for @firstName.
+  ///
+  /// In en, this message translates to:
+  /// **'First legal name'**
+  String get firstName;
+
+  /// No description provided for @firstNameHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your first legal name'**
+  String get firstNameHint;
+
+  /// No description provided for @secondName.
+  ///
+  /// In en, this message translates to:
+  /// **'Second legal name'**
+  String get secondName;
+
+  /// No description provided for @secondNameHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your second legal name'**
+  String get secondNameHint;
+
+  /// No description provided for @vehicleType.
+  ///
+  /// In en, this message translates to:
+  /// **'Vehicle type'**
+  String get vehicleType;
+
+  /// No description provided for @vehicleNumberPrompt.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter vehicle number'**
+  String get vehicleNumberPrompt;
+
+  /// No description provided for @vehicleNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Vehicle number'**
+  String get vehicleNumber;
+
+  /// No description provided for @vehicleNumberHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter vehicle number'**
+  String get vehicleNumberHint;
+
+  /// No description provided for @vehicleLicensePrompt.
+  ///
+  /// In en, this message translates to:
+  /// **'Please upload vehicle license'**
+  String get vehicleLicensePrompt;
+
+  /// No description provided for @vehicleLicense.
+  ///
+  /// In en, this message translates to:
+  /// **'Vehicle license'**
+  String get vehicleLicense;
+
+  /// No description provided for @vehicleLicenseHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Upload license photo'**
+  String get vehicleLicenseHint;
+
+  /// No description provided for @idNumberPrompt.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter ID number'**
+  String get idNumberPrompt;
+
+  /// No description provided for @idNumberLength.
+  ///
+  /// In en, this message translates to:
+  /// **'ID number must be 14 characters'**
+  String get idNumberLength;
+
+  /// No description provided for @idNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'ID number'**
+  String get idNumber;
+
+  /// No description provided for @idNumberHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter national ID number'**
+  String get idNumberHint;
+
+  /// No description provided for @idImagePrompt.
+  ///
+  /// In en, this message translates to:
+  /// **'Please upload ID image'**
+  String get idImagePrompt;
+
+  /// No description provided for @idImage.
+  ///
+  /// In en, this message translates to:
+  /// **'ID image'**
+  String get idImage;
+
+  /// No description provided for @idImageHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Upload ID image'**
+  String get idImageHint;
+
+  /// No description provided for @selectGender.
+  ///
+  /// In en, this message translates to:
+  /// **'Please select gender'**
+  String get selectGender;
+
+  /// No description provided for @continueButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue'**
+  String get continueButton;
+
+  /// No description provided for @emailHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your email'**
+  String get emailHint;
+
+  /// No description provided for @passwordHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your password'**
+  String get passwordHint;
+
+  /// No description provided for @confirmPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm password'**
+  String get confirmPassword;
+
+  /// No description provided for @confirmPasswordHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm your password'**
+  String get confirmPasswordHint;
+
+  /// No description provided for @gender.
+  ///
+  /// In en, this message translates to:
+  /// **'Gender'**
+  String get gender;
+
+  /// No description provided for @male.
+  ///
+  /// In en, this message translates to:
+  /// **'Male'**
+  String get male;
+
+  /// No description provided for @female.
+  ///
+  /// In en, this message translates to:
+  /// **'Female'**
+  String get female;
+
+  /// No description provided for @removedImage.
+  ///
+  /// In en, this message translates to:
+  /// **'Removed image'**
+  String get removedImage;
 }
 
-class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
+class _AppLocalizationsDelegate
+    extends LocalizationsDelegate<AppLocalizations> {
   const _AppLocalizationsDelegate();
 
   @override
@@ -309,25 +619,26 @@ class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> 
   }
 
   @override
-  bool isSupported(Locale locale) => <String>['ar', 'en'].contains(locale.languageCode);
+  bool isSupported(Locale locale) =>
+      <String>['ar', 'en'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_AppLocalizationsDelegate old) => false;
 }
 
 AppLocalizations lookupAppLocalizations(Locale locale) {
-
-
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
-    case 'ar': return AppLocalizationsAr();
-    case 'en': return AppLocalizationsEn();
+    case 'ar':
+      return AppLocalizationsAr();
+    case 'en':
+      return AppLocalizationsEn();
   }
 
   throw FlutterError(
     'AppLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
     'an issue with the localizations generation tool. Please file an issue '
     'on GitHub with a reproducible sample app and the gen-l10n configuration '
-    'that was used.'
+    'that was used.',
   );
 }

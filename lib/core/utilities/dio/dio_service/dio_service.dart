@@ -14,8 +14,10 @@ abstract class DioService {
       BaseOptions(
         connectTimeout: const Duration(seconds: 30),
         baseUrl: ApisEndpoints.baseUrl,
+        headers: {'Accept': 'application/json'},
       ),
     );
+
     dio.interceptors.add(
       TalkerDioLogger(
         settings: TalkerDioLoggerSettings(
