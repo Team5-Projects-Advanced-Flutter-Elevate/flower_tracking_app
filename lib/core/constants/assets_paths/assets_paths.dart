@@ -4,5 +4,6 @@ abstract class AssetsPaths {
   static const String countyJsonFile = "assets/files/country.json";
   static const String splashScreenIcon = "assets/icons/splash_screen_icon.png";
   static const String applicationApprovedBackground = "assets/icons/bg.png";
-  static const String applicationApprovedCheckCircle = "assets/icons/check-circle.png";
+  static const String applicationApprovedCheckCircle =
+      "assets/icons/check-circle.png";
 }

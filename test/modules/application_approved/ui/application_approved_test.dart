@@ -54,12 +54,16 @@ void main() {
       // Act
       final checkIcon = find.byType(Image);
       final titleText = find.text(appLocalizations.applicationSubmitted);
-      final descriptionText =
-          find.text(appLocalizations.thanksForProvidingApplication);
+      final descriptionText = find.text(
+        appLocalizations.thanksForProvidingApplication,
+      );
       final loginButton = find.text(appLocalizations.login);
 
       // Assert
-      expect(checkIcon, findsWidgets); // Image used for both background and icon
+      expect(
+        checkIcon,
+        findsWidgets,
+      ); // Image used for both background and icon
       expect(titleText, findsOneWidget);
       expect(descriptionText, findsOneWidget);
       expect(loginButton, findsOneWidget);
