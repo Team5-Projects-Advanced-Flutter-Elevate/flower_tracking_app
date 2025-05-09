@@ -262,4 +262,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get removedImage => 'Removed image';
+  String get applicationSubmitted => 'Your application has been submitted!';
+
+  @override
+  String get thanksForProvidingApplication =>
+      'Thank you for providing your application, we will review your application and will get back to you soon.';
 }

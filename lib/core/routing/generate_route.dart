@@ -3,6 +3,7 @@ import 'package:flower_tracking_app/core/routing/defined_routes.dart';
 import 'package:flower_tracking_app/modules/authentication/domain/entities/logged_driver_data/logged_driver_data_response_entity.dart';
 import 'package:flower_tracking_app/modules/apply/ui/apply_view.dart';
 import 'package:flower_tracking_app/modules/apply/ui/view_model/apply_cubit.dart';
+import 'package:flower_tracking_app/modules/application_approved/ui/application_approved.dart';
 import 'package:flower_tracking_app/modules/onboarding/ui/onboarding_screen.dart';
 import 'package:flutter/material.dart';
 import '../../modules/authentication/ui/login/login_screen.dart';
@@ -24,6 +25,8 @@ abstract class GenerateRoute {
           return MaterialPageRoute(builder: (context) => const LoginScreen());
         case DefinedRoutes.homeScreenRoute:
           return MaterialPageRoute(builder: (context) => const HomeScreen());
+        case DefinedRoutes.applicationApproved:
+          return MaterialPageRoute(builder: (context) => const ApplicationApproved());
         case DefinedRoutes.apply:
           ApplyCubit cubit =
               getIt<ApplyCubit>()..doIntent(LoadApplyDataIntent());
@@ -37,7 +40,7 @@ abstract class GenerateRoute {
       }
     } catch (e) {
       return _errorRoute();
-    }
+  }
   }
 
   static List<Route<dynamic>> onGenerateInitialRoutes({

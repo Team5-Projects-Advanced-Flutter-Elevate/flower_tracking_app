@@ -262,4 +262,9 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get removedImage => 'تمت إزالة الصورة';
+  String get applicationSubmitted => 'لقد تم تقديم طلبك!';
+
+  @override
+  String get thanksForProvidingApplication =>
+      'نشكرك على تقديم طلبك، وسوف نقوم بمراجعة طلبك وسنرد عليك قريبًا.';
 }
