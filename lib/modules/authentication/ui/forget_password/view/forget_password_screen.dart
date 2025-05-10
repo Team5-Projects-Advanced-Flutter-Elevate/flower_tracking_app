@@ -10,7 +10,6 @@ import '../../../../../core/widgets/loading_state_widget.dart';
 import '../view_model/forget_password_screen_view_model.dart';
 import '../view_model/forget_password_state.dart';
 
-
 class ForgetPasswordScreen extends StatefulWidget {
   const ForgetPasswordScreen({super.key});
   @override
@@ -53,7 +52,7 @@ class _ForgetPasswordScreenState
             titleSpacing: 0.0,
             leading: IconButton(
               onPressed: () {
-                     Navigator.pop(context);
+                Navigator.pop(context);
               },
               icon: Icon(Icons.arrow_back_ios, size: screenWidth * 0.06),
             ),
@@ -73,22 +72,24 @@ class _ForgetPasswordScreenState
                   Text(
                     'Forget Password',
                     style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                          fontSize: screenWidth *
-                              0.045, // roughly equivalent to 18.sp
-                        ),
+                      fontSize:
+                          screenWidth * 0.045, // roughly equivalent to 18.sp
+                    ),
                     textAlign: TextAlign.center,
                   ),
                   SizedBox(height: screenHeight * 0.02),
                   Text(
-                   'Please enter your email associated to your account',
-                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          color: Colors.grey,
-                        ),
+                    'Please enter your email associated to your account',
+                    style: Theme.of(
+                      context,
+                    ).textTheme.bodyMedium?.copyWith(color: Colors.grey),
                     textAlign: TextAlign.center,
                   ),
                   SizedBox(height: screenHeight * 0.04),
                   TextFormField(
-                    validator: (value) => getIt<ValidateFunctions>().validationOfEmail(value),
+                    validator:
+                        (value) =>
+                            getIt<ValidateFunctions>().validationOfEmail(value),
 
                     controller: emailController,
                     decoration: const InputDecoration(
@@ -116,16 +117,18 @@ class _ForgetPasswordScreenState
                     },
                     listener: (context, state) {
                       if (state is PasswordSuccessState) {
-
-
                         displaySnackBar(
-                          contentType:ContentType.success ,
+                          contentType: ContentType.success,
                           title: 'Success',
-                        message: 'Code Send to Email',
+                          message: 'Code Send to Email',
                         );
 
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => const ResetCodeScreen(),));
-
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const ResetCodeScreen(),
+                          ),
+                        );
                       } else if (state is PasswordErrorState) {
                         ErrorStateWidget(error: state.error);
                       } else if (state is PasswordLoadingState) {

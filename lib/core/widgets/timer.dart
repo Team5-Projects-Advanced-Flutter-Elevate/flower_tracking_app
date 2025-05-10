@@ -16,7 +16,10 @@ class Timer extends StatelessWidget {
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     return Padding(
-      padding: EdgeInsets.only( right: screenWidth * 0.03, left: screenWidth * 0.02,),
+      padding: EdgeInsets.only(
+        right: screenWidth * 0.03,
+        left: screenWidth * 0.02,
+      ),
       child: ValueListenableBuilder<bool>(
         valueListenable: _isLessThan5Minutes,
         builder: (context, isLessThan5Minutes, child) {
@@ -24,13 +27,10 @@ class Timer extends StatelessWidget {
             enableDescriptions: false,
             format: CountDownTimerFormat.minutesSeconds,
             timeTextStyle: Theme.of(context).textTheme.headlineMedium!.copyWith(
-                  color: isLessThan5Minutes ? Colors.red : Colors.green,
-                ),
+              color: isLessThan5Minutes ? Colors.red : Colors.green,
+            ),
             endTime: DateTime.now().add(
-              Duration(
-                minutes: 0,
-                seconds: examDuration,
-              ),
+              Duration(minutes: 0, seconds: examDuration),
             ),
             onEnd: () {
               onTimeEnd();

@@ -1,8 +1,6 @@
-
 import 'package:flower_tracking_app/modules/authentication/data/data_sources_contracts/forget_password/reset_code_remote_data_source.dart';
 
 import 'package:mockito/annotations.dart';
-
 
 @GenerateMocks([ResetCodeRemoteDataSource])
 void main() {
@@ -26,5 +24,4 @@ void main() {
   //     expect(actual, equals(result));
   //   });
   // },);
-
 }

@@ -1,4 +1,3 @@
-
 sealed class PasswordState {}
 
 class PasswordInitialState extends PasswordState {}

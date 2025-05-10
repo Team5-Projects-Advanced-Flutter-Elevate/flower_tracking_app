@@ -10,28 +10,32 @@ import 'reset_code_use_case_test.mocks.dart';
 
 @GenerateMocks([ResetCodeRepo])
 void main() {
-  group("useCase Test",() {
+  group("useCase Test", () {
     late ResetCodeUseCase useCase;
     late ResetCodeRepo repo;
     setUp(() {
       repo = MockResetCodeRepo();
       useCase = ResetCodeUseCase(repo);
-    },);
+    });
     test('when call method call it should '
         'call resetCode from repo', () async {
-      var result = Success<ForgetPasswordResponse?>(data: ForgetPasswordResponse());
+      var result = Success<ForgetPasswordResponse?>(
+        data: ForgetPasswordResponse(),
+      );
 
       provideDummy<ApiResult<ForgetPasswordResponse?>>(result);
 
-      when(repo.resetCode(result.data?.info??"")).thenAnswer((realInvocation) async{
+      when(repo.resetCode(result.data?.info ?? "")).thenAnswer((
+        realInvocation,
+      ) async {
         return result;
-      },);
+      });
 
-      var actual = await useCase.call(result.data?.info??"");
+      var actual = await useCase.call(result.data?.info ?? "");
 
-      verify(repo.resetCode(result.data?.info??"")).called(1);
+      verify(repo.resetCode(result.data?.info ?? "")).called(1);
 
       expect(actual, equals(result));
     });
-  },);
+  });
 }

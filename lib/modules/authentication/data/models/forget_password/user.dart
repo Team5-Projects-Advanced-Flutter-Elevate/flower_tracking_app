@@ -1,8 +1,8 @@
-class User{
+class User {
   String? email;
   String? newPassword;
   String? resetCode;
-  User({this.email,this.newPassword,this.resetCode});
+  User({this.email, this.newPassword, this.resetCode});
 
   User.fromJson(dynamic json) {
     email = json['email'];

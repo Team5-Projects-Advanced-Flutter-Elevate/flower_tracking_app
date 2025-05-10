@@ -9,22 +9,26 @@ import 'forget_password_use_case_test.mocks.dart';
 
 @GenerateMocks([ForgetPasswordRepo])
 void main() {
-  group("useCase Test",() {
+  group("useCase Test", () {
     late ForgetPasswordUseCase useCase;
     late ForgetPasswordRepo repo;
     setUp(() {
       repo = MockForgetPasswordRepo();
       useCase = ForgetPasswordUseCase(repo);
-    },);
+    });
     test('when call method call it should '
         'call forgetPassword from repo', () async {
-      var result = Success<ForgetPasswordResponse?>(data: ForgetPasswordResponse());
+      var result = Success<ForgetPasswordResponse?>(
+        data: ForgetPasswordResponse(),
+      );
 
       provideDummy<ApiResult<ForgetPasswordResponse?>>(result);
 
-      when(repo.forgetPassword("muhamadbishta@gmail.com")).thenAnswer((realInvocation) async{
+      when(repo.forgetPassword("muhamadbishta@gmail.com")).thenAnswer((
+        realInvocation,
+      ) async {
         return result;
-      },);
+      });
 
       var actual = await useCase.call("muhamadbishta@gmail.com");
 
@@ -32,5 +36,5 @@ void main() {
 
       expect(actual, equals(result));
     });
-  },);
+  });
 }
