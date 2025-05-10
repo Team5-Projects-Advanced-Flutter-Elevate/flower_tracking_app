@@ -87,5 +87,24 @@
   "gender": "الجنس",
   "male": "ذكر",
   "female": "أنثى",
-  "removedImage": "تمت إزالة الصورة"
+  "removedImage": "تمت إزالة الصورة",
+  "forgetPasswordDescription": "الرجاء إدخال البريد الإلكتروني المرتبط بحسابك",
+  "confirm": "تاكيد",
+  "success": "تمت بنجاح",
+  "codeSendTitle": "تم ارسال الكود الي الحسابٍ",
+  "otpScreenTitle": "تفعيل البريد الالكتروني",
+  "otpScreenDescription": "الرجاء إدخال الرمز الذي سيتم إرساله إلى عنوان بريدك الإلكتروني",
+  "didnotReciveOtp": "لم تستلم الرمز؟",
+  "resend": "اعاده ارسال",
+  "codeValid": "الكود صحيح",
+  "codeNotvalid": "الكود ليس صحيح",
+  "resetPasswordScreenDescription": "يجب ألا تكون كلمة المرور فارغة ويجب أن تحتوي على 6 أحرف بحرف كبير ورقم واحد على الأقل",
+  "resetPasswordScreenTitle": "اعاده تعيين الرقم السري",
+  "newPassword": "رقم سري جديد",
+  "confirmNewPassword": "تاكيد الرقم السري",
+  "yourPasswordChanged": "تم تغير الرقم السري بنجاح"
+
+
+
+
 }

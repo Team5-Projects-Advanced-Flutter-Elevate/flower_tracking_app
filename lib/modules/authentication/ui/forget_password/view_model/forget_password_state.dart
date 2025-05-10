@@ -1,4 +1,3 @@
-
 sealed class PasswordState {}
 
 class PasswordInitialState extends PasswordState {}
@@ -10,7 +9,22 @@ class PasswordErrorState extends PasswordState {
   PasswordErrorState(this.error);
 }
 
-class PasswordSuccessState extends PasswordState {
-  //final String message;
-  PasswordSuccessState();
+class PasswordSuccessState extends PasswordState {}
+
+class EmailLoadingState extends PasswordState {}
+
+class EmailErrorState extends PasswordState {
+  final Object error;
+  EmailErrorState(this.error);
 }
+
+class EmailSuccessState extends PasswordState {}
+
+class OtpLoadingState extends PasswordState {}
+
+class OtpErrorState extends PasswordState {
+  final Object error;
+  OtpErrorState(this.error);
+}
+
+class OtpSuccessState extends PasswordState {}

@@ -87,5 +87,21 @@
   "gender": "Gender",
   "male": "Male",
   "female": "Female",
-  "removedImage": "Removed image"
+  "removedImage": "Removed image",
+  "forgetPasswordDescription": "Please enter your email associated to your account",
+  "confirm": "Confirm",
+  "success": "Successfully",
+  "codeSendTitle": "Code send To Email",
+  "otpScreenTitle": "Email verification",
+  "otpScreenDescription": "Please enter your code that send to your email address",
+  "didnotReciveOtp": "Did not receive code?",
+  "resend": "Resend",
+  "codeValid": "Code is valid",
+  "codeNotvalid": "Code not valid",
+  "resetPasswordScreenDescription": "Password must not be empty and must contain 6 characters with upper case letter and one number at least",
+  "resetPasswordScreenTitle": "Reset password",
+  "newPassword":"New Password",
+  "confirmNewPassword": "Confirm New Password",
+  "yourPasswordChanged": "Password Changed Successfully"
+
 }

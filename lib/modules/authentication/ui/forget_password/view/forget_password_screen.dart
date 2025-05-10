@@ -3,13 +3,12 @@ import 'package:flower_tracking_app/modules/authentication/ui/forget_password/vi
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/bases/base_stateful_widget_state.dart';
+import '../../../../../core/colors/app_colors.dart';
 import '../../../../../core/di/injectable_initializer.dart';
 import '../../../../../core/validation/validation_functions.dart';
-import '../../../../../core/widgets/error_state_widget.dart';
 import '../../../../../core/widgets/loading_state_widget.dart';
 import '../view_model/forget_password_screen_view_model.dart';
 import '../view_model/forget_password_state.dart';
-
 
 class ForgetPasswordScreen extends StatefulWidget {
   const ForgetPasswordScreen({super.key});
@@ -53,13 +52,13 @@ class _ForgetPasswordScreenState
             titleSpacing: 0.0,
             leading: IconButton(
               onPressed: () {
-                     Navigator.pop(context);
+                Navigator.pop(context);
               },
               icon: Icon(Icons.arrow_back_ios, size: screenWidth * 0.06),
             ),
             title: Text(
-              'Password',
-              style: Theme.of(context).textTheme.labelMedium,
+              appLocalizations.password,
+              style: Theme.of(context).textTheme.headlineMedium,
             ),
           ),
           body: Form(
@@ -71,30 +70,29 @@ class _ForgetPasswordScreenState
                 children: [
                   SizedBox(height: screenHeight * 0.05),
                   Text(
-                    'Forget Password',
-                    style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                          fontSize: screenWidth *
-                              0.045, // roughly equivalent to 18.sp
-                        ),
+                    appLocalizations.forgetPassword,
+                    style: Theme.of(context).textTheme.titleLarge,
                     textAlign: TextAlign.center,
                   ),
                   SizedBox(height: screenHeight * 0.02),
                   Text(
-                   'Please enter your email associated to your account',
-                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          color: Colors.grey,
-                        ),
+                    appLocalizations.forgetPasswordDescription,
+                    style: Theme.of(
+                      context,
+                    ).textTheme.titleMedium?.copyWith(color: Colors.grey),
                     textAlign: TextAlign.center,
                   ),
                   SizedBox(height: screenHeight * 0.04),
                   TextFormField(
-                    validator: (value) => getIt<ValidateFunctions>().validationOfEmail(value),
+                    validator:
+                        (value) =>
+                            getIt<ValidateFunctions>().validationOfEmail(value),
 
                     controller: emailController,
-                    decoration: const InputDecoration(
+                    decoration: InputDecoration(
                       enabled: true,
-                      hintText: 'Enter Your Email',
-                      labelText: 'Email',
+                      hintText: appLocalizations.enterEmail,
+                      labelText: appLocalizations.email,
                     ),
                   ),
                   SizedBox(height: screenHeight * 0.06),
@@ -111,25 +109,36 @@ class _ForgetPasswordScreenState
                             );
                           }
                         },
-                        child: const Text('Confirm'),
+                        child: Text(appLocalizations.confirm),
                       );
                     },
                     listener: (context, state) {
-                      if (state is PasswordSuccessState) {
-
-
+                      if (state is EmailSuccessState) {
                         displaySnackBar(
-                          contentType:ContentType.success ,
-                          title: 'Success',
-                        message: 'Code Send to Email',
+                          contentType: ContentType.success,
+                          title: appLocalizations.success,
+                          message: appLocalizations.codeSendTitle,
                         );
 
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => ResetCodeScreen(),));
-
-                      } else if (state is PasswordErrorState) {
-                        ErrorStateWidget(error: state.error);
-                      } else if (state is PasswordLoadingState) {
-                        const LoadingStateWidget();
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder:
+                                (context) => ResetCodeScreen(
+                                  email: emailController.text.trim(),
+                                ),
+                          ),
+                        );
+                      } else if (state is EmailErrorState) {
+                        displaySnackBar(
+                          contentType: ContentType.failure,
+                          title: appLocalizations.error,
+                          message: '${state.error}',
+                        );
+                      } else if (state is EmailLoadingState) {
+                        LoadingStateWidget(
+                          progressIndicatorColor: AppColors.mainColor,
+                        );
                       }
                     },
                   ),
