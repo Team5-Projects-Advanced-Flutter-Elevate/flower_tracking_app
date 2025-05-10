@@ -89,6 +89,7 @@ dependencies:
   dropdown_button2: ^2.3.9
   country_flags: ^3.2.0
   mime_type: ^1.0.1
+  firebase_core: ^3.13.0
 
 
 

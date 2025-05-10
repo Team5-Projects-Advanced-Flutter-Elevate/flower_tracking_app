@@ -1,8 +1,10 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flower_tracking_app/core/bases/base_inherited_widget.dart';
 import 'package:flower_tracking_app/core/di/injectable_initializer.dart';
 import 'package:flower_tracking_app/core/routing/generate_route.dart';
 import 'package:flower_tracking_app/core/themes/app_themes.dart';
 import 'package:flower_tracking_app/core/validation/validation_functions.dart';
+import 'package:flower_tracking_app/firebase_options.dart';
 import 'package:flower_tracking_app/modules/authentication/data/data_sources_contracts/login/local/login_local_data_source.dart';
 import 'package:flower_tracking_app/modules/authentication/domain/entities/logged_driver_data/logged_driver_data_response_entity.dart';
 import 'package:flower_tracking_app/shared_layers/localization/generated/app_localizations.dart';
@@ -18,8 +20,8 @@ void main() async {
   FlutterNativeSplash.preserve(
     widgetsBinding: WidgetsFlutterBinding.ensureInitialized(),
   );
+  Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await configureDependencies();
-
   final loginLocaleDataSource = getIt.get<LoginLocalDataSource>();
   final rememberValue = await loginLocaleDataSource.getRememberMeValue();
   if (!rememberValue) {
