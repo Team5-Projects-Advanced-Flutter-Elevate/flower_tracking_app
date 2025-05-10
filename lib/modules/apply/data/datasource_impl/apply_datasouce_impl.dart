@@ -7,7 +7,6 @@ import 'package:flower_tracking_app/modules/apply/data/models/apply_response.dar
 import 'package:flower_tracking_app/modules/apply/data/models/vehicle_response.dart';
 import 'package:flower_tracking_app/modules/apply/domain/entities/apply_response_entity.dart';
 import 'package:flower_tracking_app/modules/apply/domain/entities/vehicle_response_entity.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_image_compress/flutter_image_compress.dart';

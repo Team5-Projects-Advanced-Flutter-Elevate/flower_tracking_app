@@ -142,7 +142,6 @@ class MockImagePickerService extends _i1.Mock
     _i1.throwOnMissingStub(this);
   }
 
-  @override
   _i4.Future<_i12.File?> pickImageFromGallery() =>
       (super.noSuchMethod(
             Invocation.method(#pickImageFromGallery, []),

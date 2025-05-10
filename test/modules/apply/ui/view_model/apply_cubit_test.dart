@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flower_tracking_app/core/apis/api_result/api_result.dart';
 import 'package:flower_tracking_app/modules/apply/data/datasource_contract/apply_datasource.dart';
@@ -10,7 +9,6 @@ import 'package:flower_tracking_app/modules/apply/domain/usecases/apply_use_case
 import 'package:flower_tracking_app/modules/apply/domain/usecases/get_vehicles_use_case.dart';
 import 'package:flower_tracking_app/modules/apply/ui/view_model/apply_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'apply_cubit_test.mocks.dart';

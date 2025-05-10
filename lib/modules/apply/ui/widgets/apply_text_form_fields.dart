@@ -500,14 +500,12 @@ class _ApplyTextFormFieldsState
                 title: const Text('Take Photo'),
                 onTap: () async {
                   Navigator.pop(context);
-                  final image =
-                      isLicense
-                          ? cubit.doIntent(
-                            PickLicenseImageIntent(ImageSource.camera),
-                          )
-                          : cubit.doIntent(
-                            PickIdImageIntent(ImageSource.camera),
-                          );
+
+                  isLicense
+                      ? cubit.doIntent(
+                        PickLicenseImageIntent(ImageSource.camera),
+                      )
+                      : cubit.doIntent(PickIdImageIntent(ImageSource.camera));
                 },
               ),
               ListTile(
@@ -515,14 +513,12 @@ class _ApplyTextFormFieldsState
                 title: const Text('Choose from Gallery'),
                 onTap: () async {
                   Navigator.pop(context);
-                  final image =
-                      isLicense
-                          ? cubit.doIntent(
-                            PickLicenseImageIntent(ImageSource.gallery),
-                          )
-                          : cubit.doIntent(
-                            PickIdImageIntent(ImageSource.gallery),
-                          );
+
+                  isLicense
+                      ? cubit.doIntent(
+                        PickLicenseImageIntent(ImageSource.gallery),
+                      )
+                      : cubit.doIntent(PickIdImageIntent(ImageSource.gallery));
                 },
               ),
             ],
