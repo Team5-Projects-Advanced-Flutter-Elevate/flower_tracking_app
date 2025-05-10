@@ -6,7 +6,7 @@ on:
       - '**'
 jobs:
   build:
-    name: Flutter Running PR Tests
+    name: PR Tests Build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
