@@ -124,7 +124,7 @@ class _ForgetPasswordScreenState
                         message: 'Code Send to Email',
                         );
 
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => ResetCodeScreen(),));
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => const ResetCodeScreen(),));
 
                       } else if (state is PasswordErrorState) {
                         ErrorStateWidget(error: state.error);
