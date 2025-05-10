@@ -3,6 +3,7 @@ import 'package:flower_tracking_app/core/apis/api_error/api_error_handler.dart';
 import 'package:flower_tracking_app/core/bases/base_stateful_widget_state.dart';
 import 'package:flower_tracking_app/core/colors/app_colors.dart';
 import 'package:flower_tracking_app/core/di/injectable_initializer.dart';
+import 'package:flower_tracking_app/core/routing/defined_routes.dart';
 import 'package:flower_tracking_app/modules/apply/ui/view_model/apply_cubit.dart';
 import 'package:flower_tracking_app/modules/apply/ui/widgets/apply_text_form_fields.dart';
 import 'package:flower_tracking_app/shared_layers/localization/generated/app_localizations.dart';
@@ -42,10 +43,7 @@ class _ApplyViewState extends BaseStatefulWidgetState<ApplyView> {
         body: BlocListener<ApplyCubit, ApplyState>(
           listener: (context, state) {
             if (state.applyDriverStatus == ApplyDriverStatus.success) {
-              displaySnackBar(
-                contentType: ContentType.success,
-                title: 'success',
-              );
+              Navigator.pushNamed(context, DefinedRoutes.loginScreenRoute);
             }
             if (state.applyDriverStatus == ApplyDriverStatus.error) {
               displaySnackBar(
