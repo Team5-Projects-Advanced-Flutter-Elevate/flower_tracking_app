@@ -5,9 +5,5 @@ class AuthenticationResponseEntity {
   UserEntity? user;
   String? token;
 
-  AuthenticationResponseEntity({
-    this.message,
-    this.user,
-    this.token,
-  });
+  AuthenticationResponseEntity({this.message, this.user, this.token});
 }

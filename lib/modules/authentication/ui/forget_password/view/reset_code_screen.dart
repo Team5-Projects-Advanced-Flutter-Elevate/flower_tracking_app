@@ -160,9 +160,12 @@ class _ResetCodeScreenState extends BaseStatefulWidgetState<ResetCodeScreen> {
               title: 'Success',
               message: 'Code is valid',
             );
-            Navigator.push(context, MaterialPageRoute(builder: (context) => ResetPasswordScreen(),));
-
-
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const ResetPasswordScreen(),
+              ),
+            );
           } else if (state is PasswordErrorState) {
             setState(() {
               _hasError = true;

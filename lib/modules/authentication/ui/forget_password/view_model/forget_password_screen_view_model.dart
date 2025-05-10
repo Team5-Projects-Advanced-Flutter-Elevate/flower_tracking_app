@@ -16,9 +16,11 @@ class ForgetPasswordViewModel extends Cubit<PasswordState> {
   ResetCodeUseCase resetCodeUseCase;
 
   @factoryMethod
-  ForgetPasswordViewModel(this.forgetPasswordUseCase, this.resetPasswordUseCase,
-      this.resetCodeUseCase)
-      : super(PasswordInitialState());
+  ForgetPasswordViewModel(
+    this.forgetPasswordUseCase,
+    this.resetPasswordUseCase,
+    this.resetCodeUseCase,
+  ) : super(PasswordInitialState());
 
   void onIntent(ForgetIntent intent) {
     switch (intent) {

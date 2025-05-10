@@ -5,14 +5,17 @@ import '../../data_sources_contracts/forget_password/reset_password_remote_data_
 import '../../models/forget_password/forget_password_response.dart';
 
 @Injectable(as: ResetPasswordRepo)
-class ResetPasswordRepoImpl extends ResetPasswordRepo{
+class ResetPasswordRepoImpl extends ResetPasswordRepo {
   ResetPasswordRemoteDataSource apiDataSource;
   @factoryMethod
   ResetPasswordRepoImpl(this.apiDataSource);
   @override
-  Future<ApiResult<ForgetPasswordResponse?>> resetPassword(String email, String newPassword) async {
+  Future<ApiResult<ForgetPasswordResponse?>> resetPassword(
+    String email,
+    String newPassword,
+  ) async {
     var result = await apiDataSource.resetPassword(email, newPassword);
-    switch(result){
+    switch (result) {
       case Success<ForgetPasswordResponse?>():
         return Success(data: result.data);
       case Error<ForgetPasswordResponse?>():
