@@ -9,6 +9,7 @@ on:
       - '**'
 jobs:
   analyze:
+    name: Code Check By Dart Linter (on Push or PR)
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
