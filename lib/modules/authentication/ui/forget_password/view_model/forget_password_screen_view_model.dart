@@ -16,9 +16,11 @@ class ForgetPasswordViewModel extends Cubit<PasswordState> {
   ResetCodeUseCase resetCodeUseCase;
 
   @factoryMethod
-  ForgetPasswordViewModel(this.forgetPasswordUseCase, this.resetPasswordUseCase,
-      this.resetCodeUseCase)
-      : super(PasswordInitialState());
+  ForgetPasswordViewModel(
+    this.forgetPasswordUseCase,
+    this.resetPasswordUseCase,
+    this.resetCodeUseCase,
+  ) : super(PasswordInitialState());
 
   void onIntent(ForgetIntent intent) {
     switch (intent) {
@@ -36,14 +38,14 @@ class ForgetPasswordViewModel extends Cubit<PasswordState> {
 
   _forgetPasswordHandling(String email) async {
     FocusManager.instance.primaryFocus?.unfocus();
-    emit(PasswordLoadingState());
+    emit(EmailLoadingState());
     var result = await forgetPasswordUseCase.call(email);
     switch (result) {
       case Success<ForgetPasswordResponse?>():
-        emit(PasswordSuccessState());
+        emit(EmailSuccessState());
 
       case Error<ForgetPasswordResponse?>():
-        emit(PasswordErrorState(result.error));
+        emit(EmailErrorState(result.error));
     }
   }
 
@@ -60,13 +62,13 @@ class ForgetPasswordViewModel extends Cubit<PasswordState> {
   }
 
   _resetCodeHandling(String code) async {
-    emit(PasswordLoadingState());
+    emit(OtpLoadingState());
     var result = await resetCodeUseCase.call(code);
     switch (result) {
       case Success<ForgetPasswordResponse?>():
-        emit(PasswordSuccessState());
+        emit(OtpSuccessState());
       case Error<ForgetPasswordResponse?>():
-        emit(PasswordErrorState(result.error));
+        emit(OtpErrorState(result.error));
     }
   }
 }

@@ -1,9 +1,10 @@
+import 'package:flower_tracking_app/modules/authentication/ui/login/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/bases/base_stateful_widget_state.dart';
+import '../../../../../core/colors/app_colors.dart';
 import '../../../../../core/di/injectable_initializer.dart';
 import '../../../../../core/validation/validation_functions.dart';
-import '../../../../../core/widgets/error_state_widget.dart';
 import '../../../../../core/widgets/loading_state_widget.dart';
 import '../view_model/forget_password_screen_view_model.dart';
 import '../view_model/forget_password_state.dart';
@@ -51,24 +52,21 @@ class _ResetPasswordScreenState
         create: (context) => forgetPasswordViewModel,
         child: BlocConsumer<ForgetPasswordViewModel, PasswordState>(
           builder: (context, state) => Scaffold(
-            appBar: AppBar(
-              forceMaterialTransparency: true,
-              automaticallyImplyLeading: false,
-              title: Row(
-                children: [
-                  InkWell(
-                    onTap: (){
-                      Navigator.pop(context);
-                    },
-                    child: Icon(Icons.arrow_back_ios, size: screenWidth * 0.05),
-                  ),
-                  Text(
-                    'Password',
-                    style: Theme.of(context).textTheme.labelMedium,
-                  ),
-                ],
-              ),
+            appBar:  AppBar(
+            forceMaterialTransparency: true,
+            automaticallyImplyLeading: false,
+            titleSpacing: 0.0,
+            leading: IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              icon: Icon(Icons.arrow_back_ios, size: screenWidth * 0.06),
             ),
+            title: Text(
+              appLocalizations.password,
+              style: Theme.of(context).textTheme.headlineMedium,
+            ),
+          ),
             body: SingleChildScrollView(
               child: Form(
                 key: formKey,
@@ -79,25 +77,23 @@ class _ResetPasswordScreenState
                     children: [
                       SizedBox(height: screenHeight * 0.05),
                       Text(
-                        'Reset password',
+                        appLocalizations.resetPasswordScreenTitle,
                         style:
-                            Theme.of(context).textTheme.labelMedium?.copyWith(
-                                  fontSize: screenWidth * 0.045,
-                                ),
+                            Theme.of(context).textTheme.titleLarge,
                         textAlign: TextAlign.center,
                       ),
                       SizedBox(height: screenHeight * 0.02),
                       Text(
-                        'Password must not be empty and must contain 6 characters with upper case letter and one number at least ',
+                        appLocalizations.resetPasswordScreenDescription,
                         style: Theme.of(context)
                             .textTheme
-                            .bodyMedium
+                            .titleMedium
                             ?.copyWith(color: Colors.grey),
                         textAlign: TextAlign.center,
                       ),
                       SizedBox(height: screenHeight * 0.04),
                       TextFormField(
-                        validator: (value) => getIt<ValidateFunctions>().validationOfEmail(value),
+                        validator: (value) => getIt<ValidateFunctions>().validationOfPassword(value),
 
                         controller: newPasswordController,
                         autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -105,8 +101,8 @@ class _ResetPasswordScreenState
                         obscuringCharacter: "*",
                         decoration: InputDecoration(
                           enabled: true,
-                          hintText: 'Enter Your Password',
-                          labelText: 'New Password',
+                          hintText: appLocalizations.enterPassword,
+                          labelText: appLocalizations.newPassword,
                           suffixIcon: IconButton(
                             onPressed: () {
                               setState(() {
@@ -121,15 +117,15 @@ class _ResetPasswordScreenState
                       ),
                       SizedBox(height: screenHeight * 0.03),
                       TextFormField(
-                         // validator: (value) => getIt<ValidateFunctions>().validationOfConfirmPassword(newPasswordController.text),
+                          validator: (value) => getIt<ValidateFunctions>().validationOfConfirmPassword(value,newPasswordController.text),
                         controller: confirmPasswordController,
                         autovalidateMode: AutovalidateMode.onUserInteraction,
                         obscureText: isConfirmPasswordObscure,
                         obscuringCharacter: "*",
                         decoration: InputDecoration(
                           enabled: true,
-                          hintText: 'Confirm Password',
-                          labelText: 'Confirm new password',
+                          hintText: appLocalizations.confirmNewPassword,
+                          labelText: appLocalizations.confirmNewPassword,
                           suffixIcon: IconButton(
                             onPressed: () {
                               setState(() {
@@ -156,7 +152,7 @@ class _ResetPasswordScreenState
                             padding: WidgetStatePropertyAll(
                                 EdgeInsets.symmetric(
                                     vertical: screenHeight * 0.018))),
-                        child: const Text('Confirm'),
+                        child:  Text(appLocalizations.confirm),
                       ),
                     ],
                   ),
@@ -168,13 +164,20 @@ class _ResetPasswordScreenState
             if (state is PasswordSuccessState) {
               displaySnackBar(
                 contentType: ContentType.success,
-                title: 'Success',
-                message: 'Code is valid',
+                title: appLocalizations.success,
+                message: appLocalizations.yourPasswordChanged,
               );
+              Navigator.pushReplacement(context,MaterialPageRoute(builder: (context) => const LoginScreen(),));
             } else if (state is PasswordErrorState) {
-              ErrorStateWidget(error: state.error);
+              displaySnackBar(
+                contentType: ContentType.failure,
+                title: appLocalizations.error,
+                message: '${state.error}',
+              );
             } else if (state is PasswordLoadingState) {
-              const LoadingStateWidget();
+               LoadingStateWidget(
+                progressIndicatorColor: AppColors.white,
+              );
             }
           },
         ),

@@ -15,8 +15,8 @@ import 'forget_password_screen.dart';
 import 'package:flower_tracking_app/core/widgets/timer.dart';
 
 class ResetCodeScreen extends StatefulWidget {
-  const ResetCodeScreen({super.key});
-
+  const ResetCodeScreen({super.key, required this.email});
+  final String email;
   @override
   State<ResetCodeScreen> createState() => _ResetCodeScreenState();
 }
@@ -39,22 +39,16 @@ class _ResetCodeScreenState extends BaseStatefulWidgetState<ResetCodeScreen> {
               appBar: AppBar(
                 forceMaterialTransparency: true,
                 automaticallyImplyLeading: false,
-                title: Row(
-                  children: [
-                    InkWell(
-                      onTap: () {
-                        Navigator.pop(context);
-                      },
-                      child: Icon(
-                        Icons.arrow_back_ios,
-                        size: screenWidth * 0.05,
-                      ),
-                    ),
-                    Text(
-                      'Password',
-                      style: Theme.of(context).textTheme.labelMedium,
-                    ),
-                  ],
+                titleSpacing: 0.0,
+                leading: IconButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  icon: Icon(Icons.arrow_back_ios, size: screenWidth * 0.06),
+                ),
+                title: Text(
+                  appLocalizations.password,
+                  style: Theme.of(context).textTheme.headlineMedium,
                 ),
               ),
               body: Padding(
@@ -66,18 +60,17 @@ class _ResetCodeScreenState extends BaseStatefulWidgetState<ResetCodeScreen> {
                     children: [
                       SizedBox(height: screenHeight * 0.05),
                       Text(
-                        'Email verification',
+                        appLocalizations.otpScreenTitle,
                         textAlign: TextAlign.center,
-                        style: Theme.of(context).textTheme.labelMedium
-                            ?.copyWith(fontSize: screenWidth * 0.045),
+                        style: Theme.of(context).textTheme.titleLarge,
                       ),
                       SizedBox(height: screenHeight * 0.02),
                       Text(
-                        'Please enter your code that send to your email address ',
+                        appLocalizations.otpScreenDescription,
                         textAlign: TextAlign.center,
                         style: Theme.of(
                           context,
-                        ).textTheme.bodyMedium?.copyWith(color: Colors.grey),
+                        ).textTheme.titleMedium?.copyWith(color: Colors.grey),
                       ),
                       SizedBox(height: screenHeight * 0.04),
                       Center(
@@ -111,7 +104,7 @@ class _ResetCodeScreenState extends BaseStatefulWidgetState<ResetCodeScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            'Did not receive code?',
+                            appLocalizations.didnotReciveOtp,
                             style: Theme.of(context).textTheme.bodyLarge,
                           ),
                           resend == false
@@ -132,11 +125,11 @@ class _ResetCodeScreenState extends BaseStatefulWidgetState<ResetCodeScreen> {
                               : InkWell(
                                 onTap: () {
                                   forgetPasswordViewModel.onIntent(
-                                    ForgotPasswordIntent(emailController.text),
+                                    ForgotPasswordIntent(widget.email),
                                   );
                                 },
                                 child: Text(
-                                  'Resend',
+                                  appLocalizations.resend,
                                   style: Theme.of(
                                     context,
                                   ).textTheme.bodyLarge?.copyWith(
@@ -154,26 +147,46 @@ class _ResetCodeScreenState extends BaseStatefulWidgetState<ResetCodeScreen> {
               ),
             ),
         listener: (context, state) {
-          if (state is PasswordSuccessState) {
+          if (state is OtpSuccessState) {
             displaySnackBar(
               contentType: ContentType.success,
-              title: 'Success',
-              message: 'Code is valid',
+              title: appLocalizations.success,
+              message: appLocalizations.codeValid,
             );
-            Navigator.push(context, MaterialPageRoute(builder: (context) => ResetPasswordScreen(),));
-
-
-          } else if (state is PasswordErrorState) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const ResetPasswordScreen(),
+              ),
+            );
+          } else if (state is OtpErrorState) {
             setState(() {
               _hasError = true;
             });
             displaySnackBar(
               contentType: ContentType.failure,
-              title: 'fail',
-              message: 'Code not valid',
+              title: appLocalizations.error,
+              message: appLocalizations.codeNotvalid,
             );
-          } else if (state is PasswordLoadingState) {
-            const LoadingStateWidget();
+          } else if (state is OtpLoadingState) {
+            LoadingStateWidget(
+              progressIndicatorColor: AppColors.white,
+            );
+          } else if (state is EmailSuccessState) {
+            setState(() {
+              resend = false;
+            });
+            displaySnackBar(
+              contentType: ContentType.success,
+              title: appLocalizations.success,
+              message: appLocalizations.codeSendTitle,
+            );
+          } else if (state is EmailErrorState) {
+            displaySnackBar(
+              contentType: ContentType.failure,
+              title: appLocalizations.error,
+              message: '${state.error}',
+            );
           }
         },
       ),
