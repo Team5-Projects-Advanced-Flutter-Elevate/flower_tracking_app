@@ -1,10 +1,5 @@
-
 class ForgetPasswordResponse {
-  ForgetPasswordResponse({
-    this.message,
-    this.token,
-    this.info
-  });
+  ForgetPasswordResponse({this.message, this.token, this.info});
 
   ForgetPasswordResponse.fromJson(dynamic json) {
     message = json['message'];
