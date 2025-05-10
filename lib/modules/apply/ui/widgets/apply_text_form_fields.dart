@@ -6,6 +6,7 @@ import 'package:flower_tracking_app/modules/apply/ui/widgets/select_gender_row.d
 import 'package:flower_tracking_app/shared_layers/localization/generated/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:image_picker/image_picker.dart';
 import '../../../../core/bases/base_stateful_widget_state.dart';
 import '../../../../core/colors/app_colors.dart';
 import '../../../../core/constants/assets_paths/assets_paths.dart';
@@ -241,7 +242,7 @@ class _ApplyTextFormFieldsState
                         suffixIcon: IconButton(
                           onPressed: () {
                             if (!state.isLicenseImagePicked!) {
-                              cubit.doIntent(PickLicenseImageIntent());
+                              showSheet(true);
                             } else {
                               cubit.doIntent(UnPickImageIntent(true));
                             }
@@ -324,7 +325,7 @@ class _ApplyTextFormFieldsState
                         suffixIcon: IconButton(
                           onPressed: () {
                             if (!state.isIdImagePicked!) {
-                              cubit.doIntent(PickIdImageIntent());
+                              showSheet(false);
                             } else {
                               cubit.doIntent(UnPickImageIntent(false));
                             }
@@ -486,4 +487,46 @@ class _ApplyTextFormFieldsState
     passwordController.clear();
     confirmPasswordController.clear();
   }
+
+  Future<void> showSheet(bool isLicense) => showModalBottomSheet(
+    context: context,
+    builder:
+        (context) => SafeArea(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              ListTile(
+                leading: Icon(Icons.camera_alt, color: AppColors.mainColor),
+                title: const Text('Take Photo'),
+                onTap: () async {
+                  Navigator.pop(context);
+                  final image =
+                      isLicense
+                          ? cubit.doIntent(
+                            PickLicenseImageIntent(ImageSource.camera),
+                          )
+                          : cubit.doIntent(
+                            PickIdImageIntent(ImageSource.camera),
+                          );
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.photo_library),
+                title: const Text('Choose from Gallery'),
+                onTap: () async {
+                  Navigator.pop(context);
+                  final image =
+                      isLicense
+                          ? cubit.doIntent(
+                            PickLicenseImageIntent(ImageSource.gallery),
+                          )
+                          : cubit.doIntent(
+                            PickIdImageIntent(ImageSource.gallery),
+                          );
+                },
+              ),
+            ],
+          ),
+        ),
+  );
 }
