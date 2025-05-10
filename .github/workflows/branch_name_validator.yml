@@ -5,6 +5,7 @@ on:
       - '**'
 jobs:
   check-branch-name:
+    name: Check Branch Name
     runs-on: ubuntu-latest
     steps:
       - name: Check branch name format

@@ -6,6 +6,7 @@ on:
       - '**'
 jobs:
   check-pr-title:
+    name: Check PR Title
     runs-on: ubuntu-latest
     steps:
       - name: Check PR title format
