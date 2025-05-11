@@ -65,5 +65,4 @@ class DefaultFirebaseOptions {
     storageBucket: 'flower-ecommerce-app-team5.firebasestorage.app',
     iosBundleId: 'com.main369.flowerTrackingApp',
   );
-
 }

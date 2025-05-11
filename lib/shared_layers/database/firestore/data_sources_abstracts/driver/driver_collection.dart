@@ -3,7 +3,6 @@ import 'package:flower_tracking_app/core/entities/driver/driver_entity.dart';
 import 'package:flower_tracking_app/core/models/driver/driver_dto.dart';
 
 abstract interface class DriverCollection {
-
   Future<ApiResult<void>> addDriver(DriverDto driverDto);
 
   Future<ApiResult<DriverEntity>> readDriver(String driverId);
