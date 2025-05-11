@@ -9,6 +9,8 @@ import '../../modules/authentication/ui/login/login_screen.dart';
 import '../../modules/home/ui/home_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../modules/order_details/order_details_screen.dart';
+
 abstract class GenerateRoute {
   static Route<dynamic>? onGenerateRoute(RouteSettings routeSettings) {
     // var args = routeSettings.arguments;
@@ -32,6 +34,8 @@ abstract class GenerateRoute {
                 (context) =>
                     BlocProvider.value(value: cubit, child: const ApplyView()),
           );
+        case DefinedRoutes.orderDetailsRoute:
+          return MaterialPageRoute(builder: (context) => const OrderDetailsScreen());
         default:
           return _errorRoute();
       }
