@@ -6,4 +6,7 @@ abstract class AssetsPaths {
   static const String applicationApprovedBackground = "assets/icons/bg.png";
   static const String applicationApprovedCheckCircle =
       "assets/icons/check-circle.png";
+  static const String dropDownIcon = "assets/icons/drop_down_icon.png";
+  static const String countryJson = "assets/files/country.json";
+  static const String shareIcon = "assets/icons/share_icon.png";
 }

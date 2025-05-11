@@ -53,6 +53,7 @@ dependencies:
   ansicolor: ^2.0.3
   http_parser: ^4.1.2
 
+
   # State Management
   provider: ^6.1.5
   flutter_bloc: ^9.1.1
@@ -84,6 +85,12 @@ dependencies:
 
   # Image Processing
   flutter_image_compress: ^2.4.0
+  device_preview: ^1.2.0
+  dropdown_button2: ^2.3.9
+  country_flags: ^3.2.0
+  mime_type: ^1.0.1
+
+
 
 
 dev_dependencies:
