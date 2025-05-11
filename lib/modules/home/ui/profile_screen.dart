@@ -1,15 +1,15 @@
 import 'package:flower_tracking_app/core/bases/base_stateful_widget_state.dart';
 import 'package:flutter/material.dart';
 
-class HomeScreen extends StatefulWidget {
-  HomeScreen({super.key});
-  static const String routeName = 'homeScreen';
+class ProfileScreen extends StatefulWidget {
+  ProfileScreen({super.key});
+  static const String routeName = 'Profile Screen';
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<ProfileScreen> createState() => _ProfileScreenState();
 }
 
-class _HomeScreenState extends BaseStatefulWidgetState<HomeScreen> {
+class _ProfileScreenState extends BaseStatefulWidgetState<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,7 +17,7 @@ class _HomeScreenState extends BaseStatefulWidgetState<HomeScreen> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Center(child: Text("Home Screen", style: theme.textTheme.titleLarge)),
+          Center(child: Text("Profile Screen", style: theme.textTheme.titleLarge)),
         ],
       ),
     );

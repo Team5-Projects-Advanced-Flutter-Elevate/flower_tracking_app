@@ -87,5 +87,8 @@
   "gender": "Gender",
   "male": "Male",
   "female": "Female",
-  "removedImage": "Removed image"
+  "removedImage": "Removed image",
+  "home": "Home",
+  "orders": "Orders",
+  "profile": "Profile"
 }

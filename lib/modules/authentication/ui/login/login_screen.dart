@@ -159,7 +159,7 @@ class _LoginScreenState extends BaseStatefulWidgetState<LoginScreen> {
                             );
                             Navigator.pushNamedAndRemoveUntil(
                               context,
-                              DefinedRoutes.homeScreenRoute,
+                              DefinedRoutes.layoutScreen,
                               (route) => false,
                             );
                           case Status.error:
