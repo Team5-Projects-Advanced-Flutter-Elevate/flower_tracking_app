@@ -88,6 +88,10 @@ import '../../modules/authentication/ui/forget_password/view_model/forget_passwo
     as _i105;
 import '../../modules/authentication/ui/login/view_model/login_view_model.dart'
     as _i108;
+import '../../shared_layers/database/firestore/data_sources_abstracts/driver/driver_collection.dart'
+    as _i278;
+import '../../shared_layers/database/firestore/data_sources_imp/driver/driver_collection_imp.dart'
+    as _i113;
 import '../../shared_layers/localization/generated/app_localizations.dart'
     as _i543;
 import '../../shared_layers/localization/initializer/locale_initializer.dart'
@@ -142,11 +146,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i881.ResetPasswordRemoteDataSource>(
       () => _i956.ResetPasswordRemoteDataSourceImpl(gh<_i343.AuthApiClient>()),
     );
+    gh.factory<_i278.DriverCollection>(() => _i113.DriverCollectionImp());
     gh.lazySingleton<_i843.CountryLoaderService>(
       () => _i684.AssetCountryLoaderService(),
-    );
-    gh.factory<_i61.ApplyRepo>(
-      () => _i792.ApplyRepoImpl(applyDataSource: gh<_i843.ApplyDataSource>()),
     );
     gh.factory<_i731.ResetPasswordRepo>(
       () => _i940.ResetPasswordRepoImpl(
@@ -163,26 +165,18 @@ extension GetItInjectableX on _i174.GetIt {
       () =>
           _i493.LoggedDriverDataRemoteDataSourceImp(gh<_i343.AuthApiClient>()),
     );
-    gh.factory<_i637.ApplyDriverUseCase>(
-      () => _i637.ApplyDriverUseCase(gh<_i61.ApplyRepo>()),
-    );
-    gh.factory<_i900.GetVehiclesUseCase>(
-      () => _i900.GetVehiclesUseCase(gh<_i61.ApplyRepo>()),
-    );
     gh.factory<_i779.ResetCodeRemoteDataSource>(
       () => _i808.ResetCodeRemoteDataSourceImpl(gh<_i343.AuthApiClient>()),
+    );
+    gh.factory<_i61.ApplyRepo>(
+      () => _i792.ApplyRepoImpl(
+        applyDataSource: gh<_i843.ApplyDataSource>(),
+        driverCollection: gh<_i278.DriverCollection>(),
+      ),
     );
     gh.factory<_i34.LoginLocalDataSource>(
       () => _i443.LoginLocalDataSourceImp(
         gh<_i629.SecureStorageService<dynamic>>(),
-      ),
-    );
-    gh.lazySingleton<_i172.ApplyCubit>(
-      () => _i172.ApplyCubit(
-        gh<_i637.ApplyDriverUseCase>(),
-        gh<_i900.GetVehiclesUseCase>(),
-        gh<_i843.CountryLoaderService>(),
-        gh<_i843.ImagePickerService>(),
       ),
     );
     gh.factory<_i251.ResetCodeRepo>(
@@ -228,6 +222,12 @@ extension GetItInjectableX on _i174.GetIt {
       ),
       preResolve: true,
     );
+    gh.factory<_i637.ApplyDriverUseCase>(
+      () => _i637.ApplyDriverUseCase(gh<_i61.ApplyRepo>()),
+    );
+    gh.factory<_i900.GetVehiclesUseCase>(
+      () => _i900.GetVehiclesUseCase(gh<_i61.ApplyRepo>()),
+    );
     gh.factory<_i543.LoginUseCase>(
       () => _i543.LoginUseCase(gh<_i450.LoginRepo>()),
     );
@@ -236,11 +236,19 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i150.ForgetPasswordRemoteDataSource>(),
       ),
     );
-    gh.lazySingleton<_i439.ApiErrorHandler>(
-      () => _i439.ApiErrorHandler(gh<_i543.AppLocalizations>()),
+    gh.lazySingleton<_i172.ApplyCubit>(
+      () => _i172.ApplyCubit(
+        gh<_i637.ApplyDriverUseCase>(),
+        gh<_i900.GetVehiclesUseCase>(),
+        gh<_i843.CountryLoaderService>(),
+        gh<_i843.ImagePickerService>(),
+      ),
     );
     gh.lazySingleton<_i166.ValidateFunctions>(
       () => _i166.ValidateFunctions(gh<_i543.AppLocalizations>()),
+    );
+    gh.lazySingleton<_i439.ApiErrorHandler>(
+      () => _i439.ApiErrorHandler(gh<_i543.AppLocalizations>()),
     );
     gh.factory<_i823.ForgetPasswordUseCase>(
       () => _i823.ForgetPasswordUseCase(gh<_i1013.ForgetPasswordRepo>()),

@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:flower_tracking_app/core/entities/driver/driver_entity.dart';
+import 'package:flower_tracking_app/core/models/driver/driver_dto.dart';
 import 'package:flower_tracking_app/modules/apply/data/models/apply_response.dart';
 import 'package:flower_tracking_app/modules/apply/domain/entities/apply_response_entity.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -12,7 +14,7 @@ void main() {
         // Arrange
         final applyResponse = ApplyResponse(
           message: 'Success',
-          driver: Driver(
+          driver: DriverDto(
             country: 'Country',
             firstName: 'John',
             lastName: 'Doe',
@@ -78,7 +80,7 @@ void main() {
       'toEntity with non-null values should return DriverEntity with all fields',
       () {
         // Arrange
-        final driver = Driver(
+        final driver = DriverDto(
           country: 'Country',
           firstName: 'John',
           lastName: 'Doe',
@@ -97,7 +99,7 @@ void main() {
         );
 
         // Act
-        final result = driver.toEntity();
+        final result = driver.convertIntoEntity();
         final jsonResult = driver.toJson();
 
         // Verify all fields in JSON are not null
@@ -117,10 +119,10 @@ void main() {
       'toEntity with null values should return DriverEntity with null fields',
       () {
         // Arrange
-        final driver = Driver();
+        final driver = DriverDto();
 
         // Act
-        final result = driver.toEntity();
+        final result = driver.convertIntoEntity();
         final jsonResult = driver.toJson();
 
         // Verify all fields in JSON are null
