@@ -63,7 +63,7 @@ class _OrderDetailsScreenState
           SizedBox(height: screenHeight*.008,),
           Container(
             child: Column(
-              
+
             ),
           )
         ],
