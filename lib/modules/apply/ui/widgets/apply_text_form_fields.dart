@@ -427,7 +427,11 @@ class _ApplyTextFormFieldsState
                             return;
                           }
                           if (state.selectedGender == null) return;
-                          Navigator.pushNamedAndRemoveUntil(context, DefinedRoutes.applicationApproved, (route) => false,);
+                          Navigator.pushNamedAndRemoveUntil(
+                            context,
+                            DefinedRoutes.applicationApproved,
+                            (route) => false,
+                          );
                           cubit.doIntent(
                             ApplyDriverIntent(
                               DriverRequestModel(

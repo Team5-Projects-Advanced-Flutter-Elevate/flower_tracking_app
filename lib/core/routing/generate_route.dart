@@ -25,9 +25,9 @@ abstract class GenerateRoute {
         case DefinedRoutes.homeScreenRoute:
           return MaterialPageRoute(builder: (context) => const HomeScreen());
         case DefinedRoutes.applicationApproved:
-        return MaterialPageRoute(
-          builder: (context) => const ApplicationApproved(),
-        );  
+          return MaterialPageRoute(
+            builder: (context) => const ApplicationApproved(),
+          );
         case DefinedRoutes.apply:
           ApplyCubit cubit =
               getIt<ApplyCubit>()..doIntent(LoadApplyDataIntent());
@@ -43,6 +43,7 @@ abstract class GenerateRoute {
       return _errorRoute();
     }
   }
+
   static List<Route<dynamic>> onGenerateInitialRoutes({
     String? initialRoute,
     LoggedDriverDataResponseEntity? loginInfo,
