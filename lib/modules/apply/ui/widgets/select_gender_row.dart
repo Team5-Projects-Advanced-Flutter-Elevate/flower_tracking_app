@@ -16,15 +16,15 @@ class SelectGenderRow extends StatefulWidget {
 }
 
 class _SelectGenderRowState extends BaseStatefulWidgetState<SelectGenderRow> {
-  ApplyCubit cubit = getIt<ApplyCubit>();
 
   @override
   Widget build(BuildContext context) {
+    ApplyCubit cubit = BlocProvider.of(context);
     return Row(
       children: [
         Text(
           AppLocalizations.of(context)!.gender,
-          style: theme.textTheme.labelMedium?.copyWith(
+          style: theme.textTheme.titleLarge?.copyWith(
             fontSize: 18,
             color: AppColors.white[90],
           ),
@@ -40,7 +40,7 @@ class _SelectGenderRowState extends BaseStatefulWidgetState<SelectGenderRow> {
                       hoverColor: AppColors.transparent,
                       title: Text(
                         AppLocalizations.of(context)!.female,
-                        style: theme.textTheme.labelSmall?.copyWith(
+                        style: theme.textTheme.titleSmall?.copyWith(
                           color:
                               state.selectedGender == Gender.female.getValue()
                                   ? AppColors.black
@@ -59,7 +59,7 @@ class _SelectGenderRowState extends BaseStatefulWidgetState<SelectGenderRow> {
                       contentPadding: EdgeInsets.zero,
                       title: Text(
                         AppLocalizations.of(context)!.male,
-                        style: theme.textTheme.labelSmall?.copyWith(
+                        style: theme.textTheme.titleSmall?.copyWith(
                           color:
                               cubit.state.selectedGender ==
                                       Gender.male.getValue()

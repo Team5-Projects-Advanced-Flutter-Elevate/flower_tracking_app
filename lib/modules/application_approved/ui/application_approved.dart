@@ -68,17 +68,12 @@ class _ApplicationApprovedState
                       width: screenWidth,
                       child: FilledButton(
                         onPressed: () {
-                          Navigator.pushNamedAndRemoveUntil(
+                          Navigator.pushReplacementNamed(
                             context,
                             DefinedRoutes.loginScreenRoute,
-                            (route) => false,
                           );
                         },
-                        child: Text(
-                          appLocalizations.login,
-                          style: AppThemes.lightTheme.textTheme.titleMedium!
-                              .copyWith(color: AppColors.white, fontSize: 12),
-                        ),
+                        child: Text(appLocalizations.login),
                       ),
                     ),
                   ],

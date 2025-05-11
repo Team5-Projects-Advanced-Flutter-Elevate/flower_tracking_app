@@ -9,9 +9,7 @@ import 'package:flower_tracking_app/modules/authentication/ui/login/view_model/l
 import 'package:flower_tracking_app/modules/authentication/ui/login/view_model/login_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../../../core/di/injectable_initializer.dart';
-import '../forget_password/view/forget_password_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -36,7 +34,10 @@ class _LoginScreenState extends BaseStatefulWidgetState<LoginScreen> {
           forceMaterialTransparency: true,
           leading: IconButton(
             onPressed: () {
-              Navigator.pop(context);
+              Navigator.pushReplacementNamed(
+                context,
+                DefinedRoutes.onboardingScreenRoute,
+              );
             },
             icon: const Icon(Icons.arrow_back_ios),
           ),
@@ -128,12 +129,9 @@ class _LoginScreenState extends BaseStatefulWidgetState<LoginScreen> {
                         const Spacer(),
                         GestureDetector(
                           onTap: () {
-                            Navigator.push(
+                            Navigator.pushNamed(
                               context,
-                              MaterialPageRoute(
-                                builder:
-                                    (context) => const ForgetPasswordScreen(),
-                              ),
+                              DefinedRoutes.forgetPasswordScreenRoute,
                             );
                           },
                           child: Text(
