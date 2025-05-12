@@ -8,7 +8,6 @@ import 'package:flower_tracking_app/shared_layers/database/firestore/data_source
 import 'package:flutter/material.dart';
 import '../../../core/di/injectable_initializer.dart';
 
-
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -166,24 +165,27 @@ class _HomeScreenState extends BaseStatefulWidgetState<HomeScreen> {
               },
               child: const Text("Arrived At Pickup Point"),
             ),
-            FilledButton(onPressed: () async{
-              debugPrint("Loading");
-              var result = await orderCollection.updateOrder(
-                driverId: driverId,
-                orderEntity: OrderEntity(
-                  id: "68221af61433a666c8db98d7",
-                  preparedUserOrderAt: DateTime.now().dateSinceEpoch(),
-                ),
-              );
-              switch (result) {
-                case Success<void>():
-                  debugPrint("Success");
-                case Error<void>():
-                  debugPrint("Result: ${result.error}");
-              }
-            }, child: const Text("Start Deliver")),
             FilledButton(
-              onPressed: () async{
+              onPressed: () async {
+                debugPrint("Loading");
+                var result = await orderCollection.updateOrder(
+                  driverId: driverId,
+                  orderEntity: OrderEntity(
+                    id: "68221af61433a666c8db98d7",
+                    preparedUserOrderAt: DateTime.now().dateSinceEpoch(),
+                  ),
+                );
+                switch (result) {
+                  case Success<void>():
+                    debugPrint("Success");
+                  case Error<void>():
+                    debugPrint("Result: ${result.error}");
+                }
+              },
+              child: const Text("Start Deliver"),
+            ),
+            FilledButton(
+              onPressed: () async {
                 debugPrint("Loading");
                 var result = await orderCollection.updateOrder(
                   driverId: driverId,
@@ -202,7 +204,7 @@ class _HomeScreenState extends BaseStatefulWidgetState<HomeScreen> {
               child: const Text("Arrived to the user"),
             ),
             FilledButton(
-              onPressed: () async{
+              onPressed: () async {
                 debugPrint("Loading");
                 var result = await orderCollection.updateOrder(
                   driverId: driverId,

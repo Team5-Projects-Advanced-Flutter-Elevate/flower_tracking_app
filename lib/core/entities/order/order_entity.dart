@@ -39,14 +39,19 @@ class OrderEntity {
 }
 
 class StoreEntity {
-  StoreEntity({this.name, this.image, this.address, this.phoneNumber, this.latLong});
+  StoreEntity({
+    this.name,
+    this.image,
+    this.address,
+    this.phoneNumber,
+    this.latLong,
+  });
 
   String? name;
   String? image;
   String? address;
   String? phoneNumber;
   String? latLong;
-
 }
 
 class OrderItemEntity {
@@ -56,7 +61,6 @@ class OrderItemEntity {
   num? price;
   num? quantity;
   String? id;
-
 }
 
 class ProductEntity {
@@ -95,7 +99,6 @@ class ProductEntity {
   num? v;
   num? discount;
   num? sold;
-
 }
 
 class UserEntity {
