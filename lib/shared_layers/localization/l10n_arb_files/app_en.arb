@@ -8,7 +8,6 @@
   "unknown": "Something Went Wrong \uD83E\uDD14",
   "badCertificate": "The certificate provided by the server is not valid \uD83D\uDCD1",
   "somethingWentWrong": "Something Went Wrong \uD83E\uDD14",
-
   "validationFunctions____________": "$$$ Comment $$$",
   "pleaseEnterName": "Please enter your name.",
   "pleaseEnterUserName": "Please enter user name.",
@@ -32,12 +31,10 @@
   "noMatch": "No Match!",
   "pleaseEnterAddress": "Please enter the address",
   "pleaseEnterValidAddress": "Please enter a valid address",
-
   "onboardingScreen____________": "$$$ Comment $$$",
   "onboardingWelcomeMessage": "Welcome to\nFlowery Rider app",
   "applyNow": "Apply Now",
   "pleaseEnterValidRecipient": "Please enter a valid recipient",
-
   "loginScreen___________": "$$ Comment $$",
   "login": "Login",
   "email": "Email",
@@ -48,7 +45,6 @@
   "forgetPassword": "Forget password?",
   "continueWord": "Continue",
   "loggedSuccessfully": "Logged In Successfully!",
-
   "applyScreen____________": "$$ Comment $$",
   "apply": "Apply",
   "error": "Error",
@@ -87,5 +83,30 @@
   "gender": "Gender",
   "male": "Male",
   "female": "Female",
-  "removedImage": "Removed image"
+  "removedImage": "Removed image",
+  "orderDetailsScreen_________": "$$ Comment $$$",
+  "orderDetails": "Order Details",
+  "@orderDetails": {
+    "description": "Title for order details screen"
+  },
+  "status": "Status",
+  "accepted": "Accepted",
+  "orderId": "Order ID",
+  "pickupAddress": "Pickup address",
+  "floweryStore": "Flowery store",
+  "userAddress": "User address",
+  "egp": "EGP",
+  "total": "Total",
+  "paymentMethod": "Payment method",
+  "cashOnDelivery": "Cash on delivery",
+  "arrivedAtPickupPoint": "Arrived at Pickup point",
+  "orderStatusAccepted": "Accepted",
+  "orderStatusPicked": "Picked",
+  "orderStatusOutForDelivery": "Out for delivery",
+  "orderStatusArrived": "Arrived",
+  "orderStatusDelivered": "Delivered",
+  "buttonArrivedAtPickup": "Arrived at pickup point",
+  "buttonStartDelivery": "Start delivery",
+  "buttonArrivedDestination": "Arrived to destination",
+  "buttonOrderDelivered": "Order delivered"
 }

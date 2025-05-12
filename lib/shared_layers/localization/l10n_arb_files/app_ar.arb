@@ -8,7 +8,6 @@
   "unknown": "حدث خطأ ما \uD83E\uDD14",
   "badCertificate": "الشهادة المقدمة من الخادم غير صالحة \uD83D\uDCD1",
   "somethingWentWrong": "حدث خطأ ما \uD83E\uDD14",
-
   "validationFunctions____________": "$$$ تعليق $$$",
   "pleaseEnterName": "الرجاء إدخال الاسم.",
   "pleaseEnterUserName": "الرجاء إدخال اسم المستخدم.",
@@ -33,11 +32,9 @@
   "pleaseEnterAddress": "الرجاء إدخال العنوان",
   "pleaseEnterValidAddress": "الرجاء إدخال عنوان صالح",
   "pleaseEnterValidRecipient": "الرجاء إدخال مستلم صالح",
-
   "onboardingScreen____________": "$$$ تعليق $$$",
   "onboardingWelcomeMessage": "مرحبًا بك في\nتطبيق Flowery Rider",
   "applyNow": "قدم الآن",
-
   "loginScreen___________": "$$ تعليق $$",
   "login": "تسجيل الدخول",
   "email": "البريد الإلكتروني",
@@ -48,7 +45,6 @@
   "forgetPassword": "نسيت كلمة المرور؟",
   "continueWord": "متابعة",
   "loggedSuccessfully": "تم تسجيل الدخول بنجاح!",
-
   "applyScreen_________": "$$ Comment $$$",
   "apply": "تقديم",
   "error": "خطأ",
@@ -87,5 +83,27 @@
   "gender": "الجنس",
   "male": "ذكر",
   "female": "أنثى",
-  "removedImage": "تمت إزالة الصورة"
+  "removedImage": "تمت إزالة الصورة",
+  "orderDetailsScreen_________": "$$ Comment $$$",
+  "orderDetails": "تفاصيل الطلب",
+  "status": "الحالة",
+  "accepted": "مقبول",
+  "orderId": "رقم الطلب",
+  "pickupAddress": "عنوان الاستلام",
+  "floweryStore": "متجر الزهور",
+  "userAddress": "عنوان المستخدم",
+  "egp": "ج.م",
+  "total": "الإجمالي",
+  "paymentMethod": "طريقة الدفع",
+  "cashOnDelivery": "الدفع عند الاستلام",
+  "arrivedAtPickupPoint": "وصلت إلى نقطة الاستلام",
+  "orderStatusAccepted": "مقبول",
+  "orderStatusPicked": "تم الاستلام",
+  "orderStatusOutForDelivery": "في الطريق للتوصيل",
+  "orderStatusArrived": "وصل",
+  "orderStatusDelivered": "تم التوصيل",
+  "buttonArrivedAtPickup": "وصلت إلى نقطة الاستلام",
+  "buttonStartDelivery": "بدء التوصيل",
+  "buttonArrivedDestination": "وصلت إلى الوجهة",
+  "buttonOrderDelivered": "تم توصيل الطلب"
 }

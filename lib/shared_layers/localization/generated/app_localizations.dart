@@ -604,6 +604,138 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Removed image'**
   String get removedImage;
+
+  /// No description provided for @orderDetailsScreen_________.
+  ///
+  /// In en, this message translates to:
+  /// **'\$\$ Comment \$\$\$'**
+  String get orderDetailsScreen_________;
+
+  /// Title for order details screen
+  ///
+  /// In en, this message translates to:
+  /// **'Order Details'**
+  String get orderDetails;
+
+  /// No description provided for @status.
+  ///
+  /// In en, this message translates to:
+  /// **'Status'**
+  String get status;
+
+  /// No description provided for @accepted.
+  ///
+  /// In en, this message translates to:
+  /// **'Accepted'**
+  String get accepted;
+
+  /// No description provided for @orderId.
+  ///
+  /// In en, this message translates to:
+  /// **'Order ID'**
+  String get orderId;
+
+  /// No description provided for @pickupAddress.
+  ///
+  /// In en, this message translates to:
+  /// **'Pickup address'**
+  String get pickupAddress;
+
+  /// No description provided for @floweryStore.
+  ///
+  /// In en, this message translates to:
+  /// **'Flowery store'**
+  String get floweryStore;
+
+  /// No description provided for @userAddress.
+  ///
+  /// In en, this message translates to:
+  /// **'User address'**
+  String get userAddress;
+
+  /// No description provided for @egp.
+  ///
+  /// In en, this message translates to:
+  /// **'EGP'**
+  String get egp;
+
+  /// No description provided for @total.
+  ///
+  /// In en, this message translates to:
+  /// **'Total'**
+  String get total;
+
+  /// No description provided for @paymentMethod.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment method'**
+  String get paymentMethod;
+
+  /// No description provided for @cashOnDelivery.
+  ///
+  /// In en, this message translates to:
+  /// **'Cash on delivery'**
+  String get cashOnDelivery;
+
+  /// No description provided for @arrivedAtPickupPoint.
+  ///
+  /// In en, this message translates to:
+  /// **'Arrived at Pickup point'**
+  String get arrivedAtPickupPoint;
+
+  /// No description provided for @orderStatusAccepted.
+  ///
+  /// In en, this message translates to:
+  /// **'Accepted'**
+  String get orderStatusAccepted;
+
+  /// No description provided for @orderStatusPicked.
+  ///
+  /// In en, this message translates to:
+  /// **'Picked'**
+  String get orderStatusPicked;
+
+  /// No description provided for @orderStatusOutForDelivery.
+  ///
+  /// In en, this message translates to:
+  /// **'Out for delivery'**
+  String get orderStatusOutForDelivery;
+
+  /// No description provided for @orderStatusArrived.
+  ///
+  /// In en, this message translates to:
+  /// **'Arrived'**
+  String get orderStatusArrived;
+
+  /// No description provided for @orderStatusDelivered.
+  ///
+  /// In en, this message translates to:
+  /// **'Delivered'**
+  String get orderStatusDelivered;
+
+  /// No description provided for @buttonArrivedAtPickup.
+  ///
+  /// In en, this message translates to:
+  /// **'Arrived at pickup point'**
+  String get buttonArrivedAtPickup;
+
+  /// No description provided for @buttonStartDelivery.
+  ///
+  /// In en, this message translates to:
+  /// **'Start delivery'**
+  String get buttonStartDelivery;
+
+  /// No description provided for @buttonArrivedDestination.
+  ///
+  /// In en, this message translates to:
+  /// **'Arrived to destination'**
+  String get buttonArrivedDestination;
+
+  /// No description provided for @buttonOrderDelivered.
+  ///
+  /// In en, this message translates to:
+  /// **'Order delivered'**
+  String get buttonOrderDelivered;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
