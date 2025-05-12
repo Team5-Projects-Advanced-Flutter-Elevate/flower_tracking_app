@@ -87,5 +87,8 @@
   "gender": "Gender",
   "male": "Male",
   "female": "Female",
-  "removedImage": "Removed image"
+  "removedImage": "Removed image",
+  "thankYou": "Thank You!!",
+  "successScreenDescription": "The order delivered successfully",
+  "done": "Done"
 }

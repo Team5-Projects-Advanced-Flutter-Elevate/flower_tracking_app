@@ -6,4 +6,5 @@ abstract class AssetsPaths {
   static const String dropDownIcon = "assets/icons/drop_down_icon.png";
   static const String countryJson = "assets/files/country.json";
   static const String shareIcon = "assets/icons/share_icon.png";
+  static const String successJsonFile='assets/animations/Success.json';
 }
