@@ -81,6 +81,8 @@
   "selectGender": "Please select gender",
   "continueButton": "Continue",
   "emailHint": "Enter your email",
+  "phoneNumber": "Phone number",
+  "phoneNumberHint": "Enter phone number",
   "passwordHint": "Enter your password",
   "confirmPassword": "Confirm password",
   "confirmPasswordHint": "Confirm your password",

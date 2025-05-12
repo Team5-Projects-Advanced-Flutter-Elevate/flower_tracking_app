@@ -7,6 +7,7 @@ import 'package:flower_tracking_app/core/validation/validation_functions.dart';
 import 'package:flower_tracking_app/firebase_options.dart';
 import 'package:flower_tracking_app/modules/authentication/data/data_sources_contracts/login/local/login_local_data_source.dart';
 import 'package:flower_tracking_app/modules/authentication/domain/entities/logged_driver_data/logged_driver_data_response_entity.dart';
+import 'package:flower_tracking_app/shared_layers/database/firestore/constants/firestore_constants.dart';
 import 'package:flower_tracking_app/shared_layers/localization/generated/app_localizations.dart';
 import 'package:flower_tracking_app/shared_layers/localization/l10n_manager/localization_manager.dart';
 import 'package:flutter/material.dart';
@@ -24,11 +25,17 @@ void main() async {
   await configureDependencies();
   final loginLocaleDataSource = getIt.get<LoginLocalDataSource>();
   final rememberValue = await loginLocaleDataSource.getRememberMeValue();
+  debugPrint("Remember Me Value $rememberValue");
   if (!rememberValue) {
     await loginLocaleDataSource.deleteDriverData();
     await loginLocaleDataSource.deleteRememberMeValue();
   } else {
     loggedDriverData = await loginLocaleDataSource.getDriverData();
+    // registering the driver id inside getIt
+    getIt.registerSingleton(
+      loggedDriverData?.driver?.id ?? "",
+      instanceName: FirestoreConstants.driverId,
+    );
     DioServiceExtension.updateDioWithToken(loggedDriverData?.token ?? '');
   }
   runApp(

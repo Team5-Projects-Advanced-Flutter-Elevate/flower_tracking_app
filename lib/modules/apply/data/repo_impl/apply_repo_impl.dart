@@ -1,5 +1,4 @@
 import 'package:flower_tracking_app/core/apis/api_result/api_result.dart';
-import 'package:flower_tracking_app/core/models/driver/driver_dto.dart';
 import 'package:flower_tracking_app/modules/apply/data/datasource_contract/apply_datasource.dart';
 import 'package:flower_tracking_app/modules/apply/data/models/apply_response.dart';
 import 'package:flower_tracking_app/modules/apply/domain/entities/apply_response_entity.dart';
@@ -28,7 +27,7 @@ class ApplyRepoImpl implements ApplyRepo {
         if (dataSourceResult.data.driver != null &&
             dataSourceResult.data.driver?.id != null) {
           var firestoreResult = await driverCollection.addDriver(
-            DriverDto.convertIntoDto(dataSourceResult.data.driver),
+            dataSourceResult.data.driver!,
           );
           switch (firestoreResult) {
             case Success<void>():

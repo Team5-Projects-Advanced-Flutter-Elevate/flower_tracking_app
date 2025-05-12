@@ -24,9 +24,11 @@ class DriverCollectionImp implements DriverCollection {
   }
 
   @override
-  Future<ApiResult<void>> addDriver(DriverDto driverDto) {
+  Future<ApiResult<void>> addDriver(DriverEntity driverEntity) {
     return ApiExecutor.executeApi(
-      () => _getDriversCollection().doc(driverDto.id).set(driverDto),
+      () => _getDriversCollection()
+          .doc(driverEntity.id)
+          .set(DriverDto.convertIntoDto(driverEntity)),
     );
   }
 
@@ -55,18 +57,21 @@ class DriverCollectionImp implements DriverCollection {
   }
 
   @override
-  Future<ApiResult<void>> updateDriverInfo(DriverDto driverDto) {
+  Future<ApiResult<void>> updateDriverInfo(DriverEntity driverEntity) {
     var dtoToUpdateWith = DriverDto(
-      phone: driverDto.phone,
-      photo: driverDto.photo,
-      firstName: driverDto.firstName,
-      lastName: driverDto.lastName,
-      email: driverDto.email,
-      country: driverDto.country,
+      phone: driverEntity.phone,
+      photo: driverEntity.photo,
+      firstName: driverEntity.firstName,
+      lastName: driverEntity.lastName,
+      email: driverEntity.email,
+      country: driverEntity.country,
+      vehicleLicense: driverEntity.vehicleLicense,
+      vehicleNumber: driverEntity.vehicleNumber,
+      vehicleType: driverEntity.vehicleType,
     );
     return ApiExecutor.executeApi(
       () async => _getDriversCollection()
-          .doc(driverDto.id)
+          .doc(driverEntity.id)
           .update(dtoToUpdateWith.toJson()),
     );
   }

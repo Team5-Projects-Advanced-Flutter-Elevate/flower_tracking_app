@@ -90,8 +90,12 @@ import '../../modules/authentication/ui/login/view_model/login_view_model.dart'
     as _i108;
 import '../../shared_layers/database/firestore/data_sources_abstracts/driver/driver_collection.dart'
     as _i278;
+import '../../shared_layers/database/firestore/data_sources_abstracts/order/order_collection.dart'
+    as _i4;
 import '../../shared_layers/database/firestore/data_sources_imp/driver/driver_collection_imp.dart'
     as _i113;
+import '../../shared_layers/database/firestore/data_sources_imp/order/order_collection_imp.dart'
+    as _i471;
 import '../../shared_layers/localization/generated/app_localizations.dart'
     as _i543;
 import '../../shared_layers/localization/initializer/locale_initializer.dart'
@@ -134,6 +138,7 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i843.ImagePickerService>(
       () => _i684.DefaultImagePickerService(),
     );
+    gh.factory<_i4.OrderCollection>(() => _i471.OrderCollectionImp());
     gh.lazySingleton<_i780.ApplyApiClient>(
       () => applyApiClientProvider.providerApiClient(gh<_i361.Dio>()),
     );
