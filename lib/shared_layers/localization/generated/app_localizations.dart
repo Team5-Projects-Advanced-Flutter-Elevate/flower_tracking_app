@@ -611,7 +611,7 @@ abstract class AppLocalizations {
   /// **'\$\$ Comment \$\$\$'**
   String get orderDetailsScreen_________;
 
-  /// Title for order details screen
+  /// No description provided for @orderDetails.
   ///
   /// In en, this message translates to:
   /// **'Order Details'**

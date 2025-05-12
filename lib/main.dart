@@ -10,11 +10,13 @@ import 'package:flower_tracking_app/shared_layers/localization/l10n_manager/loca
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:provider/provider.dart';
+
 import 'core/routing/defined_routes.dart';
 import 'core/utilities/dio/dio_service/dio_service.dart';
 
 GlobalKey<NavigatorState> globalNavigatorKey = GlobalKey<NavigatorState>();
 LoggedDriverDataResponseEntity? loggedDriverData;
+
 void main() async {
   FlutterNativeSplash.preserve(
     widgetsBinding: WidgetsFlutterBinding.ensureInitialized(),
@@ -74,7 +76,7 @@ class _MyAppState extends State<MyApp> {
             themeMode: ThemeMode.light,
             localizationsDelegates: AppLocalizations.localizationsDelegates,
             supportedLocales: AppLocalizations.supportedLocales,
-            locale: Locale(localizationManager.currentLocale),
+            locale: Locale('en'),
             navigatorKey: globalNavigatorKey,
             initialRoute: DefinedRoutes.orderDetailsRoute,
 

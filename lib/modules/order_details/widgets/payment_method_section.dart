@@ -1,12 +1,12 @@
-import 'package:flower_tracking_app/core/bases/base_inherited_widget.dart';
 import 'package:flower_tracking_app/core/bases/base_statless_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../../core/bases/base_inherited_widget.dart';
 import '../../../core/colors/app_colors.dart';
 
-class paymentMethodSection extends BaseStatelessWidget {
-  const paymentMethodSection({super.key});
+class PaymentMethodSection extends BaseStatelessWidget {
+  const PaymentMethodSection({super.key});
 
   @override
   Widget customBuild(BuildContext context, BaseInheritedWidget inherit) {
@@ -26,8 +26,8 @@ class paymentMethodSection extends BaseStatelessWidget {
         borderRadius: BorderRadius.circular(8),
       ),
       width: inherit.screenWidth,
-      padding: const EdgeInsets.all(16),
-      margin: const EdgeInsets.all(16),
+      padding: EdgeInsets.all(inherit.screenWidth * .03),
+      margin: EdgeInsets.all(inherit.screenWidth * .03),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

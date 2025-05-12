@@ -120,12 +120,11 @@ class _OrderDetailsScreenState
                   SectionTitleTextItem(title: appLocalizations.orderDetails),
                   const OrderDetailsItem(),
                   const TotalMoneySection(),
-                  const paymentMethodSection(),
+                  const PaymentMethodSection(),
                 ],
               ),
             ),
           ),
-
           Container(
             decoration: BoxDecoration(
               color: AppColors.white,
@@ -145,8 +144,9 @@ class _OrderDetailsScreenState
             width: screenWidth,
             child: Padding(
               padding: EdgeInsets.symmetric(
-                vertical: screenHeight * .027,
-                horizontal: 16,
+                vertical: screenHeight * .026,
+
+                horizontal: screenWidth * .05,
               ),
               child: FilledButton(
                 style: FilledButton.styleFrom(),

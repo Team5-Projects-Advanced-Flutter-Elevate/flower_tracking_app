@@ -26,8 +26,8 @@ class TotalMoneySection extends BaseStatelessWidget {
         borderRadius: BorderRadius.circular(8),
       ),
       width: inherit.screenWidth,
-      padding: const EdgeInsets.all(16),
-      margin: const EdgeInsets.all(16),
+      padding: EdgeInsets.all(inherit.screenWidth * .03),
+      margin: EdgeInsets.all(inherit.screenWidth * .03),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../core/colors/app_colors.dart';
+import '../../../core/constants/assets_paths/assets_paths.dart';
 
 class OrderDetailsItem extends BaseStatelessWidget {
   const OrderDetailsItem({super.key});
@@ -26,14 +27,14 @@ class OrderDetailsItem extends BaseStatelessWidget {
         borderRadius: BorderRadius.circular(8),
       ),
       width: inherit.screenWidth,
-      padding: const EdgeInsets.all(16),
-      margin: const EdgeInsets.all(16),
+      padding: EdgeInsets.all(inherit.screenWidth * .03),
+      margin: EdgeInsets.all(inherit.screenWidth * .03),
       child: Row(
         children: [
-          const Padding(
-            padding: EdgeInsetsDirectional.only(end: 8.0),
-            child: CircleAvatar(
-              backgroundImage: AssetImage('assets/images/Flowery logo.png'),
+          Padding(
+            padding: EdgeInsetsDirectional.only(end: inherit.screenWidth * .02),
+            child: const CircleAvatar(
+              backgroundImage: AssetImage(AssetsPaths.flowerLogo),
             ),
           ),
           Column(
@@ -52,7 +53,7 @@ class OrderDetailsItem extends BaseStatelessWidget {
                       color: AppColors.gray,
                     ),
                   ),
-                  SizedBox(width: inherit.screenWidth * 0.16),
+                  SizedBox(width: inherit.screenWidth * 0.2),
                   Text(
                     'X1  ',
                     style: GoogleFonts.roboto(

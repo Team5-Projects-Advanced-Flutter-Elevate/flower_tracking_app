@@ -86,9 +86,6 @@
   "removedImage": "Removed image",
   "orderDetailsScreen_________": "$$ Comment $$$",
   "orderDetails": "Order Details",
-  "@orderDetails": {
-    "description": "Title for order details screen"
-  },
   "status": "Status",
   "accepted": "Accepted",
   "orderId": "Order ID",

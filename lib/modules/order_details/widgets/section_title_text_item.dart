@@ -11,7 +11,7 @@ class SectionTitleTextItem extends BaseStatelessWidget {
   @override
   Widget customBuild(BuildContext context, BaseInheritedWidget inherit) {
     return Padding(
-      padding: const EdgeInsetsDirectional.only(start: 16.0),
+      padding: EdgeInsetsDirectional.only(start: inherit.screenWidth * .04),
       child: Text(
         title,
         style: inherit.theme.textTheme.titleMedium!.copyWith(

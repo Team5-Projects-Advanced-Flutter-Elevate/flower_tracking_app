@@ -5,6 +5,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../core/colors/app_colors.dart';
+import '../../../core/constants/assets_paths/assets_paths.dart';
 
 class AddressItem extends BaseStatelessWidget {
   const AddressItem({super.key});
@@ -34,7 +35,7 @@ class AddressItem extends BaseStatelessWidget {
           const Padding(
             padding: EdgeInsetsDirectional.only(end: 8.0),
             child: CircleAvatar(
-              backgroundImage: AssetImage('assets/images/Flowery logo.png'),
+              backgroundImage: AssetImage(AssetsPaths.flowerLogo),
             ),
           ),
           Column(
@@ -49,7 +50,7 @@ class AddressItem extends BaseStatelessWidget {
               ),
               Row(
                 children: [
-                  const ImageIcon(AssetImage('assets/icons/location_icon.png')),
+                  const ImageIcon(AssetImage(AssetsPaths.locationIcon)),
                   Text(
                     '20th st, Sheikh Zayed, Giza ',
                     style: GoogleFonts.roboto(
@@ -64,11 +65,11 @@ class AddressItem extends BaseStatelessWidget {
           ),
           SizedBox(width: inherit.screenWidth * 0.15),
           ImageIcon(
-            const AssetImage('assets/icons/call_icon.png'),
+            const AssetImage(AssetsPaths.callIcon),
             color: AppColors.mainColor,
           ),
 
-          SvgPicture.asset('assets/icons/whatsapp_icon.svg'),
+          SvgPicture.asset(AssetsPaths.whatsappIcon),
         ],
       ),
     );
