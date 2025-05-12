@@ -15,7 +15,6 @@ class SelectGenderRow extends StatefulWidget {
 }
 
 class _SelectGenderRowState extends BaseStatefulWidgetState<SelectGenderRow> {
-
   @override
   Widget build(BuildContext context) {
     ApplyCubit cubit = BlocProvider.of(context);

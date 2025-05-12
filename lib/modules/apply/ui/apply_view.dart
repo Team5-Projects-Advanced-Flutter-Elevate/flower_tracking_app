@@ -37,7 +37,6 @@ class _ApplyViewState extends BaseStatefulWidgetState<ApplyView> {
     return true;
   }
 
-
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -120,7 +119,9 @@ class _ApplyViewState extends BaseStatefulWidgetState<ApplyView> {
                       ApplyTextFormFields(
                         formKey: _formKey,
                         whenApplySuccess: () async {
-                          Navigator.of(context).popUntil((route) => route.isFirst);
+                          Navigator.of(
+                            context,
+                          ).popUntil((route) => route.isFirst);
                           await Navigator.pushReplacementNamed(
                             context,
                             DefinedRoutes.applicationApproved,
@@ -143,6 +144,7 @@ class _ApplyViewState extends BaseStatefulWidgetState<ApplyView> {
   void unFocusKeyboard() {
     FocusManager.instance.primaryFocus?.unfocus();
   }
+
   @override
   void dispose() {
     super.dispose();

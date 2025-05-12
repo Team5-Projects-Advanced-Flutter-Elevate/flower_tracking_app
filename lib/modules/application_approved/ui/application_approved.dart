@@ -15,7 +15,6 @@ class ApplicationApproved extends StatefulWidget {
 
 class _ApplicationApprovedState
     extends BaseStatefulWidgetState<ApplicationApproved> {
-
   @override
   void initState() {
     super.initState();
@@ -29,7 +28,6 @@ class _ApplicationApprovedState
     );
     return true;
   }
-
 
   @override
   Widget build(BuildContext context) {
