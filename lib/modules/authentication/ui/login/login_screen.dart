@@ -1,4 +1,5 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
+import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:flower_tracking_app/core/apis/api_error/api_error_handler.dart';
 import 'package:flower_tracking_app/core/bases/base_stateful_widget_state.dart';
 import 'package:flower_tracking_app/core/colors/app_colors.dart';
@@ -24,6 +25,20 @@ class _LoginScreenState extends BaseStatefulWidgetState<LoginScreen> {
   TextEditingController emailController = TextEditingController(),
       passwordController = TextEditingController();
   FocusNode emailFocusNode = FocusNode(), passwordFocusNode = FocusNode();
+
+  @override
+  void initState() {
+    super.initState();
+    BackButtonInterceptor.add(myInterceptor);
+  }
+
+  bool myInterceptor(bool stopDefaultButtonEvent, RouteInfo info) {
+    Navigator.pushReplacementNamed(
+      context,
+      DefinedRoutes.onboardingScreenRoute,
+    );
+    return true;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -199,5 +214,11 @@ class _LoginScreenState extends BaseStatefulWidgetState<LoginScreen> {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    BackButtonInterceptor.remove(myInterceptor);
   }
 }

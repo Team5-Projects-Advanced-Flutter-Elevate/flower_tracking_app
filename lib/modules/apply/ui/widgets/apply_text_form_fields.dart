@@ -1,6 +1,5 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:country_flags/country_flags.dart';
-import 'package:flower_tracking_app/core/di/injectable_initializer.dart';
 import 'package:flower_tracking_app/modules/apply/domain/entities/vehicle_response_entity.dart';
 import 'package:flower_tracking_app/modules/apply/ui/widgets/select_gender_row.dart';
 import 'package:flower_tracking_app/shared_layers/localization/generated/app_localizations.dart';

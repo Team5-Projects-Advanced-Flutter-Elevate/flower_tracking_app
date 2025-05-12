@@ -77,7 +77,7 @@ class _OnboardingScreenState extends BaseStatefulWidgetState<OnboardingScreen>
                       FilledButton(
                         key: const Key(OnboardingKeysValues.loginButton),
                         onPressed: () async {
-                          Navigator.pushReplacementNamed(
+                          await Navigator.pushReplacementNamed(
                             context,
                             DefinedRoutes.loginScreenRoute,
                           );
@@ -106,7 +106,6 @@ class _OnboardingScreenState extends BaseStatefulWidgetState<OnboardingScreen>
       ),
     );
   }
-
   @override
   void dispose() {
     super.dispose();

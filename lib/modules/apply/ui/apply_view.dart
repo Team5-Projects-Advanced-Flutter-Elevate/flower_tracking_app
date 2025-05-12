@@ -1,4 +1,5 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
+import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:flower_tracking_app/core/apis/api_error/api_error_handler.dart';
 import 'package:flower_tracking_app/core/bases/base_stateful_widget_state.dart';
 import 'package:flower_tracking_app/core/colors/app_colors.dart';
@@ -25,7 +26,17 @@ class _ApplyViewState extends BaseStatefulWidgetState<ApplyView> {
   void initState() {
     super.initState();
     cubit.doIntent(LoadApplyDataIntent());
+    BackButtonInterceptor.add(myInterceptor);
   }
+
+  bool myInterceptor(bool stopDefaultButtonEvent, RouteInfo info) {
+    Navigator.pushReplacementNamed(
+      context,
+      DefinedRoutes.onboardingScreenRoute,
+    );
+    return true;
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -109,6 +120,7 @@ class _ApplyViewState extends BaseStatefulWidgetState<ApplyView> {
                       ApplyTextFormFields(
                         formKey: _formKey,
                         whenApplySuccess: () async {
+                          Navigator.of(context).popUntil((route) => route.isFirst);
                           await Navigator.pushReplacementNamed(
                             context,
                             DefinedRoutes.applicationApproved,
@@ -130,5 +142,10 @@ class _ApplyViewState extends BaseStatefulWidgetState<ApplyView> {
 
   void unFocusKeyboard() {
     FocusManager.instance.primaryFocus?.unfocus();
+  }
+  @override
+  void dispose() {
+    super.dispose();
+    BackButtonInterceptor.remove(myInterceptor);
   }
 }

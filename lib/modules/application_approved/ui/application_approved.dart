@@ -1,3 +1,4 @@
+import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:flower_tracking_app/core/bases/base_stateful_widget_state.dart';
 import 'package:flower_tracking_app/core/colors/app_colors.dart';
 import 'package:flower_tracking_app/core/constants/assets_paths/assets_paths.dart';
@@ -14,6 +15,22 @@ class ApplicationApproved extends StatefulWidget {
 
 class _ApplicationApprovedState
     extends BaseStatefulWidgetState<ApplicationApproved> {
+
+  @override
+  void initState() {
+    super.initState();
+    BackButtonInterceptor.add(myInterceptor);
+  }
+
+  bool myInterceptor(bool stopDefaultButtonEvent, RouteInfo info) {
+    Navigator.pushReplacementNamed(
+      context,
+      DefinedRoutes.onboardingScreenRoute,
+    );
+    return true;
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -84,5 +101,11 @@ class _ApplicationApprovedState
         ],
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    BackButtonInterceptor.remove(myInterceptor);
   }
 }
