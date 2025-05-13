@@ -3,11 +3,10 @@ import 'package:flower_tracking_app/modules/authentication/ui/forget_password/vi
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/bases/base_stateful_widget_state.dart';
-import '../../../../../core/colors/app_colors.dart';
 import '../../../../../core/di/injectable_initializer.dart';
 import '../../../../../core/validation/validation_functions.dart';
 import '../../../../../core/widgets/loading_state_widget.dart';
-import '../view_model/forget_password_screen_view_model.dart';
+import '../view_model/email_view_model.dart';
 import '../view_model/forget_password_state.dart';
 
 class ForgetPasswordScreen extends StatefulWidget {
@@ -21,8 +20,7 @@ late TextEditingController emailController;
 class _ForgetPasswordScreenState
     extends BaseStatefulWidgetState<ForgetPasswordScreen> {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  ForgetPasswordViewModel forgetPasswordViewModel =
-      getIt.get<ForgetPasswordViewModel>();
+  EmailViewModel emailViewModel = getIt.get<EmailViewModel>();
 
   @override
   void initState() {
@@ -39,7 +37,7 @@ class _ForgetPasswordScreenState
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => forgetPasswordViewModel,
+      create: (context) => emailViewModel,
       child: GestureDetector(
         behavior: HitTestBehavior.opaque,
         onTap: () {
@@ -58,7 +56,7 @@ class _ForgetPasswordScreenState
             ),
             title: Text(
               appLocalizations.password,
-              style: Theme.of(context).textTheme.headlineMedium,
+              style: theme.textTheme.headlineMedium,
             ),
           ),
           body: Form(
@@ -71,7 +69,7 @@ class _ForgetPasswordScreenState
                   SizedBox(height: screenHeight * 0.05),
                   Text(
                     appLocalizations.forgetPassword,
-                    style: Theme.of(context).textTheme.titleLarge,
+                    style: theme.textTheme.titleLarge,
                     textAlign: TextAlign.center,
                   ),
                   SizedBox(height: screenHeight * 0.02),
@@ -84,6 +82,7 @@ class _ForgetPasswordScreenState
                   ),
                   SizedBox(height: screenHeight * 0.04),
                   TextFormField(
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
                     validator:
                         (value) =>
                             getIt<ValidateFunctions>().validationOfEmail(value),
@@ -96,15 +95,15 @@ class _ForgetPasswordScreenState
                     ),
                   ),
                   SizedBox(height: screenHeight * 0.06),
-                  BlocConsumer<ForgetPasswordViewModel, PasswordState>(
+                  BlocConsumer<EmailViewModel, EmailState>(
                     builder: (context, state) {
-                      if (state is PasswordLoadingState) {
-                        return const LoadingStateWidget();
+                      if (state is EmailLoadingState) {
+                        return  loadingAlert();
                       }
                       return ElevatedButton(
                         onPressed: () {
                           if (formKey.currentState!.validate()) {
-                            forgetPasswordViewModel.onIntent(
+                            emailViewModel.onIntent(
                               ForgotPasswordIntent(emailController.text.trim()),
                             );
                           }
@@ -114,12 +113,7 @@ class _ForgetPasswordScreenState
                     },
                     listener: (context, state) {
                       if (state is EmailSuccessState) {
-                        displaySnackBar(
-                          contentType: ContentType.success,
-                          title: appLocalizations.success,
-                          message: appLocalizations.codeSendTitle,
-                        );
-
+                        alert('success', '');
                         Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -130,15 +124,7 @@ class _ForgetPasswordScreenState
                           ),
                         );
                       } else if (state is EmailErrorState) {
-                        displaySnackBar(
-                          contentType: ContentType.failure,
-                          title: appLocalizations.error,
-                          message: '${state.error}',
-                        );
-                      } else if (state is EmailLoadingState) {
-                        LoadingStateWidget(
-                          progressIndicatorColor: AppColors.mainColor,
-                        );
+                        alert('failed', state.toString());
                       }
                     },
                   ),
@@ -150,4 +136,24 @@ class _ForgetPasswordScreenState
       ),
     );
   }
+
+  Future<void> alert(final String type, final String msg) {
+    if (type == 'success') {
+      return displaySnackBar(
+        contentType: ContentType.success,
+        title: appLocalizations.success,
+        message: appLocalizations.codeSendTitle,
+      );
+    } else {
+      return displaySnackBar(
+        contentType: ContentType.failure,
+        title: appLocalizations.error,
+        message: msg,
+      );
+    }
+  }
+
+}
+Widget loadingAlert(){
+  return const LoadingStateWidget();
 }

@@ -3,8 +3,11 @@ import 'package:flower_tracking_app/core/routing/defined_routes.dart';
 import 'package:flower_tracking_app/modules/authentication/domain/entities/logged_driver_data/logged_driver_data_response_entity.dart';
 import 'package:flower_tracking_app/modules/apply/ui/apply_view.dart';
 import 'package:flower_tracking_app/modules/apply/ui/view_model/apply_cubit.dart';
+import 'package:flower_tracking_app/modules/authentication/ui/forget_password/view/forget_password_screen.dart';
+import 'package:flower_tracking_app/modules/authentication/ui/forget_password/view/reset_password_screen.dart';
 import 'package:flower_tracking_app/modules/onboarding/ui/onboarding_screen.dart';
 import 'package:flutter/material.dart';
+import '../../modules/authentication/ui/forget_password/view/reset_code_screen.dart';
 import '../../modules/authentication/ui/login/login_screen.dart';
 import '../../modules/home/ui/home_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -32,6 +35,12 @@ abstract class GenerateRoute {
                 (context) =>
                     BlocProvider.value(value: cubit, child: const ApplyView()),
           );
+
+        case DefinedRoutes.forgetPasswordScreenRoute:
+          return MaterialPageRoute(builder: (context) => const ForgetPasswordScreen(),);
+        case DefinedRoutes.resetPasswordRoute:
+          return MaterialPageRoute(builder: (context) => const ResetPasswordScreen(),);
+
         default:
           return _errorRoute();
       }

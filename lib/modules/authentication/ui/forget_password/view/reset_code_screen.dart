@@ -1,5 +1,5 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
-import 'package:flower_tracking_app/modules/authentication/ui/forget_password/view/reset_password_screen.dart';
+import 'package:flower_tracking_app/core/routing/defined_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:otp_text_field/otp_field.dart';
@@ -9,9 +9,9 @@ import '../../../../../core/bases/base_stateful_widget_state.dart';
 import '../../../../../core/colors/app_colors.dart';
 import '../../../../../core/di/injectable_initializer.dart';
 import '../../../../../core/widgets/loading_state_widget.dart';
-import '../view_model/forget_password_screen_view_model.dart';
+import '../view_model/email_view_model.dart';
 import '../view_model/forget_password_state.dart';
-import 'forget_password_screen.dart';
+import '../view_model/reset_code_view_model.dart';
 import 'package:flower_tracking_app/core/widgets/timer.dart';
 
 class ResetCodeScreen extends StatefulWidget {
@@ -27,13 +27,13 @@ class _ResetCodeScreenState extends BaseStatefulWidgetState<ResetCodeScreen> {
   bool _hasError = false;
   final ValueNotifier<bool> _isLessThan5Minutes = ValueNotifier<bool>(false);
   final _formKey = GlobalKey<FormState>();
-  ForgetPasswordViewModel forgetPasswordViewModel =
-      getIt.get<ForgetPasswordViewModel>();
+  ResetCodeViewModel resetCodeViewModel = getIt.get<ResetCodeViewModel>();
+  EmailViewModel emailViewModel = getIt.get<EmailViewModel>();
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => forgetPasswordViewModel,
-      child: BlocConsumer<ForgetPasswordViewModel, PasswordState>(
+      create: (context) => resetCodeViewModel,
+      child: BlocConsumer<ResetCodeViewModel, OtpState>(
         builder:
             (context, state) => Scaffold(
               appBar: AppBar(
@@ -62,19 +62,19 @@ class _ResetCodeScreenState extends BaseStatefulWidgetState<ResetCodeScreen> {
                       Text(
                         appLocalizations.otpScreenTitle,
                         textAlign: TextAlign.center,
-                        style: Theme.of(context).textTheme.titleLarge,
+                        style: theme.textTheme.titleLarge,
                       ),
                       SizedBox(height: screenHeight * 0.02),
                       Text(
                         appLocalizations.otpScreenDescription,
                         textAlign: TextAlign.center,
-                        style: Theme.of(
-                          context,
-                        ).textTheme.titleMedium?.copyWith(color: Colors.grey),
+                        style: theme.textTheme.titleMedium?.copyWith(
+                          color: Colors.grey,
+                        ),
                       ),
                       SizedBox(height: screenHeight * 0.04),
                       Center(
-                        child: OTPTextField(
+                        child: state is OtpLoadingState?loadingDialog():OTPTextField(
                           length: 6,
                           width: screenWidth * 0.75,
                           otpFieldStyle: OtpFieldStyle(
@@ -93,9 +93,7 @@ class _ResetCodeScreenState extends BaseStatefulWidgetState<ResetCodeScreen> {
                             }
                           },
                           onCompleted: (code) {
-                            forgetPasswordViewModel.onIntent(
-                              ResetCodeIntent(code),
-                            );
+                            resetCodeViewModel.onIntent(ResetCodeIntent(code));
                           },
                         ),
                       ),
@@ -105,7 +103,7 @@ class _ResetCodeScreenState extends BaseStatefulWidgetState<ResetCodeScreen> {
                         children: [
                           Text(
                             appLocalizations.didnotReciveOtp,
-                            style: Theme.of(context).textTheme.bodyLarge,
+                            style: theme.textTheme.bodyLarge,
                           ),
                           resend == false
                               ? Row(
@@ -124,7 +122,7 @@ class _ResetCodeScreenState extends BaseStatefulWidgetState<ResetCodeScreen> {
                               )
                               : InkWell(
                                 onTap: () {
-                                  forgetPasswordViewModel.onIntent(
+                                  emailViewModel.onIntent(
                                     ForgotPasswordIntent(widget.email),
                                   );
                                 },
@@ -148,48 +146,51 @@ class _ResetCodeScreenState extends BaseStatefulWidgetState<ResetCodeScreen> {
             ),
         listener: (context, state) {
           if (state is OtpSuccessState) {
-            displaySnackBar(
-              contentType: ContentType.success,
-              title: appLocalizations.success,
-              message: appLocalizations.codeValid,
-            );
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const ResetPasswordScreen(),
-              ),
-            );
+            alert('otpSuccess', '');
+            Navigator.pushNamed(context, DefinedRoutes.resetPasswordRoute);
           } else if (state is OtpErrorState) {
             setState(() {
               _hasError = true;
             });
-            displaySnackBar(
-              contentType: ContentType.failure,
-              title: appLocalizations.error,
-              message: appLocalizations.codeNotvalid,
-            );
+            alert('failed', state.toString());
           } else if (state is OtpLoadingState) {
-            LoadingStateWidget(
-              progressIndicatorColor: AppColors.white,
-            );
+            loadingDialog();
           } else if (state is EmailSuccessState) {
             setState(() {
               resend = false;
             });
-            displaySnackBar(
-              contentType: ContentType.success,
-              title: appLocalizations.success,
-              message: appLocalizations.codeSendTitle,
-            );
+            alert('success', '');
           } else if (state is EmailErrorState) {
-            displaySnackBar(
-              contentType: ContentType.failure,
-              title: appLocalizations.error,
-              message: '${state.error}',
-            );
+            alert('failed', state.toString());
           }
         },
       ),
     );
+  }
+
+  Future<void> alert(final String type, final String msg) {
+    if (type == 'success') {
+      return displaySnackBar(
+        contentType: ContentType.success,
+        title: appLocalizations.success,
+        message: appLocalizations.codeSendTitle,
+      );
+    } else if (type == 'otpSuccess') {
+      return displaySnackBar(
+        contentType: ContentType.success,
+        title: appLocalizations.success,
+        message: appLocalizations.codeValid,
+      );
+    } else {
+      return displaySnackBar(
+        contentType: ContentType.failure,
+        title: appLocalizations.error,
+        message: msg,
+      );
+    }
+  }
+
+  Widget loadingDialog() {
+    return const LoadingStateWidget();
   }
 }

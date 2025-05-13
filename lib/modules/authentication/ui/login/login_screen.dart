@@ -11,7 +11,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/di/injectable_initializer.dart';
-import '../forget_password/view/forget_password_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -128,8 +127,10 @@ class _LoginScreenState extends BaseStatefulWidgetState<LoginScreen> {
                         const Spacer(),
                         GestureDetector(
                           onTap: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => const ForgetPasswordScreen(),));
-
+                            Navigator.pushNamed(
+                              context,
+                              DefinedRoutes.forgetPasswordScreenRoute,
+                            );
                           },
                           child: Text(
                             appLocalizations.forgetPassword,
