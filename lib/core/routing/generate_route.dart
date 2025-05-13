@@ -7,7 +7,6 @@ import 'package:flower_tracking_app/modules/authentication/ui/forget_password/vi
 import 'package:flower_tracking_app/modules/authentication/ui/forget_password/view/reset_password_screen.dart';
 import 'package:flower_tracking_app/modules/onboarding/ui/onboarding_screen.dart';
 import 'package:flutter/material.dart';
-import '../../modules/authentication/ui/forget_password/view/reset_code_screen.dart';
 import '../../modules/authentication/ui/login/login_screen.dart';
 import '../../modules/home/ui/home_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
