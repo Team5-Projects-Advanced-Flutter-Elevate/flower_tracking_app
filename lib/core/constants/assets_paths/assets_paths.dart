@@ -9,6 +9,8 @@ abstract class AssetsPaths {
   static const String homeIcon = "assets/icons/home_icon.png";
   static const String ordersIcon = "assets/icons/orders_icon.png";
   static const String profileIcon = "assets/icons/profile_icon.png";
+  static const String unKnownPerson = "assets/icons/unknown_person.png";
+  static const String unKnownAnyThing = "assets/icons/unknown_anything.png";
   static const String flowerLoadingAnimation =
       "assets/animations/flower_loading_animation.json";
 }

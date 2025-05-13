@@ -11,17 +11,21 @@ class OrdersRepoImpl implements OrdersRepo {
 
   OrdersRepoImpl({required this.apiClient});
 
-  Future<ApiResult<PendingOrdersEntity>> getPendingOrders({int page = 1}) async {
+  Future<ApiResult<PendingOrdersEntity>> getPendingOrders({
+    int page = 1,
+  }) async {
     try {
       final response = await apiClient.getPendingOrders(page: page);
-      print('API response: ${response.toJson()}, status: 200');
-      return Success(data:PendingOrdersEntity.fromResponse(response));
+      return Success(data: PendingOrdersEntity.fromResponse(response));
     } catch (e) {
-      print('Repository error: $e');
       if (e is DioException) {
-        return Error(error:Exception('API error: ${e.message}, response: ${e.response?.data}'));
+        return Error(
+          error: Exception(
+            'API error: ${e.message}, response: ${e.response?.data}',
+          ),
+        );
       }
-      return Error(error:Exception('Unknown error: $e'));
+      return Error(error: Exception('Unknown error: $e'));
     }
   }
 }

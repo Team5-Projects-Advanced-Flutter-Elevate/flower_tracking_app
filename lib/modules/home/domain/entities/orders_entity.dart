@@ -16,7 +16,11 @@ class PendingOrdersEntity extends Equatable {
     return PendingOrdersEntity(
       message: response.message,
       metadata: response.metadata,
-      orders: response.orders?.map((order) => OrderEntity.fromModel(order)).toList() ?? [],
+      orders:
+          response.orders
+              ?.map((order) => OrderEntity.fromModel(order))
+              .toList() ??
+          [],
     );
   }
 
@@ -58,7 +62,17 @@ class OrderEntity extends Equatable {
   factory OrderEntity.fromModel(Order order) {
     return OrderEntity(
       id: order.id ?? '',
-      user: order.user ?? User(id: '', firstName: 'Unknown', lastName: '', email: '', gender: '', phone: '', photo: ''),
+      user:
+          order.user ??
+          User(
+            id: '',
+            firstName: 'Unknown',
+            lastName: '',
+            email: '',
+            gender: '',
+            phone: '',
+            photo: '',
+          ),
       orderItems: order.orderItems ?? [],
       totalPrice: order.totalPrice ?? 0.0,
       paymentType: order.paymentType ?? '',
@@ -68,25 +82,33 @@ class OrderEntity extends Equatable {
       createdAt: order.createdAt ?? '',
       updatedAt: order.updatedAt ?? '',
       orderNumber: order.orderNumber ?? '',
-      store: order.store ?? Store(name: 'Unknown', image: '', address: '', phoneNumber: '', latLong: ''),
+      store:
+          order.store ??
+          Store(
+            name: 'Unknown',
+            image: '',
+            address: '',
+            phoneNumber: '',
+            latLong: '',
+          ),
       shippingAddress: order.shippingAddress,
     );
   }
 
   @override
   List<Object?> get props => [
-        id,
-        user,
-        orderItems,
-        totalPrice,
-        paymentType,
-        isPaid,
-        isDelivered,
-        state,
-        createdAt,
-        updatedAt,
-        orderNumber,
-        store,
-        shippingAddress,
-      ];
+    id,
+    user,
+    orderItems,
+    totalPrice,
+    paymentType,
+    isPaid,
+    isDelivered,
+    state,
+    createdAt,
+    updatedAt,
+    orderNumber,
+    store,
+    shippingAddress,
+  ];
 }

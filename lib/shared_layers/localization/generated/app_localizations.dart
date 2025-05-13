@@ -646,6 +646,54 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Reject'**
   String get reject;
+
+  /// No description provided for @noOrdersFound.
+  ///
+  /// In en, this message translates to:
+  /// **'No orders found'**
+  String get noOrdersFound;
+
+  /// No description provided for @unKnownProduct.
+  ///
+  /// In en, this message translates to:
+  /// **'Unknown Product'**
+  String get unKnownProduct;
+
+  /// No description provided for @unKnownAddress.
+  ///
+  /// In en, this message translates to:
+  /// **'Unknown Address'**
+  String get unKnownAddress;
+
+  /// No description provided for @unKnownStore.
+  ///
+  /// In en, this message translates to:
+  /// **'Unknown Store'**
+  String get unKnownStore;
+
+  /// No description provided for @unKnown.
+  ///
+  /// In en, this message translates to:
+  /// **'UnKnown'**
+  String get unKnown;
+
+  /// No description provided for @eGP.
+  ///
+  /// In en, this message translates to:
+  /// **'EGP'**
+  String get eGP;
+
+  /// No description provided for @pickUpAddress.
+  ///
+  /// In en, this message translates to:
+  /// **'Pickup address'**
+  String get pickUpAddress;
+
+  /// No description provided for @userAddress.
+  ///
+  /// In en, this message translates to:
+  /// **'User address'**
+  String get userAddress;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

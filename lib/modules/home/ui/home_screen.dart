@@ -1,19 +1,21 @@
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:custom_refresh_indicator/custom_refresh_indicator.dart';
+import 'package:flower_tracking_app/core/apis/api_error/api_error_handler.dart';
 import 'package:flower_tracking_app/core/constants/assets_paths/assets_paths.dart';
+import 'package:flower_tracking_app/core/di/injectable_initializer.dart';
 import 'package:flower_tracking_app/modules/home/ui/widget/custom_pending_orders.dart';
+import 'package:flower_tracking_app/shared_layers/localization/generated/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flower_tracking_app/core/bases/base_stateful_widget_state.dart';
 import 'package:flower_tracking_app/core/colors/app_colors.dart';
-import 'package:flower_tracking_app/core/themes/app_themes.dart';
 import 'package:flower_tracking_app/modules/home/ui/cubit/pending_orders/pending_orders_cubit.dart';
 import 'package:flower_tracking_app/modules/home/ui/cubit/pending_orders/pending_orders_state.dart';
 import 'package:lottie/lottie.dart';
 
 class HomeScreen extends StatefulWidget {
-  static const String routeName = 'homeScreen';
   const HomeScreen({super.key});
 
   @override
@@ -46,16 +48,6 @@ class _HomeScreenState extends BaseStatefulWidgetState<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    print('Building HomeScreen');
-    const WidgetStateProperty<Color?> trackColor =
-        WidgetStateProperty<Color?>.fromMap(<WidgetStatesConstraint, Color>{
-          WidgetState.selected: Colors.green,
-        });
-    const WidgetStateProperty<Color?> overlayColor =
-        WidgetStateProperty<Color?>.fromMap(<WidgetState, Color>{
-          WidgetState.selected: Colors.green,
-        });
-
     return Scaffold(
       body: Column(
         children: [
@@ -70,33 +62,23 @@ class _HomeScreenState extends BaseStatefulWidgetState<HomeScreen> {
               children: [
                 Text(
                   appLocalizations.floweryRider,
-                  style: AppThemes.lightTheme.textTheme.headlineMedium!
-                      .copyWith(
-                        fontWeight: FontWeight.w400,
-                        color: AppColors.mainColor,
-                        fontFamily: GoogleFonts.imFellEnglish().fontFamily,
-                      ),
+                  style: theme.textTheme.headlineMedium!.copyWith(
+                    fontWeight: FontWeight.w400,
+                    color: AppColors.mainColor,
+                    fontFamily: GoogleFonts.imFellEnglish().fontFamily,
+                  ),
                 ),
                 Row(
                   children: [
                     Text(
                       appLocalizations.readyForDelivery,
-                      style: AppThemes.lightTheme.textTheme.labelMedium,
+                      style: theme.textTheme.labelMedium,
                     ),
                     SizedBox(width: screenWidth * 0.008),
                     Switch(
-                      overlayColor: overlayColor,
-                      trackColor: trackColor,
-                      thumbColor: WidgetStateProperty.resolveWith<Color>((
-                        states,
-                      ) {
-                        if (states.contains(WidgetState.disabled)) {
-                          return Colors.black;
-                        } else if (states.contains(WidgetState.selected)) {
-                          return Colors.white;
-                        }
-                        return Colors.black;
-                      }),
+                      overlayColor: theme.switchTheme.overlayColor,
+                      trackColor: theme.switchTheme.trackColor,
+                      thumbColor: theme.switchTheme.thumbColor,
                       value: light,
                       activeColor: AppColors.green,
                       onChanged: (bool value) {
@@ -114,40 +96,41 @@ class _HomeScreenState extends BaseStatefulWidgetState<HomeScreen> {
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.02),
               child: BlocProvider.value(
-                key: const Key('orders_cubit_provider'),
                 value: cubit,
                 child: CustomMaterialIndicator(
                   backgroundColor: AppColors.white,
-            indicatorBuilder: (context, controller) {
-              return Transform.scale(
-                scale: 1.2,
-                child: Container(
-                  decoration: const BoxDecoration(
-                      color: Colors.white, shape: BoxShape.circle),
-                  padding: const EdgeInsets.only(top: 6),
-                  child: Center(
-                    child: Transform.scale(
-                      scale: 1.5,
-                      child: Lottie.asset(
-                        AssetsPaths.flowerLoadingAnimation,
-                        alignment: Alignment.center,
+                  indicatorBuilder: (context, controller) {
+                    return Transform.scale(
+                      scale: 1.2,
+                      child: Container(
+                        decoration: const BoxDecoration(
+                          color: Colors.white,
+                          shape: BoxShape.circle,
+                        ),
+                        padding: const EdgeInsets.only(top: 6),
+                        child: Center(
+                          child: Transform.scale(
+                            scale: 1.5,
+                            child: Lottie.asset(
+                              AssetsPaths.flowerLoadingAnimation,
+                              alignment: Alignment.center,
+                            ),
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
-                ),
-              );
-            },
-                  onRefresh: ()  {
-                        return cubit.doIntent(
-                          RefreshOrdersIntent(),
-                        );
-                      },
+                    );
+                  },
+                  onRefresh: () {
+                    return cubit.doIntent(RefreshOrdersIntent());
+                  },
                   child: BlocConsumer<OrdersCubit, OrdersState>(
                     listener: (context, state) {
                       if (state.status == LoadOrdersStatus.error) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text('Error: ${state.error.toString()}'),
+                        displaySnackBar(
+                          contentType: ContentType.failure,
+                          title: AppLocalizations.of(context)!.error,
+                          message: getIt<ApiErrorHandler>().handle(
+                            state.error!,
                           ),
                         );
                       }
@@ -159,7 +142,9 @@ class _HomeScreenState extends BaseStatefulWidgetState<HomeScreen> {
                       }
                       if (state.status == LoadOrdersStatus.success &&
                           (state.orders?.orders.isEmpty ?? true)) {
-                        return const Center(child: Text('No orders found'));
+                        return Center(
+                          child: Text(appLocalizations.noOrdersFound),
+                        );
                       }
                       return MediaQuery.removePadding(
                         context: context,
@@ -167,7 +152,6 @@ class _HomeScreenState extends BaseStatefulWidgetState<HomeScreen> {
                         removeBottom: true,
                         child: ListView.builder(
                           controller: _scrollController,
-                          key: const Key('orders_list'),
                           physics: const AlwaysScrollableScrollPhysics(),
                           padding: EdgeInsets.zero,
                           itemCount:
@@ -193,30 +177,30 @@ class _HomeScreenState extends BaseStatefulWidgetState<HomeScreen> {
                             return CustomPendingOrders(
                               title:
                                   orderItem?.product?.title ??
-                                  'Unknown Product',
-                              price:
-                                  order.totalPrice?.toInt().toString() ?? '0',
+                                  appLocalizations.unKnownProduct,
+                              price: order.totalPrice.toInt().toString(),
                               pickUpAddress:
-                                  order.store.address ?? 'Unknown Address',
+                                  order.store.address ??
+                                  appLocalizations.unKnownAddress,
                               pickUpImage:
                                   order.store.image ??
-                                  'https://via.placeholder.com/150',
-                              pickUpName: order.store.name ?? 'Unknown Store',
+                                  const AssetImage(AssetsPaths.unKnownAnyThing),
+                              pickUpName:
+                                  order.store.name ??
+                                  appLocalizations.unKnownStore,
                               userAddress:
                                   order.shippingAddress?.street ??
                                   order.store.address ??
-                                  'Unknown Address',
-                              userFirstName: order.user.firstName ?? 'Unknown',
+                                  appLocalizations.unKnownAddress,
+                              userFirstName:
+                                  order.user.firstName ??
+                                  appLocalizations.unKnown,
                               userLastName: order.user.lastName ?? '',
                               userImage:
                                   order.user.photo ??
-                                  'https://via.placeholder.com/150',
-                              onAccept: () {
-                                // Implement accept logic
-                              },
-                              onReject: () {
-                                // Implement reject logic
-                              },
+                                  const AssetImage(AssetsPaths.unKnownPerson),
+                              onAccept: () {},
+                              onReject: () {},
                             );
                           },
                         ),

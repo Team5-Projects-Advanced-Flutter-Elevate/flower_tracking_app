@@ -94,5 +94,13 @@
   "floweryRider": "سائق فلاوري",
   "readyForDelivery": "جاهز للتسليم",
   "accept": "موافق",
-  "reject": "رافض"
+  "reject": "رافض",
+  "noOrdersFound": "لا يوجد طلبات",
+  "unKnownProduct": "منتج غير معروف",
+  "unKnownAddress": "عنوان غير معروف",
+  "unKnownStore": "متجر غير معروف",
+  "unKnown": "غير معروف",
+  "eGP": "ج م",
+  "pickUpAddress": "عنوان الالتقاط",
+  "userAddress": "عنوان المستخدم"
 }

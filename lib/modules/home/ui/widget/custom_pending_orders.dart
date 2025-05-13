@@ -1,6 +1,6 @@
 import 'package:flower_tracking_app/core/bases/base_stateful_widget_state.dart';
 import 'package:flower_tracking_app/core/colors/app_colors.dart';
-import 'package:flower_tracking_app/core/themes/app_themes.dart';
+import 'package:flower_tracking_app/core/constants/assets_paths/assets_paths.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -23,12 +23,12 @@ class CustomPendingOrders extends StatefulWidget {
   final String title;
   final String price;
   final String pickUpAddress;
-  final String pickUpImage;
+  final dynamic pickUpImage;
   final String pickUpName;
   final String userAddress;
   final String userFirstName;
   final String userLastName;
-  final String userImage;
+  final dynamic userImage;
   final VoidCallback onAccept;
   final VoidCallback onReject;
 
@@ -36,24 +36,25 @@ class CustomPendingOrders extends StatefulWidget {
   State<CustomPendingOrders> createState() => _CustomPendingOrdersState();
 }
 
-class _CustomPendingOrdersState extends BaseStatefulWidgetState<CustomPendingOrders> {
+class _CustomPendingOrdersState
+    extends BaseStatefulWidgetState<CustomPendingOrders> {
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: EdgeInsets.symmetric(vertical: screenHeight * 0.008),
+      margin: EdgeInsets.symmetric(
+        horizontal: screenWidth * 0.008,
+        vertical: screenHeight * 0.008,
+      ),
       child: Padding(
         padding: EdgeInsets.all(screenWidth * 0.032),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              widget.title,
-              style: AppThemes.lightTheme.textTheme.titleSmall,
-            ),
+            Text(widget.title, style: theme.textTheme.titleSmall),
             SizedBox(height: screenHeight * 0.016),
             Text(
-              'Pickup address',
-              style: AppThemes.lightTheme.textTheme.labelMedium!.copyWith(
+              appLocalizations.pickUpAddress,
+              style: theme.textTheme.labelMedium!.copyWith(
                 color: AppColors.gray,
                 fontWeight: FontWeight.w400,
               ),
@@ -63,11 +64,10 @@ class _CustomPendingOrdersState extends BaseStatefulWidgetState<CustomPendingOrd
               children: [
                 CircleAvatar(
                   radius: 22,
-                  backgroundImage: NetworkImage(
-                    widget.pickUpImage.isNotEmpty
-                        ? widget.pickUpImage
-                        : 'https://via.placeholder.com/150',
-                  ),
+                  backgroundImage:
+                      widget.pickUpImage.isNotEmpty
+                          ? NetworkImage(widget.pickUpImage)
+                          : const AssetImage(AssetsPaths.unKnownAnyThing),
                 ),
                 SizedBox(width: screenWidth * 0.016),
                 Column(
@@ -75,7 +75,7 @@ class _CustomPendingOrdersState extends BaseStatefulWidgetState<CustomPendingOrd
                   children: [
                     Text(
                       widget.pickUpName,
-                      style: AppThemes.lightTheme.textTheme.bodyLarge!.copyWith(
+                      style: theme.textTheme.bodyLarge!.copyWith(
                         color: AppColors.gray,
                         fontSize: 13,
                       ),
@@ -86,7 +86,7 @@ class _CustomPendingOrdersState extends BaseStatefulWidgetState<CustomPendingOrd
                         const Icon(Icons.location_city_outlined, size: 16),
                         Text(
                           widget.pickUpAddress,
-                          style: AppThemes.lightTheme.textTheme.bodyMedium!.copyWith(
+                          style: theme.textTheme.bodyMedium!.copyWith(
                             fontSize: 13,
                             fontFamily: GoogleFonts.roboto().fontFamily,
                           ),
@@ -99,8 +99,8 @@ class _CustomPendingOrdersState extends BaseStatefulWidgetState<CustomPendingOrd
             ),
             SizedBox(height: screenHeight * 0.016),
             Text(
-              'User address',
-              style: AppThemes.lightTheme.textTheme.labelMedium!.copyWith(
+              appLocalizations.userAddress,
+              style: theme.textTheme.labelMedium!.copyWith(
                 color: AppColors.gray,
                 fontWeight: FontWeight.w400,
               ),
@@ -110,11 +110,10 @@ class _CustomPendingOrdersState extends BaseStatefulWidgetState<CustomPendingOrd
               children: [
                 CircleAvatar(
                   radius: 22,
-                  backgroundImage: NetworkImage(
-                    widget.userImage.isNotEmpty
-                        ? widget.userImage
-                        : 'https://via.placeholder.com/150',
-                  ),
+                  backgroundImage:
+                      widget.userImage.isNotEmpty
+                          ? NetworkImage(widget.userImage)
+                          : const AssetImage(AssetsPaths.unKnownAnyThing),
                 ),
                 SizedBox(width: screenWidth * 0.016),
                 Column(
@@ -122,7 +121,7 @@ class _CustomPendingOrdersState extends BaseStatefulWidgetState<CustomPendingOrd
                   children: [
                     Text(
                       '${widget.userFirstName} ${widget.userLastName}',
-                      style: AppThemes.lightTheme.textTheme.bodyLarge!.copyWith(
+                      style: theme.textTheme.bodyLarge!.copyWith(
                         color: AppColors.gray,
                         fontSize: 13,
                       ),
@@ -133,7 +132,7 @@ class _CustomPendingOrdersState extends BaseStatefulWidgetState<CustomPendingOrd
                         const Icon(Icons.location_city_outlined, size: 16),
                         Text(
                           widget.userAddress,
-                          style: AppThemes.lightTheme.textTheme.bodyMedium!.copyWith(
+                          style: theme.textTheme.bodyMedium!.copyWith(
                             fontSize: 13,
                             fontFamily: GoogleFonts.roboto().fontFamily,
                           ),
@@ -149,8 +148,8 @@ class _CustomPendingOrdersState extends BaseStatefulWidgetState<CustomPendingOrd
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'EGP ${widget.price}',
-                  style: AppThemes.lightTheme.textTheme.bodyMedium!.copyWith(
+                  '${appLocalizations.eGP} ${widget.price}',
+                  style: theme.textTheme.bodyMedium!.copyWith(
                     fontWeight: FontWeight.w600,
                   ),
                 ),
@@ -163,7 +162,7 @@ class _CustomPendingOrdersState extends BaseStatefulWidgetState<CustomPendingOrd
                       ),
                       child: Text(
                         appLocalizations.reject,
-                        style: TextStyle(color: Color(0xFFD21E6A)),
+                        style: TextStyle(color: AppColors.mainColor),
                       ),
                     ),
                     SizedBox(width: screenWidth * 0.016),

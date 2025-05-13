@@ -17,7 +17,7 @@ class _LayoutScreenState extends BaseStatefulWidgetState<LayoutScreen> {
   late PageController controller;
   int currentScreen = 0;
   List<Widget> screens = [
-    HomeScreen(),
+    const HomeScreen(),
     OrdersScreen(),
     ProfileScreen(),
   ];
@@ -34,7 +34,7 @@ class _LayoutScreenState extends BaseStatefulWidgetState<LayoutScreen> {
     return Scaffold(
       body: PageView(
         controller: controller,
-        physics: NeverScrollableScrollPhysics(),
+        physics: const NeverScrollableScrollPhysics(),
         children: screens,
       ),
       backgroundColor: Colors.white,

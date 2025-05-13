@@ -22,11 +22,11 @@ class OrdersState extends Equatable {
     Object? error,
     int? currentPage,
   }) => OrdersState(
-        status: status ?? this.status,
-        orders: orders ?? this.orders,
-        error: error ?? this.error,
-        currentPage: currentPage ?? this.currentPage,
-      );
+    status: status ?? this.status,
+    orders: orders ?? this.orders,
+    error: error ?? this.error,
+    currentPage: currentPage ?? this.currentPage,
+  );
 
   @override
   List<Object?> get props => [status, orders, error, currentPage];

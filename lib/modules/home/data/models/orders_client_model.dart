@@ -9,9 +9,7 @@ abstract class OrdersApiClient {
   factory OrdersApiClient(Dio dio, {String baseUrl}) = _OrdersApiClient;
 
   @GET("orders/pending-orders")
-  Future<PendingOrdersResponse> getPendingOrders({
-    @Query("page") int page = 1,
-  });
+  Future<PendingOrdersResponse> getPendingOrders({@Query("page") int page = 1});
 }
 
 @JsonSerializable()
@@ -20,14 +18,9 @@ class PendingOrdersResponse {
   final Metadata? metadata;
   final List<Order>? orders;
 
-  PendingOrdersResponse({
-    required this.message,
-    this.metadata,
-    this.orders,
-  });
+  PendingOrdersResponse({required this.message, this.metadata, this.orders});
 
   factory PendingOrdersResponse.fromJson(Map<String, dynamic> json) {
-    print('Parsing PendingOrdersResponse: $json');
     return _$PendingOrdersResponseFromJson(json);
   }
 
@@ -49,7 +42,6 @@ class Metadata {
   });
 
   factory Metadata.fromJson(Map<String, dynamic> json) {
-    print('Parsing Metadata: $json');
     return _$MetadataFromJson(json);
   }
 
@@ -90,7 +82,6 @@ class Order {
   });
 
   factory Order.fromJson(Map<String, dynamic> json) {
-    print('Parsing Order: $json');
     return _$OrderFromJson(json);
   }
 
@@ -119,7 +110,6 @@ class User {
   });
 
   factory User.fromJson(Map<String, dynamic> json) {
-    print('Parsing User: $json');
     return _$UserFromJson(json);
   }
 
@@ -134,15 +124,9 @@ class OrderItem {
   @JsonKey(name: '_id')
   final String? id;
 
-  OrderItem({
-    this.product,
-    this.price,
-    this.quantity,
-    this.id,
-  });
+  OrderItem({this.product, this.price, this.quantity, this.id});
 
   factory OrderItem.fromJson(Map<String, dynamic> json) {
-    print('Parsing OrderItem: $json');
     return _$OrderItemFromJson(json);
   }
 
@@ -187,7 +171,6 @@ class Product {
   });
 
   factory Product.fromJson(Map<String, dynamic> json) {
-    print('Parsing Product: $json');
     return _$ProductFromJson(json);
   }
 
@@ -202,16 +185,9 @@ class Store {
   final String? phoneNumber;
   final String? latLong;
 
-  Store({
-    this.name,
-    this.image,
-    this.address,
-    this.phoneNumber,
-    this.latLong,
-  });
+  Store({this.name, this.image, this.address, this.phoneNumber, this.latLong});
 
   factory Store.fromJson(Map<String, dynamic> json) {
-    print('Parsing Store: $json');
     return _$StoreFromJson(json);
   }
 
@@ -224,14 +200,9 @@ class ShippingAddress {
   final String? city;
   final String? phone;
 
-  ShippingAddress({
-    this.street,
-    this.city,
-    this.phone,
-  });
+  ShippingAddress({this.street, this.city, this.phone});
 
   factory ShippingAddress.fromJson(Map<String, dynamic> json) {
-    print('Parsing ShippingAddress: $json');
     return _$ShippingAddressFromJson(json);
   }
 

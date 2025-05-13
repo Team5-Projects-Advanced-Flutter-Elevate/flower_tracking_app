@@ -283,4 +283,28 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get reject => 'رافض';
+
+  @override
+  String get noOrdersFound => 'لا يوجد طلبات';
+
+  @override
+  String get unKnownProduct => 'منتج غير معروف';
+
+  @override
+  String get unKnownAddress => 'عنوان غير معروف';
+
+  @override
+  String get unKnownStore => 'متجر غير معروف';
+
+  @override
+  String get unKnown => 'غير معروف';
+
+  @override
+  String get eGP => 'ج م';
+
+  @override
+  String get pickUpAddress => 'عنوان الالتقاط';
+
+  @override
+  String get userAddress => 'عنوان المستخدم';
 }

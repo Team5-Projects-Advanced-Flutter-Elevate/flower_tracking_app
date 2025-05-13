@@ -283,4 +283,28 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get reject => 'Reject';
+
+  @override
+  String get noOrdersFound => 'No orders found';
+
+  @override
+  String get unKnownProduct => 'Unknown Product';
+
+  @override
+  String get unKnownAddress => 'Unknown Address';
+
+  @override
+  String get unKnownStore => 'Unknown Store';
+
+  @override
+  String get unKnown => 'UnKnown';
+
+  @override
+  String get eGP => 'EGP';
+
+  @override
+  String get pickUpAddress => 'Pickup address';
+
+  @override
+  String get userAddress => 'User address';
 }
