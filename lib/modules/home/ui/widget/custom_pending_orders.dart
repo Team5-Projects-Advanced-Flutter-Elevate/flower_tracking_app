@@ -28,7 +28,7 @@ class CustomPendingOrders extends StatefulWidget {
   final String userAddress;
   final String userFirstName;
   final String userLastName;
-  final dynamic userImage;
+  final String? userImage;
   final VoidCallback onAccept;
   final VoidCallback onReject;
 
@@ -62,12 +62,27 @@ class _CustomPendingOrdersState
             SizedBox(height: screenHeight * 0.016),
             Row(
               children: [
-                CircleAvatar(
-                  radius: 22,
-                  backgroundImage:
-                      widget.pickUpImage.isNotEmpty
-                          ? NetworkImage(widget.pickUpImage)
-                          : const AssetImage(AssetsPaths.unKnownAnyThing),
+                ClipOval(
+                  child: Image.network(
+                    widget.pickUpImage!,
+                    height: 44,
+                    width: 44,
+                    fit: BoxFit.cover,
+                    errorBuilder: (
+                      BuildContext context,
+                      Object exception,
+                      StackTrace? stackTrace,
+                    ) {
+                      return ClipOval(
+                        child: Image.asset(
+                          AssetsPaths.unKnownAnyThing,
+                          height: 44,
+                          width: 44,
+                          fit: BoxFit.cover,
+                        ),
+                      );
+                    },
+                  ),
                 ),
                 SizedBox(width: screenWidth * 0.016),
                 Column(
@@ -108,12 +123,27 @@ class _CustomPendingOrdersState
             SizedBox(height: screenHeight * 0.016),
             Row(
               children: [
-                CircleAvatar(
-                  radius: 22,
-                  backgroundImage:
-                      widget.userImage.isNotEmpty
-                          ? NetworkImage(widget.userImage)
-                          : const AssetImage(AssetsPaths.unKnownAnyThing),
+                ClipOval(
+                  child: Image.network(
+                    widget.userImage!,
+                    height: 44,
+                    width: 44,
+                    fit: BoxFit.cover,
+                    errorBuilder: (
+                      BuildContext context,
+                      Object exception,
+                      StackTrace? stackTrace,
+                    ) {
+                      return ClipOval(
+                        child: Image.asset(
+                          AssetsPaths.unKnownPerson,
+                          height: 44,
+                          width: 44,
+                          fit: BoxFit.cover,
+                        ),
+                      );
+                    },
+                  ),
                 ),
                 SizedBox(width: screenWidth * 0.016),
                 Column(

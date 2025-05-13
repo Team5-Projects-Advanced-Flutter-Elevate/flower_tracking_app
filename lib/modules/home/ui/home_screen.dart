@@ -183,8 +183,7 @@ class _HomeScreenState extends BaseStatefulWidgetState<HomeScreen> {
                                   order.store.address ??
                                   appLocalizations.unKnownAddress,
                               pickUpImage:
-                                  order.store.image ??
-                                  const AssetImage(AssetsPaths.unKnownAnyThing),
+                                  order.store.image,
                               pickUpName:
                                   order.store.name ??
                                   appLocalizations.unKnownStore,
@@ -197,8 +196,7 @@ class _HomeScreenState extends BaseStatefulWidgetState<HomeScreen> {
                                   appLocalizations.unKnown,
                               userLastName: order.user.lastName ?? '',
                               userImage:
-                                  order.user.photo ??
-                                  const AssetImage(AssetsPaths.unKnownPerson),
+                                  order.user.photo ,
                               onAccept: () {},
                               onReject: () {},
                             );
