@@ -198,15 +198,15 @@ Map<String, dynamic> _$ShippingAddressToJson(ShippingAddress instance) =>
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers,unused_element,unnecessary_string_interpolations
 
 class _OrdersApiClient implements OrdersApiClient {
-  _OrdersApiClient(this._dio, {this.baseUrl, this.errorLogger}) {
-    baseUrl ??= 'https://flower.elevateegy.com/';
+  _OrdersApiClient(this._dio, {this.baseUrl}) {
+    baseUrl ??= ApisEndpoints.baseUrl;
   }
 
   final Dio _dio;
 
   String? baseUrl;
 
-  final ParseErrorLogger? errorLogger;
+  ParseErrorLogger? errorLogger;
 
   @override
   Future<PendingOrdersResponse> getPendingOrders({int page = 1}) async {
@@ -218,7 +218,7 @@ class _OrdersApiClient implements OrdersApiClient {
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            'api/v1/orders/pending-orders',
+            ApisEndpoints.getPendingOrders,
             queryParameters: queryParameters,
             data: _data,
           )
