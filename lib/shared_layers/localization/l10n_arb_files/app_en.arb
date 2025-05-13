@@ -90,5 +90,9 @@
   "removedImage": "Removed image",
   "home": "Home",
   "orders": "Orders",
-  "profile": "Profile"
+  "profile": "Profile",
+  "floweryRider": "Flowery rider",
+  "readyForDelivery": "Ready for delivery",
+  "accept": "Accept",
+  "reject": "Reject"
 }

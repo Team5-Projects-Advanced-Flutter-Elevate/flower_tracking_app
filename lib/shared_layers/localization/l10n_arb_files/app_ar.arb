@@ -90,5 +90,9 @@
   "removedImage": "تمت إزالة الصورة",
   "home": "الرئيسية",
   "orders": "الطلبات",
-  "profile": "الملف الشخصي"
+  "profile": "الملف الشخصي",
+  "floweryRider": "سائق فلاوري",
+  "readyForDelivery": "جاهز للتسليم",
+  "accept": "موافق",
+  "reject": "رافض"
 }

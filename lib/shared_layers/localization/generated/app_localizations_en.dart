@@ -271,4 +271,16 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get profile => 'Profile';
+
+  @override
+  String get floweryRider => 'Flowery rider';
+
+  @override
+  String get readyForDelivery => 'Ready for delivery';
+
+  @override
+  String get accept => 'Accept';
+
+  @override
+  String get reject => 'Reject';
 }
