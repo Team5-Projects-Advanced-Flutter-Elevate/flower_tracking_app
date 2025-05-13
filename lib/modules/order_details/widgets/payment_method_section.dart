@@ -2,14 +2,13 @@ import 'package:flower_tracking_app/core/bases/base_statless_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../../core/bases/base_inherited_widget.dart';
 import '../../../core/colors/app_colors.dart';
 
 class PaymentMethodSection extends BaseStatelessWidget {
   const PaymentMethodSection({super.key});
 
   @override
-  Widget customBuild(BuildContext context, BaseInheritedWidget inherit) {
+  Widget customBuild(BuildContext context, inherit) {
     return Container(
       decoration: BoxDecoration(
         color: AppColors.white,

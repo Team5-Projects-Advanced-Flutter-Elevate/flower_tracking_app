@@ -1,5 +1,6 @@
 import 'package:flower_tracking_app/core/bases/base_inherited_widget.dart';
 import 'package:flower_tracking_app/core/bases/base_statless_widget.dart';
+import 'package:flower_tracking_app/shared_layers/localization/generated/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -32,7 +33,7 @@ class TotalMoneySection extends BaseStatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            inherit.appLocalizations.total,
+            AppLocalizations.of(context)!.total,
             style: inherit.theme.textTheme.titleMedium!.copyWith(
               fontWeight: FontWeight.w600,
             ),
