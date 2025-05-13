@@ -2,7 +2,7 @@ import 'package:flower_tracking_app/core/bases/base_stateful_widget_state.dart';
 import 'package:flutter/material.dart';
 
 class OrdersScreen extends StatefulWidget {
-  OrdersScreen({super.key});
+  const OrdersScreen({super.key});
   static const String routeName = 'Orders Screen';
 
   @override
