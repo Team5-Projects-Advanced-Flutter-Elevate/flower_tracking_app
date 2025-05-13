@@ -138,7 +138,6 @@ class OrdersCubit extends Cubit<OrdersState> {
     }
   }
 
-  @override
   Future<void> close() {
     return super.close();
   }

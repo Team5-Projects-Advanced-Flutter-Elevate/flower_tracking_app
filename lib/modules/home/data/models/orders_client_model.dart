@@ -1,14 +1,15 @@
 import 'package:dio/dio.dart';
+import 'package:flower_tracking_app/core/apis/apis_endpoints/apis_endpoints.dart';
 import 'package:retrofit/retrofit.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'orders_client_model.g.dart';
 
-@RestApi(baseUrl: "https://flower.elevateegy.com/api/v1/")
+@RestApi(baseUrl: ApisEndpoints.baseUrl)
 abstract class OrdersApiClient {
   factory OrdersApiClient(Dio dio, {String baseUrl}) = _OrdersApiClient;
 
-  @GET("orders/pending-orders")
+  @GET(ApisEndpoints.getPendingOrders)
   Future<PendingOrdersResponse> getPendingOrders({@Query("page") int page = 1});
 }
 

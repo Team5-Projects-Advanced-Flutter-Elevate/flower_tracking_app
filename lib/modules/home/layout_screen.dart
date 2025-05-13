@@ -18,8 +18,8 @@ class _LayoutScreenState extends BaseStatefulWidgetState<LayoutScreen> {
   int currentScreen = 0;
   List<Widget> screens = [
     const HomeScreen(),
-    OrdersScreen(),
-    ProfileScreen(),
+    const OrdersScreen(),
+    const ProfileScreen(),
   ];
   @override
   void initState() {

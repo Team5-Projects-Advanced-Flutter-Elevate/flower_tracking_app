@@ -10,7 +10,7 @@ class OrdersRepoImpl implements OrdersRepo {
   final OrdersApiClient apiClient;
 
   OrdersRepoImpl({required this.apiClient});
-
+  @override
   Future<ApiResult<PendingOrdersEntity>> getPendingOrders({
     int page = 1,
   }) async {

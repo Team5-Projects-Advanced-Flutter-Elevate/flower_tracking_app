@@ -26,13 +26,13 @@ abstract class GenerateRoute {
         case DefinedRoutes.loginScreenRoute:
           return MaterialPageRoute(builder: (context) => const LoginScreen());
         case DefinedRoutes.homeScreenRoute:
-          return MaterialPageRoute(builder: (context) => HomeScreen());
+          return MaterialPageRoute(builder: (context) => const HomeScreen());
         case DefinedRoutes.layoutScreen:
           return MaterialPageRoute(builder: (context) => const LayoutScreen());
         case DefinedRoutes.ordersScreen:
-          return MaterialPageRoute(builder: (context) => OrdersScreen());
+          return MaterialPageRoute(builder: (context) => const OrdersScreen());
         case DefinedRoutes.profileScreen:
-          return MaterialPageRoute(builder: (context) => ProfileScreen());      
+          return MaterialPageRoute(builder: (context) => const ProfileScreen());      
         case DefinedRoutes.apply:
           ApplyCubit cubit =
               getIt<ApplyCubit>()..doIntent(LoadApplyDataIntent());
