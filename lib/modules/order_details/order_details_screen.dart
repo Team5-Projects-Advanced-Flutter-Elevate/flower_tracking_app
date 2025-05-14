@@ -1,6 +1,7 @@
 import 'package:flower_tracking_app/modules/order_details/widgets/address_item.dart';
 import 'package:flower_tracking_app/modules/order_details/widgets/order_details_item.dart';
 import 'package:flower_tracking_app/modules/order_details/widgets/order_details_static_data.dart';
+import 'package:flower_tracking_app/modules/order_details/widgets/order_status_section.dart';
 import 'package:flower_tracking_app/modules/order_details/widgets/payment_method_section.dart';
 import 'package:flower_tracking_app/modules/order_details/widgets/section_title_text_item.dart';
 import 'package:flower_tracking_app/modules/order_details/widgets/total_money_section.dart';
@@ -41,8 +42,8 @@ class _OrderDetailsScreenState
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          SizedBox(height: screenHeight * .008),
-          SizedBox(
+          Container(
+            margin: EdgeInsets.only(top: screenHeight * .008),
             height: screenHeight * .0044,
 
             child: Row(
@@ -78,40 +79,9 @@ class _OrderDetailsScreenState
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Container(
-                    decoration: BoxDecoration(
-                      color: AppColors.lightPink,
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    width: screenWidth,
-                    padding: const EdgeInsets.all(16),
-                    margin: const EdgeInsets.all(16),
-
-                    child: Column(
-                      spacing: screenHeight * .01,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          '${appLocalizations.status}: ${dataList[selectedIndex].getStatus(context)}',
-                          style: theme.textTheme.titleMedium!.copyWith(
-                            color: AppColors.green,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                        Text(
-                          '${appLocalizations.orderId}: #123656',
-                          style: theme.textTheme.titleMedium!.copyWith(
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                        Text(
-                          'Wed, 03 Sep 2024, 11:00 AM ',
-                          style: theme.textTheme.labelLarge!.copyWith(
-                            color: Colors.grey,
-                          ),
-                        ),
-                      ],
-                    ),
+                  OrderStatusSection(
+                    dataList: dataList,
+                    selectedIndex: selectedIndex,
                   ),
                   SectionTitleTextItem(title: appLocalizations.pickupAddress),
                   const AddressItem(),
