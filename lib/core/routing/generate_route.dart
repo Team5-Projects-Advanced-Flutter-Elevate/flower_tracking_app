@@ -35,7 +35,9 @@ abstract class GenerateRoute {
                     BlocProvider.value(value: cubit, child: const ApplyView()),
           );
         case DefinedRoutes.orderDetailsRoute:
-          return MaterialPageRoute(builder: (context) => const OrderDetailsScreen());
+          return MaterialPageRoute(
+            builder: (context) => const OrderDetailsScreen(),
+          );
         default:
           return _errorRoute();
       }
