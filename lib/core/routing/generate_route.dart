@@ -3,6 +3,9 @@ import 'package:flower_tracking_app/modules/application_approved/ui/application_
 import 'package:flower_tracking_app/modules/authentication/domain/entities/logged_driver_data/logged_driver_data_response_entity.dart';
 import 'package:flower_tracking_app/modules/apply/ui/apply_view.dart';
 import 'package:flower_tracking_app/modules/authentication/ui/forget_password/view/forget_password_screen.dart';
+import 'package:flower_tracking_app/modules/home/layout_screen.dart';
+import 'package:flower_tracking_app/modules/home/ui/orders_screen.dart';
+import 'package:flower_tracking_app/modules/home/ui/profile_screen.dart';
 import 'package:flower_tracking_app/modules/onboarding/ui/onboarding_screen.dart';
 import 'package:flutter/material.dart';
 import '../../modules/authentication/ui/login/login_screen.dart';
@@ -30,6 +33,12 @@ abstract class GenerateRoute {
           return MaterialPageRoute(
             builder: (context) => const ApplicationApproved(),
           );
+        case DefinedRoutes.layoutScreen:
+          return MaterialPageRoute(builder: (context) => const LayoutScreen());
+        case DefinedRoutes.ordersScreen:
+          return MaterialPageRoute(builder: (context) => const OrdersScreen());
+        case DefinedRoutes.profileScreen:
+          return MaterialPageRoute(builder: (context) => const ProfileScreen());
         case DefinedRoutes.apply:
           return MaterialPageRoute(builder: (context) => const ApplyView());
         default:
@@ -46,7 +55,7 @@ abstract class GenerateRoute {
   }) {
     return [
       if (loginInfo != null)
-        MaterialPageRoute(builder: (context) => const HomeScreen())
+        MaterialPageRoute(builder: (context) => const LayoutScreen())
       else
         MaterialPageRoute(builder: (context) => const OnboardingScreen()),
     ];

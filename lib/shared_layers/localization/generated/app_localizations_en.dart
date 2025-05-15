@@ -30,8 +30,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get unknown => 'Something Went Wrong 🤔';
 
   @override
-  String get badCertificate =>
-      'The certificate provided by the server is not valid 📑';
+  String get badCertificate => 'The certificate provided by the server is not valid 📑';
 
   @override
   String get somethingWentWrong => 'Something Went Wrong 🤔';
@@ -46,12 +45,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get pleaseEnterUserName => 'Please enter user name.';
 
   @override
-  String get userNameLength =>
-      'Username must be between 3 and 16 characters long.';
+  String get userNameLength => 'Username must be between 3 and 16 characters long.';
 
   @override
-  String get userNameRules =>
-      'Username can only contain letters, numbers, and underscores.';
+  String get userNameRules => 'Username can only contain letters, numbers, and underscores.';
 
   @override
   String get pleaseEnterFirstName => 'Please enter first name.';
@@ -72,8 +69,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get pleaseEnterPhoneNumber => 'Please enter your phone number.';
 
   @override
-  String get phoneNumberRules =>
-      'Number must start with one of the valid prefixes:\n010, 011, 012, or 015\nfollowed by 8 digits.';
+  String get phoneNumberRules => 'Number must start with one of the valid prefixes:\n010, 011, 012, or 015\nfollowed by 8 digits.';
 
   @override
   String get pleaseEnterPassword => 'Please enter your password.';
@@ -91,8 +87,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get digitRulePassword => 'At least one digit must be there.';
 
   @override
-  String get specialCharactersRulePassword =>
-      'At least one special character(e.g., #?!@\$%^&*-) must be included.';
+  String get specialCharactersRulePassword => 'At least one special character(e.g., #?!@\$%^&*-) must be included.';
 
   @override
   String get pleaseConfirmPassword => 'Please confirm password.';
@@ -274,4 +269,49 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get removedImage => 'Removed image';
+
+  @override
+  String get home => 'Home';
+
+  @override
+  String get orders => 'Orders';
+
+  @override
+  String get profile => 'Profile';
+
+  @override
+  String get floweryRider => 'Flowery rider';
+
+  @override
+  String get readyForDelivery => 'Ready for delivery';
+
+  @override
+  String get accept => 'Accept';
+
+  @override
+  String get reject => 'Reject';
+
+  @override
+  String get noOrdersFound => 'No orders found';
+
+  @override
+  String get unKnownProduct => 'Unknown Product';
+
+  @override
+  String get unKnownAddress => 'Unknown Address';
+
+  @override
+  String get unKnownStore => 'Unknown Store';
+
+  @override
+  String get unKnown => 'UnKnown';
+
+  @override
+  String get eGP => 'EGP';
+
+  @override
+  String get pickUpAddress => 'Pickup address';
+
+  @override
+  String get userAddress => 'User address';
 }

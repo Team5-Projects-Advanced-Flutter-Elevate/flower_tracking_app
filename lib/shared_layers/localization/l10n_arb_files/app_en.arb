@@ -89,5 +89,20 @@
   "gender": "Gender",
   "male": "Male",
   "female": "Female",
-  "removedImage": "Removed image"
+  "removedImage": "Removed image",
+  "home": "Home",
+  "orders": "Orders",
+  "profile": "Profile",
+  "floweryRider": "Flowery rider",
+  "readyForDelivery": "Ready for delivery",
+  "accept": "Accept",
+  "reject": "Reject",
+  "noOrdersFound": "No orders found",
+  "unKnownProduct": "Unknown Product",
+  "unKnownAddress": "Unknown Address",
+  "unKnownStore": "Unknown Store",
+  "unKnown": "UnKnown",
+  "eGP": "EGP",
+  "pickUpAddress": "Pickup address",
+  "userAddress": "User address"
 }
