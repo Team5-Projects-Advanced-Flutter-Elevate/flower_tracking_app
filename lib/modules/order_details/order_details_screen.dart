@@ -50,13 +50,16 @@ class _OrderDetailsScreenState
               children: [
                 Expanded(
                   child: ListView.builder(
+                    shrinkWrap: true,
                     scrollDirection: Axis.horizontal,
                     itemCount: 5,
                     itemBuilder: (context, index) {
                       return Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                        padding: EdgeInsets.symmetric(
+                          horizontal: screenWidth * .02,
+                        ),
                         child: SizedBox(
-                          width: screenWidth * 0.16,
+                          width: screenWidth * .16,
                           child: LinearProgressIndicator(
                             color:
                                 selectedIndex >= index
@@ -110,25 +113,23 @@ class _OrderDetailsScreenState
               //border: Border.all(color: AppColors.white),
               borderRadius: BorderRadius.circular(8),
             ),
-            height: screenHeight * .11,
+            //height: screenHeight * .11,
             width: screenWidth,
-            child: Padding(
-              padding: EdgeInsets.symmetric(
-                vertical: screenHeight * .026,
+            padding: EdgeInsets.symmetric(
+              vertical: screenHeight * .026,
 
-                horizontal: screenWidth * .05,
-              ),
-              child: FilledButton(
-                style: FilledButton.styleFrom(),
-                onPressed:
-                    selectedIndex == dataList.length - 1
-                        ? null
-                        : () {
-                          selectedIndex++;
-                          setState(() {});
-                        },
-                child: Text(dataList[selectedIndex].getButtonTitle(context)),
-              ),
+              horizontal: screenWidth * .05,
+            ),
+            child: FilledButton(
+              style: FilledButton.styleFrom(),
+              onPressed:
+                  selectedIndex == dataList.length - 1
+                      ? null
+                      : () {
+                        selectedIndex++;
+                        setState(() {});
+                      },
+              child: Text(dataList[selectedIndex].getButtonTitle(context)),
             ),
           ),
         ],

@@ -34,42 +34,55 @@ class AddressItem extends BaseStatelessWidget {
         children: [
           const Padding(
             padding: EdgeInsetsDirectional.only(end: 8.0),
-            child: CircleAvatar(
-              backgroundImage: AssetImage(AssetsPaths.flowerLogo),
+            child: Expanded(
+              flex: 2,
+              child: CircleAvatar(
+                backgroundImage: AssetImage(AssetsPaths.flowerLogo),
+              ),
             ),
           ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                inherit.appLocalizations.floweryStore,
-                style: inherit.theme.textTheme.bodySmall!.copyWith(
-                  fontSize: 13,
-                  color: AppColors.gray,
+          Expanded(
+            flex: 8,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  inherit.appLocalizations.floweryStore,
+                  style: inherit.theme.textTheme.bodySmall!.copyWith(
+                    fontSize: 13,
+                    color: AppColors.gray,
+                  ),
                 ),
-              ),
-              Row(
-                children: [
-                  const ImageIcon(AssetImage(AssetsPaths.locationIcon)),
-                  Text(
-                    '20th st, Sheikh Zayed, Giza ',
-                    style: GoogleFonts.roboto(
-                      textStyle: inherit.theme.textTheme.bodySmall!.copyWith(
-                        fontSize: 13,
+                Row(
+                  children: [
+                    const ImageIcon(AssetImage(AssetsPaths.locationIcon)),
+                    Text(
+                      '20th st, Sheikh Zayed, Giza ',
+                      style: GoogleFonts.roboto(
+                        textStyle: inherit.theme.textTheme.bodySmall!.copyWith(
+                          fontSize: 13,
+                        ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-            ],
+                  ],
+                ),
+              ],
+            ),
           ),
-          SizedBox(width: inherit.screenWidth * 0.15),
-          ImageIcon(
-            const AssetImage(AssetsPaths.callIcon),
-            color: AppColors.mainColor,
-          ),
+          // SizedBox(width: inherit.screenWidth * 0.15),
+          Expanded(
+            flex: 2,
+            child: Row(
+              children: [
+                ImageIcon(
+                  const AssetImage(AssetsPaths.callIcon),
+                  color: AppColors.mainColor,
+                ),
 
-          SvgPicture.asset(AssetsPaths.whatsappIcon),
+                SvgPicture.asset(AssetsPaths.whatsappIcon),
+              ],
+            ),
+          ),
         ],
       ),
     );

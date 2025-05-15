@@ -76,7 +76,6 @@ class _MyAppState extends State<MyApp> {
             themeMode: ThemeMode.light,
             localizationsDelegates: AppLocalizations.localizationsDelegates,
             supportedLocales: AppLocalizations.supportedLocales,
-            locale: const Locale('en'),
             navigatorKey: globalNavigatorKey,
             initialRoute: DefinedRoutes.orderDetailsRoute,
 

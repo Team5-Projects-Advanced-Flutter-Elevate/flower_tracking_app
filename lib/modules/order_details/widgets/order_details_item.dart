@@ -33,47 +33,51 @@ class OrderDetailsItem extends BaseStatelessWidget {
         children: [
           Padding(
             padding: EdgeInsetsDirectional.only(end: inherit.screenWidth * .02),
-            child: const CircleAvatar(
-              backgroundImage: AssetImage(AssetsPaths.flowerLogo),
+            child: const Expanded(
+              child: CircleAvatar(
+                backgroundImage: AssetImage(AssetsPaths.flowerLogo),
+              ),
             ),
           ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Red roses,15 Pink Rose Bouquet',
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 1,
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Red roses,15 Pink Rose Bouquet',
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
 
-                    style: inherit.theme.textTheme.bodySmall!.copyWith(
-                      fontSize: 13,
-                      color: AppColors.gray,
-                    ),
-                  ),
-                  SizedBox(width: inherit.screenWidth * 0.2),
-                  Text(
-                    'X1  ',
-                    style: GoogleFonts.roboto(
-                      textStyle: inherit.theme.textTheme.labelSmall!.copyWith(
+                      style: inherit.theme.textTheme.bodySmall!.copyWith(
                         fontSize: 13,
-                        color: AppColors.mainColor,
+                        color: AppColors.gray,
                       ),
                     ),
-                  ),
-                ],
-              ),
-              Text(
-                '${inherit.appLocalizations.egp} 600 ',
-                style: GoogleFonts.roboto(
-                  textStyle: inherit.theme.textTheme.labelSmall!.copyWith(
-                    fontSize: 13,
+
+                    Text(
+                      'X1  ',
+                      style: GoogleFonts.roboto(
+                        textStyle: inherit.theme.textTheme.labelSmall!.copyWith(
+                          fontSize: 13,
+                          color: AppColors.mainColor,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                Text(
+                  '${inherit.appLocalizations.egp} 600 ',
+                  style: GoogleFonts.roboto(
+                    textStyle: inherit.theme.textTheme.labelSmall!.copyWith(
+                      fontSize: 13,
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ],
       ),
