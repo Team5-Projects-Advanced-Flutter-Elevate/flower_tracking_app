@@ -22,6 +22,7 @@ import 'package:flower_tracking_app/modules/apply/domain/usecases/apply_use_case
     as _i3;
 import 'package:flower_tracking_app/modules/apply/domain/usecases/get_vehicles_use_case.dart'
     as _i9;
+import 'package:image_picker/image_picker.dart' as _i13;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:mockito/src/dummies.dart' as _i8;
 
@@ -142,9 +143,10 @@ class MockImagePickerService extends _i1.Mock
     _i1.throwOnMissingStub(this);
   }
 
-  _i4.Future<_i12.File?> pickImageFromGallery() =>
+  @override
+  _i4.Future<_i12.File?> pickImage(_i13.ImageSource? source) =>
       (super.noSuchMethod(
-            Invocation.method(#pickImageFromGallery, []),
+            Invocation.method(#pickImage, [source]),
             returnValue: _i4.Future<_i12.File?>.value(),
           )
           as _i4.Future<_i12.File?>);
