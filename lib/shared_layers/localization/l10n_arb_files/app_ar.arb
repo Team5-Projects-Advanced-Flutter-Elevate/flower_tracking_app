@@ -33,6 +33,9 @@
   "pleaseEnterAddress": "الرجاء إدخال العنوان",
   "pleaseEnterValidAddress": "الرجاء إدخال عنوان صالح",
   "pleaseEnterValidRecipient": "الرجاء إدخال مستلم صالح",
+ 
+  "applicationSubmitted": "لقد تم تقديم طلبك!",
+  "thanksForProvidingApplication": "نشكرك على تقديم طلبك، وسوف نقوم بمراجعة طلبك وسنرد عليك قريبًا.",
 
   "onboardingScreen____________": "$$$ تعليق $$$",
   "onboardingWelcomeMessage": "مرحبًا بك في\nتطبيق Flowery Rider",
