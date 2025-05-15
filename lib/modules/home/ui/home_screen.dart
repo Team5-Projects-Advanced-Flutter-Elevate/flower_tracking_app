@@ -198,7 +198,9 @@ class _HomeScreenState extends BaseStatefulWidgetState<HomeScreen> {
                               userImage:
                                   order.user.photo ,
                               onAccept: () {},
-                              onReject: () {},
+                              onReject: () {
+                                context.read<OrdersCubit>().removeOrder(order.id);
+                              },
                             );
                           },
                         ),

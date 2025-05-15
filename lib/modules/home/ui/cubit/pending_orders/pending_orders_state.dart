@@ -39,3 +39,9 @@ class LoadOrdersIntent extends OrdersIntent {}
 class LoadMoreOrdersIntent extends OrdersIntent {}
 
 class RefreshOrdersIntent extends OrdersIntent {}
+
+class RejectOrderIntent {
+  final String orderId;
+
+  RejectOrderIntent(this.orderId);
+}

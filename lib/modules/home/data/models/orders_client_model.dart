@@ -41,7 +41,19 @@ class Metadata {
     required this.totalItems,
     required this.limit,
   });
-
+  Metadata copyWith({
+    int? currentPage,
+    int? totalPages,
+    int? totalItems,
+    int? limit,
+  }) {
+    return Metadata(
+      currentPage: currentPage ?? this.currentPage,
+      totalPages: totalPages ?? this.totalPages,
+      totalItems: totalItems ?? this.totalItems,
+      limit: limit ?? this.limit,
+    );
+  }
   factory Metadata.fromJson(Map<String, dynamic> json) {
     return _$MetadataFromJson(json);
   }

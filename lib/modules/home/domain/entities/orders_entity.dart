@@ -12,10 +12,22 @@ class PendingOrdersEntity extends Equatable {
     required this.orders,
   });
 
+  PendingOrdersEntity copyWith({
+    String? message,
+    Metadata? metadata,
+    List<OrderEntity>? orders,
+  }) {
+    return PendingOrdersEntity(
+      message: message ?? this.message,
+      metadata: metadata ?? this.metadata,
+      orders: orders ?? this.orders,
+    );
+  }
+
   factory PendingOrdersEntity.fromResponse(PendingOrdersResponse response) {
     return PendingOrdersEntity(
       message: response.message,
-      metadata: response.metadata,
+      metadata: Metadata(currentPage: response.metadata!.currentPage, totalPages: response.metadata!.totalPages, totalItems: response.metadata!.totalItems, limit: response.metadata!.limit,),
       orders:
           response.orders
               ?.map((order) => OrderEntity.fromModel(order))
@@ -27,7 +39,33 @@ class PendingOrdersEntity extends Equatable {
   @override
   List<Object?> get props => [message, metadata, orders];
 }
+class Metadata {
+  final int currentPage;
+  final int totalPages;
+  final int totalItems;
+  final int limit;
 
+  Metadata({
+    required this.currentPage,
+    required this.totalPages,
+    required this.totalItems,
+    required this.limit,
+  });
+
+  Metadata copyWith({
+    int? currentPage,
+    int? totalPages,
+    int? totalItems,
+    int? limit,
+  }) {
+    return Metadata(
+      currentPage: currentPage ?? this.currentPage,
+      totalPages: totalPages ?? this.totalPages,
+      totalItems: totalItems ?? this.totalItems,
+      limit: limit ?? this.limit,
+    );
+  }
+}
 class OrderEntity extends Equatable {
   final String id;
   final User user;

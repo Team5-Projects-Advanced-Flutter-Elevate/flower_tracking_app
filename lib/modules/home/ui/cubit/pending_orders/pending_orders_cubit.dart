@@ -22,7 +22,7 @@ class OrdersCubit extends Cubit<OrdersState> {
       await _loadMoreOrders();
     } else if (intent is RefreshOrdersIntent) {
       await _loadOrders(page: 1, isRefresh: true);
-    }
+    } 
   }
 
   Future<void> _loadOrders({required int page, required bool isRefresh}) async {
@@ -137,8 +137,19 @@ class OrdersCubit extends Cubit<OrdersState> {
       _isLoading = false;
     }
   }
+  removeOrder(String orderId) {
+    final currentOrders = state.orders?.orders ?? [];
+    final updatedOrders = currentOrders.where((order) => order.id != orderId).toList();
 
-  Future<void> close() {
-    return super.close();
+    emit(
+      state.copyWith(
+        orders: state.orders?.copyWith(
+          orders: updatedOrders,
+          metadata: state.orders!.metadata?.copyWith(
+            totalItems: updatedOrders.length,
+          ),
+        ),
+      ),
+    );
   }
 }
