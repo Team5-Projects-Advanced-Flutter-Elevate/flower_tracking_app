@@ -90,7 +90,7 @@
   "removedImage": "Removed image",
   "thankYou": "Thank You!!",
   "successScreenDescription": "The order delivered successfully",
-  "done": "Done"
+  "done": "Done",
   "home": "Home",
   "orders": "Orders",
   "profile": "Profile",
@@ -106,7 +106,6 @@
   "eGP": "EGP",
   "pickUpAddress": "Pickup address",
   "userAddress": "User address",
-  "removedImage": "Removed image",
   "orderDetailsScreen_________": "$$ Comment $$$",
   "orderDetails": "Order Details",
   "status": "Status",

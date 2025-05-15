@@ -10,9 +10,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:provider/provider.dart';
 
-import 'core/routing/defined_routes.dart';
+import 'core/routing/generate_route.dart';
 import 'core/utilities/dio/dio_service/dio_service.dart';
-import 'modules/home/ui/success_screen.dart';
 
 GlobalKey<NavigatorState> globalNavigatorKey = GlobalKey<NavigatorState>();
 LoggedDriverDataResponseEntity? loggedDriverData;
@@ -77,18 +76,14 @@ class _MyAppState extends State<MyApp> {
             localizationsDelegates: AppLocalizations.localizationsDelegates,
             supportedLocales: AppLocalizations.supportedLocales,
             navigatorKey: globalNavigatorKey,
-            initialRoute: DefinedRoutes.orderDetailsRoute,
 
-            // onGenerateRoute: GenerateRoute.onGenerateRoute,
-            // onGenerateInitialRoutes: (initialRoute) {
-            //   return GenerateRoute.onGenerateInitialRoutes(
-            //     initialRoute: initialRoute,
-            //     loginInfo: loggedDriverData,
-            //   );
-            // },
-            home: SuccessScreen(),
-            // navigatorKey: globalNavigatorKey,
-            // onGenerateRoute: GenerateRoute.onGenerateRoute,
+            onGenerateRoute: GenerateRoute.onGenerateRoute,
+            onGenerateInitialRoutes: (initialRoute) {
+              return GenerateRoute.onGenerateInitialRoutes(
+                initialRoute: initialRoute,
+                loginInfo: loggedDriverData,
+              );
+            },
             // initialRoute: DefinedRoutes.onboardingScreenRoute,
             // onGenerateInitialRoutes: (initialRoute) {
             //   return GenerateRoute.onGenerateInitialRoutes(

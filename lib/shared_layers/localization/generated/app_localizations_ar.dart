@@ -267,6 +267,18 @@ class AppLocalizationsAr extends AppLocalizations {
   String get female => 'أنثى';
 
   @override
+  String get removedImage => 'تمت إزالة الصورة';
+
+  @override
+  String get thankYou => 'شكرا لك !!';
+
+  @override
+  String get successScreenDescription => 'تم توصيل الطلب بنجاح';
+
+  @override
+  String get done => 'تم';
+
+  @override
   String get home => 'الرئيسية';
 
   @override
@@ -310,9 +322,6 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get userAddress => 'عنوان المستخدم';
-
-  @override
-  String get removedImage => 'تمت إزالة الصورة';
 
   @override
   String get orderDetailsScreen_________ => '\$\$ Comment \$\$\$';
