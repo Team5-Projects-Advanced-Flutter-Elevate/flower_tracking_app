@@ -1,7 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flower_tracking_app/core/bases/base_inherited_widget.dart';
 import 'package:flower_tracking_app/core/di/injectable_initializer.dart';
-import 'package:flower_tracking_app/core/routing/generate_route.dart';
 import 'package:flower_tracking_app/core/themes/app_themes.dart';
 import 'package:flower_tracking_app/core/validation/validation_functions.dart';
 import 'package:flower_tracking_app/firebase_options.dart';
@@ -13,10 +12,13 @@ import 'package:flower_tracking_app/shared_layers/localization/l10n_manager/loca
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:provider/provider.dart';
+
+import 'core/routing/generate_route.dart';
 import 'core/utilities/dio/dio_service/dio_service.dart';
 
 GlobalKey<NavigatorState> globalNavigatorKey = GlobalKey<NavigatorState>();
 LoggedDriverDataResponseEntity? loggedDriverData;
+
 void main() async {
   FlutterNativeSplash.preserve(
     widgetsBinding: WidgetsFlutterBinding.ensureInitialized(),
@@ -82,9 +84,8 @@ class _MyAppState extends State<MyApp> {
             themeMode: ThemeMode.light,
             localizationsDelegates: AppLocalizations.localizationsDelegates,
             supportedLocales: AppLocalizations.supportedLocales,
-            locale: Locale(localizationManager.currentLocale),
             navigatorKey: globalNavigatorKey,
-            //initialRoute: DefinedRoutes.onboardingScreenRoute,
+
             onGenerateRoute: GenerateRoute.onGenerateRoute,
             onGenerateInitialRoutes: (initialRoute) {
               return GenerateRoute.onGenerateInitialRoutes(
@@ -92,7 +93,15 @@ class _MyAppState extends State<MyApp> {
                 loginInfo: loggedDriverData,
               );
             },
-            //home: ForgetPasswordScreen(),
+            // //initialRoute: DefinedRoutes.onboardingScreenRoute,
+            // onGenerateRoute: GenerateRoute.onGenerateRoute,
+            // onGenerateInitialRoutes: (initialRoute) {
+            //   return GenerateRoute.onGenerateInitialRoutes(
+            //     initialRoute: initialRoute,
+            //     loginInfo: loggedDriverData,
+            //   );
+            // },
+            //home: LauncherScreen(),
             // navigatorKey: globalNavigatorKey,
             // onGenerateRoute: GenerateRoute.onGenerateRoute,
             // initialRoute: DefinedRoutes.onboardingScreenRoute,

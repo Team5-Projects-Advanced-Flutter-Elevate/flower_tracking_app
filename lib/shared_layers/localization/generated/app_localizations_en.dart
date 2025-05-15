@@ -105,6 +105,15 @@ class AppLocalizationsEn extends AppLocalizations {
   String get pleaseEnterValidAddress => 'Please enter a valid address';
 
   @override
+  String get pleaseEnterValidRecipient => 'Please enter a valid recipient';
+
+  @override
+  String get applicationSubmitted => 'Your application has been submitted!';
+
+  @override
+  String get thanksForProvidingApplication => 'Thank you for providing your application, we will review your application and will get back to you soon.';
+
+  @override
   String get onboardingScreen____________ => '\$\$\$ Comment \$\$\$';
 
   @override
@@ -112,9 +121,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get applyNow => 'Apply Now';
-
-  @override
-  String get pleaseEnterValidRecipient => 'Please enter a valid recipient';
 
   @override
   String get loginScreen___________ => '\$\$ Comment \$\$';
@@ -268,4 +274,121 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get removedImage => 'Removed image';
+
+  @override
+  String get thankYou => 'Thank You!!';
+
+  @override
+  String get successScreenDescription => 'The order delivered successfully';
+
+  @override
+  String get done => 'Done';
+
+  @override
+  String get home => 'Home';
+
+  @override
+  String get orders => 'Orders';
+
+  @override
+  String get profile => 'Profile';
+
+  @override
+  String get floweryRider => 'Flowery rider';
+
+  @override
+  String get readyForDelivery => 'Ready for delivery';
+
+  @override
+  String get accept => 'Accept';
+
+  @override
+  String get reject => 'Reject';
+
+  @override
+  String get noOrdersFound => 'No orders found';
+
+  @override
+  String get unKnownProduct => 'Unknown Product';
+
+  @override
+  String get unKnownAddress => 'Unknown Address';
+
+  @override
+  String get unKnownStore => 'Unknown Store';
+
+  @override
+  String get unKnown => 'UnKnown';
+
+  @override
+  String get eGP => 'EGP';
+
+  @override
+  String get pickUpAddress => 'Pickup address';
+
+  @override
+  String get userAddress => 'User address';
+
+  @override
+  String get orderDetailsScreen_________ => '\$\$ Comment \$\$\$';
+
+  @override
+  String get orderDetails => 'Order Details';
+
+  @override
+  String get status => 'Status';
+
+  @override
+  String get accepted => 'Accepted';
+
+  @override
+  String get orderId => 'Order ID';
+
+  @override
+  String get pickupAddress => 'Pickup address';
+
+  @override
+  String get floweryStore => 'Flowery store';
+
+  @override
+  String get egp => 'EGP';
+
+  @override
+  String get total => 'Total';
+
+  @override
+  String get paymentMethod => 'Payment method';
+
+  @override
+  String get cashOnDelivery => 'Cash on delivery';
+
+  @override
+  String get arrivedAtPickupPoint => 'Arrived at Pickup point';
+
+  @override
+  String get orderStatusAccepted => 'Accepted';
+
+  @override
+  String get orderStatusPicked => 'Picked';
+
+  @override
+  String get orderStatusOutForDelivery => 'Out for delivery';
+
+  @override
+  String get orderStatusArrived => 'Arrived';
+
+  @override
+  String get orderStatusDelivered => 'Delivered';
+
+  @override
+  String get buttonArrivedAtPickup => 'Arrived at pickup point';
+
+  @override
+  String get buttonStartDelivery => 'Start delivery';
+
+  @override
+  String get buttonArrivedDestination => 'Arrived to destination';
+
+  @override
+  String get buttonOrderDelivered => 'Order delivered';
 }

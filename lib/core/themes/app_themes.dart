@@ -208,5 +208,30 @@ abstract class AppThemes {
         ),
       ),
     ),
+    switchTheme: SwitchThemeData(
+      trackColor: WidgetStateProperty.resolveWith((states) {
+        if (states.contains(WidgetState.selected)) {
+          return AppColors.green; // Fallback to Colors.green if AppColors.green is null
+        }
+        return null; // Use default (colorScheme.surface)
+      }),
+      overlayColor: WidgetStateProperty.resolveWith((states) {
+        if (states.contains(WidgetState.selected)) {
+          return AppColors.green;
+        }
+        return null; // Use default
+      }),
+      thumbColor: WidgetStateProperty.resolveWith((states) {
+        if (states.contains(WidgetState.disabled)) {
+          return AppColors.black;
+        } else if (states.contains(WidgetState.selected)) {
+          return AppColors.white;
+        }
+        return AppColors.black;
+      }),
+      trackOutlineColor: WidgetStateProperty.resolveWith((states) {
+        return AppColors.black; // Subtle outline
+      }),
+    ),
   );
 }
