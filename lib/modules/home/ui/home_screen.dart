@@ -113,6 +113,7 @@ class _HomeScreenState extends BaseStatefulWidgetState<HomeScreen> {
     super.initState();
     orderCollection = getIt.get<OrderCollection>();
     driverId = getIt.get(instanceName: FirestoreConstants.driverId);
+    orderDto = OrderDto.fromJson(testingOrder);
   }
 
   @override
@@ -210,6 +211,7 @@ class _HomeScreenState extends BaseStatefulWidgetState<HomeScreen> {
                   driverId: driverId,
                   orderEntity: OrderEntity(
                     id: "68221af61433a666c8db98d7",
+                    isDelivered: true,
                     deliveredAt: DateTime.now().dateSinceEpoch(),
                   ),
                 );

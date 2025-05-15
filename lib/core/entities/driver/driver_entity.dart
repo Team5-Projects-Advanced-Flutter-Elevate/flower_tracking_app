@@ -17,6 +17,7 @@ class DriverEntity extends BaseDataModel {
     this.photo,
     this.role,
     this.createdAt,
+    this.isCanceled,
   }) : super(
          equatableProps: [
            id,
@@ -34,6 +35,7 @@ class DriverEntity extends BaseDataModel {
            photo,
            role,
            createdAt,
+           isCanceled,
          ],
        );
 
@@ -52,4 +54,5 @@ class DriverEntity extends BaseDataModel {
   final String? photo;
   final String? role;
   final String? createdAt;
+  final bool? isCanceled;
 }

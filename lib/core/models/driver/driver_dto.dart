@@ -35,6 +35,7 @@ class DriverDto {
     this.photo,
     this.role,
     this.createdAt,
+    this.isCanceled,
   });
 
   factory DriverDto.fromJson(dynamic json) => _$DriverDtoFromJson(json);
@@ -57,6 +58,7 @@ class DriverDto {
   String? photo;
   String? role;
   String? createdAt;
+  bool? isCanceled;
 
   DriverEntity convertIntoEntity() {
     return DriverEntity(
@@ -75,6 +77,7 @@ class DriverDto {
       photo: photo,
       role: role,
       createdAt: createdAt,
+      isCanceled: isCanceled,
     );
   }
 
@@ -95,6 +98,7 @@ class DriverDto {
       photo: entity?.photo,
       role: entity?.role,
       createdAt: entity?.createdAt,
+      isCanceled: entity?.isCanceled,
     );
   }
 }
