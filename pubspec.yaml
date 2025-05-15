@@ -90,6 +90,8 @@ dependencies:
   country_flags: ^3.2.0
   mime_type: ^1.0.1
   url_launcher: ^6.3.1
+  flutter_svg: ^2.1.0
+  custom_refresh_indicator: ^4.0.1
 
 
 
@@ -137,6 +139,7 @@ flutter:
     - assets/icons/
     - assets/animations/
     - assets/files/
+    - assets/images/
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 

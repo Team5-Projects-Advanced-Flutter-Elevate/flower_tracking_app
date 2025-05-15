@@ -7,4 +7,5 @@ class ApisEndpoints {
   static const String loggedDriverDataEndPoint = 'api/v1/drivers/profile-data';
   static const String applyDriver = 'api/v1/drivers/apply';
   static const String getVehicles = 'api/v1/vehicles';
+  static const String getPendingOrders = 'api/v1/orders/pending-orders';
 }
