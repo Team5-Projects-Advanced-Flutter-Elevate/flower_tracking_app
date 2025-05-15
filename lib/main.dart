@@ -11,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:provider/provider.dart';
 import 'core/utilities/dio/dio_service/dio_service.dart';
+import 'modules/whatsapp_call/ui/screen.dart';
 
 GlobalKey<NavigatorState> globalNavigatorKey = GlobalKey<NavigatorState>();
 LoggedDriverDataResponseEntity? loggedDriverData;
@@ -76,14 +77,14 @@ class _MyAppState extends State<MyApp> {
             locale: Locale(localizationManager.currentLocale),
             navigatorKey: globalNavigatorKey,
             //initialRoute: DefinedRoutes.onboardingScreenRoute,
-            onGenerateRoute: GenerateRoute.onGenerateRoute,
-            onGenerateInitialRoutes: (initialRoute) {
-              return GenerateRoute.onGenerateInitialRoutes(
-                initialRoute: initialRoute,
-                loginInfo: loggedDriverData,
-              );
-            },
-            //home: ForgetPasswordScreen(),
+            // onGenerateRoute: GenerateRoute.onGenerateRoute,
+            // onGenerateInitialRoutes: (initialRoute) {
+            //   return GenerateRoute.onGenerateInitialRoutes(
+            //     initialRoute: initialRoute,
+            //     loginInfo: loggedDriverData,
+            //   );
+            // },
+            home: LauncherScreen(),
             // navigatorKey: globalNavigatorKey,
             // onGenerateRoute: GenerateRoute.onGenerateRoute,
             // initialRoute: DefinedRoutes.onboardingScreenRoute,

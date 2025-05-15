@@ -88,6 +88,24 @@ import '../../modules/authentication/ui/forget_password/view_model/forget_passwo
     as _i105;
 import '../../modules/authentication/ui/login/view_model/login_view_model.dart'
     as _i108;
+import '../../modules/whatsapp_call/data/data_source/call_data_source.dart'
+    as _i692;
+import '../../modules/whatsapp_call/data/data_source/whatsapp_data_source.dart'
+    as _i1028;
+import '../../modules/whatsapp_call/data/data_source_impl/call_data_source_impl.dart'
+    as _i787;
+import '../../modules/whatsapp_call/data/data_source_impl/whatsapp_data_source_impl.dart'
+    as _i882;
+import '../../modules/whatsapp_call/data/repo_impl/call_repo_impl.dart'
+    as _i618;
+import '../../modules/whatsapp_call/data/repo_impl/whatsapp_repo_impl.dart'
+    as _i194;
+import '../../modules/whatsapp_call/domain/repo/call_repo.dart' as _i557;
+import '../../modules/whatsapp_call/domain/repo/whatsapp_repo.dart' as _i281;
+import '../../modules/whatsapp_call/domain/usecase/call_usecase.dart' as _i487;
+import '../../modules/whatsapp_call/domain/usecase/whatsapp_usecase.dart'
+    as _i565;
+import '../../modules/whatsapp_call/ui/cubit/launcher_view_model.dart' as _i898;
 import '../../shared_layers/localization/generated/app_localizations.dart'
     as _i543;
 import '../../shared_layers/localization/initializer/locale_initializer.dart'
@@ -127,9 +145,11 @@ extension GetItInjectableX on _i174.GetIt {
       () => storagesInitializer.initFlutterSecureStorage(),
       preResolve: true,
     );
+    gh.factory<_i1028.WhatsAppDataSource>(() => _i882.WhatsAppDataSourceImpl());
     gh.lazySingleton<_i843.ImagePickerService>(
       () => _i684.DefaultImagePickerService(),
     );
+    gh.factory<_i692.CallDataSource>(() => _i787.CallDataSourceImpl());
     gh.lazySingleton<_i780.ApplyApiClient>(
       () => applyApiClientProvider.providerApiClient(gh<_i361.Dio>()),
     );
@@ -139,6 +159,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i843.ApplyDataSource>(
       () => _i684.ApplyDataSourceImpl(gh<_i780.ApplyApiClient>()),
     );
+    gh.factory<_i557.CallRepo>(
+      () => _i618.CallRepoImpl(gh<_i692.CallDataSource>()),
+    );
     gh.factory<_i881.ResetPasswordRemoteDataSource>(
       () => _i956.ResetPasswordRemoteDataSourceImpl(gh<_i343.AuthApiClient>()),
     );
@@ -147,6 +170,12 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i61.ApplyRepo>(
       () => _i792.ApplyRepoImpl(applyDataSource: gh<_i843.ApplyDataSource>()),
+    );
+    gh.factory<_i487.CallUseCase>(
+      () => _i487.CallUseCase(gh<_i557.CallRepo>()),
+    );
+    gh.factory<_i281.WhatsAppRepo>(
+      () => _i194.WhatsAppRepoImpl(gh<_i1028.WhatsAppDataSource>()),
     );
     gh.factory<_i731.ResetPasswordRepo>(
       () => _i940.ResetPasswordRepoImpl(
@@ -228,6 +257,9 @@ extension GetItInjectableX on _i174.GetIt {
       ),
       preResolve: true,
     );
+    gh.factory<_i565.WhatsAppUseCase>(
+      () => _i565.WhatsAppUseCase(gh<_i281.WhatsAppRepo>()),
+    );
     gh.factory<_i543.LoginUseCase>(
       () => _i543.LoginUseCase(gh<_i450.LoginRepo>()),
     );
@@ -236,11 +268,17 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i150.ForgetPasswordRemoteDataSource>(),
       ),
     );
+    gh.lazySingleton<_i439.ApiErrorHandler>(
+      () => _i439.ApiErrorHandler(gh<_i543.AppLocalizations>()),
+    );
     gh.lazySingleton<_i166.ValidateFunctions>(
       () => _i166.ValidateFunctions(gh<_i543.AppLocalizations>()),
     );
-    gh.lazySingleton<_i439.ApiErrorHandler>(
-      () => _i439.ApiErrorHandler(gh<_i543.AppLocalizations>()),
+    gh.factory<_i898.LauncherViewModel>(
+      () => _i898.LauncherViewModel(
+        gh<_i565.WhatsAppUseCase>(),
+        gh<_i487.CallUseCase>(),
+      ),
     );
     gh.factory<_i823.ForgetPasswordUseCase>(
       () => _i823.ForgetPasswordUseCase(gh<_i1013.ForgetPasswordRepo>()),
