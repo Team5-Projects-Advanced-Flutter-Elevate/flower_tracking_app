@@ -80,14 +80,12 @@ class _MyAppState extends State<MyApp> {
             initialRoute: DefinedRoutes.orderDetailsRoute,
 
             onGenerateRoute: GenerateRoute.onGenerateRoute,
-            /*  onGenerateInitialRoutes: (initialRoute) {
+            onGenerateInitialRoutes: (initialRoute) {
               return GenerateRoute.onGenerateInitialRoutes(
                 initialRoute: initialRoute,
                 loginInfo: loggedDriverData,
               );
-
-
-            },*/
+            },
             //home: ForgetPasswordScreen(),
             // navigatorKey: globalNavigatorKey,
             // onGenerateRoute: GenerateRoute.onGenerateRoute,

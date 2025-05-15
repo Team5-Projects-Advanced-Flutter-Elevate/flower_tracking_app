@@ -611,12 +611,6 @@ abstract class AppLocalizations {
   /// **'Female'**
   String get female;
 
-  /// No description provided for @removedImage.
-  ///
-  /// In en, this message translates to:
-  /// **'Removed image'**
-  String get removedImage;
-
   /// No description provided for @home.
   ///
   /// In en, this message translates to:
@@ -707,6 +701,12 @@ abstract class AppLocalizations {
   /// **'User address'**
   String get userAddress;
 
+  /// No description provided for @removedImage.
+  ///
+  /// In en, this message translates to:
+  /// **'Removed image'**
+  String get removedImage;
+
   /// No description provided for @orderDetailsScreen_________.
   ///
   /// In en, this message translates to:
@@ -748,11 +748,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Flowery store'**
   String get floweryStore;
-
-  /// No description provided for @userAddress.
-  ///
-  /// In en, this message translates to:
-  /// **'User address'**
 
   /// No description provided for @egp.
   ///

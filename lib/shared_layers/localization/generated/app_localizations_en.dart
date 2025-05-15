@@ -111,8 +111,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get applicationSubmitted => 'Your application has been submitted!';
 
   @override
-  String get thanksForProvidingApplication =>
-      'Thank you for providing your application, we will review your application and will get back to you soon.';
+  String get thanksForProvidingApplication => 'Thank you for providing your application, we will review your application and will get back to you soon.';
 
   @override
   String get onboardingScreen____________ => '\$\$\$ Comment \$\$\$';
@@ -268,9 +267,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get female => 'Female';
 
   @override
-  String get removedImage => 'Removed image';
-
-  @override
   String get home => 'Home';
 
   @override
@@ -314,4 +310,70 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get userAddress => 'User address';
+
+  @override
+  String get removedImage => 'Removed image';
+
+  @override
+  String get orderDetailsScreen_________ => '\$\$ Comment \$\$\$';
+
+  @override
+  String get orderDetails => 'Order Details';
+
+  @override
+  String get status => 'Status';
+
+  @override
+  String get accepted => 'Accepted';
+
+  @override
+  String get orderId => 'Order ID';
+
+  @override
+  String get pickupAddress => 'Pickup address';
+
+  @override
+  String get floweryStore => 'Flowery store';
+
+  @override
+  String get egp => 'EGP';
+
+  @override
+  String get total => 'Total';
+
+  @override
+  String get paymentMethod => 'Payment method';
+
+  @override
+  String get cashOnDelivery => 'Cash on delivery';
+
+  @override
+  String get arrivedAtPickupPoint => 'Arrived at Pickup point';
+
+  @override
+  String get orderStatusAccepted => 'Accepted';
+
+  @override
+  String get orderStatusPicked => 'Picked';
+
+  @override
+  String get orderStatusOutForDelivery => 'Out for delivery';
+
+  @override
+  String get orderStatusArrived => 'Arrived';
+
+  @override
+  String get orderStatusDelivered => 'Delivered';
+
+  @override
+  String get buttonArrivedAtPickup => 'Arrived at pickup point';
+
+  @override
+  String get buttonStartDelivery => 'Start delivery';
+
+  @override
+  String get buttonArrivedDestination => 'Arrived to destination';
+
+  @override
+  String get buttonOrderDelivered => 'Order delivered';
 }
