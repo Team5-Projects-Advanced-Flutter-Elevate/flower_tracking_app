@@ -1,19 +1,21 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:custom_refresh_indicator/custom_refresh_indicator.dart';
 import 'package:flower_tracking_app/core/apis/api_error/api_error_handler.dart';
+import 'package:flower_tracking_app/core/bases/base_stateful_widget_state.dart';
+import 'package:flower_tracking_app/core/colors/app_colors.dart';
 import 'package:flower_tracking_app/core/constants/assets_paths/assets_paths.dart';
 import 'package:flower_tracking_app/core/di/injectable_initializer.dart';
+import 'package:flower_tracking_app/modules/home/ui/cubit/pending_orders/pending_orders_cubit.dart';
+import 'package:flower_tracking_app/modules/home/ui/cubit/pending_orders/pending_orders_state.dart';
 import 'package:flower_tracking_app/modules/home/ui/widget/custom_pending_orders.dart';
 import 'package:flower_tracking_app/shared_layers/localization/generated/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:flower_tracking_app/core/bases/base_stateful_widget_state.dart';
-import 'package:flower_tracking_app/core/colors/app_colors.dart';
-import 'package:flower_tracking_app/modules/home/ui/cubit/pending_orders/pending_orders_cubit.dart';
-import 'package:flower_tracking_app/modules/home/ui/cubit/pending_orders/pending_orders_state.dart';
 import 'package:lottie/lottie.dart';
+
+import '../../../core/routing/defined_routes.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -182,8 +184,7 @@ class _HomeScreenState extends BaseStatefulWidgetState<HomeScreen> {
                               pickUpAddress:
                                   order.store.address ??
                                   appLocalizations.unKnownAddress,
-                              pickUpImage:
-                                  order.store.image,
+                              pickUpImage: order.store.image,
                               pickUpName:
                                   order.store.name ??
                                   appLocalizations.unKnownStore,
@@ -195,9 +196,13 @@ class _HomeScreenState extends BaseStatefulWidgetState<HomeScreen> {
                                   order.user.firstName ??
                                   appLocalizations.unKnown,
                               userLastName: order.user.lastName ?? '',
-                              userImage:
-                                  order.user.photo ,
-                              onAccept: () {},
+                              userImage: order.user.photo,
+                              onAccept: () {
+                                Navigator.pushNamed(
+                                  context,
+                                  DefinedRoutes.orderDetailsRoute,
+                                );
+                              },
                               onReject: () {},
                             );
                           },

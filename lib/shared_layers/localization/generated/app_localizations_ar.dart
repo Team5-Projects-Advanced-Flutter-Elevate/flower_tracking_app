@@ -111,8 +111,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get applicationSubmitted => 'لقد تم تقديم طلبك!';
 
   @override
-  String get thanksForProvidingApplication =>
-      'نشكرك على تقديم طلبك، وسوف نقوم بمراجعة طلبك وسنرد عليك قريبًا.';
+  String get thanksForProvidingApplication => 'نشكرك على تقديم طلبك، وسوف نقوم بمراجعة طلبك وسنرد عليك قريبًا.';
 
   @override
   String get onboardingScreen____________ => '\$\$\$ تعليق \$\$\$';
@@ -268,9 +267,6 @@ class AppLocalizationsAr extends AppLocalizations {
   String get female => 'أنثى';
 
   @override
-  String get removedImage => 'تمت إزالة الصورة';
-
-  @override
   String get home => 'الرئيسية';
 
   @override
@@ -314,4 +310,70 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get userAddress => 'عنوان المستخدم';
+
+  @override
+  String get removedImage => 'تمت إزالة الصورة';
+
+  @override
+  String get orderDetailsScreen_________ => '\$\$ Comment \$\$\$';
+
+  @override
+  String get orderDetails => 'تفاصيل الطلب';
+
+  @override
+  String get status => 'الحالة';
+
+  @override
+  String get accepted => 'مقبول';
+
+  @override
+  String get orderId => 'رقم الطلب';
+
+  @override
+  String get pickupAddress => 'عنوان الاستلام';
+
+  @override
+  String get floweryStore => 'متجر الزهور';
+
+  @override
+  String get egp => 'ج.م';
+
+  @override
+  String get total => 'الإجمالي';
+
+  @override
+  String get paymentMethod => 'طريقة الدفع';
+
+  @override
+  String get cashOnDelivery => 'الدفع عند الاستلام';
+
+  @override
+  String get arrivedAtPickupPoint => 'وصلت إلى نقطة الاستلام';
+
+  @override
+  String get orderStatusAccepted => 'مقبول';
+
+  @override
+  String get orderStatusPicked => 'تم الاستلام';
+
+  @override
+  String get orderStatusOutForDelivery => 'في الطريق للتوصيل';
+
+  @override
+  String get orderStatusArrived => 'وصل';
+
+  @override
+  String get orderStatusDelivered => 'تم التوصيل';
+
+  @override
+  String get buttonArrivedAtPickup => 'وصلت إلى نقطة الاستلام';
+
+  @override
+  String get buttonStartDelivery => 'بدء التوصيل';
+
+  @override
+  String get buttonArrivedDestination => 'وصلت إلى الوجهة';
+
+  @override
+  String get buttonOrderDelivered => 'Order delivered';
 }

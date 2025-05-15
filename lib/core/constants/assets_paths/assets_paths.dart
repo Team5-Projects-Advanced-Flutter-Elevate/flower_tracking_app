@@ -16,4 +16,8 @@ abstract class AssetsPaths {
   static const String unKnownAnyThing = "assets/icons/unknown_anything.png";
   static const String flowerLoadingAnimation =
       "assets/animations/flower_loading_animation.json";
+  static const String flowerLogo = "assets/images/Flowery logo.png";
+  static const String locationIcon = 'assets/icons/location_icon.png';
+  static const String callIcon = 'assets/icons/call_icon.png';
+  static const String whatsappIcon = 'assets/icons/whatsapp_icon.svg';
 }

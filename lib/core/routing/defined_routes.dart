@@ -5,6 +5,7 @@ abstract class DefinedRoutes {
   static const String forgetPasswordScreenRoute = 'forgetPassword';
   static const String homeScreenRoute = 'homeScreen';
   static const String apply = 'apply';
+  static const String orderDetailsRoute = 'orderDetails';
   static const String layoutScreen = 'Layout Screen';
   static const String ordersScreen = 'Orders Screen';
   static const String profileScreen = 'Profile Screen';
