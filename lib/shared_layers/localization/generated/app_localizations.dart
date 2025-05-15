@@ -611,6 +611,30 @@ abstract class AppLocalizations {
   /// **'Female'**
   String get female;
 
+  /// No description provided for @removedImage.
+  ///
+  /// In en, this message translates to:
+  /// **'Removed image'**
+  String get removedImage;
+
+  /// No description provided for @thankYou.
+  ///
+  /// In en, this message translates to:
+  /// **'Thank You!!'**
+  String get thankYou;
+
+  /// No description provided for @successScreenDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'The order delivered successfully'**
+  String get successScreenDescription;
+
+  /// No description provided for @done.
+  ///
+  /// In en, this message translates to:
+  /// **'Done'**
+  String get done;
+
   /// No description provided for @home.
   ///
   /// In en, this message translates to:
@@ -700,12 +724,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'User address'**
   String get userAddress;
-
-  /// No description provided for @removedImage.
-  ///
-  /// In en, this message translates to:
-  /// **'Removed image'**
-  String get removedImage;
 
   /// No description provided for @orderDetailsScreen_________.
   ///
