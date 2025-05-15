@@ -5,6 +5,7 @@ class UserEntity {
   String? email;
   String? gender;
   String? phone;
+  String? photo;
 
   UserEntity({
     this.id,
@@ -13,5 +14,6 @@ class UserEntity {
     this.email,
     this.gender,
     this.phone,
+    this.photo,
   });
 }

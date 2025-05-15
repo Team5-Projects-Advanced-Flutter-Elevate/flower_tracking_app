@@ -88,6 +88,14 @@ import '../../modules/authentication/ui/forget_password/view_model/forget_passwo
     as _i105;
 import '../../modules/authentication/ui/login/view_model/login_view_model.dart'
     as _i108;
+import '../../modules/home/data/api/api_client/orders_api_client.dart' as _i290;
+import '../../modules/home/data/models/orders_client_model.dart' as _i858;
+import '../../modules/home/data/repo_impl/orders_repo_impl.dart' as _i823;
+import '../../modules/home/domain/repo_contract/orders_repo.dart' as _i544;
+import '../../modules/home/domain/use_cases/get_pending_orders_use_case.dart'
+    as _i553;
+import '../../modules/home/ui/cubit/pending_orders/pending_orders_cubit.dart'
+    as _i12;
 import '../../shared_layers/localization/generated/app_localizations.dart'
     as _i543;
 import '../../shared_layers/localization/initializer/locale_initializer.dart'
@@ -117,6 +125,7 @@ extension GetItInjectableX on _i174.GetIt {
     final storagesInitializer = _$StoragesInitializer();
     final applyApiClientProvider = _$ApplyApiClientProvider();
     final authApiClientProvider = _$AuthApiClientProvider();
+    final ordersApiClientProvider = _$OrdersApiClientProvider();
     final localeInitializer = _$LocaleInitializer();
     final appLocalizationsProvider = _$AppLocalizationsProvider();
     await gh.factoryAsync<_i361.Dio>(
@@ -136,6 +145,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i343.AuthApiClient>(
       () => authApiClientProvider.provideApiClient(gh<_i361.Dio>()),
     );
+    gh.lazySingleton<_i858.OrdersApiClient>(
+      () => ordersApiClientProvider.providerApiClient(gh<_i361.Dio>()),
+    );
     gh.factory<_i843.ApplyDataSource>(
       () => _i684.ApplyDataSourceImpl(gh<_i780.ApplyApiClient>()),
     );
@@ -144,6 +156,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.lazySingleton<_i843.CountryLoaderService>(
       () => _i684.AssetCountryLoaderService(),
+    );
+    gh.factory<_i544.OrdersRepo>(
+      () => _i823.OrdersRepoImpl(apiClient: gh<_i858.OrdersApiClient>()),
     );
     gh.factory<_i61.ApplyRepo>(
       () => _i792.ApplyRepoImpl(applyDataSource: gh<_i843.ApplyDataSource>()),
@@ -177,13 +192,16 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i629.SecureStorageService<dynamic>>(),
       ),
     );
-    gh.lazySingleton<_i172.ApplyCubit>(
+    gh.factory<_i172.ApplyCubit>(
       () => _i172.ApplyCubit(
         gh<_i637.ApplyDriverUseCase>(),
         gh<_i900.GetVehiclesUseCase>(),
         gh<_i843.CountryLoaderService>(),
         gh<_i843.ImagePickerService>(),
       ),
+    );
+    gh.factory<_i553.GetPendingOrdersUseCase>(
+      () => _i553.GetPendingOrdersUseCase(gh<_i544.OrdersRepo>()),
     );
     gh.factory<_i251.ResetCodeRepo>(
       () => _i196.ResetCodeRepoImpl(gh<_i779.ResetCodeRemoteDataSource>()),
@@ -228,6 +246,9 @@ extension GetItInjectableX on _i174.GetIt {
       ),
       preResolve: true,
     );
+    gh.lazySingleton<_i12.OrdersCubit>(
+      () => _i12.OrdersCubit(gh<_i553.GetPendingOrdersUseCase>()),
+    );
     gh.factory<_i543.LoginUseCase>(
       () => _i543.LoginUseCase(gh<_i450.LoginRepo>()),
     );
@@ -236,11 +257,11 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i150.ForgetPasswordRemoteDataSource>(),
       ),
     );
-    gh.lazySingleton<_i439.ApiErrorHandler>(
-      () => _i439.ApiErrorHandler(gh<_i543.AppLocalizations>()),
-    );
     gh.lazySingleton<_i166.ValidateFunctions>(
       () => _i166.ValidateFunctions(gh<_i543.AppLocalizations>()),
+    );
+    gh.lazySingleton<_i439.ApiErrorHandler>(
+      () => _i439.ApiErrorHandler(gh<_i543.AppLocalizations>()),
     );
     gh.factory<_i823.ForgetPasswordUseCase>(
       () => _i823.ForgetPasswordUseCase(gh<_i1013.ForgetPasswordRepo>()),
@@ -266,6 +287,8 @@ class _$StoragesInitializer extends _i241.StoragesInitializer {}
 class _$ApplyApiClientProvider extends _i594.ApplyApiClientProvider {}
 
 class _$AuthApiClientProvider extends _i1019.AuthApiClientProvider {}
+
+class _$OrdersApiClientProvider extends _i290.OrdersApiClientProvider {}
 
 class _$LocaleInitializer extends _i631.LocaleInitializer {}
 

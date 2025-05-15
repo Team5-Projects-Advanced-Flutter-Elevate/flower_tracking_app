@@ -90,6 +90,7 @@ dependencies:
   country_flags: ^3.2.0
   mime_type: ^1.0.1
   flutter_svg: ^2.1.0
+  custom_refresh_indicator: ^4.0.1
 
 
 

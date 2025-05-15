@@ -48,8 +48,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get userNameLength => 'يجب أن يكون اسم المستخدم بين 3 و16 حرفًا.';
 
   @override
-  String get userNameRules =>
-      'يمكن أن يحتوي اسم المستخدم على أحرف وأرقام وشرطات سفلية فقط.';
+  String get userNameRules => 'يمكن أن يحتوي اسم المستخدم على أحرف وأرقام وشرطات سفلية فقط.';
 
   @override
   String get pleaseEnterFirstName => 'الرجاء إدخال الاسم الأول.';
@@ -70,8 +69,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get pleaseEnterPhoneNumber => 'الرجاء إدخال رقم الهاتف.';
 
   @override
-  String get phoneNumberRules =>
-      'يجب أن يبدأ الرقم بأحد البادئات الصالحة:\n010 أو 011 أو 012 أو 015\nويتبعها 8 أرقام.';
+  String get phoneNumberRules => 'يجب أن يبدأ الرقم بأحد البادئات الصالحة:\n010 أو 011 أو 012 أو 015\nويتبعها 8 أرقام.';
 
   @override
   String get pleaseEnterPassword => 'الرجاء إدخال كلمة المرور.';
@@ -89,15 +87,13 @@ class AppLocalizationsAr extends AppLocalizations {
   String get digitRulePassword => 'رقم واحد على الأقل.';
 
   @override
-  String get specialCharactersRulePassword =>
-      'يجب إدراج حرف خاص واحد على الأقل (مثل #?!@\$%^&*-).';
+  String get specialCharactersRulePassword => 'يجب إدراج حرف خاص واحد على الأقل (مثل #?!@\$%^&*-).';
 
   @override
   String get pleaseConfirmPassword => 'الرجاء تأكيد كلمة المرور.';
 
   @override
-  String get namesLengthRule =>
-      'يجب أن يكون الاسم مكونًا من ثلاثة أحرف على الأقل.';
+  String get namesLengthRule => 'يجب أن يكون الاسم مكونًا من ثلاثة أحرف على الأقل.';
 
   @override
   String get noMatch => 'غير متطابق!';
@@ -109,6 +105,16 @@ class AppLocalizationsAr extends AppLocalizations {
   String get pleaseEnterValidAddress => 'الرجاء إدخال عنوان صالح';
 
   @override
+  String get pleaseEnterValidRecipient => 'الرجاء إدخال مستلم صالح';
+
+  @override
+  String get applicationSubmitted => 'لقد تم تقديم طلبك!';
+
+  @override
+  String get thanksForProvidingApplication =>
+      'نشكرك على تقديم طلبك، وسوف نقوم بمراجعة طلبك وسنرد عليك قريبًا.';
+
+  @override
   String get onboardingScreen____________ => '\$\$\$ تعليق \$\$\$';
 
   @override
@@ -116,9 +122,6 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get applyNow => 'قدم الآن';
-
-  @override
-  String get pleaseEnterValidRecipient => 'الرجاء إدخال مستلم صالح';
 
   @override
   String get loginScreen___________ => '\$\$ تعليق \$\$';
@@ -268,68 +271,47 @@ class AppLocalizationsAr extends AppLocalizations {
   String get removedImage => 'تمت إزالة الصورة';
 
   @override
-  String get orderDetailsScreen_________ => '\$\$ Comment \$\$\$';
+  String get home => 'الرئيسية';
 
   @override
-  String get orderDetails => 'تفاصيل الطلب';
+  String get orders => 'الطلبات';
 
   @override
-  String get status => 'الحالة';
+  String get profile => 'الملف الشخصي';
 
   @override
-  String get accepted => 'مقبول';
+  String get floweryRider => 'سائق فلاوري';
 
   @override
-  String get orderId => 'رقم الطلب';
+  String get readyForDelivery => 'جاهز للتسليم';
 
   @override
-  String get pickupAddress => 'عنوان الاستلام';
+  String get accept => 'موافق';
 
   @override
-  String get floweryStore => 'متجر الزهور';
+  String get reject => 'رافض';
+
+  @override
+  String get noOrdersFound => 'لا يوجد طلبات';
+
+  @override
+  String get unKnownProduct => 'منتج غير معروف';
+
+  @override
+  String get unKnownAddress => 'عنوان غير معروف';
+
+  @override
+  String get unKnownStore => 'متجر غير معروف';
+
+  @override
+  String get unKnown => 'غير معروف';
+
+  @override
+  String get eGP => 'ج م';
+
+  @override
+  String get pickUpAddress => 'عنوان الالتقاط';
 
   @override
   String get userAddress => 'عنوان المستخدم';
-
-  @override
-  String get egp => 'ج.م';
-
-  @override
-  String get total => 'الإجمالي';
-
-  @override
-  String get paymentMethod => 'طريقة الدفع';
-
-  @override
-  String get cashOnDelivery => 'الدفع عند الاستلام';
-
-  @override
-  String get arrivedAtPickupPoint => 'وصلت إلى نقطة الاستلام';
-
-  @override
-  String get orderStatusAccepted => 'مقبول';
-
-  @override
-  String get orderStatusPicked => 'تم الاستلام';
-
-  @override
-  String get orderStatusOutForDelivery => 'في الطريق للتوصيل';
-
-  @override
-  String get orderStatusArrived => 'وصل';
-
-  @override
-  String get orderStatusDelivered => 'تم التوصيل';
-
-  @override
-  String get buttonArrivedAtPickup => 'وصلت إلى نقطة الاستلام';
-
-  @override
-  String get buttonStartDelivery => 'بدء التوصيل';
-
-  @override
-  String get buttonArrivedDestination => 'وصلت إلى الوجهة';
-
-  @override
-  String get buttonOrderDelivered => 'تم توصيل الطلب';
 }

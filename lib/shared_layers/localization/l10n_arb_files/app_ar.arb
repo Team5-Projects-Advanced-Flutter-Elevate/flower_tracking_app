@@ -32,6 +32,10 @@
   "pleaseEnterAddress": "الرجاء إدخال العنوان",
   "pleaseEnterValidAddress": "الرجاء إدخال عنوان صالح",
   "pleaseEnterValidRecipient": "الرجاء إدخال مستلم صالح",
+
+  "applicationSubmitted": "لقد تم تقديم طلبك!",
+  "thanksForProvidingApplication": "نشكرك على تقديم طلبك، وسوف نقوم بمراجعة طلبك وسنرد عليك قريبًا.",
+
   "onboardingScreen____________": "$$$ تعليق $$$",
   "onboardingWelcomeMessage": "مرحبًا بك في\nتطبيق Flowery Rider",
   "applyNow": "قدم الآن",
@@ -105,5 +109,19 @@
   "buttonArrivedAtPickup": "وصلت إلى نقطة الاستلام",
   "buttonStartDelivery": "بدء التوصيل",
   "buttonArrivedDestination": "وصلت إلى الوجهة",
-  "buttonOrderDelivered": "تم توصيل الطلب"
+  "home": "الرئيسية",
+  "orders": "الطلبات",
+  "profile": "الملف الشخصي",
+  "floweryRider": "سائق فلاوري",
+  "readyForDelivery": "جاهز للتسليم",
+  "accept": "موافق",
+  "reject": "رافض",
+  "noOrdersFound": "لا يوجد طلبات",
+  "unKnownProduct": "منتج غير معروف",
+  "unKnownAddress": "عنوان غير معروف",
+  "unKnownStore": "متجر غير معروف",
+  "unKnown": "غير معروف",
+  "eGP": "ج م",
+  "pickUpAddress": "عنوان الالتقاط"
+
 }
