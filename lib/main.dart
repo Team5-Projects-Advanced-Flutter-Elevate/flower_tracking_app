@@ -85,7 +85,7 @@ class _MyAppState extends State<MyApp> {
                 loginInfo: loggedDriverData,
               );
             },
-            //initialRoute: DefinedRoutes.onboardingScreenRoute,
+            // //initialRoute: DefinedRoutes.onboardingScreenRoute,
             // onGenerateRoute: GenerateRoute.onGenerateRoute,
             // onGenerateInitialRoutes: (initialRoute) {
             //   return GenerateRoute.onGenerateInitialRoutes(
@@ -93,7 +93,7 @@ class _MyAppState extends State<MyApp> {
             //     loginInfo: loggedDriverData,
             //   );
             // },
-            home: LauncherScreen(),
+            //home: LauncherScreen(),
             // navigatorKey: globalNavigatorKey,
             // onGenerateRoute: GenerateRoute.onGenerateRoute,
             // initialRoute: DefinedRoutes.onboardingScreenRoute,
