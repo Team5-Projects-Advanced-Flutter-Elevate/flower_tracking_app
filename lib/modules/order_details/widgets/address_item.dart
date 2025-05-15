@@ -34,11 +34,8 @@ class AddressItem extends BaseStatelessWidget {
         children: [
           const Padding(
             padding: EdgeInsetsDirectional.only(end: 8.0),
-            child: Expanded(
-              flex: 2,
-              child: CircleAvatar(
-                backgroundImage: AssetImage(AssetsPaths.flowerLogo),
-              ),
+            child: CircleAvatar(
+              backgroundImage: AssetImage(AssetsPaths.flowerLogo),
             ),
           ),
           Expanded(

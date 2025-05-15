@@ -33,10 +33,8 @@ class OrderDetailsItem extends BaseStatelessWidget {
         children: [
           Padding(
             padding: EdgeInsetsDirectional.only(end: inherit.screenWidth * .02),
-            child: const Expanded(
-              child: CircleAvatar(
-                backgroundImage: AssetImage(AssetsPaths.flowerLogo),
-              ),
+            child: const CircleAvatar(
+              backgroundImage: AssetImage(AssetsPaths.flowerLogo),
             ),
           ),
           Expanded(
