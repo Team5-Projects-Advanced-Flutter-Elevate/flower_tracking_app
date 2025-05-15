@@ -84,6 +84,17 @@ class _MyAppState extends State<MyApp> {
                 loginInfo: loggedDriverData,
               );
             },
+            // //initialRoute: DefinedRoutes.onboardingScreenRoute,
+            // onGenerateRoute: GenerateRoute.onGenerateRoute,
+            // onGenerateInitialRoutes: (initialRoute) {
+            //   return GenerateRoute.onGenerateInitialRoutes(
+            //     initialRoute: initialRoute,
+            //     loginInfo: loggedDriverData,
+            //   );
+            // },
+            //home: LauncherScreen(),
+            // navigatorKey: globalNavigatorKey,
+            // onGenerateRoute: GenerateRoute.onGenerateRoute,
             // initialRoute: DefinedRoutes.onboardingScreenRoute,
             // onGenerateInitialRoutes: (initialRoute) {
             //   return GenerateRoute.onGenerateInitialRoutes(
