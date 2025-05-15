@@ -6,7 +6,7 @@ import 'package:flower_tracking_app/modules/apply/ui/view_model/apply_cubit.dart
 import 'package:flower_tracking_app/modules/onboarding/ui/onboarding_screen.dart';
 import 'package:flutter/material.dart';
 import '../../modules/authentication/ui/login/login_screen.dart';
-import '../../modules/home/ui/home_screen.dart';
+import '../../modules/home/ui/home_screen_mine.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 abstract class GenerateRoute {
