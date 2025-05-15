@@ -54,6 +54,7 @@ class Metadata {
       limit: limit ?? this.limit,
     );
   }
+
   factory Metadata.fromJson(Map<String, dynamic> json) {
     return _$MetadataFromJson(json);
   }

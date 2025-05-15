@@ -182,8 +182,7 @@ class _HomeScreenState extends BaseStatefulWidgetState<HomeScreen> {
                               pickUpAddress:
                                   order.store.address ??
                                   appLocalizations.unKnownAddress,
-                              pickUpImage:
-                                  order.store.image,
+                              pickUpImage: order.store.image,
                               pickUpName:
                                   order.store.name ??
                                   appLocalizations.unKnownStore,
@@ -195,11 +194,12 @@ class _HomeScreenState extends BaseStatefulWidgetState<HomeScreen> {
                                   order.user.firstName ??
                                   appLocalizations.unKnown,
                               userLastName: order.user.lastName ?? '',
-                              userImage:
-                                  order.user.photo ,
+                              userImage: order.user.photo,
                               onAccept: () {},
                               onReject: () {
-                                context.read<OrdersCubit>().removeOrder(order.id);
+                                context.read<OrdersCubit>().removeOrder(
+                                  order.id,
+                                );
                               },
                             );
                           },

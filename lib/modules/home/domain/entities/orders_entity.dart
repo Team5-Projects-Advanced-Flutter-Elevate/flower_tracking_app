@@ -27,7 +27,12 @@ class PendingOrdersEntity extends Equatable {
   factory PendingOrdersEntity.fromResponse(PendingOrdersResponse response) {
     return PendingOrdersEntity(
       message: response.message,
-      metadata: Metadata(currentPage: response.metadata!.currentPage, totalPages: response.metadata!.totalPages, totalItems: response.metadata!.totalItems, limit: response.metadata!.limit,),
+      metadata: Metadata(
+        currentPage: response.metadata!.currentPage,
+        totalPages: response.metadata!.totalPages,
+        totalItems: response.metadata!.totalItems,
+        limit: response.metadata!.limit,
+      ),
       orders:
           response.orders
               ?.map((order) => OrderEntity.fromModel(order))
@@ -39,6 +44,7 @@ class PendingOrdersEntity extends Equatable {
   @override
   List<Object?> get props => [message, metadata, orders];
 }
+
 class Metadata {
   final int currentPage;
   final int totalPages;
@@ -66,6 +72,7 @@ class Metadata {
     );
   }
 }
+
 class OrderEntity extends Equatable {
   final String id;
   final User user;

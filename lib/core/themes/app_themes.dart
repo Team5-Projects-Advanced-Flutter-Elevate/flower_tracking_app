@@ -211,7 +211,8 @@ abstract class AppThemes {
     switchTheme: SwitchThemeData(
       trackColor: WidgetStateProperty.resolveWith((states) {
         if (states.contains(WidgetState.selected)) {
-          return AppColors.green; // Fallback to Colors.green if AppColors.green is null
+          return AppColors
+              .green; // Fallback to Colors.green if AppColors.green is null
         }
         return null; // Use default (colorScheme.surface)
       }),
