@@ -12,7 +12,6 @@ import 'package:provider/provider.dart';
 
 import 'core/routing/generate_route.dart';
 import 'core/utilities/dio/dio_service/dio_service.dart';
-import 'modules/whatsapp_call/ui/screen.dart';
 
 GlobalKey<NavigatorState> globalNavigatorKey = GlobalKey<NavigatorState>();
 LoggedDriverDataResponseEntity? loggedDriverData;
