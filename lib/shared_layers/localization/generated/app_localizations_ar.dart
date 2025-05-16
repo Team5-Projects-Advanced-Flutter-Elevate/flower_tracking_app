@@ -105,15 +105,6 @@ class AppLocalizationsAr extends AppLocalizations {
   String get pleaseEnterValidAddress => 'الرجاء إدخال عنوان صالح';
 
   @override
-  String get pleaseEnterValidRecipient => 'الرجاء إدخال مستلم صالح';
-
-  @override
-  String get applicationSubmitted => 'لقد تم تقديم طلبك!';
-
-  @override
-  String get thanksForProvidingApplication => 'نشكرك على تقديم طلبك، وسوف نقوم بمراجعة طلبك وسنرد عليك قريبًا.';
-
-  @override
   String get onboardingScreen____________ => '\$\$\$ تعليق \$\$\$';
 
   @override
@@ -121,6 +112,9 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get applyNow => 'قدم الآن';
+
+  @override
+  String get pleaseEnterValidRecipient => 'الرجاء إدخال مستلم صالح';
 
   @override
   String get loginScreen___________ => '\$\$ تعليق \$\$';
