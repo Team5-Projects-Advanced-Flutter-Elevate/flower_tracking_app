@@ -20,6 +20,16 @@ abstract class GenerateRoute {
           );
         case DefinedRoutes.loginScreenRoute:
           return MaterialPageRoute(builder: (context) => const LoginScreen());
+        case DefinedRoutes.forgetPasswordScreenRoute:
+          return MaterialPageRoute(
+            builder: (context) => const ForgetPasswordScreen(),
+          );
+        case DefinedRoutes.homeScreenRoute:
+          return MaterialPageRoute(builder: (context) => const HomeScreen());
+        case DefinedRoutes.applicationApproved:
+          return MaterialPageRoute(
+            builder: (context) => const ApplicationApproved(),
+          );  
         case DefinedRoutes.layoutScreen:
           return MaterialPageRoute(builder: (context) => const LayoutScreen());
         case DefinedRoutes.ordersScreen:

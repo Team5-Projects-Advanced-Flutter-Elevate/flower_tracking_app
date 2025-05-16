@@ -137,8 +137,13 @@ class _HomeScreenState extends BaseStatefulWidgetState<HomeScreen> {
                     },
                     builder: (context, state) {
                       if (state.status == LoadOrdersStatus.loading &&
-                          state.orders?.orders.isEmpty == true) {
-                        return const Center(child: CircularProgressIndicator());
+                          (state.orders == null ||
+                              state.orders!.orders.isEmpty)) {
+                        return const Center(
+                          child: CircularProgressIndicator(
+                            color: Color(0xFFD21E6A),
+                          ),
+                        );
                       }
                       if (state.status == LoadOrdersStatus.success &&
                           (state.orders?.orders.isEmpty ?? true)) {
