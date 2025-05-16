@@ -1,11 +1,11 @@
 import 'dart:io';
-
 import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flower_tracking_app/core/models/driver/driver_dto.dart';
 import 'package:flower_tracking_app/modules/apply/domain/entities/apply_response_entity.dart';
 import 'package:http_parser/http_parser.dart';
 import 'package:json_annotation/json_annotation.dart';
+
+import '../../../../shared_layers/database/firestore/data/models/driver/driver_dto_firestore.dart';
 
 part 'apply_response.g.dart';
 
@@ -16,7 +16,7 @@ class ApplyResponse extends Equatable {
   factory ApplyResponse.fromJson(dynamic json) => _$ApplyResponseFromJson(json);
 
   final String? message;
-  final DriverDto? driver;
+  final DriverDtoFirestore? driver;
   final String? token;
 
   Map<String, dynamic> toJson() => _$ApplyResponseToJson(this);

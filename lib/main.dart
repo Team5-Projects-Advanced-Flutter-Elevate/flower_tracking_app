@@ -9,16 +9,17 @@ import 'package:flower_tracking_app/modules/authentication/domain/entities/logge
 import 'package:flower_tracking_app/shared_layers/database/firestore/constants/firestore_constants.dart';
 import 'package:flower_tracking_app/shared_layers/localization/generated/app_localizations.dart';
 import 'package:flower_tracking_app/shared_layers/localization/l10n_manager/localization_manager.dart';
+import 'package:flower_tracking_app/shared_layers/storage/constants/storage_constants.dart';
+import 'package:flower_tracking_app/shared_layers/storage/contracts/flutter_secure_storage_service_contract.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:provider/provider.dart';
-
 import 'core/routing/generate_route.dart';
 import 'core/utilities/dio/dio_service/dio_service.dart';
 
 GlobalKey<NavigatorState> globalNavigatorKey = GlobalKey<NavigatorState>();
 LoggedDriverDataResponseEntity? loggedDriverData;
-
+String? currentAcceptedOrderId;
 void main() async {
   FlutterNativeSplash.preserve(
     widgetsBinding: WidgetsFlutterBinding.ensureInitialized(),
@@ -33,6 +34,9 @@ void main() async {
     await loginLocaleDataSource.deleteRememberMeValue();
   } else {
     loggedDriverData = await loginLocaleDataSource.getDriverData();
+    currentAcceptedOrderId = await getIt
+        .get<SecureStorageService>()
+        .getStringValue(StorageConstants.currentAcceptedOrderId);
     // registering the driver id inside getIt
     getIt.registerSingleton(
       loggedDriverData?.driver?.id ?? "",
@@ -91,6 +95,7 @@ class _MyAppState extends State<MyApp> {
               return GenerateRoute.onGenerateInitialRoutes(
                 initialRoute: initialRoute,
                 loginInfo: loggedDriverData,
+                currentAcceptedOrderId: currentAcceptedOrderId,
               );
             },
             // //initialRoute: DefinedRoutes.onboardingScreenRoute,

@@ -1,7 +1,7 @@
 import 'package:flower_tracking_app/core/bases/base_data_model.dart';
 
-class DriverEntity extends BaseDataModel {
-  DriverEntity({
+class DriverEntityFirestore extends BaseDataModel {
+  DriverEntityFirestore({
     this.id,
     this.country,
     this.firstName,

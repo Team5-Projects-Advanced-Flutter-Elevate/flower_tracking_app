@@ -128,5 +128,9 @@
   "buttonArrivedAtPickup": "Arrived at pickup point",
   "buttonStartDelivery": "Start delivery",
   "buttonArrivedDestination": "Arrived to destination",
-  "buttonOrderDelivered": "Order delivered"
+  "buttonOrderDelivered": "Order delivered",
+  "loading": "Loading.....",
+  "acceptedSuccessfully": "Accepted Successfully!",
+  "updatedSuccessfully": "Updated Successfully!",
+  "orderFinishedSuccessfully": "Order Finished Successfully!"
 }

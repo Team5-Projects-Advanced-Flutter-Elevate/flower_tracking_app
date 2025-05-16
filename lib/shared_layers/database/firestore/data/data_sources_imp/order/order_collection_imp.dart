@@ -1,15 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flower_tracking_app/core/apis/api_executor/api_executor.dart';
 import 'package:flower_tracking_app/core/apis/api_result/api_result.dart';
-import 'package:flower_tracking_app/core/entities/order/order_entity.dart';
-import 'package:flower_tracking_app/core/models/order/order_dto.dart';
 import 'package:flower_tracking_app/shared_layers/database/firestore/constants/firestore_constants.dart';
-import 'package:flower_tracking_app/shared_layers/database/firestore/data_sources_abstracts/order/order_collection.dart';
 import 'package:injectable/injectable.dart';
+import '../../../domain/entities/order/order_entity_firestore.dart';
+import '../../data_sources_abstracts/order/order_collection.dart';
+import '../../models/order/order_dto_firestore.dart';
 
 @Injectable(as: OrderCollection)
 class OrderCollectionImp implements OrderCollection {
-  CollectionReference<OrderDto> _getOrderCollectionOfDriver(String driverId) {
+  CollectionReference<OrderDtoFirestore> _getOrderCollectionOfDriver(String driverId) {
     FirebaseFirestore db = FirebaseFirestore.instance;
     return db
         .collection(FirestoreConstants.driversCollection)
@@ -17,7 +17,7 @@ class OrderCollectionImp implements OrderCollection {
         .collection(FirestoreConstants.ordersCollection)
         .withConverter(
           fromFirestore: (snapshot, options) {
-            return OrderDto.fromJson(snapshot.data());
+            return OrderDtoFirestore.fromJson(snapshot.data());
           },
           toFirestore: (orderDto, options) {
             return orderDto.toJson();
@@ -28,17 +28,17 @@ class OrderCollectionImp implements OrderCollection {
   @override
   Future<ApiResult<void>> addOrder({
     required String driverId,
-    required OrderEntity orderEntity,
+    required OrderEntityFirestore orderEntity,
   }) {
     return ApiExecutor.executeApi(
       () => _getOrderCollectionOfDriver(
         driverId,
-      ).doc(orderEntity.id).set(OrderDto.convertIntoDto(orderEntity)),
+      ).doc(orderEntity.id).set(OrderDtoFirestore.convertIntoDto(orderEntity)),
     );
   }
 
   @override
-  Future<ApiResult<OrderEntity>> readOrder({
+  Future<ApiResult<OrderEntityFirestore>> readOrder({
     required String driverId,
     required String orderId,
   }) async {
@@ -46,11 +46,11 @@ class OrderCollectionImp implements OrderCollection {
       () => _getOrderCollectionOfDriver(driverId).doc(orderId).get(),
     );
     switch (result) {
-      case Success<DocumentSnapshot<OrderDto>>():
+      case Success<DocumentSnapshot<OrderDtoFirestore>>():
         return Success(
-          data: result.data.data()?.convertIntoEntity() ?? OrderEntity(),
+          data: result.data.data()?.convertIntoEntity() ?? OrderEntityFirestore(),
         );
-      case Error<DocumentSnapshot<OrderDto>>():
+      case Error<DocumentSnapshot<OrderDtoFirestore>>():
         return Error(error: result.error);
     }
   }
@@ -58,12 +58,12 @@ class OrderCollectionImp implements OrderCollection {
   @override
   Future<ApiResult<void>> updateOrder({
     required String driverId,
-    required OrderEntity orderEntity,
+    required OrderEntityFirestore orderEntity,
   }) {
     return ApiExecutor.executeApi(
       () => _getOrderCollectionOfDriver(driverId)
           .doc(orderEntity.id)
-          .update(OrderDto.convertIntoDto(orderEntity).toJson()),
+          .update(OrderDtoFirestore.convertIntoDto(orderEntity).toJson()),
     );
   }
 

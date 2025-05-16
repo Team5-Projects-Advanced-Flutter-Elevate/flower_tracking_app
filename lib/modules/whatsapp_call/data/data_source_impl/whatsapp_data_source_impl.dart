@@ -7,7 +7,7 @@ import 'package:url_launcher/url_launcher.dart';
 @Injectable(as: WhatsAppDataSource)
 class WhatsAppDataSourceImpl implements WhatsAppDataSource {
   @override
-  Future<ApiResult<void>> whatsApp(String phoneNumber) async {
+  Future<ApiResult<String>> whatsApp(String phoneNumber) async {
     // TODO: implement whatsApp
     var result = await ApiExecutor.executeApi(() async {
       final url = Uri.parse('https://wa.me/$phoneNumber');

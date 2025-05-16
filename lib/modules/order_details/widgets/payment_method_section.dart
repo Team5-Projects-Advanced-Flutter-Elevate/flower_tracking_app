@@ -5,7 +5,8 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../../core/colors/app_colors.dart';
 
 class PaymentMethodSection extends BaseStatelessWidget {
-  const PaymentMethodSection({super.key});
+  final String? paymentType;
+  const PaymentMethodSection({super.key, required this.paymentType});
 
   @override
   Widget customBuild(BuildContext context, inherit) {
@@ -37,7 +38,11 @@ class PaymentMethodSection extends BaseStatelessWidget {
             ),
           ),
           Text(
-            inherit.appLocalizations.cashOnDelivery,
+            paymentType?.replaceFirst(
+                  paymentType![0],
+                  paymentType![0].toUpperCase(),
+                ) ??
+                inherit.appLocalizations.unKnown,
             style: GoogleFonts.roboto(
               textStyle: inherit.theme.textTheme.labelLarge!.copyWith(
                 color: AppColors.gray,

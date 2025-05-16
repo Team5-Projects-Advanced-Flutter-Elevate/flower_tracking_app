@@ -8,13 +8,16 @@ import 'order_details_static_data.dart';
 class OrderStatusSection extends BaseStatelessWidget {
   const OrderStatusSection({
     super.key,
-
     required this.dataList,
     required this.selectedIndex,
+    required this.orderId,
+    required this.estimatedTime
   });
 
   final List<OrderDetailsStaticData> dataList;
   final int selectedIndex;
+  final String orderId;
+  final String? estimatedTime;
 
   @override
   Widget customBuild(BuildContext context, BaseInheritedWidget inherit) {
@@ -39,13 +42,13 @@ class OrderStatusSection extends BaseStatelessWidget {
             ),
           ),
           Text(
-            '${inherit.appLocalizations.orderId}: #123656',
+            '${inherit.appLocalizations.orderId}: $orderId',
             style: inherit.theme.textTheme.titleMedium!.copyWith(
               fontWeight: FontWeight.w600,
             ),
           ),
           Text(
-            'Wed, 03 Sep 2024, 11:00 AM ',
+            estimatedTime ?? 'Pending...',
             style: inherit.theme.textTheme.labelLarge!.copyWith(
               color: Colors.grey,
             ),

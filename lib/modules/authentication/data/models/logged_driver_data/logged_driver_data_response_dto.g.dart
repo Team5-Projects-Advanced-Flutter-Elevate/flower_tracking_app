@@ -10,7 +10,10 @@ LoggedDriverDataResponseDto _$LoggedDriverDataResponseDtoFromJson(
   Map<String, dynamic> json,
 ) => LoggedDriverDataResponseDto(
   message: json['message'] as String?,
-  driver: json['driver'] == null ? null : DriverDto.fromJson(json['driver']),
+  driver:
+      json['driver'] == null
+          ? null
+          : DriverDtoFirestore.fromJson(json['driver']),
   token: json['token'] as String?,
 );
 

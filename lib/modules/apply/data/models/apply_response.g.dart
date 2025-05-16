@@ -10,7 +10,9 @@ ApplyResponse _$ApplyResponseFromJson(Map<String, dynamic> json) =>
     ApplyResponse(
       message: json['message'] as String?,
       driver:
-          json['driver'] == null ? null : DriverDto.fromJson(json['driver']),
+          json['driver'] == null
+              ? null
+              : DriverDtoFirestore.fromJson(json['driver']),
       token: json['token'] as String?,
     );
 

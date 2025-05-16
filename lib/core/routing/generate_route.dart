@@ -8,14 +8,13 @@ import 'package:flower_tracking_app/modules/home/ui/orders_screen.dart';
 import 'package:flower_tracking_app/modules/home/ui/profile_screen.dart';
 import 'package:flower_tracking_app/modules/onboarding/ui/onboarding_screen.dart';
 import 'package:flutter/material.dart';
-
 import '../../modules/authentication/ui/login/login_screen.dart';
 import '../../modules/home/ui/home_screen_mine.dart';
 import '../../modules/order_details/order_details_screen.dart';
 
 abstract class GenerateRoute {
   static Route<dynamic>? onGenerateRoute(RouteSettings routeSettings) {
-    // var args = routeSettings.arguments;
+    var args = routeSettings.arguments;
     var name = routeSettings.name;
     try {
       switch (name) {
@@ -29,8 +28,10 @@ abstract class GenerateRoute {
           return MaterialPageRoute(
             builder: (context) => const ForgetPasswordScreen(),
           );
-        case DefinedRoutes.homeScreenRoute:
-          return MaterialPageRoute(builder: (context) => const HomeScreen());
+        case DefinedRoutes.homeScreenMineRoute:
+          return MaterialPageRoute(
+            builder: (context) => const HomeScreenMine(),
+          );
         case DefinedRoutes.applicationApproved:
           return MaterialPageRoute(
             builder: (context) => const ApplicationApproved(),
@@ -45,7 +46,7 @@ abstract class GenerateRoute {
           return MaterialPageRoute(builder: (context) => const ApplyView());
         case DefinedRoutes.orderDetailsRoute:
           return MaterialPageRoute(
-            builder: (context) => const OrderDetailsScreen(),
+            builder: (context) => OrderDetailsScreen(orderId: args as String),
           );
         default:
           return _errorRoute();
@@ -57,11 +58,19 @@ abstract class GenerateRoute {
 
   static List<Route<dynamic>> onGenerateInitialRoutes({
     String? initialRoute,
+    String? currentAcceptedOrderId,
     LoggedDriverDataResponseEntity? loginInfo,
   }) {
     return [
       if (loginInfo != null)
-        MaterialPageRoute(builder: (context) => const LayoutScreen())
+        if (currentAcceptedOrderId != null)
+          MaterialPageRoute(
+            builder:
+                (context) =>
+                    OrderDetailsScreen(orderId: currentAcceptedOrderId),
+          )
+        else
+          MaterialPageRoute(builder: (context) => const LayoutScreen())
       else
         MaterialPageRoute(builder: (context) => const OnboardingScreen()),
     ];

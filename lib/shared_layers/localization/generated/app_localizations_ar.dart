@@ -391,4 +391,16 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get buttonOrderDelivered => 'Order delivered';
+
+  @override
+  String get loading => 'Loading.....';
+
+  @override
+  String get acceptedSuccessfully => 'Accepted Successfully!';
+
+  @override
+  String get updatedSuccessfully => 'Updated Successfully!';
+
+  @override
+  String get orderFinishedSuccessfully => 'Order Finished Successfully!';
 }

@@ -1,21 +1,21 @@
 import 'package:flower_tracking_app/core/apis/api_result/api_result.dart';
 import 'package:flower_tracking_app/core/bases/base_stateful_widget_state.dart';
-import 'package:flower_tracking_app/core/entities/order/order_entity.dart';
-import 'package:flower_tracking_app/core/models/order/order_dto.dart';
 import 'package:flower_tracking_app/core/utilities/extensions/date_time_extension/date_time_extension.dart';
 import 'package:flower_tracking_app/shared_layers/database/firestore/constants/firestore_constants.dart';
-import 'package:flower_tracking_app/shared_layers/database/firestore/data_sources_abstracts/order/order_collection.dart';
 import 'package:flutter/material.dart';
 import '../../../core/di/injectable_initializer.dart';
+import '../../../shared_layers/database/firestore/data/data_sources_abstracts/order/order_collection.dart';
+import '../../../shared_layers/database/firestore/data/models/order/order_dto_firestore.dart';
+import '../../../shared_layers/database/firestore/domain/entities/order/order_entity_firestore.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+class HomeScreenMine extends StatefulWidget {
+  const HomeScreenMine({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<HomeScreenMine> createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends BaseStatefulWidgetState<HomeScreen> {
+class _HomeScreenState extends BaseStatefulWidgetState<HomeScreenMine> {
   Map<String, dynamic> testingOrder = {
     "_id": "68221af61433a666c8db98d7",
     "user": {
@@ -104,7 +104,7 @@ class _HomeScreenState extends BaseStatefulWidgetState<HomeScreen> {
       "latLong": "37.7749,-122.4194",
     },
   };
-  late OrderDto orderDto;
+  late OrderDtoFirestore orderDto;
   late OrderCollection orderCollection;
   late String driverId;
 
@@ -113,7 +113,7 @@ class _HomeScreenState extends BaseStatefulWidgetState<HomeScreen> {
     super.initState();
     orderCollection = getIt.get<OrderCollection>();
     driverId = getIt.get(instanceName: FirestoreConstants.driverId);
-    orderDto = OrderDto.fromJson(testingOrder);
+    orderDto = OrderDtoFirestore.fromJson(testingOrder);
   }
 
   @override
@@ -132,7 +132,7 @@ class _HomeScreenState extends BaseStatefulWidgetState<HomeScreen> {
             FilledButton(
               onPressed: () async {
                 debugPrint("Loading");
-                OrderEntity orderEntity = orderDto.convertIntoEntity();
+                OrderEntityFirestore orderEntity = orderDto.convertIntoEntity();
                 var result = await orderCollection.addOrder(
                   driverId: driverId,
                   orderEntity: orderEntity,
@@ -152,7 +152,7 @@ class _HomeScreenState extends BaseStatefulWidgetState<HomeScreen> {
                 debugPrint("lkj ${DateTime.now().dateSinceEpoch()}");
                 var result = await orderCollection.updateOrder(
                   driverId: driverId,
-                  orderEntity: OrderEntity(
+                  orderEntity: OrderEntityFirestore(
                     id: "68221af61433a666c8db98d7",
                     receivedUserOrderAt: DateTime.now().dateSinceEpoch(),
                   ),
@@ -171,7 +171,7 @@ class _HomeScreenState extends BaseStatefulWidgetState<HomeScreen> {
                 debugPrint("Loading");
                 var result = await orderCollection.updateOrder(
                   driverId: driverId,
-                  orderEntity: OrderEntity(
+                  orderEntity: OrderEntityFirestore(
                     id: "68221af61433a666c8db98d7",
                     preparedUserOrderAt: DateTime.now().dateSinceEpoch(),
                   ),
@@ -190,7 +190,7 @@ class _HomeScreenState extends BaseStatefulWidgetState<HomeScreen> {
                 debugPrint("Loading");
                 var result = await orderCollection.updateOrder(
                   driverId: driverId,
-                  orderEntity: OrderEntity(
+                  orderEntity: OrderEntityFirestore(
                     id: "68221af61433a666c8db98d7",
                     outForDeliveryAt: DateTime.now().dateSinceEpoch(),
                   ),
@@ -209,7 +209,7 @@ class _HomeScreenState extends BaseStatefulWidgetState<HomeScreen> {
                 debugPrint("Loading");
                 var result = await orderCollection.updateOrder(
                   driverId: driverId,
-                  orderEntity: OrderEntity(
+                  orderEntity: OrderEntityFirestore(
                     id: "68221af61433a666c8db98d7",
                     isDelivered: true,
                     deliveredAt: DateTime.now().dateSinceEpoch(),

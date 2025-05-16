@@ -1,5 +1,5 @@
-class OrderEntity {
-  OrderEntity({
+class OrderEntityFirestore {
+  OrderEntityFirestore({
     this.id,
     this.user,
     this.orderItems,
@@ -17,6 +17,7 @@ class OrderEntity {
     this.preparedUserOrderAt,
     this.outForDeliveryAt,
     this.deliveredAt,
+    this.shippingAddress
   });
 
   String? id;
@@ -36,6 +37,8 @@ class OrderEntity {
   int? preparedUserOrderAt;
   int? outForDeliveryAt;
   int? deliveredAt;
+  final ShippingAddressEntity? shippingAddress;
+
 }
 
 class StoreEntity {
@@ -119,4 +122,12 @@ class UserEntity {
   String? gender;
   String? phone;
   String? photo;
+}
+
+class ShippingAddressEntity {
+  final String? street;
+  final String? city;
+  final String? phone;
+
+  ShippingAddressEntity({this.street, this.city, this.phone});
 }

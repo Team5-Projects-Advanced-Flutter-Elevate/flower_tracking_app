@@ -862,6 +862,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Order delivered'**
   String get buttonOrderDelivered;
+
+  /// No description provided for @loading.
+  ///
+  /// In en, this message translates to:
+  /// **'Loading.....'**
+  String get loading;
+
+  /// No description provided for @acceptedSuccessfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Accepted Successfully!'**
+  String get acceptedSuccessfully;
+
+  /// No description provided for @updatedSuccessfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Updated Successfully!'**
+  String get updatedSuccessfully;
+
+  /// No description provided for @orderFinishedSuccessfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Order Finished Successfully!'**
+  String get orderFinishedSuccessfully;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

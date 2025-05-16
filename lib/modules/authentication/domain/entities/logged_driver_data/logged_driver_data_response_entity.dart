@@ -1,9 +1,9 @@
-import '../../../../../core/entities/driver/driver_entity.dart';
+import '../../../../../shared_layers/database/firestore/domain/entities/driver/driver_entity_firestore.dart';
 
 class LoggedDriverDataResponseEntity {
   LoggedDriverDataResponseEntity({this.message, this.driver, this.token});
 
   String? message;
-  DriverEntity? driver;
+  DriverEntityFirestore? driver;
   String? token;
 }

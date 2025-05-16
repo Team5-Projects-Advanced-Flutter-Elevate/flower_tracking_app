@@ -1,6 +1,7 @@
 import 'package:flower_tracking_app/modules/authentication/domain/entities/logged_driver_data/logged_driver_data_response_entity.dart';
 import 'package:json_annotation/json_annotation.dart';
-import '../../../../../core/models/driver/driver_dto.dart';
+
+import '../../../../../shared_layers/database/firestore/data/models/driver/driver_dto_firestore.dart';
 part 'logged_driver_data_response_dto.g.dart';
 
 /// message : "success"
@@ -14,7 +15,7 @@ class LoggedDriverDataResponseDto {
 
   Map<String, dynamic> toJson() => _$LoggedDriverDataResponseDtoToJson(this);
   String? message;
-  DriverDto? driver;
+  DriverDtoFirestore? driver;
   String? token;
 
   LoggedDriverDataResponseEntity convertIntoEntity() {
@@ -30,7 +31,7 @@ class LoggedDriverDataResponseDto {
   ) {
     return LoggedDriverDataResponseDto(
       message: entity.message,
-      driver: DriverDto.convertIntoDto(entity.driver),
+      driver: DriverDtoFirestore.convertIntoDto(entity.driver),
       token: entity.token,
     );
   }

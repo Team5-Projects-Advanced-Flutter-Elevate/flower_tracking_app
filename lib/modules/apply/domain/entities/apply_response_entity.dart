@@ -1,12 +1,11 @@
 import 'package:equatable/equatable.dart';
-
-import '../../../../core/entities/driver/driver_entity.dart';
+import '../../../../shared_layers/database/firestore/domain/entities/driver/driver_entity_firestore.dart';
 
 class ApplyResponseEntity extends Equatable {
   const ApplyResponseEntity({this.message, this.driver, this.token});
 
   final String? message;
-  final DriverEntity? driver;
+  final DriverEntityFirestore? driver;
   final String? token;
 
   @override

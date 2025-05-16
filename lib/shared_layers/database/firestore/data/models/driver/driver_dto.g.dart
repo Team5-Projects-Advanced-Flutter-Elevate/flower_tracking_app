@@ -1,12 +1,12 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'driver_dto.dart';
+part of 'driver_dto_firestore.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-DriverDto _$DriverDtoFromJson(Map<String, dynamic> json) => DriverDto(
+DriverDtoFirestore _$DriverDtoFromJson(Map<String, dynamic> json) => DriverDtoFirestore(
   id: json['_id'] as String?,
   country: json['country'] as String?,
   firstName: json['firstName'] as String?,
@@ -22,9 +22,10 @@ DriverDto _$DriverDtoFromJson(Map<String, dynamic> json) => DriverDto(
   photo: json['photo'] as String?,
   role: json['role'] as String?,
   createdAt: json['createdAt'] as String?,
+  isCanceled: json['isCanceled'] as bool?,
 );
 
-Map<String, dynamic> _$DriverDtoToJson(DriverDto instance) => <String, dynamic>{
+Map<String, dynamic> _$DriverDtoToJson(DriverDtoFirestore instance) => <String, dynamic>{
   if (instance.id case final value?) '_id': value,
   if (instance.country case final value?) 'country': value,
   if (instance.firstName case final value?) 'firstName': value,
@@ -40,4 +41,5 @@ Map<String, dynamic> _$DriverDtoToJson(DriverDto instance) => <String, dynamic>{
   if (instance.photo case final value?) 'photo': value,
   if (instance.role case final value?) 'role': value,
   if (instance.createdAt case final value?) 'createdAt': value,
+  if (instance.isCanceled case final value?) 'isCanceled': value,
 };

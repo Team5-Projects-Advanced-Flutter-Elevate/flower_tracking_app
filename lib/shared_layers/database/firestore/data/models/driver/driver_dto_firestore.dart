@@ -1,5 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
-import '../../entities/driver/driver_entity.dart';
+
+import '../../../domain/entities/driver/driver_entity_firestore.dart';
 part 'driver_dto.g.dart';
 
 /// _id : "681c9af21433a666c8da4d98"
@@ -18,8 +19,8 @@ part 'driver_dto.g.dart';
 /// role : "driver"
 /// createdAt : "2025-05-08T11:52:18.050Z"
 @JsonSerializable(includeIfNull: false)
-class DriverDto {
-  DriverDto({
+class DriverDtoFirestore {
+  DriverDtoFirestore({
     this.id,
     this.country,
     this.firstName,
@@ -38,7 +39,7 @@ class DriverDto {
     this.isCanceled,
   });
 
-  factory DriverDto.fromJson(dynamic json) => _$DriverDtoFromJson(json);
+  factory DriverDtoFirestore.fromJson(dynamic json) => _$DriverDtoFromJson(json);
   Map<String, dynamic> toJson() => _$DriverDtoToJson(this);
   @JsonKey(name: '_id')
   String? id;
@@ -60,8 +61,8 @@ class DriverDto {
   String? createdAt;
   bool? isCanceled;
 
-  DriverEntity convertIntoEntity() {
-    return DriverEntity(
+  DriverEntityFirestore convertIntoEntity() {
+    return DriverEntityFirestore(
       id: id,
       country: country,
       firstName: firstName,
@@ -81,8 +82,8 @@ class DriverDto {
     );
   }
 
-  static DriverDto convertIntoDto(DriverEntity? entity) {
-    return DriverDto(
+  static DriverDtoFirestore convertIntoDto(DriverEntityFirestore? entity) {
+    return DriverDtoFirestore(
       id: entity?.id,
       country: entity?.country,
       firstName: entity?.firstName,

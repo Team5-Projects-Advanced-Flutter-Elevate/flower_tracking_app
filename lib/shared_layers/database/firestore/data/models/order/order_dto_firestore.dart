@@ -1,5 +1,6 @@
-import 'package:flower_tracking_app/core/entities/order/order_entity.dart';
 import 'package:flutter/foundation.dart';
+
+import '../../../domain/entities/order/order_entity_firestore.dart';
 
 /// _id : "68150be41433a666c8d91c6c"
 /// user : {"_id":"680eb8861433a666c8d66efc","firstName":"Elevate","lastName":"Tech","email":"omar@gmail.com","gender":"male","phone":"+201010700999","photo":"default-profile.png"}
@@ -14,8 +15,8 @@ import 'package:flutter/foundation.dart';
 /// orderNumber : "#124722"
 /// __v : 0
 /// store : {"name":"Elevate FlowerApp Store","image":"https://www.elevateegy.com/elevate.png","address":"123 Fixed Address, City, Country","phoneNumber":"1234567890","latLong":"37.7749,-122.4194"}
-class OrderDto {
-  OrderDto({
+class OrderDtoFirestore {
+  OrderDtoFirestore({
     this.id,
     this.user,
     this.orderItems,
@@ -33,10 +34,11 @@ class OrderDto {
     this.preparedUserOrderAt,
     this.outForDeliveryAt,
     this.deliveredAt,
+    this.shippingAddress,
   });
 
-  factory OrderDto.fromJson(Map<String, dynamic>? json) {
-    return OrderDto(
+  factory OrderDtoFirestore.fromJson(Map<String, dynamic>? json) {
+    return OrderDtoFirestore(
       id: json?["_id"],
       user: json?["user"] == null ? null : UserDto.fromJson(json?["user"]),
       orderItems:
@@ -55,6 +57,10 @@ class OrderDto {
       orderNumber: json?["orderNumber"],
       v: json?["__v"],
       store: json?["store"] == null ? null : StoreDto.fromJson(json?["store"]),
+      receivedUserOrderAt: json?["receivedUserOrderAt"],
+      preparedUserOrderAt: json?['preparedUserOrderAt'],
+      outForDeliveryAt: json?['outForDeliveryAt'],
+      deliveredAt: json?['deliveredAt'],
     );
   }
 
@@ -75,6 +81,7 @@ class OrderDto {
   int? preparedUserOrderAt;
   int? outForDeliveryAt;
   int? deliveredAt;
+  final ShippingAddressDto? shippingAddress;
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = {};
@@ -109,8 +116,8 @@ class OrderDto {
     return data;
   }
 
-  static OrderDto convertIntoDto(OrderEntity entity) {
-    return OrderDto(
+  static OrderDtoFirestore convertIntoDto(OrderEntityFirestore entity) {
+    return OrderDtoFirestore(
       id: entity.id,
       user: UserDto.convertIntoDto(entity.user),
       orderItems:
@@ -134,8 +141,8 @@ class OrderDto {
     );
   }
 
-  OrderEntity convertIntoEntity() {
-    return OrderEntity(
+  OrderEntityFirestore convertIntoEntity() {
+    return OrderEntityFirestore(
       id: id,
       user: user?.convertIntoEntity(),
       orderItems: orderItems?.map((e) => e.convertIntoEntity()).toList(),
@@ -498,4 +505,26 @@ class UserDto {
       photo: photo,
     );
   }
+}
+
+class ShippingAddressDto {
+  final String? street;
+  final String? city;
+  final String? phone;
+
+  ShippingAddressDto({this.street, this.city, this.phone});
+
+  factory ShippingAddressDto.fromJson(Map<String, dynamic> json) {
+    return ShippingAddressDto(
+      street: json['street'] as String?,
+      city: json['city'] as String?,
+      phone: json['phone'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() => {
+    'street': street,
+    'city': city,
+    'phone': phone,
+  };
 }
