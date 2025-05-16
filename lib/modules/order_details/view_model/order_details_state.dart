@@ -17,7 +17,12 @@ class OrderDetailsState extends Equatable {
   });
 
   @override
-  List<Object?> get props => [orderStatus, orderEntityFirestore, error,updateOrderStateStatus];
+  List<Object?> get props => [
+    orderStatus,
+    orderEntityFirestore,
+    error,
+    updateOrderStateStatus,
+  ];
 
   OrderDetailsState copyWith({
     Status? orderStatus,

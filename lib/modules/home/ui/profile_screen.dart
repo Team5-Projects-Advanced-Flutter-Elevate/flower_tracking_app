@@ -17,7 +17,9 @@ class _ProfileScreenState extends BaseStatefulWidgetState<ProfileScreen> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Center(child: Text("Profile Screen", style: theme.textTheme.titleLarge)),
+          Center(
+            child: Text("Profile Screen", style: theme.textTheme.titleLarge),
+          ),
         ],
       ),
     );

@@ -33,7 +33,8 @@ class OrdersState extends Equatable {
     loadOrdersStatus: loadOrdersStatus ?? this.loadOrdersStatus,
     addingOrderToFirestore:
         addingOrderToFirestore ?? this.addingOrderToFirestore,
-    addedOrderIdToFirestore: addedOrderIdToFirestore ?? this.addedOrderIdToFirestore,
+    addedOrderIdToFirestore:
+        addedOrderIdToFirestore ?? this.addedOrderIdToFirestore,
     orders: orders ?? this.orders,
     error: error ?? this.error,
     currentPage: currentPage ?? this.currentPage,
@@ -46,7 +47,7 @@ class OrdersState extends Equatable {
     error,
     currentPage,
     addingOrderToFirestore,
-    addedOrderIdToFirestore
+    addedOrderIdToFirestore,
   ];
 }
 
