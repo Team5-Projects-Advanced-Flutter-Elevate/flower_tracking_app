@@ -65,3 +65,9 @@ class OnAcceptButtonClick extends OrdersIntent {
 
   OnAcceptButtonClick({required this.driverId, required this.orderEntity});
 }
+
+class RejectOrderIntent {
+  final String orderId;
+
+  RejectOrderIntent(this.orderId);
+}

@@ -183,4 +183,21 @@ class OrdersCubit extends Cubit<OrdersState> {
         );
     }
   }
+
+  removeOrder(String orderId) {
+    final currentOrders = state.orders?.orders ?? [];
+    final updatedOrders =
+        currentOrders.where((order) => order.id != orderId).toList();
+
+    emit(
+      state.copyWith(
+        orders: state.orders?.copyWith(
+          orders: updatedOrders,
+          metadata: state.orders!.metadata?.copyWith(
+            totalItems: updatedOrders.length,
+          ),
+        ),
+      ),
+    );
+  }
 }

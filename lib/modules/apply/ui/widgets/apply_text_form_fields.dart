@@ -468,7 +468,7 @@ class _ApplyTextFormFieldsState
                                 nid: idNumberController.text,
                                 nIDImg: cubit.state.pickedIdImage,
                                 email: emailController.text,
-                                phone: phoneNumberController.text,
+                                phone: getPhoneNumberFormat(),
                                 password: passwordController.text,
                                 rePassword: confirmPasswordController.text,
                                 gender: cubit.state.selectedGender,
@@ -501,6 +501,13 @@ class _ApplyTextFormFieldsState
         }
       },
     );
+  }
+
+  String getPhoneNumberFormat() {
+    if (!(phoneNumberController.text.trim().startsWith('+20'))) {
+      return "+20${phoneNumberController.text}";
+    }
+    return phoneNumberController.text;
   }
 
   void clearControllers() {

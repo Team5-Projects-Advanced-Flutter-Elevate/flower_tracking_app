@@ -31,13 +31,11 @@
   "noMatch": "No Match!",
   "pleaseEnterAddress": "Please enter the address",
   "pleaseEnterValidAddress": "Please enter a valid address",
-  "pleaseEnterValidRecipient": "Please enter a valid recipient",
-  "applicationSubmitted": "Your application has been submitted!",
-  "thanksForProvidingApplication": "Thank you for providing your application, we will review your application and will get back to you soon.",
 
   "onboardingScreen____________": "$$$ Comment $$$",
   "onboardingWelcomeMessage": "Welcome to\nFlowery Rider app",
   "applyNow": "Apply Now",
+  "pleaseEnterValidRecipient": "Please enter a valid recipient",
 
   "loginScreen___________": "$$ Comment $$",
   "login": "Login",
@@ -91,6 +89,8 @@
   "female": "Female",
   "removedImage": "Removed image",
   "thankYou": "Thank You!!",
+  "applicationSubmitted": "Your application has been submitted!",
+  "thanksForProvidingApplication": "Thank you for providing your application, we will review your application and will get back to you soon.",
   "successScreenDescription": "The order delivered successfully",
   "done": "Done",
   "home": "Home",

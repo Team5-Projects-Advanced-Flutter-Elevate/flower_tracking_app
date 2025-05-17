@@ -110,16 +110,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get pleaseEnterValidAddress => 'Please enter a valid address';
 
   @override
-  String get pleaseEnterValidRecipient => 'Please enter a valid recipient';
-
-  @override
-  String get applicationSubmitted => 'Your application has been submitted!';
-
-  @override
-  String get thanksForProvidingApplication =>
-      'Thank you for providing your application, we will review your application and will get back to you soon.';
-
-  @override
   String get onboardingScreen____________ => '\$\$\$ Comment \$\$\$';
 
   @override
@@ -127,6 +117,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get applyNow => 'Apply Now';
+
+  @override
+  String get pleaseEnterValidRecipient => 'Please enter a valid recipient';
 
   @override
   String get loginScreen___________ => '\$\$ Comment \$\$';
@@ -283,6 +276,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get thankYou => 'Thank You!!';
+
+  @override
+  String get applicationSubmitted => 'Your application has been submitted!';
+
+  @override
+  String get thanksForProvidingApplication =>
+      'Thank you for providing your application, we will review your application and will get back to you soon.';
 
   @override
   String get successScreenDescription => 'The order delivered successfully';

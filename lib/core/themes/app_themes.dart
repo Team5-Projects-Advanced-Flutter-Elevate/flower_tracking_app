@@ -170,7 +170,7 @@ abstract class AppThemes {
     filledButtonTheme: FilledButtonThemeData(
       style: ButtonStyle(
         padding: const WidgetStatePropertyAll(
-          EdgeInsets.symmetric(vertical: 12, horizontal: 24),
+          EdgeInsets.symmetric(vertical: 16, horizontal: 24),
         ),
         textStyle: WidgetStatePropertyAll(
           TextStyle(
@@ -197,7 +197,7 @@ abstract class AppThemes {
       style: OutlinedButton.styleFrom(
         foregroundColor: AppColors.black,
         padding: const EdgeInsetsDirectional.symmetric(
-          vertical: 12,
+          vertical: 10,
           horizontal: 24,
         ),
         textStyle: TextStyle(

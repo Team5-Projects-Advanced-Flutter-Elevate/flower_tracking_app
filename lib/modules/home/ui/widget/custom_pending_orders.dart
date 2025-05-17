@@ -85,30 +85,35 @@ class _CustomPendingOrdersState
                   ),
                 ),
                 SizedBox(width: screenWidth * 0.016),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      widget.pickUpName,
-                      style: theme.textTheme.bodyLarge!.copyWith(
-                        color: AppColors.gray,
-                        fontSize: 13,
-                      ),
-                    ),
-                    SizedBox(height: screenHeight * 0.008),
-                    Row(
-                      children: [
-                        const Icon(Icons.location_city_outlined, size: 16),
-                        Text(
-                          widget.pickUpAddress,
-                          style: theme.textTheme.bodyMedium!.copyWith(
-                            fontSize: 13,
-                            fontFamily: GoogleFonts.roboto().fontFamily,
-                          ),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        widget.pickUpName,
+                        style: theme.textTheme.bodyLarge!.copyWith(
+                          color: AppColors.gray,
+                          fontSize: 13,
                         ),
-                      ],
-                    ),
-                  ],
+                      ),
+                      SizedBox(height: screenHeight * 0.008),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Icon(Icons.location_city_outlined, size: 16),
+                          Expanded(
+                            child: Text(
+                              widget.pickUpAddress,
+                              style: theme.textTheme.bodyMedium!.copyWith(
+                                fontSize: 13,
+                                fontFamily: GoogleFonts.roboto().fontFamily,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),
@@ -146,30 +151,35 @@ class _CustomPendingOrdersState
                   ),
                 ),
                 SizedBox(width: screenWidth * 0.016),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      '${widget.userFirstName} ${widget.userLastName}',
-                      style: theme.textTheme.bodyLarge!.copyWith(
-                        color: AppColors.gray,
-                        fontSize: 13,
-                      ),
-                    ),
-                    SizedBox(height: screenHeight * 0.008),
-                    Row(
-                      children: [
-                        const Icon(Icons.location_city_outlined, size: 16),
-                        Text(
-                          widget.userAddress,
-                          style: theme.textTheme.bodyMedium!.copyWith(
-                            fontSize: 13,
-                            fontFamily: GoogleFonts.roboto().fontFamily,
-                          ),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        '${widget.userFirstName} ${widget.userLastName}',
+                        style: theme.textTheme.bodyLarge!.copyWith(
+                          color: AppColors.gray,
+                          fontSize: 13,
                         ),
-                      ],
-                    ),
-                  ],
+                      ),
+                      SizedBox(height: screenHeight * 0.008),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Icon(Icons.location_city_outlined, size: 16),
+                          Expanded(
+                            child: Text(
+                              widget.userAddress,
+                              style: theme.textTheme.bodyMedium!.copyWith(
+                                fontSize: 13,
+                                fontFamily: GoogleFonts.roboto().fontFamily,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),

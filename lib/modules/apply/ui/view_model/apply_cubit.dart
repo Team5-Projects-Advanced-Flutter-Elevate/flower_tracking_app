@@ -16,7 +16,7 @@ import '../../data/models/country_model.dart';
 
 part 'apply_state.dart';
 
-@injectable
+@lazySingleton
 class ApplyCubit extends Cubit<ApplyState> {
   ApplyCubit(
     this.applyDriverUseCase,
