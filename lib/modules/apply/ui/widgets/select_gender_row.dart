@@ -40,9 +40,9 @@ class _SelectGenderRowState extends BaseStatefulWidgetState<SelectGenderRow> {
                         AppLocalizations.of(context)!.female,
                         style: theme.textTheme.titleSmall?.copyWith(
                           color:
-                          state.selectedGender == Gender.female.getValue()
-                              ? AppColors.black
-                              : AppColors.white[90],
+                              state.selectedGender == Gender.female.getValue()
+                                  ? AppColors.black
+                                  : AppColors.white[90],
                         ),
                       ),
                       value: Gender.female.getValue(),
@@ -59,10 +59,10 @@ class _SelectGenderRowState extends BaseStatefulWidgetState<SelectGenderRow> {
                         AppLocalizations.of(context)!.male,
                         style: theme.textTheme.titleSmall?.copyWith(
                           color:
-                          cubit.state.selectedGender ==
-                              Gender.male.getValue()
-                              ? AppColors.black
-                              : AppColors.white[90],
+                              cubit.state.selectedGender ==
+                                      Gender.male.getValue()
+                                  ? AppColors.black
+                                  : AppColors.white[90],
                         ),
                       ),
                       value: Gender.male.getValue(),

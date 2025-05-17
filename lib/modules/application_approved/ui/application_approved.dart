@@ -73,10 +73,10 @@ class _ApplicationApprovedState
                       textAlign: TextAlign.center,
                       style: AppThemes.lightTheme.textTheme.titleMedium!
                           .copyWith(
-                        color: AppColors.gray,
-                        fontSize: 15,
-                        fontWeight: FontWeight.w400,
-                      ),
+                            color: AppColors.gray,
+                            fontSize: 15,
+                            fontWeight: FontWeight.w400,
+                          ),
                     ),
                     SizedBox(height: screenHeight * 0.020),
                     SizedBox(
