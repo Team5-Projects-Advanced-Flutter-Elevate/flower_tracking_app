@@ -24,9 +24,7 @@ class _LayoutScreenState extends BaseStatefulWidgetState<LayoutScreen> {
   @override
   void initState() {
     super.initState();
-    controller = PageController(
-      initialPage: currentScreen,
-    );
+    controller = PageController(initialPage: currentScreen);
   }
 
   @override
@@ -39,66 +37,59 @@ class _LayoutScreenState extends BaseStatefulWidgetState<LayoutScreen> {
       ),
       backgroundColor: Colors.white,
       bottomNavigationBar: NavigationBarTheme(
-  data: NavigationBarThemeData(
-    labelTextStyle: WidgetStateProperty.resolveWith<TextStyle>(
-      (Set<WidgetState> states) {
-        if (states.contains(WidgetState.selected)) {
-          return TextStyle(
-            fontWeight: FontWeight.w500,
-            color: AppColors.mainColor, // Selected label color
-          );
-        }
-        return TextStyle(
-          fontWeight: FontWeight.w500,
-          color: AppColors.gray, // Unselected label color
-        );
-      },
-    ),
-  ),child: NavigationBar(
-        selectedIndex: currentScreen,
-        backgroundColor: AppColors.white,
-        onDestinationSelected: (value) {
-          setState(() {
-            currentScreen = value;
-          });
-          controller.jumpToPage(currentScreen);
-        },
-        destinations: [
-          NavigationDestination(
-            icon: ImageIcon(
-              color: currentScreen == 0
-                  ? AppColors.mainColor
-                  : AppColors.gray,
-              const AssetImage(
-                AssetsPaths.homeIcon,
+        data: NavigationBarThemeData(
+          labelTextStyle: WidgetStateProperty.resolveWith<TextStyle>((
+            Set<WidgetState> states,
+          ) {
+            if (states.contains(WidgetState.selected)) {
+              return TextStyle(
+                fontWeight: FontWeight.w500,
+                color: AppColors.mainColor, // Selected label color
+              );
+            }
+            return TextStyle(
+              fontWeight: FontWeight.w500,
+              color: AppColors.gray, // Unselected label color
+            );
+          }),
+        ),
+        child: NavigationBar(
+          selectedIndex: currentScreen,
+          backgroundColor: AppColors.white,
+          onDestinationSelected: (value) {
+            setState(() {
+              currentScreen = value;
+            });
+            controller.jumpToPage(currentScreen);
+          },
+          destinations: [
+            NavigationDestination(
+              icon: ImageIcon(
+                color:
+                    currentScreen == 0 ? AppColors.mainColor : AppColors.gray,
+                const AssetImage(AssetsPaths.homeIcon),
               ),
+              label: appLocalizations.home,
             ),
-            label: appLocalizations.home,
-          ),
-          NavigationDestination(
-            icon: ImageIcon(
-              color: currentScreen == 1
-                  ? AppColors.mainColor
-                  : AppColors.gray,
-              const AssetImage(
-                AssetsPaths.ordersIcon,
+            NavigationDestination(
+              icon: ImageIcon(
+                color:
+                    currentScreen == 1 ? AppColors.mainColor : AppColors.gray,
+                const AssetImage(AssetsPaths.ordersIcon),
               ),
+              label: appLocalizations.orders,
             ),
-            label: appLocalizations.orders,
-          ),
-          NavigationDestination(
-            icon: ImageIcon(
-              color: currentScreen == 2
-                  ? AppColors.mainColor
-                  : AppColors.gray,
-              const AssetImage(
-                AssetsPaths.profileIcon,
+            NavigationDestination(
+              icon: ImageIcon(
+                color:
+                    currentScreen == 2 ? AppColors.mainColor : AppColors.gray,
+                const AssetImage(AssetsPaths.profileIcon),
               ),
+              label: appLocalizations.profile,
             ),
-            label: appLocalizations.profile,
-          ),
-        ],
+          ],
+        ),
       ),
-    ),);
+    );
   }
 }

@@ -14,8 +14,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
-
 import '../../../core/routing/defined_routes.dart';
+import '../../../shared_layers/database/firestore/constants/firestore_constants.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -28,7 +28,6 @@ class _HomeScreenState extends BaseStatefulWidgetState<HomeScreen> {
   bool light = true;
   final OrdersCubit cubit = GetIt.I<OrdersCubit>();
   final ScrollController _scrollController = ScrollController();
-
   @override
   void initState() {
     super.initState();
@@ -36,7 +35,7 @@ class _HomeScreenState extends BaseStatefulWidgetState<HomeScreen> {
     _scrollController.addListener(() {
       if (_scrollController.position.pixels >=
               _scrollController.position.maxScrollExtent - 100 &&
-          cubit.state.status != LoadOrdersStatus.loadingMore) {
+          cubit.state.loadOrdersStatus != Status.loadingMore) {
         cubit.doIntent(LoadMoreOrdersIntent());
       }
     });
@@ -127,7 +126,7 @@ class _HomeScreenState extends BaseStatefulWidgetState<HomeScreen> {
                   },
                   child: BlocConsumer<OrdersCubit, OrdersState>(
                     listener: (context, state) {
-                      if (state.status == LoadOrdersStatus.error) {
+                      if (state.loadOrdersStatus == Status.error) {
                         displaySnackBar(
                           contentType: ContentType.failure,
                           title: AppLocalizations.of(context)!.error,
@@ -136,78 +135,115 @@ class _HomeScreenState extends BaseStatefulWidgetState<HomeScreen> {
                           ),
                         );
                       }
+                      switch (state.addingOrderToFirestore) {
+                        case Status.loadingMore:
+                        case Status.initial:
+                          break;
+                        case Status.loading:
+                          displaySnackBar(
+                            contentType: ContentType.help,
+                            title: appLocalizations.loading,
+                          );
+                        case Status.success:
+                          displaySnackBar(
+                            contentType: ContentType.success,
+                            title: appLocalizations.acceptedSuccessfully,
+                          );
+                          Navigator.pushNamedAndRemoveUntil(
+                            context,
+                            DefinedRoutes.orderDetailsRoute,
+                            (route) => false,
+                            arguments: state.addedOrderIdToFirestore,
+                          );
+                        case Status.error:
+                          displaySnackBar(
+                            contentType: ContentType.failure,
+                            title: getIt<ApiErrorHandler>().handle(
+                              state.error!,
+                            ),
+                          );
+                      }
                     },
                     builder: (context, state) {
-                      if (state.status == LoadOrdersStatus.loading &&
-                          state.orders?.orders.isEmpty == true) {
+                      if (state.loadOrdersStatus == Status.loading) {
                         return const Center(child: CircularProgressIndicator());
-                      }
-                      if (state.status == LoadOrdersStatus.success &&
-                          (state.orders?.orders.isEmpty ?? true)) {
+                      } else if (state.loadOrdersStatus == Status.success &&
+                          (state.orders?.orders?.isEmpty ?? true)) {
                         return Center(
                           child: Text(appLocalizations.noOrdersFound),
                         );
-                      }
-                      return MediaQuery.removePadding(
-                        context: context,
-                        removeTop: true,
-                        removeBottom: true,
-                        child: ListView.builder(
-                          controller: _scrollController,
-                          physics: const AlwaysScrollableScrollPhysics(),
-                          padding: EdgeInsets.zero,
-                          itemCount:
-                              (state.orders?.orders.length ?? 0) +
-                              (state.status == LoadOrdersStatus.loadingMore
-                                  ? 1
-                                  : 0),
-                          itemBuilder: (context, index) {
-                            if (index == state.orders?.orders.length &&
-                                state.status == LoadOrdersStatus.loadingMore) {
-                              return const Padding(
-                                padding: EdgeInsets.all(16.0),
-                                child: Center(
-                                  child: CircularProgressIndicator(),
-                                ),
-                              );
-                            }
-                            final order = state.orders!.orders[index];
-                            final orderItem =
-                                order.orderItems.isNotEmpty
-                                    ? order.orderItems[0]
-                                    : null;
-                            return CustomPendingOrders(
-                              title:
-                                  orderItem?.product?.title ??
-                                  appLocalizations.unKnownProduct,
-                              price: order.totalPrice.toInt().toString(),
-                              pickUpAddress:
-                                  order.store.address ??
-                                  appLocalizations.unKnownAddress,
-                              pickUpImage: order.store.image,
-                              pickUpName:
-                                  order.store.name ??
-                                  appLocalizations.unKnownStore,
-                              userAddress:
-                                  order.shippingAddress?.street ??
-                                  order.store.address ??
-                                  appLocalizations.unKnownAddress,
-                              userFirstName:
-                                  order.user.firstName ??
-                                  appLocalizations.unKnown,
-                              userLastName: order.user.lastName ?? '',
-                              userImage: order.user.photo,
-                              onAccept: () {
-                                Navigator.pushNamed(
-                                  context,
-                                  DefinedRoutes.orderDetailsRoute,
+                      } else {
+                        return MediaQuery.removePadding(
+                          context: context,
+                          removeTop: true,
+                          removeBottom: true,
+                          child: ListView.builder(
+                            controller: _scrollController,
+                            physics: const AlwaysScrollableScrollPhysics(),
+                            padding: EdgeInsets.zero,
+                            itemCount:
+                                (state.orders?.orders?.length ?? 0) +
+                                (state.loadOrdersStatus == Status.loadingMore
+                                    ? 1
+                                    : 0),
+                            itemBuilder: (context, index) {
+                              if (index == state.orders?.orders?.length &&
+                                  state.loadOrdersStatus ==
+                                      Status.loadingMore) {
+                                return const Padding(
+                                  padding: EdgeInsets.all(16.0),
+                                  child: Center(
+                                    child: CircularProgressIndicator(),
+                                  ),
                                 );
-                              },
-                              onReject: () {},
-                            );
-                          },
-                        ),
-                      );
+                              }
+                              final orderEntity = state.orders!.orders![index];
+                              final orderItem =
+                                  orderEntity.orderItems?.isNotEmpty ?? false
+                                      ? orderEntity.orderItems![0]
+                                      : null;
+                              return CustomPendingOrders(
+                                title:
+                                    orderItem?.product?.title ??
+                                    appLocalizations.unKnownProduct,
+                                price:
+                                    orderEntity.totalPrice
+                                        ?.toInt()
+                                        .toString() ??
+                                    '',
+                                pickUpAddress:
+                                    orderEntity.store?.address ??
+                                    appLocalizations.unKnownAddress,
+                                pickUpImage: orderEntity.store?.image,
+                                pickUpName:
+                                    orderEntity.store?.name ??
+                                    appLocalizations.unKnownStore,
+                                userAddress:
+                                    orderEntity.shippingAddress?.street ??
+                                    orderEntity.store?.address ??
+                                    appLocalizations.unKnownAddress,
+                                userFirstName:
+                                    orderEntity.user?.firstName ??
+                                    appLocalizations.unKnown,
+                                userLastName: orderEntity.user?.lastName ?? '',
+                                userImage: orderEntity.user?.photo,
+                                onAccept: () {
+                                  cubit.doIntent(
+                                    OnAcceptButtonClick(
+                                      driverId: getIt.get(
+                                        instanceName:
+                                            FirestoreConstants.driverId,
+                                      ),
+                                      orderEntity: orderEntity,
+                                    ),
+                                  );
+                                },
+                                onReject: () {},
+                              );
+                            },
+                          ),
+                        );
+                      }
                     },
                   ),
                 ),

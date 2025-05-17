@@ -8,8 +8,7 @@ import '../../../../core/apis/api_result/api_result.dart';
 @Injectable(as: CallDataSource)
 class CallDataSourceImpl implements CallDataSource {
   @override
-  Future<ApiResult<void>> call(String phoneNumber) async {
-    // TODO: implement call
+  Future<ApiResult<String>> call(String phoneNumber) async {
     var result = await ApiExecutor.executeApi(() async {
       final url = Uri.parse('tel:$phoneNumber');
       if (await canLaunchUrl(url)) {

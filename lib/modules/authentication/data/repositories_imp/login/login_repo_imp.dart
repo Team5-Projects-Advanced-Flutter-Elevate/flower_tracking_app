@@ -23,7 +23,7 @@ class LoginRepoImp implements LoginRepo {
   );
 
   @override
-  Future<ApiResult<LoginResponseEntity>> login({
+  Future<ApiResult<LoggedDriverDataResponseEntity>> login({
     required LoginRequestEntity loginRequest,
     required bool rememberMe,
   }) async {
@@ -32,6 +32,7 @@ class LoginRepoImp implements LoginRepo {
     );
     switch (dataSourceResult) {
       case Success<LoginResponseEntity>():
+        // updating the dio token
         DioServiceExtension.updateDioWithToken(
           dataSourceResult.data.token ?? "",
         );
@@ -44,7 +45,7 @@ class LoginRepoImp implements LoginRepo {
               loggedDriverDataResponseEntity: loggedDriverDataResult.data,
             );
             _loginLocalDataSource.saveRememberMeValue(rememberMe: rememberMe);
-            return Success(data: dataSourceResult.data);
+            return Success(data: loggedDriverDataResult.data);
           case Error<LoggedDriverDataResponseEntity>():
             return Error(error: loggedDriverDataResult.error);
         }

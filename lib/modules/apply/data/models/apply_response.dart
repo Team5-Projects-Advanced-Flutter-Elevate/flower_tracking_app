@@ -1,10 +1,11 @@
 import 'dart:io';
-
 import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flower_tracking_app/modules/apply/domain/entities/apply_response_entity.dart';
 import 'package:http_parser/http_parser.dart';
 import 'package:json_annotation/json_annotation.dart';
+
+import '../../../../shared_layers/database/firestore/data/models/driver/driver_dto_firestore.dart';
 
 part 'apply_response.g.dart';
 
@@ -15,82 +16,19 @@ class ApplyResponse extends Equatable {
   factory ApplyResponse.fromJson(dynamic json) => _$ApplyResponseFromJson(json);
 
   final String? message;
-  final Driver? driver;
+  final DriverDtoFirestore? driver;
   final String? token;
 
   Map<String, dynamic> toJson() => _$ApplyResponseToJson(this);
 
   ApplyResponseEntity toEntity() => ApplyResponseEntity(
     message: message,
-    driver: driver?.toEntity(),
+    driver: driver?.convertIntoEntity(),
     token: token,
   );
 
   @override
-  // TODO: implement props
   List<Object?> get props => [message, driver, token];
-}
-
-@JsonSerializable()
-class Driver {
-  Driver({
-    this.country,
-    this.firstName,
-    this.lastName,
-    this.vehicleType,
-    this.vehicleNumber,
-    this.vehicleLicense,
-    this.nid,
-    this.nIDImg,
-    this.email,
-    this.gender,
-    this.phone,
-    this.photo,
-    this.role,
-    this.id,
-    this.createdAt,
-  });
-
-  factory Driver.fromJson(dynamic json) => _$DriverFromJson(json);
-
-  String? country;
-  String? firstName;
-  String? lastName;
-  String? vehicleType;
-  String? vehicleNumber;
-  String? vehicleLicense;
-  @JsonKey(name: 'NID')
-  String? nid;
-  @JsonKey(name: 'NIDImg')
-  String? nIDImg;
-  String? email;
-  String? gender;
-  String? phone;
-  String? photo;
-  String? role;
-  @JsonKey(name: '_id')
-  String? id;
-  String? createdAt;
-
-  Map<String, dynamic> toJson() => _$DriverToJson(this);
-
-  DriverEntity toEntity() => DriverEntity(
-    country: country,
-    firstName: firstName,
-    lastName: lastName,
-    vehicleType: vehicleType,
-    vehicleNumber: vehicleNumber,
-    vehicleLicense: vehicleLicense,
-    nid: nid,
-    nIDImg: nIDImg,
-    email: email,
-    gender: gender,
-    phone: phone,
-    photo: photo,
-    role: role,
-    id: id,
-    createdAt: createdAt,
-  );
 }
 
 class DriverRequestModel {

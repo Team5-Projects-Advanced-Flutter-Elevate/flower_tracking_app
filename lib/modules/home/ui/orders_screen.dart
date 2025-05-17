@@ -17,7 +17,9 @@ class _OrdersScreenState extends BaseStatefulWidgetState<OrdersScreen> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Center(child: Text("Orders Screen", style: theme.textTheme.titleLarge)),
+          Center(
+            child: Text("Orders Screen", style: theme.textTheme.titleLarge),
+          ),
         ],
       ),
     );

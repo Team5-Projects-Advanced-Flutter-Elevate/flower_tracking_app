@@ -109,7 +109,8 @@ class _OnboardingScreenState extends BaseStatefulWidgetState<OnboardingScreen>
 
   @override
   void dispose() {
-    super.dispose();
+    animationController.stop(canceled: true);
     animationController.dispose();
+    super.dispose();
   }
 }

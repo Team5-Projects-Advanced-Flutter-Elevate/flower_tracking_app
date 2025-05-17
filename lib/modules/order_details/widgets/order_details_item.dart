@@ -1,13 +1,14 @@
 import 'package:flower_tracking_app/core/bases/base_inherited_widget.dart';
 import 'package:flower_tracking_app/core/bases/base_statless_widget.dart';
+import 'package:flower_tracking_app/shared_layers/database/firestore/domain/entities/order/order_entity_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import '../../../core/colors/app_colors.dart';
 import '../../../core/constants/assets_paths/assets_paths.dart';
 
 class OrderDetailsItem extends BaseStatelessWidget {
-  const OrderDetailsItem({super.key});
+  final OrderItemEntity? orderItem;
+  const OrderDetailsItem({super.key, required this.orderItem});
 
   @override
   Widget customBuild(BuildContext context, BaseInheritedWidget inherit) {
@@ -44,19 +45,20 @@ class OrderDetailsItem extends BaseStatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      'Red roses,15 Pink Rose Bouquet',
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 1,
+                    Expanded(
+                      child: Text(
+                        orderItem?.product?.title ?? "",
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
 
-                      style: inherit.theme.textTheme.bodySmall!.copyWith(
-                        fontSize: 13,
-                        color: AppColors.gray,
+                        style: inherit.theme.textTheme.bodySmall!.copyWith(
+                          fontSize: 13,
+                          color: AppColors.gray,
+                        ),
                       ),
                     ),
-
                     Text(
-                      'X1  ',
+                      'X${orderItem?.quantity ?? 0}',
                       style: GoogleFonts.roboto(
                         textStyle: inherit.theme.textTheme.labelSmall!.copyWith(
                           fontSize: 13,
@@ -67,7 +69,7 @@ class OrderDetailsItem extends BaseStatelessWidget {
                   ],
                 ),
                 Text(
-                  '${inherit.appLocalizations.egp} 600 ',
+                  '${inherit.appLocalizations.egp} ${orderItem?.product?.priceAfterDiscount ?? orderItem?.product?.price ?? 0} ',
                   style: GoogleFonts.roboto(
                     textStyle: inherit.theme.textTheme.labelSmall!.copyWith(
                       fontSize: 13,
