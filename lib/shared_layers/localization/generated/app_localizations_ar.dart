@@ -385,4 +385,10 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get buttonOrderDelivered => 'Order delivered';
+
+  @override
+  String get phoneNumber => 'رقم الجوال';
+
+  @override
+  String get phoneNumberHint => 'ادخل رقم الجوال';
 }

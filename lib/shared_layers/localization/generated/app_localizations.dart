@@ -850,6 +850,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Order delivered'**
   String get buttonOrderDelivered;
+
+  /// No description provided for @phoneNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone number'**
+  String get phoneNumber;
+
+  /// No description provided for @phoneNumberHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your phone number'**
+  String get phoneNumberHint;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

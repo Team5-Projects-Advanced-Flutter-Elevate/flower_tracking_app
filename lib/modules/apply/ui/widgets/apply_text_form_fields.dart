@@ -40,6 +40,7 @@ class _ApplyTextFormFieldsState
   late TextEditingController idImageController;
   late TextEditingController passwordController;
   late TextEditingController confirmPasswordController;
+  late TextEditingController phoneNUmberController;
 
   late FocusNode firstNameFocusNode;
   late FocusNode lastNameFocusNode;
@@ -50,6 +51,7 @@ class _ApplyTextFormFieldsState
   late FocusNode idImageFocusNode;
   late FocusNode passwordFocusNode;
   late FocusNode confirmPasswordFocusNode;
+  late FocusNode phoneNumberFocusNode;
 
   @override
   void initState() {
@@ -63,6 +65,7 @@ class _ApplyTextFormFieldsState
     idImageController = TextEditingController();
     passwordController = TextEditingController();
     confirmPasswordController = TextEditingController();
+    phoneNUmberController = TextEditingController();
 
     firstNameFocusNode = FocusNode();
     lastNameFocusNode = FocusNode();
@@ -73,6 +76,7 @@ class _ApplyTextFormFieldsState
     idImageFocusNode = FocusNode();
     passwordFocusNode = FocusNode();
     confirmPasswordFocusNode = FocusNode();
+    phoneNumberFocusNode = FocusNode();
   }
 
   @override
@@ -92,6 +96,7 @@ class _ApplyTextFormFieldsState
     idNumberFocusNode.dispose();
     passwordFocusNode.dispose();
     confirmPasswordFocusNode.dispose();
+    phoneNumberFocusNode.dispose();
   }
 
   late ApplyCubit cubit;
@@ -285,10 +290,25 @@ class _ApplyTextFormFieldsState
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   keyboardType: TextInputType.emailAddress,
                   focusNode: emailFocusNode,
-                  onFieldSubmitted: (value) => idNumberFocusNode.requestFocus(),
+                  onFieldSubmitted: (value) => phoneNumberFocusNode.requestFocus(),
                   decoration: InputDecoration(
                     labelText: AppLocalizations.of(context)!.email,
                     hintText: AppLocalizations.of(context)!.emailHint,
+                  ),
+                ),
+                SizedBox(height: screenHeight * 0.02),
+                TextFormField(
+                  controller: phoneNUmberController,
+                  validator: (inputText) {
+                    return validateFunctions.validationOfPhoneNumber(inputText);
+                  },
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  keyboardType: TextInputType.phone,
+                  focusNode: phoneNumberFocusNode,
+                  onFieldSubmitted: (value) => idNumberFocusNode.requestFocus(),
+                  decoration: InputDecoration(
+                    labelText: AppLocalizations.of(context)!.phoneNumber,
+                    hintText: AppLocalizations.of(context)!.phoneNumberHint,
                   ),
                 ),
                 SizedBox(height: screenHeight * 0.02),
@@ -436,6 +456,7 @@ class _ApplyTextFormFieldsState
                           cubit.doIntent(
                             ApplyDriverIntent(
                               DriverRequestModel(
+                                phone: '+2${phoneNUmberController.text}',
                                 country:
                                     cubit.state.selectedCountry ??
                                     cubit.state.countries.first.name,

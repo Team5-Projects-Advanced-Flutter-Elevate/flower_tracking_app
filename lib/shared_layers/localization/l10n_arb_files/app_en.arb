@@ -126,5 +126,7 @@
   "buttonArrivedAtPickup": "Arrived at pickup point",
   "buttonStartDelivery": "Start delivery",
   "buttonArrivedDestination": "Arrived to destination",
-  "buttonOrderDelivered": "Order delivered"
+  "buttonOrderDelivered": "Order delivered",
+  "phoneNumber": "Phone number",
+  "phoneNumberHint": "Enter your phone number"
 }

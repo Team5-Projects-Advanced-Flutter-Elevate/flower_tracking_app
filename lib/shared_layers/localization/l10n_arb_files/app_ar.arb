@@ -125,6 +125,8 @@
   "unKnownStore": "متجر غير معروف",
   "unKnown": "غير معروف",
   "eGP": "ج م",
-  "pickUpAddress": "عنوان الالتقاط"
+  "pickUpAddress": "عنوان الالتقاط",
+  "phoneNumber": "رقم الجوال",
+  "phoneNumberHint": "ادخل رقم الجوال"
 
 }
