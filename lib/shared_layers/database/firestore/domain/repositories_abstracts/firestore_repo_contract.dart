@@ -2,7 +2,7 @@ import '../../../../../core/apis/api_result/api_result.dart';
 import '../entities/driver/driver_entity_firestore.dart';
 import '../entities/order/order_entity_firestore.dart';
 
-abstract interface class FirestoreRepoContract{
+abstract interface class FirestoreRepoContract {
   Future<ApiResult<void>> addDriver(DriverEntityFirestore driverEntity);
 
   Future<ApiResult<void>> updateDriverInfo(DriverEntityFirestore driverEntity);
@@ -20,5 +20,4 @@ abstract interface class FirestoreRepoContract{
     required String driverId,
     required OrderEntityFirestore orderEntity,
   });
-
 }

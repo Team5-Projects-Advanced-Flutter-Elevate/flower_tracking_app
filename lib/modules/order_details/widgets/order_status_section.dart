@@ -11,7 +11,7 @@ class OrderStatusSection extends BaseStatelessWidget {
     required this.dataList,
     required this.selectedIndex,
     required this.orderId,
-    required this.estimatedTime
+    required this.estimatedTime,
   });
 
   final List<OrderDetailsStaticData> dataList;

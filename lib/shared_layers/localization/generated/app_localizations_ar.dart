@@ -115,7 +115,8 @@ class AppLocalizationsAr extends AppLocalizations {
   String get applicationSubmitted => 'لقد تم تقديم طلبك!';
 
   @override
-  String get thanksForProvidingApplication => 'نشكرك على تقديم طلبك، وسوف نقوم بمراجعة طلبك وسنرد عليك قريبًا.';
+  String get thanksForProvidingApplication =>
+      'نشكرك على تقديم طلبك، وسوف نقوم بمراجعة طلبك وسنرد عليك قريبًا.';
 
   @override
   String get onboardingScreen____________ => '\$\$\$ تعليق \$\$\$';

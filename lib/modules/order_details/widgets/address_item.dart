@@ -51,7 +51,7 @@ class _AddressItemState extends BaseStatefulWidgetState<AddressItem> {
                 borderRadius: BorderRadius.circular(8),
               ),
               width: screenWidth,
-              padding: const EdgeInsets.symmetric(vertical: 16,horizontal: 8),
+              padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
               margin: const EdgeInsets.all(16),
               child: Row(
                 children: [
@@ -108,7 +108,7 @@ class _AddressItemState extends BaseStatefulWidgetState<AddressItem> {
                             color: AppColors.mainColor,
                           ),
                         ),
-                        SizedBox(width:screenWidth * 0.015),
+                        SizedBox(width: screenWidth * 0.015),
                         GestureDetector(
                           onTap: () {
                             launcherViewModel.onIntent(

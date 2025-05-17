@@ -9,7 +9,9 @@ import '../../models/order/order_dto_firestore.dart';
 
 @Injectable(as: OrderCollection)
 class OrderCollectionImp implements OrderCollection {
-  CollectionReference<OrderDtoFirestore> _getOrderCollectionOfDriver(String driverId) {
+  CollectionReference<OrderDtoFirestore> _getOrderCollectionOfDriver(
+    String driverId,
+  ) {
     FirebaseFirestore db = FirebaseFirestore.instance;
     return db
         .collection(FirestoreConstants.driversCollection)
@@ -48,7 +50,8 @@ class OrderCollectionImp implements OrderCollection {
     switch (result) {
       case Success<DocumentSnapshot<OrderDtoFirestore>>():
         return Success(
-          data: result.data.data()?.convertIntoEntity() ?? OrderEntityFirestore(),
+          data:
+              result.data.data()?.convertIntoEntity() ?? OrderEntityFirestore(),
         );
       case Error<DocumentSnapshot<OrderDtoFirestore>>():
         return Error(error: result.error);

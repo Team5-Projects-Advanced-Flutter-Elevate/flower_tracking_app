@@ -39,7 +39,8 @@ class DriverDtoFirestore {
     this.isCanceled,
   });
 
-  factory DriverDtoFirestore.fromJson(dynamic json) => _$DriverDtoFromJson(json);
+  factory DriverDtoFirestore.fromJson(dynamic json) =>
+      _$DriverDtoFromJson(json);
   Map<String, dynamic> toJson() => _$DriverDtoToJson(this);
   @JsonKey(name: '_id')
   String? id;

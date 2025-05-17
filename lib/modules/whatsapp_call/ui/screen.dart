@@ -17,56 +17,58 @@ class LauncherScreen extends StatefulWidget {
 }
 
 class _LauncherScreenState extends BaseStatefulWidgetState<LauncherScreen> {
-  LauncherViewModel launcherViewModel =
-  getIt.get<LauncherViewModel>();
+  LauncherViewModel launcherViewModel = getIt.get<LauncherViewModel>();
   @override
   Widget build(BuildContext context) {
-    return  BlocProvider(
+    return BlocProvider(
       create: (context) => launcherViewModel,
       child: BlocConsumer<LauncherViewModel, LauncherState>(
         builder:
             (context, state) => Scaffold(
-          appBar: AppBar(
-            forceMaterialTransparency: true,
-            automaticallyImplyLeading: false,
-            title: Row(
-              children: [
-                InkWell(
-                  onTap: () {
-                    Navigator.pop(context);
-                  },
-                  child: Icon(
-                    Icons.arrow_back_ios,
-                    size: screenWidth * 0.05,
-                  ),
+              appBar: AppBar(
+                forceMaterialTransparency: true,
+                automaticallyImplyLeading: false,
+                title: Row(
+                  children: [
+                    InkWell(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: Icon(
+                        Icons.arrow_back_ios,
+                        size: screenWidth * 0.05,
+                      ),
+                    ),
+                    Text(
+                      'Password',
+                      style: Theme.of(context).textTheme.labelMedium,
+                    ),
+                  ],
                 ),
-                Text(
-                  'Password',
-                  style: Theme.of(context).textTheme.labelMedium,
-                ),
-              ],
-            ),
-          ),
-          body: Column(
-            children: <Widget>[
-              Row(
+              ),
+              body: Column(
                 children: <Widget>[
-                  GestureDetector(
-                      onTap: () {
-                        launcherViewModel.onIntent(CallIntent('01006523275'));
-                      },
-                      child: const Icon(Icons.call)),
-                  GestureDetector(
-                      onTap: () {
-                        launcherViewModel.onIntent(WhatsAppIntent('+201006523275'));
-                      },
-                      child: const Icon(Icons.chat)),
-
+                  Row(
+                    children: <Widget>[
+                      GestureDetector(
+                        onTap: () {
+                          launcherViewModel.onIntent(CallIntent('01006523275'));
+                        },
+                        child: const Icon(Icons.call),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          launcherViewModel.onIntent(
+                            WhatsAppIntent('+201006523275'),
+                          );
+                        },
+                        child: const Icon(Icons.chat),
+                      ),
+                    ],
+                  ),
                 ],
-              )
-            ],
-          )
-        ),
+              ),
+            ),
         listener: (context, state) {
           if (state is LauncherSuccess) {
             displaySnackBar(
@@ -74,9 +76,7 @@ class _LauncherScreenState extends BaseStatefulWidgetState<LauncherScreen> {
               title: 'Success',
               message: 'Code is valid',
             );
-
           } else if (state is LauncherError) {
-
             displaySnackBar(
               contentType: ContentType.failure,
               title: 'fail',

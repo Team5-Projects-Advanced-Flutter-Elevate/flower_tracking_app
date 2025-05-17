@@ -17,7 +17,7 @@ class OrderEntityFirestore {
     this.preparedUserOrderAt,
     this.outForDeliveryAt,
     this.deliveredAt,
-    this.shippingAddress
+    this.shippingAddress,
   });
 
   String? id;
@@ -38,7 +38,6 @@ class OrderEntityFirestore {
   int? outForDeliveryAt;
   int? deliveredAt;
   final ShippingAddressEntity? shippingAddress;
-
 }
 
 class StoreEntity {
