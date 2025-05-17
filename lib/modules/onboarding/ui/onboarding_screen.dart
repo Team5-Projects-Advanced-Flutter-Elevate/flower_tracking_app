@@ -13,9 +13,19 @@ class OnboardingScreen extends StatefulWidget {
   State<OnboardingScreen> createState() => _OnboardingScreenState();
 }
 
-class _OnboardingScreenState extends BaseStatefulWidgetState<OnboardingScreen> {
+class _OnboardingScreenState extends BaseStatefulWidgetState<OnboardingScreen>
+    with TickerProviderStateMixin {
   GlobalKey<FormState> formKey = GlobalKey();
   TextEditingController textEditingController = TextEditingController();
+  late final AnimationController animationController;
+  @override
+  void initState() {
+    super.initState();
+    animationController = AnimationController(
+      vsync: this,
+      animationBehavior: AnimationBehavior.preserve,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +48,15 @@ class _OnboardingScreenState extends BaseStatefulWidgetState<OnboardingScreen> {
                     child: Transform.scale(
                       scale: 2.1,
                       alignment: Alignment.center,
-                      child: Lottie.asset(AssetsPaths.onboardingAnimation),
+                      child: Lottie.asset(
+                        AssetsPaths.onboardingAnimation,
+                        controller: animationController,
+                        onLoaded: (composition) {
+                          animationController
+                            ..duration = composition.duration
+                            ..repeat();
+                        },
+                      ),
                     ),
                   ),
                 ),
@@ -59,7 +77,7 @@ class _OnboardingScreenState extends BaseStatefulWidgetState<OnboardingScreen> {
                       FilledButton(
                         key: const Key(OnboardingKeysValues.loginButton),
                         onPressed: () async {
-                          Navigator.pushNamed(
+                          await Navigator.pushReplacementNamed(
                             context,
                             DefinedRoutes.loginScreenRoute,
                           );
@@ -70,7 +88,10 @@ class _OnboardingScreenState extends BaseStatefulWidgetState<OnboardingScreen> {
                       OutlinedButton(
                         key: const Key(OnboardingKeysValues.applyButton),
                         onPressed: () {
-                          Navigator.pushNamed(context, DefinedRoutes.apply);
+                          Navigator.pushReplacementNamed(
+                            context,
+                            DefinedRoutes.apply,
+                          );
                         },
                         child: Text(appLocalizations.applyNow),
                       ),
@@ -84,5 +105,12 @@ class _OnboardingScreenState extends BaseStatefulWidgetState<OnboardingScreen> {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    animationController.stop(canceled: true);
+    animationController.dispose();
+    super.dispose();
   }
 }

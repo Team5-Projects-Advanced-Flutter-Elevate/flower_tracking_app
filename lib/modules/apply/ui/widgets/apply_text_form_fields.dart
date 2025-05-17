@@ -32,6 +32,7 @@ class _ApplyTextFormFieldsState
   late TextEditingController vehicleNumberController;
   late TextEditingController vehicleLicenseController;
   late TextEditingController emailController;
+  late TextEditingController phoneNumberController;
   late TextEditingController idNumberController;
   late TextEditingController idImageController;
   late TextEditingController passwordController;
@@ -42,6 +43,7 @@ class _ApplyTextFormFieldsState
   late FocusNode vehicleNumberFocusNode;
   late FocusNode vehicleLicenseFocusNode;
   late FocusNode emailFocusNode;
+  late FocusNode phoneNumberFocusNode;
   late FocusNode idNumberFocusNode;
   late FocusNode idImageFocusNode;
   late FocusNode passwordFocusNode;
@@ -57,6 +59,7 @@ class _ApplyTextFormFieldsState
     vehicleNumberController = TextEditingController();
     vehicleLicenseController = TextEditingController();
     emailController = TextEditingController();
+    phoneNumberController = TextEditingController();
     idNumberController = TextEditingController();
     idImageController = TextEditingController();
     passwordController = TextEditingController();
@@ -67,6 +70,7 @@ class _ApplyTextFormFieldsState
     vehicleNumberFocusNode = FocusNode();
     vehicleLicenseFocusNode = FocusNode();
     emailFocusNode = FocusNode();
+    phoneNumberFocusNode = FocusNode();
     idNumberFocusNode = FocusNode();
     idImageFocusNode = FocusNode();
     passwordFocusNode = FocusNode();
@@ -287,6 +291,21 @@ class _ApplyTextFormFieldsState
                 ),
                 SizedBox(height: screenHeight * 0.02),
                 TextFormField(
+                  controller: phoneNumberController,
+                  validator: (inputText) {
+                    return validateFunctions.validationOfPhoneNumber(inputText);
+                  },
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  keyboardType: TextInputType.phone,
+                  focusNode: phoneNumberFocusNode,
+                  onFieldSubmitted: (value) => idImageFocusNode.requestFocus(),
+                  decoration: InputDecoration(
+                    labelText: AppLocalizations.of(context)!.phoneNumber,
+                    hintText: AppLocalizations.of(context)!.phoneNumberHint,
+                  ),
+                ),
+                SizedBox(height: screenHeight * 0.02),
+                TextFormField(
                   controller: idNumberController,
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   keyboardType: TextInputType.number,
@@ -443,6 +462,7 @@ class _ApplyTextFormFieldsState
                                 nid: idNumberController.text,
                                 nIDImg: cubit.state.pickedIdImage,
                                 email: emailController.text,
+                                phone: phoneNumberController.text,
                                 password: passwordController.text,
                                 rePassword: confirmPasswordController.text,
                                 gender: cubit.state.selectedGender,

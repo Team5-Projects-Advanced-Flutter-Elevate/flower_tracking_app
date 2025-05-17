@@ -52,6 +52,7 @@ void main() {
         await widgetTester.pumpWidget(buildWidget());
         // action
         Finder animation = find.byType(Lottie);
+        await widgetTester.ensureVisible(animation);
 
         // assert
         expect(animation, findsOneWidget);

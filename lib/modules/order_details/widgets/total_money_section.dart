@@ -7,7 +7,8 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../../core/colors/app_colors.dart';
 
 class TotalMoneySection extends BaseStatelessWidget {
-  const TotalMoneySection({super.key});
+  final num? totalPrice;
+  const TotalMoneySection({super.key, required this.totalPrice});
 
   @override
   Widget customBuild(BuildContext context, BaseInheritedWidget inherit) {
@@ -39,7 +40,7 @@ class TotalMoneySection extends BaseStatelessWidget {
             ),
           ),
           Text(
-            '${inherit.appLocalizations.egp} 600 ',
+            '${inherit.appLocalizations.egp} ${totalPrice ?? 0} ',
             style: GoogleFonts.roboto(
               textStyle: inherit.theme.textTheme.labelLarge!.copyWith(
                 color: AppColors.gray,

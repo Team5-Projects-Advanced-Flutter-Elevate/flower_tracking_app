@@ -16,7 +16,7 @@ class OrdersRepoImpl implements OrdersRepo {
   }) async {
     try {
       final response = await apiClient.getPendingOrders(page: page);
-      return Success(data: PendingOrdersEntity.fromResponse(response));
+      return Success(data: response.convertIntoEntity());
     } catch (e) {
       if (e is DioException) {
         return Error(

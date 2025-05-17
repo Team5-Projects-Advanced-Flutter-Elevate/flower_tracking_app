@@ -79,6 +79,8 @@
   "selectGender": "Please select gender",
   "continueButton": "Continue",
   "emailHint": "Enter your email",
+  "phoneNumber": "Phone number",
+  "phoneNumberHint": "Enter phone number",
   "passwordHint": "Enter your password",
   "confirmPassword": "Confirm password",
   "confirmPasswordHint": "Confirm your password",
@@ -124,5 +126,9 @@
   "buttonArrivedAtPickup": "Arrived at pickup point",
   "buttonStartDelivery": "Start delivery",
   "buttonArrivedDestination": "Arrived to destination",
-  "buttonOrderDelivered": "Order delivered"
+  "buttonOrderDelivered": "Order delivered",
+  "loading": "Loading.....",
+  "acceptedSuccessfully": "Accepted Successfully!",
+  "updatedSuccessfully": "Updated Successfully!",
+  "orderFinishedSuccessfully": "Order Finished Successfully!"
 }
