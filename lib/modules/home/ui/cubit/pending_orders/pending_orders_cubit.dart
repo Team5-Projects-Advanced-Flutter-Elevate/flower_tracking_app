@@ -105,7 +105,7 @@ class OrdersCubit extends Cubit<OrdersState> {
     }
     _isLoading = true;
     if (!isClosed) {
-      emit(state.copyWith(status: LoadOrdersStatus.loadingMore));
+      emit(state.copyWith(loadOrdersStatus: Status.loadingMore));
     }
     try {
       var result = await useCase.execute(page: nextPage);
@@ -182,6 +182,8 @@ class OrdersCubit extends Cubit<OrdersState> {
           ),
         );
     }
+  }
+
   removeOrder(String orderId) {
     final currentOrders = state.orders?.orders ?? [];
     final updatedOrders =

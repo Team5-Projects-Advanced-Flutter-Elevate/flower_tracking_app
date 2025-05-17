@@ -30,8 +30,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get unknown => 'Something Went Wrong 🤔';
 
   @override
-  String get badCertificate =>
-      'The certificate provided by the server is not valid 📑';
+  String get badCertificate => 'The certificate provided by the server is not valid 📑';
 
   @override
   String get somethingWentWrong => 'Something Went Wrong 🤔';
@@ -46,12 +45,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get pleaseEnterUserName => 'Please enter user name.';
 
   @override
-  String get userNameLength =>
-      'Username must be between 3 and 16 characters long.';
+  String get userNameLength => 'Username must be between 3 and 16 characters long.';
 
   @override
-  String get userNameRules =>
-      'Username can only contain letters, numbers, and underscores.';
+  String get userNameRules => 'Username can only contain letters, numbers, and underscores.';
 
   @override
   String get pleaseEnterFirstName => 'Please enter first name.';
@@ -72,8 +69,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get pleaseEnterPhoneNumber => 'Please enter your phone number.';
 
   @override
-  String get phoneNumberRules =>
-      'Number must start with one of the valid prefixes:\n010, 011, 012, or 015\nfollowed by 8 digits.';
+  String get phoneNumberRules => 'Number must start with one of the valid prefixes:\n010, 011, 012, or 015\nfollowed by 8 digits.';
 
   @override
   String get pleaseEnterPassword => 'Please enter your password.';
@@ -91,8 +87,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get digitRulePassword => 'At least one digit must be there.';
 
   @override
-  String get specialCharactersRulePassword =>
-      'At least one special character(e.g., #?!@\$%^&*-) must be included.';
+  String get specialCharactersRulePassword => 'At least one special character(e.g., #?!@\$%^&*-) must be included.';
 
   @override
   String get pleaseConfirmPassword => 'Please confirm password.';
@@ -110,16 +105,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get pleaseEnterValidAddress => 'Please enter a valid address';
 
   @override
-  String get pleaseEnterValidRecipient => 'Please enter a valid recipient';
-
-  @override
-  String get applicationSubmitted => 'Your application has been submitted!';
-
-  @override
-  String get thanksForProvidingApplication =>
-      'Thank you for providing your application, we will review your application and will get back to you soon.';
-
-  @override
   String get onboardingScreen____________ => '\$\$\$ Comment \$\$\$';
 
   @override
@@ -127,6 +112,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get applyNow => 'Apply Now';
+
+  @override
+  String get pleaseEnterValidRecipient => 'Please enter a valid recipient';
 
   @override
   String get loginScreen___________ => '\$\$ Comment \$\$';
@@ -283,6 +271,12 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get thankYou => 'Thank You!!';
+
+  @override
+  String get applicationSubmitted => 'Your application has been submitted!';
+
+  @override
+  String get thanksForProvidingApplication => 'Thank you for providing your application, we will review your application and will get back to you soon.';
 
   @override
   String get successScreenDescription => 'The order delivered successfully';

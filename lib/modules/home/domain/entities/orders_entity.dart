@@ -9,6 +9,18 @@ class PendingOrdersEntity extends Equatable {
 
   const PendingOrdersEntity({this.message, this.metadata, this.orders});
 
+  PendingOrdersEntity copyWith({
+    String? message,
+    Metadata? metadata,
+    List<OrderEntityFirestore>? orders,
+  }) {
+    return PendingOrdersEntity(
+      message: message ?? this.message,
+      metadata: metadata ?? this.metadata,
+      orders: orders ?? this.orders,
+    );
+  }
+
   @override
   List<Object?> get props => [message, metadata, orders];
 }

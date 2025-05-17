@@ -52,6 +52,7 @@ class _OrderDetailsScreenState
       child: Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
+          titleSpacing: 16,
           title: Text(
             appLocalizations.orderDetails,
             style: theme.textTheme.headlineMedium?.copyWith(

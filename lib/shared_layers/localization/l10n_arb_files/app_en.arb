@@ -89,6 +89,8 @@
   "female": "Female",
   "removedImage": "Removed image",
   "thankYou": "Thank You!!",
+  "applicationSubmitted": "Your application has been submitted!",
+  "thanksForProvidingApplication": "Thank you for providing your application, we will review your application and will get back to you soon.",
   "successScreenDescription": "The order delivered successfully",
   "done": "Done",
   "home": "Home",
