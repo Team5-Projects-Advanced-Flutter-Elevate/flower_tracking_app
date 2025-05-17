@@ -3,6 +3,10 @@ on:
   push:
     branches:
       - '**'
+  pull_request:
+    types: [opened, edited]
+    branches:
+      - '**'
 jobs:
   check-branch-name:
     name: Check Branch Name
