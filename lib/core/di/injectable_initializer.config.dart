@@ -82,6 +82,8 @@ import '../../modules/authentication/domain/use_cases/forget_password/reset_code
     as _i9;
 import '../../modules/authentication/domain/use_cases/forget_password/reset_password_use_case.dart'
     as _i110;
+import '../../modules/authentication/domain/use_cases/logged_driver_data/get_logged_driver_data_use_case.dart'
+    as _i211;
 import '../../modules/authentication/domain/use_cases/login/login_use_case.dart'
     as _i543;
 import '../../modules/authentication/ui/forget_password/view_model/forget_password_screen_view_model.dart'
@@ -96,6 +98,7 @@ import '../../modules/home/domain/use_cases/get_pending_orders_use_case.dart'
     as _i553;
 import '../../modules/home/ui/cubit/pending_orders/pending_orders_cubit.dart'
     as _i12;
+import '../../modules/home/ui/profile/ui/viewModel/profile_cubit.dart' as _i792;
 import '../../modules/whatsapp_call/data/data_source/call_data_source.dart'
     as _i692;
 import '../../modules/whatsapp_call/data/data_source/whatsapp_data_source.dart'
@@ -269,6 +272,9 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i504.LoggedDriverDataRemoteDataSource>(),
       ),
     );
+    gh.factory<_i211.GetLoggedDriverDataUseCase>(
+      () => _i211.GetLoggedDriverDataUseCase(gh<_i103.LoggedDriverDataRepo>()),
+    );
     await gh.factoryAsync<_i543.AppLocalizations>(
       () => appLocalizationsProvider.provideAppLocalizations(
         gh<String>(instanceName: 'initCurrentLocal'),
@@ -294,6 +300,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.lazySingleton<_i166.ValidateFunctions>(
       () => _i166.ValidateFunctions(gh<_i543.AppLocalizations>()),
+    );
+    gh.lazySingleton<_i792.ProfileCubit>(
+      () => _i792.ProfileCubit(gh<_i211.GetLoggedDriverDataUseCase>()),
     );
     gh.factory<_i898.LauncherViewModel>(
       () => _i898.LauncherViewModel(
