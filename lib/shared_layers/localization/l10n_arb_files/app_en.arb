@@ -132,5 +132,7 @@
   "loading": "Loading.....",
   "acceptedSuccessfully": "Accepted Successfully!",
   "updatedSuccessfully": "Updated Successfully!",
-  "orderFinishedSuccessfully": "Order Finished Successfully!"
+  "orderFinishedSuccessfully": "Order Finished Successfully!",
+  "thanksPage_______________": "$$$ Comment $$$",
+  "orderDeliveredSuccessfully": "The order delivered\nsuccessfully"
 }
