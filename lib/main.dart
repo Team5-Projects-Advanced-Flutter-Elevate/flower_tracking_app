@@ -1,4 +1,3 @@
-import 'package:device_preview/device_preview.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flower_tracking_app/core/bases/base_inherited_widget.dart';
 import 'package:flower_tracking_app/core/di/injectable_initializer.dart';
