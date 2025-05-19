@@ -171,9 +171,9 @@ void main() {
         expect(formData.files.length, equals(2));
 
         // Clean up
-        try{
+        try {
           nidFile.deleteSync();
-        }catch(e){
+        } catch (e) {
           debugPrint("Error: ${e.toString()}");
         }
         licenseFile.deleteSync();

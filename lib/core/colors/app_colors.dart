@@ -13,9 +13,7 @@ abstract class AppColors {
     10: Color(0xFFE0FDE1),
     20: Color(0xFFD1FBD3),
     30: Color(0xFFBDF7BF),
-
   });
-
 
   static const MaterialColor _white = MaterialColor(0xFFF9F9F9, {
     10: Color(0xFFFEFEFE),
