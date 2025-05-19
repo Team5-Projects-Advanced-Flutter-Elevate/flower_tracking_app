@@ -175,7 +175,7 @@ void main() {
           nidFile.deleteSync();
         }catch(e){
           debugPrint("Error: ${e.toString()}");
-        };
+        }
         licenseFile.deleteSync();
       });
 
