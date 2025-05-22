@@ -50,7 +50,7 @@ class _ProfileScreenState extends BaseStatefulWidgetState<ProfileScreen> {
                     ? 24
                     : 0,
           ),
-          child: const Text('Profile'),
+          child: Text(appLocalizations.profile),
         ),
         actions: [
           GestureDetector(

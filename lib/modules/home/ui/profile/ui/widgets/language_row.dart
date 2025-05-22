@@ -19,7 +19,10 @@ class LanguageRow extends BaseStatelessWidget {
       children: [
         SvgPicture.asset(AssetsPaths.languageIcon),
         SizedBox(width: inherit.screenWidth * 0.01),
-        Text('Language', style: inherit.theme.textTheme.bodyMedium),
+        Text(
+          inherit.appLocalizations.language,
+          style: inherit.theme.textTheme.bodyMedium,
+        ),
         const Spacer(),
         TextButton(
           onPressed: () {
@@ -32,7 +35,7 @@ class LanguageRow extends BaseStatelessWidget {
             inherit.localizationManager.changeLocal(newLocale);
           },
           child: Text(
-            "English",
+            inherit.appLocalizations.english,
             style: inherit.theme.textTheme.labelSmall?.copyWith(
               fontWeight: FontWeight.w400,
               color: AppColors.mainColor,

@@ -391,4 +391,16 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get phoneNumberHint => 'Enter your phone number';
+
+  @override
+  String get language => 'Language';
+
+  @override
+  String get english => 'English';
+
+  @override
+  String get logout => 'Logout';
+
+  @override
+  String get vehicleInfo => 'Vehicle Info';
 }

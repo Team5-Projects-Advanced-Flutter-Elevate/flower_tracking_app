@@ -32,7 +32,7 @@ class VehicleInfoCard extends BaseStatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Vehicle info',
+                inherit.appLocalizations.vehicleInfo,
                 style: inherit.theme.textTheme.titleMedium?.copyWith(
                   fontSize: 16 * (inherit.screenWidth / 375),
                   fontWeight: FontWeight.w600,

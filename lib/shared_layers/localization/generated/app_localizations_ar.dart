@@ -391,4 +391,16 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get phoneNumberHint => 'ادخل رقم الجوال';
+
+  @override
+  String get language => 'اللغة';
+
+  @override
+  String get english => 'العربية';
+
+  @override
+  String get logout => 'تسجيل الخروج';
+
+  @override
+  String get vehicleInfo => 'معلومات المركبة';
 }

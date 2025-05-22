@@ -862,6 +862,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Enter your phone number'**
   String get phoneNumberHint;
+
+  /// No description provided for @language.
+  ///
+  /// In en, this message translates to:
+  /// **'Language'**
+  String get language;
+
+  /// No description provided for @english.
+  ///
+  /// In en, this message translates to:
+  /// **'English'**
+  String get english;
+
+  /// No description provided for @logout.
+  ///
+  /// In en, this message translates to:
+  /// **'Logout'**
+  String get logout;
+
+  /// No description provided for @vehicleInfo.
+  ///
+  /// In en, this message translates to:
+  /// **'Vehicle Info'**
+  String get vehicleInfo;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

@@ -127,6 +127,10 @@
   "eGP": "ج م",
   "pickUpAddress": "عنوان الالتقاط",
   "phoneNumber": "رقم الجوال",
-  "phoneNumberHint": "ادخل رقم الجوال"
+  "phoneNumberHint": "ادخل رقم الجوال",
+  "language": "اللغة",
+  "english": "العربية",
+  "logout": "تسجيل الخروج",
+  "vehicleInfo": "معلومات المركبة"
 
 }

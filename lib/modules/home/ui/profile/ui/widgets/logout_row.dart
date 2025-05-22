@@ -12,7 +12,7 @@ class LogoutRow extends BaseStatelessWidget {
       children: [
         const Icon(Icons.logout, size: 20),
         SizedBox(width: inherit.screenWidth * 0.01),
-        Text('Logout', style: inherit.theme.textTheme.bodyMedium),
+        Text(inherit.appLocalizations.logout, style: inherit.theme.textTheme.bodyMedium),
         const Spacer(),
         IconButton(
           onPressed: () {},
