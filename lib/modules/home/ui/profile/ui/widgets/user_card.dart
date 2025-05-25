@@ -31,9 +31,12 @@ class UserCard extends BaseStatelessWidget {
         children: [
           CircleAvatar(
             radius: 27,
-            backgroundImage: NetworkImage(
-              loggedDriverDataResponseEntity.driver?.photo ?? '',
-            ),
+            backgroundImage:
+                loggedDriverDataResponseEntity.driver?.photo!.isNotEmpty == true
+                    ? NetworkImage(
+                      loggedDriverDataResponseEntity.driver!.photo!,
+                    )
+                    : const AssetImage(AssetsPaths.flowerLogo),
           ),
           SizedBox(width: inherit.screenWidth * .04),
           Column(

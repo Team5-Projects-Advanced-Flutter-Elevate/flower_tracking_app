@@ -44,11 +44,6 @@ class ProfileCubit extends Cubit<ProfileState> {
         );
     }
   }
-
-  void changeLocale(String locale) {
-    log('locale: $locale');
-    getIt<LocalizationManager>().changeLocal(locale);
-  }
 }
 
 sealed class ProfileIntent {}
