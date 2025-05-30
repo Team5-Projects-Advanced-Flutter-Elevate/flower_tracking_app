@@ -1,6 +1,7 @@
 import 'package:flower_tracking_app/core/bases/base_statless_widget.dart';
 import 'package:flower_tracking_app/core/colors/app_colors.dart';
 import 'package:flower_tracking_app/core/routing/defined_routes.dart';
+import 'package:flower_tracking_app/modules/thanks_page/ui/constants/thanks_page_constants.dart';
 import 'package:flutter/material.dart';
 
 class ThanksPageScreen extends BaseStatelessWidget {
@@ -40,8 +41,8 @@ class ThanksPageScreen extends BaseStatelessWidget {
                         shape: BoxShape.circle,
                       ),
                       padding: const EdgeInsets.all(16),
-
                       child: Icon(
+                        key: const Key(ThanksPageConstants.successIconKey),
                         Icons.check_sharp,
                         size: inherit.screenWidth * 0.13,
                         weight: 40,
@@ -54,6 +55,7 @@ class ThanksPageScreen extends BaseStatelessWidget {
               SizedBox(height: inherit.screenHeight * 0.03),
               RichText(
                 textAlign: TextAlign.center,
+                key: const Key(ThanksPageConstants.successMessageKey),
                 text: TextSpan(
                   children: [
                     TextSpan(
@@ -76,6 +78,7 @@ class ThanksPageScreen extends BaseStatelessWidget {
               ),
               SizedBox(height: inherit.screenHeight * 0.03),
               FilledButton(
+                key: const Key(ThanksPageConstants.doneButtonKey),
                 onPressed: () {
                   Navigator.pushNamedAndRemoveUntil(
                     context,

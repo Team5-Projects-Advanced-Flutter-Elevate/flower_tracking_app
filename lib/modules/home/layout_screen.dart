@@ -8,7 +8,6 @@ import 'package:flutter/material.dart';
 
 class LayoutScreen extends StatefulWidget {
   const LayoutScreen({super.key});
-  static const String routeName = 'Layout Screen';
   @override
   State<LayoutScreen> createState() => _LayoutScreenState();
 }
@@ -30,6 +29,7 @@ class _LayoutScreenState extends BaseStatefulWidgetState<LayoutScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: const Key("LayoutScreenKey"),
       body: PageView(
         controller: controller,
         physics: const NeverScrollableScrollPhysics(),
