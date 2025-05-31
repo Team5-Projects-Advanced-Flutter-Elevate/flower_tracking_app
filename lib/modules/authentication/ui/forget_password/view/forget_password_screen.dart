@@ -66,6 +66,7 @@ class _ForgetPasswordScreenState
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.04),
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   SizedBox(height: screenHeight * 0.05),

@@ -88,6 +88,17 @@ import '../../modules/authentication/ui/forget_password/view_model/forget_passwo
     as _i105;
 import '../../modules/authentication/ui/login/view_model/login_view_model.dart'
     as _i108;
+import '../../modules/edit_profile/data/api/api_client/get_data_api_client.dart'
+    as _i984;
+import '../../modules/edit_profile/data/api/api_client_provider/get_data_api_client_provider.dart'
+    as _i1073;
+import '../../modules/edit_profile/data/datasource/get_data.dart' as _i890;
+import '../../modules/edit_profile/data/datasource_impl/get_data.dart' as _i458;
+import '../../modules/edit_profile/data/repo_impl/get_data.dart' as _i452;
+import '../../modules/edit_profile/domain/repo/get_data_repo.dart' as _i382;
+import '../../modules/edit_profile/domain/usecase/get_data_usecase.dart'
+    as _i736;
+import '../../modules/edit_profile/ui/cubit/viewModel.dart' as _i706;
 import '../../modules/home/data/api/api_client/orders_api_client.dart' as _i290;
 import '../../modules/home/data/models/orders_client_model.dart' as _i858;
 import '../../modules/home/data/repo_impl/orders_repo_impl.dart' as _i823;
@@ -157,6 +168,7 @@ extension GetItInjectableX on _i174.GetIt {
     final storagesInitializer = _$StoragesInitializer();
     final applyApiClientProvider = _$ApplyApiClientProvider();
     final authApiClientProvider = _$AuthApiClientProvider();
+    final getDataApiClientProvider = _$GetDataApiClientProvider();
     final ordersApiClientProvider = _$OrdersApiClientProvider();
     final localeInitializer = _$LocaleInitializer();
     final appLocalizationsProvider = _$AppLocalizationsProvider();
@@ -180,6 +192,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.lazySingleton<_i343.AuthApiClient>(
       () => authApiClientProvider.provideApiClient(gh<_i361.Dio>()),
+    );
+    gh.lazySingleton<_i984.GetDataApiClient>(
+      () => getDataApiClientProvider.provideApiClient(gh<_i361.Dio>()),
     );
     gh.lazySingleton<_i858.OrdersApiClient>(
       () => ordersApiClientProvider.providerApiClient(gh<_i361.Dio>()),
@@ -219,6 +234,11 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i793.OrderCollection>(),
       ),
     );
+    gh.factory<_i890.GetLoggedDriverDataOnlineDataSource>(
+      () => _i458.GetLoggedDriverDataOnlineDataSourceImpl(
+        gh<_i984.GetDataApiClient>(),
+      ),
+    );
     gh.factory<_i477.LoginRemoteDataSource>(
       () => _i120.LoginRemoteDataSourceImp(gh<_i343.AuthApiClient>()),
     );
@@ -244,6 +264,11 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i792.ApplyRepoImpl(
         applyDataSource: gh<_i843.ApplyDataSource>(),
         driverCollection: gh<_i163.DriverCollection>(),
+      ),
+    );
+    gh.factory<_i382.GetLoggedDriverDataRepo>(
+      () => _i452.LoggedDriverDataRepoImp(
+        gh<_i890.GetLoggedDriverDataOnlineDataSource>(),
       ),
     );
     gh.factory<_i150.ForgetPasswordRemoteDataSource>(
@@ -302,6 +327,9 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i629.SecureStorageService<dynamic>>(),
       ),
     );
+    gh.factory<_i736.GetDriverDataUseCase>(
+      () => _i736.GetDriverDataUseCase(gh<_i382.GetLoggedDriverDataRepo>()),
+    );
     gh.factory<_i637.ApplyDriverUseCase>(
       () => _i637.ApplyDriverUseCase(gh<_i61.ApplyRepo>()),
     );
@@ -316,7 +344,7 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i150.ForgetPasswordRemoteDataSource>(),
       ),
     );
-    gh.factory<_i172.ApplyCubit>(
+    gh.lazySingleton<_i172.ApplyCubit>(
       () => _i172.ApplyCubit(
         gh<_i637.ApplyDriverUseCase>(),
         gh<_i900.GetVehiclesUseCase>(),
@@ -324,11 +352,14 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i843.ImagePickerService>(),
       ),
     );
+    gh.lazySingleton<_i439.ApiErrorHandler>(
+      () => _i439.ApiErrorHandler(gh<_i543.AppLocalizations>()),
+    );
     gh.lazySingleton<_i166.ValidateFunctions>(
       () => _i166.ValidateFunctions(gh<_i543.AppLocalizations>()),
     );
-    gh.lazySingleton<_i439.ApiErrorHandler>(
-      () => _i439.ApiErrorHandler(gh<_i543.AppLocalizations>()),
+    gh.factory<_i706.EditProfileViewModel>(
+      () => _i706.EditProfileViewModel(gh<_i736.GetDriverDataUseCase>()),
     );
     gh.factory<_i898.LauncherViewModel>(
       () => _i898.LauncherViewModel(
@@ -360,6 +391,8 @@ class _$StoragesInitializer extends _i241.StoragesInitializer {}
 class _$ApplyApiClientProvider extends _i594.ApplyApiClientProvider {}
 
 class _$AuthApiClientProvider extends _i1019.AuthApiClientProvider {}
+
+class _$GetDataApiClientProvider extends _i1073.GetDataApiClientProvider {}
 
 class _$OrdersApiClientProvider extends _i290.OrdersApiClientProvider {}
 

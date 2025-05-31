@@ -6,6 +6,7 @@ import 'package:flower_tracking_app/core/validation/validation_functions.dart';
 import 'package:flower_tracking_app/firebase_options.dart';
 import 'package:flower_tracking_app/modules/authentication/data/data_sources_contracts/login/local/login_local_data_source.dart';
 import 'package:flower_tracking_app/modules/authentication/domain/entities/logged_driver_data/logged_driver_data_response_entity.dart';
+import 'package:flower_tracking_app/modules/edit_profile/ui/screens/edit_profile_screen.dart';
 import 'package:flower_tracking_app/shared_layers/database/firestore/constants/firestore_constants.dart';
 import 'package:flower_tracking_app/shared_layers/localization/generated/app_localizations.dart';
 import 'package:flower_tracking_app/shared_layers/localization/l10n_manager/localization_manager.dart';
@@ -98,6 +99,7 @@ class _MyAppState extends State<MyApp> {
                 currentAcceptedOrderId: currentAcceptedOrderId,
               );
             },
+           // home: const EditProfileScreen(),
             // //initialRoute: DefinedRoutes.onboardingScreenRoute,
             // onGenerateRoute: GenerateRoute.onGenerateRoute,
             // onGenerateInitialRoutes: (initialRoute) {

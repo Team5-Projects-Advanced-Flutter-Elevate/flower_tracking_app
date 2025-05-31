@@ -6,6 +6,8 @@ import 'package:flower_tracking_app/modules/home/ui/orders_screen.dart';
 import 'package:flower_tracking_app/modules/home/ui/profile_screen.dart';
 import 'package:flutter/material.dart';
 
+import '../edit_profile/ui/screens/edit_profile_screen.dart';
+
 class LayoutScreen extends StatefulWidget {
   const LayoutScreen({super.key});
   static const String routeName = 'Layout Screen';
@@ -19,7 +21,7 @@ class _LayoutScreenState extends BaseStatefulWidgetState<LayoutScreen> {
   List<Widget> screens = [
     const HomeScreen(),
     const OrdersScreen(),
-    const ProfileScreen(),
+    const EditProfileScreen(),
   ];
   @override
   void initState() {
