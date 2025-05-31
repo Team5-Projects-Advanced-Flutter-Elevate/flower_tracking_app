@@ -189,7 +189,9 @@ void main() {
         await widgetTester.tap(doneButton);
         await widgetTester.pumpAndSettle();
 
-        Finder layoutScreen = find.byKey(const Key(HomeConstants.layoutScreenKey));
+        Finder layoutScreen = find.byKey(
+          const Key(HomeConstants.layoutScreenKey),
+        );
 
         // assert
         expect(layoutScreen, findsOneWidget);
