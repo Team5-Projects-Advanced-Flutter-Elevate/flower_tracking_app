@@ -4,11 +4,11 @@ import 'package:flower_tracking_app/core/routing/defined_routes.dart';
 import 'package:flower_tracking_app/core/themes/app_themes.dart';
 import 'package:flower_tracking_app/core/validation/validation_functions.dart';
 import 'package:flower_tracking_app/modules/home/layout_screen.dart';
+import 'package:flower_tracking_app/modules/home/ui/constants/home_constants.dart';
 import 'package:flower_tracking_app/modules/home/ui/cubit/pending_orders/pending_orders_cubit.dart';
 import 'package:flower_tracking_app/modules/home/ui/cubit/pending_orders/pending_orders_state.dart';
 import 'package:flower_tracking_app/modules/thanks_page/ui/constants/thanks_page_constants.dart';
 import 'package:flower_tracking_app/modules/thanks_page/ui/thanks_page_screen.dart';
-import 'package:flower_tracking_app/shared_layers/database/firestore/domain/entities/order/order_entity_firestore.dart';
 import 'package:flower_tracking_app/shared_layers/localization/enums/languages_enum.dart';
 import 'package:flower_tracking_app/shared_layers/localization/generated/app_localizations.dart';
 import 'package:flower_tracking_app/shared_layers/localization/l10n_manager/localization_manager.dart';
@@ -38,14 +38,8 @@ void main() {
         builder: (context) {
           return BaseInheritedWidget(
             theme: AppThemes.lightTheme,
-            screenWidth: MediaQuery
-                .of(context)
-                .size
-                .width,
-            screenHeight: MediaQuery
-                .of(context)
-                .size
-                .height,
+            screenWidth: MediaQuery.of(context).size.width,
+            screenHeight: MediaQuery.of(context).size.height,
             appLocalizations: appLocalizations,
             localizationManager: localizationManager,
             validateFunctions: validateFunctions,
@@ -62,7 +56,7 @@ void main() {
 
     testWidgets(
       "When the ThanksPageScreen is opened, the success icon with its background color should be rendered",
-          (widgetTester) async {
+      (widgetTester) async {
         // arrange
         await widgetTester.pumpWidget(buildWidget());
 
@@ -78,7 +72,7 @@ void main() {
 
     testWidgets(
       "When the ThanksPageScreen is opened, the Thank You message with order delivered successfully should be rendered",
-          (widgetTester) async {
+      (widgetTester) async {
         // arrange
         await widgetTester.pumpWidget(buildWidget());
 
@@ -93,7 +87,7 @@ void main() {
     );
     testWidgets(
       "When the ThanksPageScreen is opened, the Done Button should be rendered",
-          (widgetTester) async {
+      (widgetTester) async {
         // arrange
         await widgetTester.pumpWidget(buildWidget());
 
@@ -131,33 +125,18 @@ void main() {
       getIt.registerFactory<OrdersCubit>(() {
         return ordersCubit;
       });
-
-      when(ordersCubit.doIntent(LoadOrdersIntent())).thenAnswer((realInvocation) => Future<void>.value());
+      when(ordersCubit.state).thenReturn(const OrdersState());
       when(
-        ordersCubit.doIntent(RefreshOrdersIntent()),
-      ).thenAnswer((realInvocation) => Future<void>.value());
-      when(
-        ordersCubit.doIntent(
-          OnAcceptButtonClick(
-            driverId: '',
-            orderEntity: OrderEntityFirestore(),
-          ),
-        ),
-      ).thenAnswer((realInvocation) => Future<void>.value());
+        ordersCubit.stream,
+      ).thenAnswer((_) => Stream.value(const OrdersState()));
     });
     Widget buildWidget() {
       return Builder(
         builder: (context) {
           return BaseInheritedWidget(
             theme: AppThemes.lightTheme,
-            screenWidth: MediaQuery
-                .of(context)
-                .size
-                .width,
-            screenHeight: MediaQuery
-                .of(context)
-                .size
-                .height,
+            screenWidth: MediaQuery.of(context).size.width,
+            screenHeight: MediaQuery.of(context).size.height,
             appLocalizations: appLocalizations,
             localizationManager: localizationManager,
             validateFunctions: validateFunctions,
@@ -166,7 +145,7 @@ void main() {
               supportedLocales: AppLocalizations.supportedLocales,
               locale: Locale(languageCode),
               onGenerateRoute: (settings) {
-                print("In on generate route====================>");
+                debugPrint("In on generate route====================>");
                 var name = settings.name;
                 try {
                   switch (name) {
@@ -198,7 +177,7 @@ void main() {
 
     testWidgets(
       "When clicking on the done button after the ThanksPage opens, it should navigate us to the home screen",
-          (widgetTester) async {
+      (widgetTester) async {
         // arrange
         await widgetTester.pumpWidget(buildWidget());
 
@@ -210,7 +189,7 @@ void main() {
         await widgetTester.tap(doneButton);
         await widgetTester.pumpAndSettle();
 
-        Finder layoutScreen = find.byKey(const Key("LayoutScreenKey"));
+        Finder layoutScreen = find.byKey(const Key(HomeConstants.layoutScreenKey));
 
         // assert
         expect(layoutScreen, findsOneWidget);
