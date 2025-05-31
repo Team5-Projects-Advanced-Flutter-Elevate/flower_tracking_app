@@ -1,6 +1,4 @@
 class LogoutResponseEntity {
-  LogoutResponseEntity({
-    this.message,});
+  LogoutResponseEntity({this.message});
   String? message;
-
 }
