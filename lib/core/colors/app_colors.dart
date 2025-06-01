@@ -9,6 +9,12 @@ abstract class AppColors {
 
   static const Color _lightPink = Color(0xFFF9ECF0);
 
+  static const MaterialColor _vividGreen = MaterialColor(0xFF94EC97, {
+    10: Color(0xFFE0FDE1),
+    20: Color(0xFFD1FBD3),
+    30: Color(0xFFBDF7BF),
+  });
+
   static const MaterialColor _white = MaterialColor(0xFFF9F9F9, {
     10: Color(0xFFFEFEFE),
     20: Color(0xFFFDFDFD),
@@ -49,11 +55,20 @@ abstract class AppColors {
   });
 
   static MaterialColor get white => _white;
+
   static MaterialColor get mainColor => _mainColor;
+
   static MaterialColor get black => _black;
+
   static Color get gray => _gray;
+
   static Color get red => _red;
+
   static Color get green => _green;
+
   static Color get lightPink => _lightPink;
+
   static Color get transparent => Colors.transparent;
+
+  static MaterialColor get vividGreen => _vividGreen;
 }

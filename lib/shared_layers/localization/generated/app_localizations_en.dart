@@ -409,4 +409,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get orderFinishedSuccessfully => 'Order Finished Successfully!';
+
+  @override
+  String get thanksPage_______________ => '\$\$\$ Comment \$\$\$';
+
+  @override
+  String get orderDeliveredSuccessfully => 'The order delivered\nsuccessfully';
 }

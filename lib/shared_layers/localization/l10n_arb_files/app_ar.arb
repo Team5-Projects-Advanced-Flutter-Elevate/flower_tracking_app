@@ -132,5 +132,8 @@
   "loading": "جاري التحميل.....",
   "acceptedSuccessfully": "تم القبول بنجاح!",
   "updatedSuccessfully": "تم التحديث بنجاح!",
-  "orderFinishedSuccessfully": "تم إنهاء الطلب بنجاح!"
+  "orderFinishedSuccessfully": "تم إنهاء الطلب بنجاح!",
+  "thanksPage_______________": "$$$ تعليق $$$",
+  "orderDeliveredSuccessfully": "تم تسليم الطلب\nبنجاح"
+
 }
