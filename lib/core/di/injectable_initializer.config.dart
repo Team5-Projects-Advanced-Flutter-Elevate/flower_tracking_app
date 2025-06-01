@@ -96,6 +96,10 @@ import '../../modules/home/domain/use_cases/get_pending_orders_use_case.dart'
     as _i553;
 import '../../modules/home/ui/cubit/pending_orders/pending_orders_cubit.dart'
     as _i12;
+import '../../modules/logout/data/api/api_client/logout_api_client.dart'
+    as _i877;
+import '../../modules/logout/data/api/api_client_provider/logout_api_client_provider.dart'
+    as _i894;
 import '../../modules/order_details/view_model/order_details_view_model.dart'
     as _i240;
 import '../../modules/whatsapp_call/data/data_source/call_data_source.dart'
@@ -158,6 +162,7 @@ extension GetItInjectableX on _i174.GetIt {
     final applyApiClientProvider = _$ApplyApiClientProvider();
     final authApiClientProvider = _$AuthApiClientProvider();
     final ordersApiClientProvider = _$OrdersApiClientProvider();
+    final logoutApiClientProvider = _$LogoutApiClientProvider();
     final localeInitializer = _$LocaleInitializer();
     final appLocalizationsProvider = _$AppLocalizationsProvider();
     await gh.factoryAsync<_i361.Dio>(
@@ -183,6 +188,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.lazySingleton<_i858.OrdersApiClient>(
       () => ordersApiClientProvider.providerApiClient(gh<_i361.Dio>()),
+    );
+    gh.lazySingleton<_i877.LogoutApiClient>(
+      () => logoutApiClientProvider.provideClient(gh<_i361.Dio>()),
     );
     gh.factory<_i843.ApplyDataSource>(
       () => _i684.ApplyDataSourceImpl(gh<_i780.ApplyApiClient>()),
@@ -316,7 +324,7 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i150.ForgetPasswordRemoteDataSource>(),
       ),
     );
-    gh.factory<_i172.ApplyCubit>(
+    gh.lazySingleton<_i172.ApplyCubit>(
       () => _i172.ApplyCubit(
         gh<_i637.ApplyDriverUseCase>(),
         gh<_i900.GetVehiclesUseCase>(),
@@ -324,11 +332,11 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i843.ImagePickerService>(),
       ),
     );
-    gh.lazySingleton<_i166.ValidateFunctions>(
-      () => _i166.ValidateFunctions(gh<_i543.AppLocalizations>()),
-    );
     gh.lazySingleton<_i439.ApiErrorHandler>(
       () => _i439.ApiErrorHandler(gh<_i543.AppLocalizations>()),
+    );
+    gh.lazySingleton<_i166.ValidateFunctions>(
+      () => _i166.ValidateFunctions(gh<_i543.AppLocalizations>()),
     );
     gh.factory<_i898.LauncherViewModel>(
       () => _i898.LauncherViewModel(
@@ -362,6 +370,8 @@ class _$ApplyApiClientProvider extends _i594.ApplyApiClientProvider {}
 class _$AuthApiClientProvider extends _i1019.AuthApiClientProvider {}
 
 class _$OrdersApiClientProvider extends _i290.OrdersApiClientProvider {}
+
+class _$LogoutApiClientProvider extends _i894.LogoutApiClientProvider {}
 
 class _$LocaleInitializer extends _i631.LocaleInitializer {}
 
