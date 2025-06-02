@@ -7,6 +7,7 @@ import 'package:flower_tracking_app/modules/home/layout_screen.dart';
 import 'package:flower_tracking_app/modules/home/ui/orders_screen.dart';
 import 'package:flower_tracking_app/modules/home/ui/profile_screen.dart';
 import 'package:flower_tracking_app/modules/onboarding/ui/onboarding_screen.dart';
+import 'package:flower_tracking_app/modules/pick_up_location_map/ui/pick_up_location_map.dart';
 import 'package:flutter/material.dart';
 import '../../modules/authentication/ui/login/login_screen.dart';
 import '../../modules/home/ui/home_screen_mine.dart';
@@ -47,6 +48,10 @@ abstract class GenerateRoute {
         case DefinedRoutes.orderDetailsRoute:
           return MaterialPageRoute(
             builder: (context) => OrderDetailsScreen(orderId: args as String),
+          );
+        case DefinedRoutes.pickUpLocationMap:
+          return MaterialPageRoute(
+            builder: (context) => const PickUpLocationMap(),
           );
         default:
           return _errorRoute();

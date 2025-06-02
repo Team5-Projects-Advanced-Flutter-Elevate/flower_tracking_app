@@ -6,6 +6,7 @@ import 'package:flower_tracking_app/core/validation/validation_functions.dart';
 import 'package:flower_tracking_app/firebase_options.dart';
 import 'package:flower_tracking_app/modules/authentication/data/data_sources_contracts/login/local/login_local_data_source.dart';
 import 'package:flower_tracking_app/modules/authentication/domain/entities/logged_driver_data/logged_driver_data_response_entity.dart';
+import 'package:flower_tracking_app/modules/pick_up_location_map/ui/pick_up_location_map.dart';
 import 'package:flower_tracking_app/shared_layers/database/firestore/constants/firestore_constants.dart';
 import 'package:flower_tracking_app/shared_layers/localization/generated/app_localizations.dart';
 import 'package:flower_tracking_app/shared_layers/localization/l10n_manager/localization_manager.dart';
@@ -14,7 +15,6 @@ import 'package:flower_tracking_app/shared_layers/storage/contracts/flutter_secu
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:provider/provider.dart';
-import 'core/routing/generate_route.dart';
 import 'core/utilities/dio/dio_service/dio_service.dart';
 
 GlobalKey<NavigatorState> globalNavigatorKey = GlobalKey<NavigatorState>();
@@ -89,32 +89,13 @@ class _MyAppState extends State<MyApp> {
             localizationsDelegates: AppLocalizations.localizationsDelegates,
             supportedLocales: AppLocalizations.supportedLocales,
             navigatorKey: globalNavigatorKey,
-
-            onGenerateRoute: GenerateRoute.onGenerateRoute,
-            onGenerateInitialRoutes: (initialRoute) {
-              return GenerateRoute.onGenerateInitialRoutes(
-                initialRoute: initialRoute,
-                loginInfo: loggedDriverData,
-                currentAcceptedOrderId: currentAcceptedOrderId,
-              );
-            },
-            // //initialRoute: DefinedRoutes.onboardingScreenRoute,
-            // onGenerateRoute: GenerateRoute.onGenerateRoute,
+            home: const PickUpLocationMap(),
+            //onGenerateRoute: GenerateRoute.onGenerateRoute,
             // onGenerateInitialRoutes: (initialRoute) {
             //   return GenerateRoute.onGenerateInitialRoutes(
             //     initialRoute: initialRoute,
             //     loginInfo: loggedDriverData,
-            //   );
-            // },
-            //home: LauncherScreen(),
-            // navigatorKey: globalNavigatorKey,
-            // onGenerateRoute: GenerateRoute.onGenerateRoute,
-            // initialRoute: DefinedRoutes.onboardingScreenRoute,
-            // onGenerateInitialRoutes: (initialRoute) {
-            //   return GenerateRoute.onGenerateInitialRoutes(
-            //     initialRoute: initialRoute,
-            //     loginInfo: null,
-            //     rememberMe: false
+            //     currentAcceptedOrderId: currentAcceptedOrderId,
             //   );
             // },
           ),

@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flower_tracking_app/core/utilities/bloc_observer/location_permission_denied.dart';
 import 'package:flower_tracking_app/shared_layers/localization/generated/app_localizations.dart';
 import 'package:injectable/injectable.dart';
 
@@ -24,7 +25,9 @@ class ApiErrorHandler {
         case DioExceptionType.receiveTimeout:
           return _appLocalizations.receiveTimeout;
         case DioExceptionType.badResponse:
-          return ApiErrorModel.fromJson(error.response?.data).error ??
+          return ApiErrorModel
+              .fromJson(error.response?.data)
+              .error ??
               _appLocalizations.somethingWentWrong;
         case DioExceptionType.cancel:
           return _appLocalizations.cancel;
@@ -35,6 +38,8 @@ class ApiErrorHandler {
         case DioExceptionType.badCertificate:
           return _appLocalizations.badCertificate;
       }
+    } else if (error is LocationPermissionDenied) {
+      return error.toString();
     } else {
       return error.toString();
     }
