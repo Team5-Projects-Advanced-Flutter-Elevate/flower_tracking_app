@@ -1,3 +1,5 @@
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
+import 'package:flower_tracking_app/core/apis/api_error/api_error_handler.dart';
 import 'package:flower_tracking_app/core/bases/base_stateful_widget_state.dart';
 import 'package:flower_tracking_app/core/colors/app_colors.dart';
 import 'package:flower_tracking_app/core/widgets/error_state_widget.dart';
@@ -25,6 +27,7 @@ class _PickUpLocationMapState
     extends BaseStatefulWidgetState<PickUpLocationMap> {
   LocationMapViewModel locationMapViewModel = getIt.get<LocationMapViewModel>();
   bool errorLoadingMap = false;
+  ApiErrorHandler apiErrorHandler = getIt.get<ApiErrorHandler>();
 
   @override
   void didChangeDependencies() {
@@ -57,96 +60,128 @@ class _PickUpLocationMapState
                   : Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      BlocBuilder<LocationMapViewModel, LocationStates>(
+                      BlocConsumer<LocationMapViewModel, LocationStates>(
+                        listenWhen: (previous, current) {
+                          if (previous.getDirectionBetweenPointsStatus !=
+                              current.getDirectionBetweenPointsStatus) {
+                            return true;
+                          }
+                          return false;
+                        },
+                        listener: (context, state) {
+                          switch (state.getDirectionBetweenPointsStatus) {
+                            case Status.error:
+                              displaySnackBar(
+                                contentType: ContentType.failure,
+                                title: apiErrorHandler.handle(state.error!),
+                              );
+                            default:
+                              break;
+                          }
+                        },
                         builder: (context, state) {
                           switch (state.requestLocationPermissionStatus) {
                             case Status.idle:
                             case Status.loading:
                               return const LoadingStateWidget();
                             case Status.success:
+                              locationMapViewModel.doIntent(
+                                GetRoute(
+                                  destination: const LatLng(37.7749, -122.4194),
+                                  markerText: "Flowery Store",
+                                  iconPath: AssetsPaths.flowerLogo,
+                                ),
+                              );
                               switch (state.getCurrentUserLocationStatus) {
                                 case Status.idle:
                                 case Status.loading:
                                   return const LoadingStateWidget();
                                 case Status.success:
-                                  return Expanded(
-                                    child: FlutterMap(
-                                      mapController:
-                                          locationMapViewModel.mapController,
-                                      options: MapOptions(
-                                        initialCenter: LatLng(
-                                          locationMapViewModel
-                                              .currentLocation!
-                                              .latitude!,
-                                          locationMapViewModel
-                                              .currentLocation!
-                                              .longitude!,
-                                        ),
-                                        initialZoom: 15.0,
+                                  switch (state
+                                      .getDirectionBetweenPointsStatus) {
+                                    case Status.idle:
+                                    case Status.loading:
+                                      return const LoadingStateWidget();
+                                    default:
+                                      return Expanded(
+                                        child: FlutterMap(
+                                          mapController:
+                                              locationMapViewModel
+                                                  .mapController,
+                                          options: MapOptions(
+                                            initialCenter: LatLng(
+                                              locationMapViewModel
+                                                  .currentLocation!
+                                                  .latitude!,
+                                              locationMapViewModel
+                                                  .currentLocation!
+                                                  .longitude!,
+                                            ),
+                                            initialZoom: 15.0,
 
-                                        onTap: (tapPosition, point) {
-                                          print(point.latitude);
-                                          print(point.longitude);
-                                          setState(() {
-                                            locationMapViewModel.markers.add(
-                                              Marker(
-                                                point: point,
-                                                width: screenWidth * 0.37,
-                                                height: 35,
-                                                child: const MarkerChildWidget(
-                                                  iconPath:
-                                                      AssetsPaths
-                                                          .locationPinIcon,
-                                                  text: "New Location",
+                                            onTap: (tapPosition, point) {
+                                              setState(() {
+                                                locationMapViewModel.markers.add(
+                                                  Marker(
+                                                    point: point,
+                                                    width: screenWidth * 0.37,
+                                                    height: 35,
+                                                    child: const MarkerChildWidget(
+                                                      iconPath:
+                                                          AssetsPaths
+                                                              .locationPinIcon,
+                                                      text: "New Location",
+                                                    ),
+                                                  ),
+                                                );
+                                              });
+                                            },
+                                          ),
+                                          children: [
+                                            TileLayer(
+                                              urlTemplate:
+                                                  LocationMapConstants.tileUrl,
+                                              subdomains: ['a', 'b', 'c'],
+                                              errorTileCallback: (
+                                                tile,
+                                                error,
+                                                stackTrace,
+                                              ) {
+                                                setState(() {
+                                                  errorLoadingMap = true;
+                                                });
+                                              },
+                                            ),
+                                            PolylineLayer(
+                                              polylines: [
+                                                Polyline(
+                                                  color: AppColors.mainColor,
+                                                  strokeWidth: 5,
+
+                                                  points: [
+                                                    locationMapViewModel
+                                                        .markers[0]
+                                                        .point,
+                                                    if (locationMapViewModel
+                                                            .markers
+                                                            .length >
+                                                        1)
+                                                      locationMapViewModel
+                                                          .markers[1]
+                                                          .point,
+                                                  ],
                                                 ),
-                                              ),
-                                            );
-                                          });
-                                        },
-                                      ),
-                                      children: [
-                                        TileLayer(
-                                          urlTemplate:
-                                              LocationMapConstants.tileUrl,
-                                          subdomains: ['a', 'b', 'c'],
-                                          errorTileCallback: (
-                                            tile,
-                                            error,
-                                            stackTrace,
-                                          ) {
-                                            setState(() {
-                                              errorLoadingMap = true;
-                                            });
-                                          },
-                                        ),
-                                        PolylineLayer(
-                                          polylines: [
-                                            Polyline(
-                                              color: AppColors.mainColor,
-                                              strokeWidth: 5,
-
-                                              points: [
-                                                locationMapViewModel
-                                                    .markers[0]
-                                                    .point,
-                                                if (locationMapViewModel
-                                                        .markers
-                                                        .length >
-                                                    1)
-                                                  locationMapViewModel
-                                                      .markers[1]
-                                                      .point,
                                               ],
+                                            ),
+
+                                            MarkerLayer(
+                                              markers:
+                                                  locationMapViewModel.markers,
                                             ),
                                           ],
                                         ),
-
-                                        MarkerLayer(
-                                          markers: locationMapViewModel.markers,
-                                        ),
-                                      ],
-                                    ),
-                                  );
+                                      );
+                                  }
                                 case Status.error:
                                   return ErrorStateWidget(error: state.error!);
                               }
