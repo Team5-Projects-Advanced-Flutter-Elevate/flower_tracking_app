@@ -1,14 +1,11 @@
-import 'dart:developer';
 
-import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flower_tracking_app/core/apis/api_result/api_result.dart';
 import 'package:flower_tracking_app/modules/authentication/domain/entities/logged_driver_data/logged_driver_data_response_entity.dart';
 import 'package:flower_tracking_app/modules/authentication/domain/use_cases/logged_driver_data/get_logged_driver_data_use_case.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../../../../../core/di/injectable_initializer.dart';
-import '../../../../../../shared_layers/localization/l10n_manager/localization_manager.dart';
 
 part 'profile_state.dart';
 

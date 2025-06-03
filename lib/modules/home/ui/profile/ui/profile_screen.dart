@@ -1,4 +1,3 @@
-import 'package:flower_tracking_app/core/bases/base_inherited_widget.dart';
 import 'package:flower_tracking_app/core/bases/base_stateful_widget_state.dart';
 import 'package:flower_tracking_app/core/widgets/error_state_widget.dart';
 import 'package:flower_tracking_app/core/widgets/loading_state_widget.dart';
@@ -11,8 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../../../../core/bases/base_statless_widget.dart';
-import '../../../../../core/colors/app_colors.dart';
+
 import '../../../../../core/constants/assets_paths/assets_paths.dart';
 import '../../../../../core/di/injectable_initializer.dart';
 import '../../../../../shared_layers/localization/enums/languages_enum.dart';
