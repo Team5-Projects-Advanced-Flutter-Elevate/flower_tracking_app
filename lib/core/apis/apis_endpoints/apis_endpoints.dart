@@ -8,4 +8,9 @@ class ApisEndpoints {
   static const String applyDriver = 'api/v1/drivers/apply';
   static const String getVehicles = 'api/v1/vehicles';
   static const String getPendingOrders = 'api/v1/orders/pending-orders';
+
+  // Open Route Service
+  static const String openRouteServiceBaseUrl =
+      "https://api.openrouteservice.org/";
+  static const String directionsEndPoint = "v2/directions/driving-car/geojson";
 }
