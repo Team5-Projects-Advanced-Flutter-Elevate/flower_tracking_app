@@ -4,11 +4,12 @@ import 'package:flower_tracking_app/modules/apply/data/models/apply_response.dar
 import 'package:flower_tracking_app/modules/apply/domain/entities/apply_response_entity.dart';
 import 'package:flower_tracking_app/modules/apply/domain/entities/vehicle_response_entity.dart';
 import 'package:injectable/injectable.dart';
+
 import '../../../../shared_layers/database/firestore/data/data_sources_abstracts/driver/driver_collection.dart';
 import '../../domain/repo_contract/apply_repo_contract.dart';
 
-@Injectable(as: ApplyRepo)
-class ApplyRepoImpl implements ApplyRepo {
+@Injectable(as: VehicleRepo)
+class ApplyRepoImpl implements VehicleRepo {
   ApplyDataSource applyDataSource;
   final DriverCollection driverCollection;
 

@@ -7,7 +7,7 @@ import '../entities/apply_response_entity.dart';
 
 @injectable
 class ApplyDriverUseCase {
-  final ApplyRepo applyRepo;
+  final VehicleRepo applyRepo;
 
   ApplyDriverUseCase(this.applyRepo);
 

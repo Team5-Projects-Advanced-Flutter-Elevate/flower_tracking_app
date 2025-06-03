@@ -4,7 +4,7 @@ import '../../data/models/apply_response.dart';
 import '../entities/apply_response_entity.dart';
 import '../entities/vehicle_response_entity.dart';
 
-abstract interface class ApplyRepo {
+abstract interface class VehicleRepo {
   Future<ApiResult<ApplyResponseEntity>> applyDriver(DriverRequestModel model);
 
   Future<ApiResult<VehicleResponseEntity>> getVehicles();

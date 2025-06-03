@@ -14,12 +14,15 @@ import 'package:flower_tracking_app/shared_layers/storage/contracts/flutter_secu
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:provider/provider.dart';
+
+import 'core/routing/defined_routes.dart';
 import 'core/routing/generate_route.dart';
 import 'core/utilities/dio/dio_service/dio_service.dart';
 
 GlobalKey<NavigatorState> globalNavigatorKey = GlobalKey<NavigatorState>();
 LoggedDriverDataResponseEntity? loggedDriverData;
 String? currentAcceptedOrderId;
+
 void main() async {
   FlutterNativeSplash.preserve(
     widgetsBinding: WidgetsFlutterBinding.ensureInitialized(),
@@ -91,14 +94,8 @@ class _MyAppState extends State<MyApp> {
             navigatorKey: globalNavigatorKey,
 
             onGenerateRoute: GenerateRoute.onGenerateRoute,
-            onGenerateInitialRoutes: (initialRoute) {
-              return GenerateRoute.onGenerateInitialRoutes(
-                initialRoute: initialRoute,
-                loginInfo: loggedDriverData,
-                currentAcceptedOrderId: currentAcceptedOrderId,
-              );
-            },
-            // //initialRoute: DefinedRoutes.onboardingScreenRoute,
+
+            initialRoute: DefinedRoutes.editeVehicleInfoScreen,
             // onGenerateRoute: GenerateRoute.onGenerateRoute,
             // onGenerateInitialRoutes: (initialRoute) {
             //   return GenerateRoute.onGenerateInitialRoutes(

@@ -175,7 +175,7 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i684.DefaultImagePickerService(),
     );
     gh.factory<_i692.CallDataSource>(() => _i787.CallDataSourceImpl());
-    gh.lazySingleton<_i780.ApplyApiClient>(
+    gh.lazySingleton<_i780.VehicleApiClient>(
       () => applyApiClientProvider.providerApiClient(gh<_i361.Dio>()),
     );
     gh.lazySingleton<_i343.AuthApiClient>(
@@ -185,7 +185,7 @@ extension GetItInjectableX on _i174.GetIt {
       () => ordersApiClientProvider.providerApiClient(gh<_i361.Dio>()),
     );
     gh.factory<_i843.ApplyDataSource>(
-      () => _i684.ApplyDataSourceImpl(gh<_i780.ApplyApiClient>()),
+      () => _i684.ApplyDataSourceImpl(gh<_i780.VehicleApiClient>()),
     );
     gh.factory<_i557.CallRepo>(
       () => _i618.CallRepoImpl(gh<_i692.CallDataSource>()),
@@ -240,7 +240,7 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i251.ResetCodeRepo>(
       () => _i196.ResetCodeRepoImpl(gh<_i779.ResetCodeRemoteDataSource>()),
     );
-    gh.factory<_i61.ApplyRepo>(
+    gh.factory<_i61.VehicleRepo>(
       () => _i792.ApplyRepoImpl(
         applyDataSource: gh<_i843.ApplyDataSource>(),
         driverCollection: gh<_i163.DriverCollection>(),
@@ -303,10 +303,10 @@ extension GetItInjectableX on _i174.GetIt {
       ),
     );
     gh.factory<_i637.ApplyDriverUseCase>(
-      () => _i637.ApplyDriverUseCase(gh<_i61.ApplyRepo>()),
+      () => _i637.ApplyDriverUseCase(gh<_i61.VehicleRepo>()),
     );
     gh.factory<_i900.GetVehiclesUseCase>(
-      () => _i900.GetVehiclesUseCase(gh<_i61.ApplyRepo>()),
+      () => _i900.GetVehiclesUseCase(gh<_i61.VehicleRepo>()),
     );
     gh.factory<_i543.LoginUseCase>(
       () => _i543.LoginUseCase(gh<_i450.LoginRepo>()),
@@ -316,7 +316,7 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i150.ForgetPasswordRemoteDataSource>(),
       ),
     );
-    gh.factory<_i172.ApplyCubit>(
+    gh.lazySingleton<_i172.ApplyCubit>(
       () => _i172.ApplyCubit(
         gh<_i637.ApplyDriverUseCase>(),
         gh<_i900.GetVehiclesUseCase>(),
@@ -324,11 +324,11 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i843.ImagePickerService>(),
       ),
     );
-    gh.lazySingleton<_i166.ValidateFunctions>(
-      () => _i166.ValidateFunctions(gh<_i543.AppLocalizations>()),
-    );
     gh.lazySingleton<_i439.ApiErrorHandler>(
       () => _i439.ApiErrorHandler(gh<_i543.AppLocalizations>()),
+    );
+    gh.lazySingleton<_i166.ValidateFunctions>(
+      () => _i166.ValidateFunctions(gh<_i543.AppLocalizations>()),
     );
     gh.factory<_i898.LauncherViewModel>(
       () => _i898.LauncherViewModel(

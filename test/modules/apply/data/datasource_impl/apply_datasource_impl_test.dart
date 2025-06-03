@@ -1,4 +1,5 @@
 import 'dart:io';
+
 import 'package:dio/dio.dart';
 import 'package:flower_tracking_app/core/apis/api_result/api_result.dart';
 import 'package:flower_tracking_app/modules/apply/data/api/api_client/apply_api_client.dart';
@@ -14,7 +15,7 @@ import 'package:mockito/mockito.dart';
 
 import 'apply_datasource_impl_test.mocks.dart';
 
-@GenerateMocks([ApplyApiClient])
+@GenerateMocks([VehicleApiClient])
 void main() {
   late MockApplyApiClient mockApplyApiClient;
   late ApplyDataSourceImpl applyDataSourceImpl;
