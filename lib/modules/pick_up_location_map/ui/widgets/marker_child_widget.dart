@@ -21,14 +21,17 @@ class MarkerChildWidget extends BaseStatelessWidget {
         borderRadius: const BorderRadius.all(Radius.circular(20)),
       ),
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: inherit.screenWidth * 0.02,vertical: 4),
+        padding: EdgeInsets.symmetric(
+          horizontal: inherit.screenWidth * 0.02,
+          vertical: 4,
+        ),
         child: Row(
           children: [
             Container(
               decoration: const BoxDecoration(shape: BoxShape.circle),
               child: Image.asset(iconPath),
             ),
-            SizedBox(width: inherit.screenWidth * 0.005,),
+            SizedBox(width: inherit.screenWidth * 0.005),
             Expanded(
               child: Center(
                 child: AutoSizeText(

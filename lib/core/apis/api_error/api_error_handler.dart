@@ -25,9 +25,7 @@ class ApiErrorHandler {
         case DioExceptionType.receiveTimeout:
           return _appLocalizations.receiveTimeout;
         case DioExceptionType.badResponse:
-          return ApiErrorModel
-              .fromJson(error.response?.data)
-              .error ??
+          return ApiErrorModel.fromJson(error.response?.data).error ??
               _appLocalizations.somethingWentWrong;
         case DioExceptionType.cancel:
           return _appLocalizations.cancel;
