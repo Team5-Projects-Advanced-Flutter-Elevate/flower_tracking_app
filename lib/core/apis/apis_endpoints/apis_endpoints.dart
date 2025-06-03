@@ -8,4 +8,5 @@ class ApisEndpoints {
   static const String applyDriver = 'api/v1/drivers/apply';
   static const String getVehicles = 'api/v1/vehicles';
   static const String getPendingOrders = 'api/v1/orders/pending-orders';
+  static const String updateOrderState = 'api/v1/orders/state';
 }

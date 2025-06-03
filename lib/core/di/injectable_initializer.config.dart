@@ -98,6 +98,21 @@ import '../../modules/home/ui/cubit/pending_orders/pending_orders_cubit.dart'
     as _i12;
 import '../../modules/order_details/view_model/order_details_view_model.dart'
     as _i240;
+import '../../modules/update_status/data/api/api_client/status_api_client.dart'
+    as _i564;
+import '../../modules/update_status/data/api/api_client_provider/auth_api_client_provider.dart'
+    as _i954;
+import '../../modules/update_status/data/datasource/order_status_data_source.dart'
+    as _i675;
+import '../../modules/update_status/data/datasource_impl/order_status_data_source_impl.dart'
+    as _i757;
+import '../../modules/update_status/data/repo_impl/order_status_repo_impl.dart'
+    as _i799;
+import '../../modules/update_status/domain/repo/order_status_repo.dart'
+    as _i797;
+import '../../modules/update_status/domain/usecase/order_status_use_case.dart'
+    as _i370;
+import '../../modules/update_status/ui/cubit/viewModel.dart' as _i873;
 import '../../modules/whatsapp_call/data/data_source/call_data_source.dart'
     as _i692;
 import '../../modules/whatsapp_call/data/data_source/whatsapp_data_source.dart'
@@ -158,6 +173,7 @@ extension GetItInjectableX on _i174.GetIt {
     final applyApiClientProvider = _$ApplyApiClientProvider();
     final authApiClientProvider = _$AuthApiClientProvider();
     final ordersApiClientProvider = _$OrdersApiClientProvider();
+    final stateApiClientProvider = _$StateApiClientProvider();
     final localeInitializer = _$LocaleInitializer();
     final appLocalizationsProvider = _$AppLocalizationsProvider();
     await gh.factoryAsync<_i361.Dio>(
@@ -183,6 +199,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.lazySingleton<_i858.OrdersApiClient>(
       () => ordersApiClientProvider.providerApiClient(gh<_i361.Dio>()),
+    );
+    gh.lazySingleton<_i564.StateApiClient>(
+      () => stateApiClientProvider.provideApiClient(gh<_i361.Dio>()),
     );
     gh.factory<_i843.ApplyDataSource>(
       () => _i684.ApplyDataSourceImpl(gh<_i780.ApplyApiClient>()),
@@ -217,6 +236,11 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i271.FirestoreRepoImp(
         gh<_i163.DriverCollection>(),
         gh<_i793.OrderCollection>(),
+      ),
+    );
+    gh.factory<_i675.UpdateOrderStatusOnlineDataSource>(
+      () => _i757.UpdateOrderStatusOnlineDataSourceImpl(
+        gh<_i564.StateApiClient>(),
       ),
     );
     gh.factory<_i477.LoginRemoteDataSource>(
@@ -302,6 +326,14 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i629.SecureStorageService<dynamic>>(),
       ),
     );
+    gh.factory<_i797.UpdateOrderStatusRepo>(
+      () => _i799.UpdateOrderStatusRepoImpl(
+        gh<_i675.UpdateOrderStatusOnlineDataSource>(),
+      ),
+    );
+    gh.factory<_i370.UpdateOrderStatusUseCase>(
+      () => _i370.UpdateOrderStatusUseCase(gh<_i797.UpdateOrderStatusRepo>()),
+    );
     gh.factory<_i637.ApplyDriverUseCase>(
       () => _i637.ApplyDriverUseCase(gh<_i61.ApplyRepo>()),
     );
@@ -316,7 +348,7 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i150.ForgetPasswordRemoteDataSource>(),
       ),
     );
-    gh.factory<_i172.ApplyCubit>(
+    gh.lazySingleton<_i172.ApplyCubit>(
       () => _i172.ApplyCubit(
         gh<_i637.ApplyDriverUseCase>(),
         gh<_i900.GetVehiclesUseCase>(),
@@ -324,11 +356,14 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i843.ImagePickerService>(),
       ),
     );
+    gh.lazySingleton<_i439.ApiErrorHandler>(
+      () => _i439.ApiErrorHandler(gh<_i543.AppLocalizations>()),
+    );
     gh.lazySingleton<_i166.ValidateFunctions>(
       () => _i166.ValidateFunctions(gh<_i543.AppLocalizations>()),
     );
-    gh.lazySingleton<_i439.ApiErrorHandler>(
-      () => _i439.ApiErrorHandler(gh<_i543.AppLocalizations>()),
+    gh.factory<_i873.OrderStatusViewModel>(
+      () => _i873.OrderStatusViewModel(gh<_i370.UpdateOrderStatusUseCase>()),
     );
     gh.factory<_i898.LauncherViewModel>(
       () => _i898.LauncherViewModel(
@@ -362,6 +397,8 @@ class _$ApplyApiClientProvider extends _i594.ApplyApiClientProvider {}
 class _$AuthApiClientProvider extends _i1019.AuthApiClientProvider {}
 
 class _$OrdersApiClientProvider extends _i290.OrdersApiClientProvider {}
+
+class _$StateApiClientProvider extends _i954.StateApiClientProvider {}
 
 class _$LocaleInitializer extends _i631.LocaleInitializer {}
 
