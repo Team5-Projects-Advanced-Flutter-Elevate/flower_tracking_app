@@ -2,15 +2,25 @@ import 'package:flower_tracking_app/core/apis/api_result/api_result.dart';
 import 'package:flower_tracking_app/modules/home/domain/entities/orders_entity.dart';
 import 'package:flower_tracking_app/modules/home/domain/use_cases/get_pending_orders_use_case.dart';
 import 'package:flower_tracking_app/modules/home/ui/cubit/pending_orders/pending_orders_state.dart';
+import 'package:flower_tracking_app/shared_layers/database/firestore/domain/entities/order/order_entity_firestore.dart';
+import 'package:flower_tracking_app/shared_layers/database/firestore/domain/repositories_abstracts/firestore_repo_contract.dart';
+import 'package:flower_tracking_app/shared_layers/storage/constants/storage_constants.dart';
+import 'package:flower_tracking_app/shared_layers/storage/contracts/flutter_secure_storage_service_contract.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
 @lazySingleton
 class OrdersCubit extends Cubit<OrdersState> {
   final GetPendingOrdersUseCase useCase;
+  final FirestoreRepoContract _firestoreRepoContract;
+  final SecureStorageService _secureStorageService;
   bool _isLoading = false;
 
-  OrdersCubit(this.useCase) : super(const OrdersState());
+  OrdersCubit(
+    this.useCase,
+    this._firestoreRepoContract,
+    this._secureStorageService,
+  ) : super(const OrdersState());
 
   Future<void> doIntent(OrdersIntent intent) async {
     if (_isLoading || isClosed) {
@@ -22,6 +32,8 @@ class OrdersCubit extends Cubit<OrdersState> {
       await _loadMoreOrders();
     } else if (intent is RefreshOrdersIntent) {
       await _loadOrders(page: 1, isRefresh: true);
+    } else if (intent is OnAcceptButtonClick) {
+      _onAcceptButtonClick(intent.driverId, intent.orderEntity);
     }
   }
 
@@ -31,7 +43,7 @@ class OrdersCubit extends Cubit<OrdersState> {
     }
     _isLoading = true;
     if (!isClosed) {
-      emit(state.copyWith(status: LoadOrdersStatus.loading, currentPage: page));
+      emit(OrdersState(loadOrdersStatus: Status.loading, currentPage: page));
     }
     try {
       var result = await useCase.execute(page: page);
@@ -48,12 +60,12 @@ class OrdersCubit extends Cubit<OrdersState> {
                     metadata: result.data.metadata,
                     orders: [
                       ...(state.orders?.orders ?? []),
-                      ...result.data.orders,
+                      ...result.data.orders ?? [],
                     ],
                   );
           emit(
             state.copyWith(
-              status: LoadOrdersStatus.success,
+              loadOrdersStatus: Status.success,
               orders: newOrders,
               currentPage: page,
             ),
@@ -61,7 +73,7 @@ class OrdersCubit extends Cubit<OrdersState> {
         case Error<PendingOrdersEntity>():
           emit(
             state.copyWith(
-              status: LoadOrdersStatus.error,
+              loadOrdersStatus: Status.error,
               error: result.error,
               currentPage: page,
             ),
@@ -71,7 +83,7 @@ class OrdersCubit extends Cubit<OrdersState> {
       if (!isClosed) {
         emit(
           state.copyWith(
-            status: LoadOrdersStatus.error,
+            loadOrdersStatus: Status.error,
             error: e,
             currentPage: page,
           ),
@@ -93,7 +105,7 @@ class OrdersCubit extends Cubit<OrdersState> {
     }
     _isLoading = true;
     if (!isClosed) {
-      emit(state.copyWith(status: LoadOrdersStatus.loadingMore));
+      emit(state.copyWith(loadOrdersStatus: Status.loadingMore));
     }
     try {
       var result = await useCase.execute(page: nextPage);
@@ -105,11 +117,14 @@ class OrdersCubit extends Cubit<OrdersState> {
           final newOrders = PendingOrdersEntity(
             message: result.data.message,
             metadata: result.data.metadata,
-            orders: [...(state.orders?.orders ?? []), ...result.data.orders],
+            orders: [
+              ...(state.orders?.orders ?? []),
+              ...result.data.orders ?? [],
+            ],
           );
           emit(
             state.copyWith(
-              status: LoadOrdersStatus.success,
+              loadOrdersStatus: Status.success,
               orders: newOrders,
               currentPage: nextPage,
             ),
@@ -117,7 +132,7 @@ class OrdersCubit extends Cubit<OrdersState> {
         case Error<PendingOrdersEntity>():
           emit(
             state.copyWith(
-              status: LoadOrdersStatus.error,
+              loadOrdersStatus: Status.error,
               error: result.error,
               currentPage: state.currentPage,
             ),
@@ -127,7 +142,7 @@ class OrdersCubit extends Cubit<OrdersState> {
       if (!isClosed) {
         emit(
           state.copyWith(
-            status: LoadOrdersStatus.error,
+            loadOrdersStatus: Status.error,
             error: e,
             currentPage: state.currentPage,
           ),
@@ -138,7 +153,51 @@ class OrdersCubit extends Cubit<OrdersState> {
     }
   }
 
-  Future<void> close() {
-    return super.close();
+  void _onAcceptButtonClick(
+    String driverId,
+    OrderEntityFirestore orderEntity,
+  ) async {
+    emit(state.copyWith(addingOrderToFirestore: Status.loading));
+    var result = await _firestoreRepoContract.addOrder(
+      driverId: driverId,
+      orderEntity: orderEntity,
+    );
+    switch (result) {
+      case Success<void>():
+        _secureStorageService.setStringValue(
+          StorageConstants.currentAcceptedOrderId,
+          orderEntity.id ?? '',
+        );
+        emit(
+          state.copyWith(
+            addingOrderToFirestore: Status.success,
+            addedOrderIdToFirestore: orderEntity.id ?? '',
+          ),
+        );
+      case Error<void>():
+        emit(
+          state.copyWith(
+            addingOrderToFirestore: Status.error,
+            error: result.error,
+          ),
+        );
+    }
+  }
+
+  removeOrder(String orderId) {
+    final currentOrders = state.orders?.orders ?? [];
+    final updatedOrders =
+        currentOrders.where((order) => order.id != orderId).toList();
+
+    emit(
+      state.copyWith(
+        orders: state.orders?.copyWith(
+          orders: updatedOrders,
+          metadata: state.orders!.metadata?.copyWith(
+            totalItems: updatedOrders.length,
+          ),
+        ),
+      ),
+    );
   }
 }

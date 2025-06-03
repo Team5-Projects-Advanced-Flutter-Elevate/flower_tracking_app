@@ -36,22 +36,22 @@ class _ApplyTextFormFieldsState
   late TextEditingController vehicleNumberController;
   late TextEditingController vehicleLicenseController;
   late TextEditingController emailController;
+  late TextEditingController phoneNumberController;
   late TextEditingController idNumberController;
   late TextEditingController idImageController;
   late TextEditingController passwordController;
   late TextEditingController confirmPasswordController;
-  late TextEditingController phoneNUmberController;
 
   late FocusNode firstNameFocusNode;
   late FocusNode lastNameFocusNode;
   late FocusNode vehicleNumberFocusNode;
   late FocusNode vehicleLicenseFocusNode;
   late FocusNode emailFocusNode;
+  late FocusNode phoneNumberFocusNode;
   late FocusNode idNumberFocusNode;
   late FocusNode idImageFocusNode;
   late FocusNode passwordFocusNode;
   late FocusNode confirmPasswordFocusNode;
-  late FocusNode phoneNumberFocusNode;
 
   @override
   void initState() {
@@ -61,22 +61,22 @@ class _ApplyTextFormFieldsState
     vehicleNumberController = TextEditingController();
     vehicleLicenseController = TextEditingController();
     emailController = TextEditingController();
+    phoneNumberController = TextEditingController();
     idNumberController = TextEditingController();
     idImageController = TextEditingController();
     passwordController = TextEditingController();
     confirmPasswordController = TextEditingController();
-    phoneNUmberController = TextEditingController();
 
     firstNameFocusNode = FocusNode();
     lastNameFocusNode = FocusNode();
     vehicleNumberFocusNode = FocusNode();
     vehicleLicenseFocusNode = FocusNode();
     emailFocusNode = FocusNode();
+    phoneNumberFocusNode = FocusNode();
     idNumberFocusNode = FocusNode();
     idImageFocusNode = FocusNode();
     passwordFocusNode = FocusNode();
     confirmPasswordFocusNode = FocusNode();
-    phoneNumberFocusNode = FocusNode();
   }
 
   @override
@@ -96,7 +96,6 @@ class _ApplyTextFormFieldsState
     idNumberFocusNode.dispose();
     passwordFocusNode.dispose();
     confirmPasswordFocusNode.dispose();
-    phoneNumberFocusNode.dispose();
   }
 
   late ApplyCubit cubit;
@@ -290,7 +289,7 @@ class _ApplyTextFormFieldsState
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   keyboardType: TextInputType.emailAddress,
                   focusNode: emailFocusNode,
-                  onFieldSubmitted: (value) => phoneNumberFocusNode.requestFocus(),
+                  onFieldSubmitted: (value) => idNumberFocusNode.requestFocus(),
                   decoration: InputDecoration(
                     labelText: AppLocalizations.of(context)!.email,
                     hintText: AppLocalizations.of(context)!.emailHint,
@@ -298,14 +297,14 @@ class _ApplyTextFormFieldsState
                 ),
                 SizedBox(height: screenHeight * 0.02),
                 TextFormField(
-                  controller: phoneNUmberController,
+                  controller: phoneNumberController,
                   validator: (inputText) {
                     return validateFunctions.validationOfPhoneNumber(inputText);
                   },
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   keyboardType: TextInputType.phone,
                   focusNode: phoneNumberFocusNode,
-                  onFieldSubmitted: (value) => idNumberFocusNode.requestFocus(),
+                  onFieldSubmitted: (value) => idImageFocusNode.requestFocus(),
                   decoration: InputDecoration(
                     labelText: AppLocalizations.of(context)!.phoneNumber,
                     hintText: AppLocalizations.of(context)!.phoneNumberHint,
@@ -456,7 +455,6 @@ class _ApplyTextFormFieldsState
                           cubit.doIntent(
                             ApplyDriverIntent(
                               DriverRequestModel(
-                                phone: '+2${phoneNUmberController.text}',
                                 country:
                                     cubit.state.selectedCountry ??
                                     cubit.state.countries.first.name,
@@ -470,6 +468,7 @@ class _ApplyTextFormFieldsState
                                 nid: idNumberController.text,
                                 nIDImg: cubit.state.pickedIdImage,
                                 email: emailController.text,
+                                phone: getPhoneNumberFormat(),
                                 password: passwordController.text,
                                 rePassword: confirmPasswordController.text,
                                 gender: cubit.state.selectedGender,
@@ -502,6 +501,13 @@ class _ApplyTextFormFieldsState
         }
       },
     );
+  }
+
+  String getPhoneNumberFormat() {
+    if (!(phoneNumberController.text.trim().startsWith('+20'))) {
+      return "+20${phoneNumberController.text}";
+    }
+    return phoneNumberController.text;
   }
 
   void clearControllers() {

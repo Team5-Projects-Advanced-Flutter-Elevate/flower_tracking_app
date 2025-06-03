@@ -176,7 +176,7 @@ abstract class AppThemes {
     filledButtonTheme: FilledButtonThemeData(
       style: ButtonStyle(
         padding: const WidgetStatePropertyAll(
-          EdgeInsets.symmetric(vertical: 12, horizontal: 24),
+          EdgeInsets.symmetric(vertical: 16, horizontal: 24),
         ),
         textStyle: WidgetStatePropertyAll(
           TextStyle(
@@ -203,7 +203,7 @@ abstract class AppThemes {
       style: OutlinedButton.styleFrom(
         foregroundColor: AppColors.black,
         padding: const EdgeInsetsDirectional.symmetric(
-          vertical: 12,
+          vertical: 10,
           horizontal: 24,
         ),
         textStyle: TextStyle(
@@ -217,7 +217,8 @@ abstract class AppThemes {
     switchTheme: SwitchThemeData(
       trackColor: WidgetStateProperty.resolveWith((states) {
         if (states.contains(WidgetState.selected)) {
-          return AppColors.green; // Fallback to Colors.green if AppColors.green is null
+          return AppColors
+              .green; // Fallback to Colors.green if AppColors.green is null
         }
         return null; // Use default (colorScheme.surface)
       }),

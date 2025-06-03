@@ -12,23 +12,30 @@ import '../../whatsapp_call/ui/cubit/launcher_view_model.dart';
 import '../../whatsapp_call/ui/cubit/state.dart';
 
 class AddressItem extends StatefulWidget {
-  const AddressItem({super.key});
+  final String? title;
+  final String? address;
+  final String? phoneNumber;
+  const AddressItem({
+    super.key,
+    required this.title,
+    required this.address,
+    required this.phoneNumber,
+  });
 
   @override
   State<AddressItem> createState() => _AddressItemState();
 }
 
 class _AddressItemState extends BaseStatefulWidgetState<AddressItem> {
-  LauncherViewModel launcherViewModel =
-  getIt.get<LauncherViewModel>();
+  LauncherViewModel launcherViewModel = getIt.get<LauncherViewModel>();
 
   @override
   Widget build(BuildContext context) {
-    return  BlocProvider(
+    return BlocProvider(
       create: (context) => launcherViewModel,
       child: BlocConsumer<LauncherViewModel, LauncherState>(
         builder:
-            (context, state) =>Container(
+            (context, state) => Container(
               decoration: BoxDecoration(
                 color: AppColors.white,
                 boxShadow: [
@@ -44,7 +51,7 @@ class _AddressItemState extends BaseStatefulWidgetState<AddressItem> {
                 borderRadius: BorderRadius.circular(8),
               ),
               width: screenWidth,
-              padding: const EdgeInsets.all(16),
+              padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
               margin: const EdgeInsets.all(16),
               child: Row(
                 children: [
@@ -60,7 +67,7 @@ class _AddressItemState extends BaseStatefulWidgetState<AddressItem> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          appLocalizations.floweryStore,
+                          widget.title ?? appLocalizations.unknown,
                           style: theme.textTheme.bodySmall!.copyWith(
                             fontSize: 13,
                             color: AppColors.gray,
@@ -68,12 +75,15 @@ class _AddressItemState extends BaseStatefulWidgetState<AddressItem> {
                         ),
                         Row(
                           children: [
-                            const ImageIcon(AssetImage(AssetsPaths.locationIcon)),
-                            Text(
-                              '20th st, Sheikh Zayed, Giza ',
-                              style: GoogleFonts.roboto(
-                                textStyle: theme.textTheme.bodySmall!.copyWith(
-                                  fontSize: 13,
+                            const ImageIcon(
+                              AssetImage(AssetsPaths.locationIcon),
+                            ),
+                            Expanded(
+                              child: Text(
+                                widget.address ?? appLocalizations.unKnown,
+                                style: GoogleFonts.roboto(
+                                  textStyle: theme.textTheme.bodySmall!
+                                      .copyWith(fontSize: 13),
                                 ),
                               ),
                             ),
@@ -88,20 +98,25 @@ class _AddressItemState extends BaseStatefulWidgetState<AddressItem> {
                     child: Row(
                       children: [
                         GestureDetector(
-                          onTap: (){
-                            launcherViewModel.onIntent(CallIntent('01006523275'));
+                          onTap: () {
+                            launcherViewModel.onIntent(
+                              CallIntent(addCountryCodeToPhoneNumber()),
+                            );
                           },
                           child: ImageIcon(
                             const AssetImage(AssetsPaths.callIcon),
                             color: AppColors.mainColor,
                           ),
                         ),
-
+                        SizedBox(width: screenWidth * 0.015),
                         GestureDetector(
-                            onTap: () {
-                              launcherViewModel.onIntent(WhatsAppIntent('+201006523275'));
-                            },
-                            child: SvgPicture.asset(AssetsPaths.whatsappIcon)),
+                          onTap: () {
+                            launcherViewModel.onIntent(
+                              WhatsAppIntent(addCountryCodeToPhoneNumber()),
+                            );
+                          },
+                          child: SvgPicture.asset(AssetsPaths.whatsappIcon),
+                        ),
                       ],
                     ),
                   ),
@@ -115,9 +130,7 @@ class _AddressItemState extends BaseStatefulWidgetState<AddressItem> {
               title: 'Success',
               message: 'opening......',
             );
-
           } else if (state is LauncherError) {
-
             displaySnackBar(
               contentType: ContentType.failure,
               title: 'fail',
@@ -130,5 +143,12 @@ class _AddressItemState extends BaseStatefulWidgetState<AddressItem> {
       ),
     );
   }
-}
 
+  String addCountryCodeToPhoneNumber() {
+    if (widget.phoneNumber != null &&
+        (!widget.phoneNumber!.startsWith('+20'))) {
+      return "+20${widget.phoneNumber}";
+    }
+    return widget.phoneNumber ?? '';
+  }
+}

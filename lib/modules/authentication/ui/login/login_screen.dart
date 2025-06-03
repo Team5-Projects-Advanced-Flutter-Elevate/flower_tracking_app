@@ -1,5 +1,4 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
-import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:flower_tracking_app/core/apis/api_error/api_error_handler.dart';
 import 'package:flower_tracking_app/core/bases/base_stateful_widget_state.dart';
 import 'package:flower_tracking_app/core/colors/app_colors.dart';
@@ -10,7 +9,9 @@ import 'package:flower_tracking_app/modules/authentication/ui/login/view_model/l
 import 'package:flower_tracking_app/modules/authentication/ui/login/view_model/login_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../../../core/di/injectable_initializer.dart';
+import '../forget_password/view/forget_password_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -27,20 +28,6 @@ class _LoginScreenState extends BaseStatefulWidgetState<LoginScreen> {
   FocusNode emailFocusNode = FocusNode(), passwordFocusNode = FocusNode();
 
   @override
-  void initState() {
-    super.initState();
-    BackButtonInterceptor.add(myInterceptor);
-  }
-
-  bool myInterceptor(bool stopDefaultButtonEvent, RouteInfo info) {
-    Navigator.pushReplacementNamed(
-      context,
-      DefinedRoutes.onboardingScreenRoute,
-    );
-    return true;
-  }
-
-  @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => loginViewModel,
@@ -49,10 +36,7 @@ class _LoginScreenState extends BaseStatefulWidgetState<LoginScreen> {
           forceMaterialTransparency: true,
           leading: IconButton(
             onPressed: () {
-              Navigator.pushReplacementNamed(
-                context,
-                DefinedRoutes.onboardingScreenRoute,
-              );
+              Navigator.pop(context);
             },
             icon: const Icon(Icons.arrow_back_ios),
           ),
@@ -144,9 +128,12 @@ class _LoginScreenState extends BaseStatefulWidgetState<LoginScreen> {
                         const Spacer(),
                         GestureDetector(
                           onTap: () {
-                            Navigator.pushNamed(
+                            Navigator.push(
                               context,
-                              DefinedRoutes.forgetPasswordScreenRoute,
+                              MaterialPageRoute(
+                                builder:
+                                    (context) => const ForgetPasswordScreen(),
+                              ),
                             );
                           },
                           child: Text(
@@ -214,11 +201,5 @@ class _LoginScreenState extends BaseStatefulWidgetState<LoginScreen> {
         ),
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    BackButtonInterceptor.remove(myInterceptor);
   }
 }

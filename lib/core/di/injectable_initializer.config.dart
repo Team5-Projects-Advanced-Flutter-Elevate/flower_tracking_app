@@ -82,8 +82,6 @@ import '../../modules/authentication/domain/use_cases/forget_password/reset_code
     as _i9;
 import '../../modules/authentication/domain/use_cases/forget_password/reset_password_use_case.dart'
     as _i110;
-import '../../modules/authentication/domain/use_cases/logged_driver_data/get_logged_driver_data_use_case.dart'
-    as _i211;
 import '../../modules/authentication/domain/use_cases/login/login_use_case.dart'
     as _i543;
 import '../../modules/authentication/ui/forget_password/view_model/forget_password_screen_view_model.dart'
@@ -98,7 +96,8 @@ import '../../modules/home/domain/use_cases/get_pending_orders_use_case.dart'
     as _i553;
 import '../../modules/home/ui/cubit/pending_orders/pending_orders_cubit.dart'
     as _i12;
-import '../../modules/home/ui/profile/ui/viewModel/profile_cubit.dart' as _i792;
+import '../../modules/order_details/view_model/order_details_view_model.dart'
+    as _i240;
 import '../../modules/whatsapp_call/data/data_source/call_data_source.dart'
     as _i692;
 import '../../modules/whatsapp_call/data/data_source/whatsapp_data_source.dart'
@@ -117,6 +116,18 @@ import '../../modules/whatsapp_call/domain/usecase/call_usecase.dart' as _i487;
 import '../../modules/whatsapp_call/domain/usecase/whatsapp_usecase.dart'
     as _i565;
 import '../../modules/whatsapp_call/ui/cubit/launcher_view_model.dart' as _i898;
+import '../../shared_layers/database/firestore/data/data_sources_abstracts/driver/driver_collection.dart'
+    as _i163;
+import '../../shared_layers/database/firestore/data/data_sources_abstracts/order/order_collection.dart'
+    as _i793;
+import '../../shared_layers/database/firestore/data/data_sources_imp/driver/driver_collection_imp.dart'
+    as _i1045;
+import '../../shared_layers/database/firestore/data/data_sources_imp/order/order_collection_imp.dart'
+    as _i529;
+import '../../shared_layers/database/firestore/data/repositories_imp/firestore_repo_imp.dart'
+    as _i271;
+import '../../shared_layers/database/firestore/domain/repositories_abstracts/firestore_repo_contract.dart'
+    as _i261;
 import '../../shared_layers/localization/generated/app_localizations.dart'
     as _i543;
 import '../../shared_layers/localization/initializer/locale_initializer.dart'
@@ -157,6 +168,8 @@ extension GetItInjectableX on _i174.GetIt {
       () => storagesInitializer.initFlutterSecureStorage(),
       preResolve: true,
     );
+    gh.factory<_i163.DriverCollection>(() => _i1045.DriverCollectionImp());
+    gh.factory<_i793.OrderCollection>(() => _i529.OrderCollectionImp());
     gh.factory<_i1028.WhatsAppDataSource>(() => _i882.WhatsAppDataSourceImpl());
     gh.lazySingleton<_i843.ImagePickerService>(
       () => _i684.DefaultImagePickerService(),
@@ -186,9 +199,6 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i544.OrdersRepo>(
       () => _i823.OrdersRepoImpl(apiClient: gh<_i858.OrdersApiClient>()),
     );
-    gh.factory<_i61.ApplyRepo>(
-      () => _i792.ApplyRepoImpl(applyDataSource: gh<_i843.ApplyDataSource>()),
-    );
     gh.factory<_i487.CallUseCase>(
       () => _i487.CallUseCase(gh<_i557.CallRepo>()),
     );
@@ -203,18 +213,18 @@ extension GetItInjectableX on _i174.GetIt {
     gh.singleton<_i629.SecureStorageService<dynamic>>(
       () => _i701.SecureStorageServiceImp(gh<_i558.FlutterSecureStorage>()),
     );
+    gh.factory<_i261.FirestoreRepoContract>(
+      () => _i271.FirestoreRepoImp(
+        gh<_i163.DriverCollection>(),
+        gh<_i793.OrderCollection>(),
+      ),
+    );
     gh.factory<_i477.LoginRemoteDataSource>(
       () => _i120.LoginRemoteDataSourceImp(gh<_i343.AuthApiClient>()),
     );
     gh.factory<_i504.LoggedDriverDataRemoteDataSource>(
       () =>
           _i493.LoggedDriverDataRemoteDataSourceImp(gh<_i343.AuthApiClient>()),
-    );
-    gh.factory<_i637.ApplyDriverUseCase>(
-      () => _i637.ApplyDriverUseCase(gh<_i61.ApplyRepo>()),
-    );
-    gh.factory<_i900.GetVehiclesUseCase>(
-      () => _i900.GetVehiclesUseCase(gh<_i61.ApplyRepo>()),
     );
     gh.factory<_i779.ResetCodeRemoteDataSource>(
       () => _i808.ResetCodeRemoteDataSourceImpl(gh<_i343.AuthApiClient>()),
@@ -224,19 +234,17 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i629.SecureStorageService<dynamic>>(),
       ),
     );
-    gh.factory<_i172.ApplyCubit>(
-      () => _i172.ApplyCubit(
-        gh<_i637.ApplyDriverUseCase>(),
-        gh<_i900.GetVehiclesUseCase>(),
-        gh<_i843.CountryLoaderService>(),
-        gh<_i843.ImagePickerService>(),
-      ),
-    );
     gh.factory<_i553.GetPendingOrdersUseCase>(
       () => _i553.GetPendingOrdersUseCase(gh<_i544.OrdersRepo>()),
     );
     gh.factory<_i251.ResetCodeRepo>(
       () => _i196.ResetCodeRepoImpl(gh<_i779.ResetCodeRemoteDataSource>()),
+    );
+    gh.factory<_i61.ApplyRepo>(
+      () => _i792.ApplyRepoImpl(
+        applyDataSource: gh<_i843.ApplyDataSource>(),
+        driverCollection: gh<_i163.DriverCollection>(),
+      ),
     );
     gh.factory<_i150.ForgetPasswordRemoteDataSource>(
       () => _i191.ForgetPasswordRemoteDataSourceImpl(gh<_i343.AuthApiClient>()),
@@ -272,9 +280,6 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i504.LoggedDriverDataRemoteDataSource>(),
       ),
     );
-    gh.factory<_i211.GetLoggedDriverDataUseCase>(
-      () => _i211.GetLoggedDriverDataUseCase(gh<_i103.LoggedDriverDataRepo>()),
-    );
     await gh.factoryAsync<_i543.AppLocalizations>(
       () => appLocalizationsProvider.provideAppLocalizations(
         gh<String>(instanceName: 'initCurrentLocal'),
@@ -284,8 +289,24 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i565.WhatsAppUseCase>(
       () => _i565.WhatsAppUseCase(gh<_i281.WhatsAppRepo>()),
     );
+    gh.factory<_i240.OrderDetailsViewModel>(
+      () => _i240.OrderDetailsViewModel(
+        gh<_i261.FirestoreRepoContract>(),
+        gh<_i629.SecureStorageService<dynamic>>(),
+      ),
+    );
     gh.lazySingleton<_i12.OrdersCubit>(
-      () => _i12.OrdersCubit(gh<_i553.GetPendingOrdersUseCase>()),
+      () => _i12.OrdersCubit(
+        gh<_i553.GetPendingOrdersUseCase>(),
+        gh<_i261.FirestoreRepoContract>(),
+        gh<_i629.SecureStorageService<dynamic>>(),
+      ),
+    );
+    gh.factory<_i637.ApplyDriverUseCase>(
+      () => _i637.ApplyDriverUseCase(gh<_i61.ApplyRepo>()),
+    );
+    gh.factory<_i900.GetVehiclesUseCase>(
+      () => _i900.GetVehiclesUseCase(gh<_i61.ApplyRepo>()),
     );
     gh.factory<_i543.LoginUseCase>(
       () => _i543.LoginUseCase(gh<_i450.LoginRepo>()),
@@ -295,14 +316,19 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i150.ForgetPasswordRemoteDataSource>(),
       ),
     );
-    gh.lazySingleton<_i439.ApiErrorHandler>(
-      () => _i439.ApiErrorHandler(gh<_i543.AppLocalizations>()),
+    gh.factory<_i172.ApplyCubit>(
+      () => _i172.ApplyCubit(
+        gh<_i637.ApplyDriverUseCase>(),
+        gh<_i900.GetVehiclesUseCase>(),
+        gh<_i843.CountryLoaderService>(),
+        gh<_i843.ImagePickerService>(),
+      ),
     );
     gh.lazySingleton<_i166.ValidateFunctions>(
       () => _i166.ValidateFunctions(gh<_i543.AppLocalizations>()),
     );
-    gh.lazySingleton<_i792.ProfileCubit>(
-      () => _i792.ProfileCubit(gh<_i211.GetLoggedDriverDataUseCase>()),
+    gh.lazySingleton<_i439.ApiErrorHandler>(
+      () => _i439.ApiErrorHandler(gh<_i543.AppLocalizations>()),
     );
     gh.factory<_i898.LauncherViewModel>(
       () => _i898.LauncherViewModel(

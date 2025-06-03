@@ -62,7 +62,8 @@ import 'app_localizations_en.dart';
 /// be consistent with the languages listed in the AppLocalizations.supportedLocales
 /// property.
 abstract class AppLocalizations {
-  AppLocalizations(String locale) : localeName = intl.Intl.canonicalizedLocale(locale.toString());
+  AppLocalizations(String locale)
+    : localeName = intl.Intl.canonicalizedLocale(locale.toString());
 
   final String localeName;
 
@@ -70,7 +71,8 @@ abstract class AppLocalizations {
     return Localizations.of<AppLocalizations>(context, AppLocalizations);
   }
 
-  static const LocalizationsDelegate<AppLocalizations> delegate = _AppLocalizationsDelegate();
+  static const LocalizationsDelegate<AppLocalizations> delegate =
+      _AppLocalizationsDelegate();
 
   /// A list of this localizations delegate along with the default localizations
   /// delegates.
@@ -82,17 +84,18 @@ abstract class AppLocalizations {
   /// Additional delegates can be added by appending to this list in
   /// MaterialApp. This list does not have to be used at all if a custom list
   /// of delegates is preferred or required.
-  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates = <LocalizationsDelegate<dynamic>>[
-    delegate,
-    GlobalMaterialLocalizations.delegate,
-    GlobalCupertinoLocalizations.delegate,
-    GlobalWidgetsLocalizations.delegate,
-  ];
+  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates =
+      <LocalizationsDelegate<dynamic>>[
+        delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ];
 
   /// A list of this localizations delegate's supported locales.
   static const List<Locale> supportedLocales = <Locale>[
     Locale('ar'),
-    Locale('en')
+    Locale('en'),
   ];
 
   /// No description provided for @errorMessages________.
@@ -287,24 +290,6 @@ abstract class AppLocalizations {
   /// **'Please enter a valid address'**
   String get pleaseEnterValidAddress;
 
-  /// No description provided for @pleaseEnterValidRecipient.
-  ///
-  /// In en, this message translates to:
-  /// **'Please enter a valid recipient'**
-  String get pleaseEnterValidRecipient;
-
-  /// No description provided for @applicationSubmitted.
-  ///
-  /// In en, this message translates to:
-  /// **'Your application has been submitted!'**
-  String get applicationSubmitted;
-
-  /// No description provided for @thanksForProvidingApplication.
-  ///
-  /// In en, this message translates to:
-  /// **'Thank you for providing your application, we will review your application and will get back to you soon.'**
-  String get thanksForProvidingApplication;
-
   /// No description provided for @onboardingScreen____________.
   ///
   /// In en, this message translates to:
@@ -322,6 +307,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Apply Now'**
   String get applyNow;
+
+  /// No description provided for @pleaseEnterValidRecipient.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a valid recipient'**
+  String get pleaseEnterValidRecipient;
 
   /// No description provided for @loginScreen___________.
   ///
@@ -575,6 +566,18 @@ abstract class AppLocalizations {
   /// **'Enter your email'**
   String get emailHint;
 
+  /// No description provided for @phoneNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone number'**
+  String get phoneNumber;
+
+  /// No description provided for @phoneNumberHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter phone number'**
+  String get phoneNumberHint;
+
   /// No description provided for @passwordHint.
   ///
   /// In en, this message translates to:
@@ -622,6 +625,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Thank You!!'**
   String get thankYou;
+
+  /// No description provided for @applicationSubmitted.
+  ///
+  /// In en, this message translates to:
+  /// **'Your application has been submitted!'**
+  String get applicationSubmitted;
+
+  /// No description provided for @thanksForProvidingApplication.
+  ///
+  /// In en, this message translates to:
+  /// **'Thank you for providing your application, we will review your application and will get back to you soon.'**
+  String get thanksForProvidingApplication;
 
   /// No description provided for @successScreenDescription.
   ///
@@ -851,44 +866,33 @@ abstract class AppLocalizations {
   /// **'Order delivered'**
   String get buttonOrderDelivered;
 
-  /// No description provided for @phoneNumber.
+  /// No description provided for @loading.
   ///
   /// In en, this message translates to:
-  /// **'Phone number'**
-  String get phoneNumber;
+  /// **'Loading.....'**
+  String get loading;
 
-  /// No description provided for @phoneNumberHint.
+  /// No description provided for @acceptedSuccessfully.
   ///
   /// In en, this message translates to:
-  /// **'Enter your phone number'**
-  String get phoneNumberHint;
+  /// **'Accepted Successfully!'**
+  String get acceptedSuccessfully;
 
-  /// No description provided for @language.
+  /// No description provided for @updatedSuccessfully.
   ///
   /// In en, this message translates to:
-  /// **'Language'**
-  String get language;
+  /// **'Updated Successfully!'**
+  String get updatedSuccessfully;
 
-  /// No description provided for @english.
+  /// No description provided for @orderFinishedSuccessfully.
   ///
   /// In en, this message translates to:
-  /// **'English'**
-  String get english;
-
-  /// No description provided for @logout.
-  ///
-  /// In en, this message translates to:
-  /// **'Logout'**
-  String get logout;
-
-  /// No description provided for @vehicleInfo.
-  ///
-  /// In en, this message translates to:
-  /// **'Vehicle Info'**
-  String get vehicleInfo;
+  /// **'Order Finished Successfully!'**
+  String get orderFinishedSuccessfully;
 }
 
-class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
+class _AppLocalizationsDelegate
+    extends LocalizationsDelegate<AppLocalizations> {
   const _AppLocalizationsDelegate();
 
   @override
@@ -897,25 +901,26 @@ class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> 
   }
 
   @override
-  bool isSupported(Locale locale) => <String>['ar', 'en'].contains(locale.languageCode);
+  bool isSupported(Locale locale) =>
+      <String>['ar', 'en'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_AppLocalizationsDelegate old) => false;
 }
 
 AppLocalizations lookupAppLocalizations(Locale locale) {
-
-
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
-    case 'ar': return AppLocalizationsAr();
-    case 'en': return AppLocalizationsEn();
+    case 'ar':
+      return AppLocalizationsAr();
+    case 'en':
+      return AppLocalizationsEn();
   }
 
   throw FlutterError(
     'AppLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
     'an issue with the localizations generation tool. Please file an issue '
     'on GitHub with a reproducible sample app and the gen-l10n configuration '
-    'that was used.'
+    'that was used.',
   );
 }
