@@ -3,6 +3,7 @@ import 'package:flower_tracking_app/core/apis/api_result/api_result.dart';
 import 'package:flower_tracking_app/modules/authentication/domain/entities/logged_driver_data/logged_driver_data_response_entity.dart';
 import 'package:flower_tracking_app/modules/authentication/domain/use_cases/logged_driver_data/get_logged_driver_data_use_case.dart';
 import 'package:flower_tracking_app/modules/home/ui/profile/ui/viewModel/profile_cubit.dart';
+import 'package:flower_tracking_app/shared_layers/database/firestore/domain/entities/driver/driver_entity_firestore.dart';
 import 'package:flower_tracking_app/shared_layers/localization/l10n_manager/localization_manager.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
@@ -24,7 +25,7 @@ void main() {
 
     loggedDriverDataResponseEntity = LoggedDriverDataResponseEntity(
       message: "Success",
-      driver: DriverEntity(
+      driver: DriverEntityFirestore(
         id: "1",
         firstName: "John",
         lastName: "Doe",

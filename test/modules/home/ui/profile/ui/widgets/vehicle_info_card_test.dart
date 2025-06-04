@@ -1,3 +1,4 @@
+import 'package:flower_tracking_app/shared_layers/database/firestore/domain/entities/driver/driver_entity_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
@@ -10,7 +11,7 @@ import 'package:flower_tracking_app/modules/home/ui/profile/ui/widgets/vehicle_i
 import 'package:flower_tracking_app/shared_layers/localization/enums/languages_enum.dart';
 import 'package:flower_tracking_app/shared_layers/localization/generated/app_localizations.dart';
 import 'package:flower_tracking_app/shared_layers/localization/l10n_manager/localization_manager.dart';
-import '../../../../../application_approved/ui/application_approved_test.mocks.dart';
+import '../../../../../onboarding/ui/onboarding_screen_test.mocks.dart';
 
 @GenerateMocks([LocalizationManager])
 void main() {
@@ -38,7 +39,7 @@ void main() {
   testWidgets('VehicleInfoCard displays vehicle data correctly', (WidgetTester tester) async {
     // Arrange
     final testDriver = LoggedDriverDataResponseEntity(
-      driver: DriverEntity(
+      driver: DriverEntityFirestore(
         vehicleType: 'Truck',
         vehicleNumber: 'ABC-1234',
       ),

@@ -12,7 +12,8 @@ import 'package:flower_tracking_app/shared_layers/localization/enums/languages_e
 import 'package:flower_tracking_app/shared_layers/localization/generated/app_localizations.dart';
 import 'package:flower_tracking_app/shared_layers/localization/l10n_manager/localization_manager.dart';
 
-import '../../../../../application_approved/ui/application_approved_test.mocks.dart';
+import '../../../../../onboarding/ui/onboarding_screen_test.mocks.dart';
+
 
 @GenerateMocks([LocalizationManager])
 void main() {

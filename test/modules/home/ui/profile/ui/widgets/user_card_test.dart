@@ -1,3 +1,4 @@
+import 'package:flower_tracking_app/shared_layers/database/firestore/domain/entities/driver/driver_entity_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
@@ -43,7 +44,7 @@ void main() {
   ) async {
     // Arrange
     final testDriver = LoggedDriverDataResponseEntity(
-      driver: DriverEntity(
+      driver: DriverEntityFirestore(
         firstName: 'John',
         email: 'john.doe@example.com',
         phone: '+1234567890',
