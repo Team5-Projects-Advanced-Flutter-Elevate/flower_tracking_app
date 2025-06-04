@@ -14,6 +14,6 @@ abstract class LocationMapApiClient {
   @POST(ApisEndpoints.directionsEndPoint)
   Future<DirectionsResponseDto> getDirections(
     @Header('Authorization') String authorization,
-    @Body() DirectionsRequestDto directionsRequest,
+    @Body() Map<String, dynamic> body,
   );
 }

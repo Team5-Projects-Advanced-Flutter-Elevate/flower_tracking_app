@@ -45,6 +45,7 @@ class LocationMapViewModel extends Cubit<LocationStates> {
 
   void _requestUserPermissionForLocation({double? markerWidth}) async {
     emit(state.copyWith(requestLocationPermissionStatus: Status.loading));
+    print("Inside RequestUserPermission");
     try {
       bool serviceEnabled;
       serviceEnabled = await _location.serviceEnabled();
@@ -76,8 +77,10 @@ class LocationMapViewModel extends Cubit<LocationStates> {
   void _getCurrentLocation({double? markerWidth}) async {
     try {
       emit(state.copyWith(getCurrentUserLocationStatus: Status.loading));
+      print("Inside getCurrentLocation");
       var userLocation = await _location.getLocation();
       currentLocation = userLocation;
+      print("Current Location: ${currentLocation?.latitude},${currentLocation?.longitude}");
       newLocationNotifier = ValueNotifier(userLocation);
       markers.add(
         Marker(
@@ -91,6 +94,9 @@ class LocationMapViewModel extends Cubit<LocationStates> {
         ),
       );
       emit(state.copyWith(getCurrentUserLocationStatus: Status.success));
+      print(
+        "Inside getCurrentLocation after emitting success: ${state.getCurrentUserLocationStatus.toString()}",
+      );
     } catch (e) {
       currentLocation = null;
       emit(
@@ -121,11 +127,12 @@ class LocationMapViewModel extends Cubit<LocationStates> {
     var useCaseResult = await _getDirectionsUseCase.call(
       directionRequestEntity: DirectionsRequestEntity(
         coordinates: [
-          [start.latitude, start.longitude],
-          [destination.latitude, destination.longitude],
+          [start.longitude, start.latitude],
+          [destination.longitude, destination.latitude],
         ],
       ),
     );
+    print("Inside getRoute: ${useCaseResult.toString()}");
     switch (useCaseResult) {
       case Success<DirectionsResponseEntity>():
         var coordinates =

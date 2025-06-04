@@ -1,9 +1,11 @@
 import 'package:dio/dio.dart';
+import 'package:flower_tracking_app/core/apis/apis_endpoints/apis_endpoints.dart';
 import 'package:flower_tracking_app/core/utilities/bloc_observer/location_permission_denied.dart';
 import 'package:flower_tracking_app/shared_layers/localization/generated/app_localizations.dart';
 import 'package:injectable/injectable.dart';
-
 import 'api_error_model.dart';
+import 'api_error_model_of_open_route_service.dart';
+
 
 @lazySingleton
 class ApiErrorHandler {
@@ -25,6 +27,17 @@ class ApiErrorHandler {
         case DioExceptionType.receiveTimeout:
           return _appLocalizations.receiveTimeout;
         case DioExceptionType.badResponse:
+          print("${error.response?.realUri
+              .toString()}==========================<");
+          if (error.response?.realUri != null &&
+              error.response!.realUri.toString().contains(
+                ApisEndpoints.openRouteServiceBaseUrl,
+              )) {
+            return ApiErrorModelOfOpenRouteService
+                .fromJson(error.response?.data)
+                .error
+                ?.message ?? _appLocalizations.somethingWentWrong;
+          }
           return ApiErrorModel
               .fromJson(error.response?.data)
               .error ??

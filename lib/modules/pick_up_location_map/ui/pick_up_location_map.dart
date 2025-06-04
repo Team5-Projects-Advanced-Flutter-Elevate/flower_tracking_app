@@ -27,6 +27,7 @@ class _PickUpLocationMapState
     extends BaseStatefulWidgetState<PickUpLocationMap> {
   LocationMapViewModel locationMapViewModel = getIt.get<LocationMapViewModel>();
   bool errorLoadingMap = false;
+  bool getRouteCalledOnce = false;
   ApiErrorHandler apiErrorHandler = getIt.get<ApiErrorHandler>();
 
   @override
@@ -73,7 +74,9 @@ class _PickUpLocationMapState
                             case Status.error:
                               displaySnackBar(
                                 contentType: ContentType.failure,
-                                title: apiErrorHandler.handle(state.error!),
+                                title: "Error!",
+                                message: apiErrorHandler.handle(state.error!),
+                                durationInSeconds: 4,
                               );
                             default:
                               break;
@@ -85,18 +88,28 @@ class _PickUpLocationMapState
                             case Status.loading:
                               return const LoadingStateWidget();
                             case Status.success:
-                              locationMapViewModel.doIntent(
-                                GetRoute(
-                                  destination: const LatLng(37.7749, -122.4194),
-                                  markerText: "Flowery Store",
-                                  iconPath: AssetsPaths.flowerLogo,
-                                ),
-                              );
                               switch (state.getCurrentUserLocationStatus) {
                                 case Status.idle:
                                 case Status.loading:
                                   return const LoadingStateWidget();
                                 case Status.success:
+                                  if (!getRouteCalledOnce) {
+                                    print(
+                                      "Calling getRoute------------------>",
+                                    );
+
+                                    locationMapViewModel.doIntent(
+                                      GetRoute(
+                                        destination: const LatLng(
+                                          30.0561110,
+                                          31.3563610,
+                                        ),
+                                        markerText: "Flowery Store",
+                                        iconPath: AssetsPaths.flowerLogo,
+                                      ),
+                                    );
+                                    getRouteCalledOnce = true;
+                                  }
                                   switch (state
                                       .getDirectionBetweenPointsStatus) {
                                     case Status.idle:
@@ -120,6 +133,8 @@ class _PickUpLocationMapState
                                             initialZoom: 15.0,
 
                                             onTap: (tapPosition, point) {
+                                              print(point.latitude);
+                                              print(point.longitude);
                                               setState(() {
                                                 locationMapViewModel.markers.add(
                                                   Marker(
@@ -186,7 +201,17 @@ class _PickUpLocationMapState
                                   return ErrorStateWidget(error: state.error!);
                               }
                             case Status.error:
-                              return ErrorStateWidget(error: state.error!);
+                              return Column(
+                                children: [
+                                  Icon(
+                                    Icons.error,
+                                    size: 34,
+                                    color: AppColors.red,
+                                  ),
+                                  SizedBox(height: screenHeight * 0.02),
+                                  ErrorStateWidget(error: state.error!),
+                                ],
+                              );
                           }
                         },
                       ),
