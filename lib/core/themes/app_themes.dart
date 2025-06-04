@@ -10,6 +10,12 @@ abstract class AppThemes {
       backgroundColor: AppColors.white,
       surfaceTintColor: AppColors.white,
       titleSpacing: 0,
+      titleTextStyle: TextStyle(
+        fontSize: 20,
+        color: AppColors.black,
+        fontWeight: FontWeight.w600,
+        fontFamily: GoogleFonts.inter().fontFamily,
+      )
     ),
     textTheme: TextTheme(
       headlineMedium: TextStyle(

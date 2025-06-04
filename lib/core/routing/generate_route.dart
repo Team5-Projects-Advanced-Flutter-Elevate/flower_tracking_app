@@ -5,11 +5,11 @@ import 'package:flower_tracking_app/modules/authentication/domain/entities/logge
 import 'package:flower_tracking_app/modules/authentication/ui/forget_password/view/forget_password_screen.dart';
 import 'package:flower_tracking_app/modules/home/layout_screen.dart';
 import 'package:flower_tracking_app/modules/home/ui/orders_screen.dart';
-import 'package:flower_tracking_app/modules/home/ui/profile_screen.dart';
 import 'package:flower_tracking_app/modules/onboarding/ui/onboarding_screen.dart';
 import 'package:flutter/material.dart';
 import '../../modules/authentication/ui/login/login_screen.dart';
 import '../../modules/home/ui/home_screen_mine.dart';
+import '../../modules/home/ui/profile/ui/profile_screen.dart';
 import '../../modules/order_details/order_details_screen.dart';
 
 abstract class GenerateRoute {
