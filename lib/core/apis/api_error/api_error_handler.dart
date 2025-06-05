@@ -27,8 +27,6 @@ class ApiErrorHandler {
         case DioExceptionType.receiveTimeout:
           return _appLocalizations.receiveTimeout;
         case DioExceptionType.badResponse:
-          print("${error.response?.realUri
-              .toString()}==========================<");
           if (error.response?.realUri != null &&
               error.response!.realUri.toString().contains(
                 ApisEndpoints.openRouteServiceBaseUrl,

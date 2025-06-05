@@ -25,9 +25,7 @@ class LocationMapRemoteDataSourceImp implements LocationMapRemoteDataSource {
   }) async {
     final String authorization =
         getIt.get<Dio>().options.headers["Authorization"];
-    print(authorization);
-    final String token = authorization.split(' ').toList()[1];
-    print(token);
+    final String token = authorization.split(' ').toList()[1].trim();
     DioServiceExtension.clearDefaultHeaders();
     var result = await ApiExecutor.executeApi(
       () => _locationMapApiClient.getDirections(

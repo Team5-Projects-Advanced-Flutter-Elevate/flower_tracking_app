@@ -45,7 +45,6 @@ class LocationMapViewModel extends Cubit<LocationStates> {
 
   void _requestUserPermissionForLocation({double? markerWidth}) async {
     emit(state.copyWith(requestLocationPermissionStatus: Status.loading));
-    print("Inside RequestUserPermission");
     try {
       bool serviceEnabled;
       serviceEnabled = await _location.serviceEnabled();
@@ -77,16 +76,14 @@ class LocationMapViewModel extends Cubit<LocationStates> {
   void _getCurrentLocation({double? markerWidth}) async {
     try {
       emit(state.copyWith(getCurrentUserLocationStatus: Status.loading));
-      print("Inside getCurrentLocation");
       var userLocation = await _location.getLocation();
       currentLocation = userLocation;
-      print("Current Location: ${currentLocation?.latitude},${currentLocation?.longitude}");
       newLocationNotifier = ValueNotifier(userLocation);
       markers.add(
         Marker(
           point: LatLng(userLocation.latitude!, userLocation.longitude!),
-          width: markerWidth ?? 30,
-          height: 35,
+          width:  150,
+          height: 90,
           child: const MarkerChildWidget(
             iconPath: AssetsPaths.locationPinIcon,
             text: "Your Location",
@@ -94,9 +91,6 @@ class LocationMapViewModel extends Cubit<LocationStates> {
         ),
       );
       emit(state.copyWith(getCurrentUserLocationStatus: Status.success));
-      print(
-        "Inside getCurrentLocation after emitting success: ${state.getCurrentUserLocationStatus.toString()}",
-      );
     } catch (e) {
       currentLocation = null;
       emit(
@@ -132,7 +126,6 @@ class LocationMapViewModel extends Cubit<LocationStates> {
         ],
       ),
     );
-    print("Inside getRoute: ${useCaseResult.toString()}");
     switch (useCaseResult) {
       case Success<DirectionsResponseEntity>():
         var coordinates =
@@ -140,13 +133,13 @@ class LocationMapViewModel extends Cubit<LocationStates> {
         if (coordinates != null || coordinates!.isNotEmpty) {
           routePoints =
               coordinates
-                  .map((e) => LatLng(e[0].toDouble(), e[1].toDouble()))
+                  .map((e) => LatLng(e[1].toDouble(), e[0].toDouble()))
                   .toList();
           markers.add(
             Marker(
               point: LatLng(destination.latitude, destination.longitude),
               width: markerWidth ?? 30,
-              height: 35,
+              height: 90,
               child: MarkerChildWidget(iconPath: iconPath, text: markerText),
             ),
           );

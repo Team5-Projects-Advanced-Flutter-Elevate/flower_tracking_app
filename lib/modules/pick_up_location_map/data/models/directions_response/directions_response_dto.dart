@@ -147,8 +147,8 @@ class QueryDto {
   QueryDto({this.coordinates, this.profile, this.profileName, this.format});
 
   QueryDto.fromJson(dynamic json) {
-    coordinates =
-        json['coordinates'] != null ? json['coordinates'].cast<num>() : [];
+    List<dynamic> list = json['coordinates'] ?? [];
+    coordinates = list.map((e) => <num>[e[0], e[1]]).toList();
     profile = json['profile'];
     profileName = json['profileName'];
     format = json['format'];
@@ -234,8 +234,8 @@ class GeometryDto {
   GeometryDto({this.coordinates, this.type});
 
   GeometryDto.fromJson(dynamic json) {
-    coordinates =
-        json['coordinates'] != null ? json['coordinates'].cast<num>() : [];
+    List<dynamic> list = json['coordinates'] ?? [];
+    coordinates = list.map((e) => <num>[e[0], e[1]]).toList();
     type = json['type'];
   }
 

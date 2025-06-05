@@ -20,6 +20,7 @@ import 'core/utilities/dio/dio_service/dio_service.dart';
 GlobalKey<NavigatorState> globalNavigatorKey = GlobalKey<NavigatorState>();
 LoggedDriverDataResponseEntity? loggedDriverData;
 String? currentAcceptedOrderId;
+
 void main() async {
   FlutterNativeSplash.preserve(
     widgetsBinding: WidgetsFlutterBinding.ensureInitialized(),
@@ -89,6 +90,7 @@ class _MyAppState extends State<MyApp> {
             localizationsDelegates: AppLocalizations.localizationsDelegates,
             supportedLocales: AppLocalizations.supportedLocales,
             navigatorKey: globalNavigatorKey,
+            locale: Locale(localizationManager.currentLocale),
             home: const PickUpLocationMap(),
             //onGenerateRoute: GenerateRoute.onGenerateRoute,
             // onGenerateInitialRoutes: (initialRoute) {

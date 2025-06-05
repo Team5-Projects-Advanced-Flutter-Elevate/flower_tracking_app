@@ -7,14 +7,19 @@ import 'package:flower_tracking_app/core/widgets/loading_state_widget.dart';
 import 'package:flower_tracking_app/modules/pick_up_location_map/ui/constants/location_map_constants.dart';
 import 'package:flower_tracking_app/modules/pick_up_location_map/ui/view_model/location_map_view_model.dart';
 import 'package:flower_tracking_app/modules/pick_up_location_map/ui/view_model/location_states.dart';
-import 'package:flower_tracking_app/modules/pick_up_location_map/ui/widgets/marker_child_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
-
 import '../../../core/constants/assets_paths/assets_paths.dart';
 import '../../../core/di/injectable_initializer.dart';
+
+/*
+  Big Note:
+    The Open Street Service with its APIs it takes the longitude before the latitude same as the coordinates response coming from the APIs.
+    But with Flutter Map Widget, it takes the latitude first and then the longitude.
+
+*/
 
 class PickUpLocationMap extends StatefulWidget {
   const PickUpLocationMap({super.key});
@@ -94,18 +99,19 @@ class _PickUpLocationMapState
                                   return const LoadingStateWidget();
                                 case Status.success:
                                   if (!getRouteCalledOnce) {
-                                    print(
-                                      "Calling getRoute------------------>",
-                                    );
-
                                     locationMapViewModel.doIntent(
                                       GetRoute(
                                         destination: const LatLng(
-                                          30.0561110,
-                                          31.3563610,
+                                          30.7823150,
+                                          30.9981280,
                                         ),
-                                        markerText: "Flowery Store",
-                                        iconPath: AssetsPaths.flowerLogo,
+                                        // const LatLng(
+                                        //   30.0561110,
+                                        //   31.3563610,
+                                        // ),
+                                        markerWidth: screenWidth * 0.37,
+                                        markerText: "User",
+                                        iconPath: AssetsPaths.userHomeIcon,
                                       ),
                                     );
                                     getRouteCalledOnce = true;
@@ -133,23 +139,23 @@ class _PickUpLocationMapState
                                             initialZoom: 15.0,
 
                                             onTap: (tapPosition, point) {
-                                              print(point.latitude);
-                                              print(point.longitude);
-                                              setState(() {
-                                                locationMapViewModel.markers.add(
-                                                  Marker(
-                                                    point: point,
-                                                    width: screenWidth * 0.37,
-                                                    height: 35,
-                                                    child: const MarkerChildWidget(
-                                                      iconPath:
-                                                          AssetsPaths
-                                                              .locationPinIcon,
-                                                      text: "New Location",
-                                                    ),
-                                                  ),
-                                                );
-                                              });
+                                              // print(point.latitude);
+                                              // print(point.longitude);
+                                              // setState(() {
+                                              //   locationMapViewModel.markers.add(
+                                              //     Marker(
+                                              //       point: point,
+                                              //       width: screenWidth * 0.37,
+                                              //       height: 35,
+                                              //       child: const MarkerChildWidget(
+                                              //         iconPath:
+                                              //             AssetsPaths
+                                              //                 .locationPinIcon,
+                                              //         text: "New Location",
+                                              //       ),
+                                              //     ),
+                                              //   );
+                                              // });
                                             },
                                           ),
                                           children: [
@@ -172,19 +178,9 @@ class _PickUpLocationMapState
                                                 Polyline(
                                                   color: AppColors.mainColor,
                                                   strokeWidth: 5,
-
-                                                  points: [
-                                                    locationMapViewModel
-                                                        .markers[0]
-                                                        .point,
-                                                    if (locationMapViewModel
-                                                            .markers
-                                                            .length >
-                                                        1)
+                                                  points:
                                                       locationMapViewModel
-                                                          .markers[1]
-                                                          .point,
-                                                  ],
+                                                          .routePoints,
                                                 ),
                                               ],
                                             ),
