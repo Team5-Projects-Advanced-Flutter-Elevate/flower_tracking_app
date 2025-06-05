@@ -6,7 +6,6 @@ import 'package:injectable/injectable.dart';
 import 'api_error_model.dart';
 import 'api_error_model_of_open_route_service.dart';
 
-
 @lazySingleton
 class ApiErrorHandler {
   AppLocalizations _appLocalizations;
@@ -31,14 +30,12 @@ class ApiErrorHandler {
               error.response!.realUri.toString().contains(
                 ApisEndpoints.openRouteServiceBaseUrl,
               )) {
-            return ApiErrorModelOfOpenRouteService
-                .fromJson(error.response?.data)
-                .error
-                ?.message ?? _appLocalizations.somethingWentWrong;
+            return ApiErrorModelOfOpenRouteService.fromJson(
+                  error.response?.data,
+                ).error?.message ??
+                _appLocalizations.somethingWentWrong;
           }
-          return ApiErrorModel
-              .fromJson(error.response?.data)
-              .error ??
+          return ApiErrorModel.fromJson(error.response?.data).error ??
               _appLocalizations.somethingWentWrong;
         case DioExceptionType.cancel:
           return _appLocalizations.cancel;

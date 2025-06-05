@@ -82,7 +82,7 @@ class LocationMapViewModel extends Cubit<LocationStates> {
       markers.add(
         Marker(
           point: LatLng(userLocation.latitude!, userLocation.longitude!),
-          width:  150,
+          width: 150,
           height: 90,
           child: const MarkerChildWidget(
             iconPath: AssetsPaths.locationPinIcon,

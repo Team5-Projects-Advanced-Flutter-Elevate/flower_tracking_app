@@ -1,9 +1,7 @@
 /// error : {"code":2004,"message":"Request parameters exceed the server configuration limits. The approximated route distance must not be greater than 6000000.0 meters."}
 /// info : {"engine":{"build_date":"2025-05-06T08:31:01Z","graph_version":"1","graph_date":"2025-06-01T13:27:25Z","version":"9.2.0"},"timestamp":1749044168320}
 class ApiErrorModelOfOpenRouteService {
-  ApiErrorModelOfOpenRouteService({
-      this.error, 
-      this.info,});
+  ApiErrorModelOfOpenRouteService({this.error, this.info});
 
   ApiErrorModelOfOpenRouteService.fromJson(dynamic json) {
     error = json['error'] != null ? Error.fromJson(json['error']) : null;
@@ -22,16 +20,13 @@ class ApiErrorModelOfOpenRouteService {
     }
     return map;
   }
-
 }
 
 /// engine : {"build_date":"2025-05-06T08:31:01Z","graph_version":"1","graph_date":"2025-06-01T13:27:25Z","version":"9.2.0"}
 /// timestamp : 1749044168320
 
 class Info {
-  Info({
-      this.engine, 
-      this.timestamp,});
+  Info({this.engine, this.timestamp});
 
   Info.fromJson(dynamic json) {
     engine = json['engine'] != null ? Engine.fromJson(json['engine']) : null;
@@ -48,7 +43,6 @@ class Info {
     map['timestamp'] = timestamp;
     return map;
   }
-
 }
 
 /// build_date : "2025-05-06T08:31:01Z"
@@ -57,11 +51,7 @@ class Info {
 /// version : "9.2.0"
 
 class Engine {
-  Engine({
-      this.buildDate, 
-      this.graphVersion, 
-      this.graphDate, 
-      this.version,});
+  Engine({this.buildDate, this.graphVersion, this.graphDate, this.version});
 
   Engine.fromJson(dynamic json) {
     buildDate = json['build_date'];
@@ -82,16 +72,13 @@ class Engine {
     map['version'] = version;
     return map;
   }
-
 }
 
 /// code : 2004
 /// message : "Request parameters exceed the server configuration limits. The approximated route distance must not be greater than 6000000.0 meters."
 
 class Error {
-  Error({
-      this.code, 
-      this.message,});
+  Error({this.code, this.message});
 
   Error.fromJson(dynamic json) {
     code = json['code'];
@@ -106,5 +93,4 @@ class Error {
     map['message'] = message;
     return map;
   }
-
 }
