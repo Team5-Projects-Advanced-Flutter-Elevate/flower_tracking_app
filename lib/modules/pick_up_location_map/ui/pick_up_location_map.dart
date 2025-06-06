@@ -7,12 +7,14 @@ import 'package:flower_tracking_app/core/widgets/loading_state_widget.dart';
 import 'package:flower_tracking_app/modules/pick_up_location_map/ui/constants/location_map_constants.dart';
 import 'package:flower_tracking_app/modules/pick_up_location_map/ui/view_model/location_map_view_model.dart';
 import 'package:flower_tracking_app/modules/pick_up_location_map/ui/view_model/location_states.dart';
+import 'package:flower_tracking_app/shared_layers/database/firestore/domain/entities/order/order_entity_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import '../../../core/constants/assets_paths/assets_paths.dart';
 import '../../../core/di/injectable_initializer.dart';
+import '../../order_details/widgets/address_item.dart';
 
 /*
   Big Note:
@@ -34,6 +36,12 @@ class _PickUpLocationMapState
   bool errorLoadingMap = false;
   bool getRouteCalledOnce = false;
   ApiErrorHandler apiErrorHandler = getIt.get<ApiErrorHandler>();
+  late OrderEntityFirestore firstOrderEntity, secondOrderEntity;
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   void didChangeDependencies() {
@@ -63,153 +71,242 @@ class _PickUpLocationMapState
                       ],
                     ),
                   )
-                  : Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                  : Stack(
                     children: [
-                      BlocConsumer<LocationMapViewModel, LocationStates>(
-                        listenWhen: (previous, current) {
-                          if (previous.getDirectionBetweenPointsStatus !=
-                              current.getDirectionBetweenPointsStatus) {
-                            return true;
-                          }
-                          return false;
-                        },
-                        listener: (context, state) {
-                          switch (state.getDirectionBetweenPointsStatus) {
-                            case Status.error:
-                              displaySnackBar(
-                                contentType: ContentType.failure,
-                                title: "Error!",
-                                message: apiErrorHandler.handle(state.error!),
-                                durationInSeconds: 4,
-                              );
-                            default:
-                              break;
-                          }
-                        },
-                        builder: (context, state) {
-                          switch (state.requestLocationPermissionStatus) {
-                            case Status.idle:
-                            case Status.loading:
-                              return const LoadingStateWidget();
-                            case Status.success:
-                              switch (state.getCurrentUserLocationStatus) {
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          BlocConsumer<LocationMapViewModel, LocationStates>(
+                            listenWhen: (previous, current) {
+                              if (previous.getDirectionBetweenPointsStatus !=
+                                  current.getDirectionBetweenPointsStatus) {
+                                return true;
+                              }
+                              return false;
+                            },
+                            listener: (context, state) {
+                              switch (state.getDirectionBetweenPointsStatus) {
+                                case Status.error:
+                                  displaySnackBar(
+                                    contentType: ContentType.failure,
+                                    title: "Error!",
+                                    message: apiErrorHandler.handle(
+                                      state.error!,
+                                    ),
+                                    durationInSeconds: 4,
+                                  );
+                                default:
+                                  break;
+                              }
+                            },
+                            builder: (context, state) {
+                              switch (state.requestLocationPermissionStatus) {
                                 case Status.idle:
                                 case Status.loading:
                                   return const LoadingStateWidget();
                                 case Status.success:
-                                  if (!getRouteCalledOnce) {
-                                    locationMapViewModel.doIntent(
-                                      GetRoute(
-                                        destination: const LatLng(
-                                          30.7823150,
-                                          30.9981280,
-                                        ),
-                                        // const LatLng(
-                                        //   30.0561110,
-                                        //   31.3563610,
-                                        // ),
-                                        markerWidth: screenWidth * 0.37,
-                                        markerText: "User",
-                                        iconPath: AssetsPaths.userHomeIcon,
-                                      ),
-                                    );
-                                    getRouteCalledOnce = true;
-                                  }
-                                  switch (state
-                                      .getDirectionBetweenPointsStatus) {
+                                  switch (state.getCurrentUserLocationStatus) {
                                     case Status.idle:
                                     case Status.loading:
                                       return const LoadingStateWidget();
-                                    default:
-                                      return Expanded(
-                                        child: FlutterMap(
-                                          mapController:
-                                              locationMapViewModel
-                                                  .mapController,
-                                          options: MapOptions(
-                                            initialCenter: LatLng(
-                                              locationMapViewModel
-                                                  .currentLocation!
-                                                  .latitude!,
-                                              locationMapViewModel
-                                                  .currentLocation!
-                                                  .longitude!,
+                                    case Status.success:
+                                      if (!getRouteCalledOnce) {
+                                        locationMapViewModel.doIntent(
+                                          GetRoute(
+                                            destination: const LatLng(
+                                              30.7823150,
+                                              30.9981280,
                                             ),
-                                            initialZoom: 15.0,
-
-                                            onTap: (tapPosition, point) {
-                                              // print(point.latitude);
-                                              // print(point.longitude);
-                                              // setState(() {
-                                              //   locationMapViewModel.markers.add(
-                                              //     Marker(
-                                              //       point: point,
-                                              //       width: screenWidth * 0.37,
-                                              //       height: 35,
-                                              //       child: const MarkerChildWidget(
-                                              //         iconPath:
-                                              //             AssetsPaths
-                                              //                 .locationPinIcon,
-                                              //         text: "New Location",
-                                              //       ),
-                                              //     ),
-                                              //   );
-                                              // });
-                                            },
+                                            // const LatLng(
+                                            //   30.0561110,
+                                            //   31.3563610,
+                                            // ),
+                                            markerWidth: screenWidth * 0.37,
+                                            markerText: "User",
+                                            iconPath: AssetsPaths.userHomeIcon,
                                           ),
-                                          children: [
-                                            TileLayer(
-                                              urlTemplate:
-                                                  LocationMapConstants.tileUrl,
-                                              subdomains: ['a', 'b', 'c'],
-                                              errorTileCallback: (
-                                                tile,
-                                                error,
-                                                stackTrace,
-                                              ) {
-                                                setState(() {
-                                                  errorLoadingMap = true;
-                                                });
-                                              },
-                                            ),
-                                            PolylineLayer(
-                                              polylines: [
-                                                Polyline(
-                                                  color: AppColors.mainColor,
-                                                  strokeWidth: 5,
-                                                  points:
+                                        );
+                                        getRouteCalledOnce = true;
+                                      }
+                                      switch (state
+                                          .getDirectionBetweenPointsStatus) {
+                                        case Status.idle:
+                                        case Status.loading:
+                                          return const LoadingStateWidget();
+                                        default:
+                                          return Expanded(
+                                            child: FlutterMap(
+                                              mapController:
+                                                  locationMapViewModel
+                                                      .mapController,
+                                              options: MapOptions(
+                                                initialCenter: LatLng(
+                                                  locationMapViewModel
+                                                      .currentLocation!
+                                                      .latitude!,
+                                                  locationMapViewModel
+                                                      .currentLocation!
+                                                      .longitude!,
+                                                ),
+                                                initialZoom: 15.0,
+
+                                                onTap: (tapPosition, point) {
+                                                  // print(point.latitude);
+                                                  // print(point.longitude);
+                                                  // setState(() {
+                                                  //   locationMapViewModel.markers.add(
+                                                  //     Marker(
+                                                  //       point: point,
+                                                  //       width: screenWidth * 0.37,
+                                                  //       height: 35,
+                                                  //       child: const MarkerChildWidget(
+                                                  //         iconPath:
+                                                  //             AssetsPaths
+                                                  //                 .locationPinIcon,
+                                                  //         text: "New Location",
+                                                  //       ),
+                                                  //     ),
+                                                  //   );
+                                                  // });
+                                                },
+                                              ),
+                                              children: [
+                                                TileLayer(
+                                                  urlTemplate:
+                                                      LocationMapConstants
+                                                          .tileUrl,
+                                                  subdomains: ['a', 'b', 'c'],
+                                                  errorTileCallback: (
+                                                    tile,
+                                                    error,
+                                                    stackTrace,
+                                                  ) {
+                                                    setState(() {
+                                                      errorLoadingMap = true;
+                                                    });
+                                                  },
+                                                ),
+                                                PolylineLayer(
+                                                  polylines: [
+                                                    Polyline(
+                                                      color:
+                                                          AppColors.mainColor,
+                                                      strokeWidth: 5,
+                                                      points:
+                                                          locationMapViewModel
+                                                              .routePoints,
+                                                    ),
+                                                  ],
+                                                ),
+
+                                                MarkerLayer(
+                                                  markers:
                                                       locationMapViewModel
-                                                          .routePoints,
+                                                          .markers,
                                                 ),
                                               ],
                                             ),
-
-                                            MarkerLayer(
-                                              markers:
-                                                  locationMapViewModel.markers,
-                                            ),
-                                          ],
-                                        ),
+                                          );
+                                      }
+                                    case Status.error:
+                                      return ErrorStateWidget(
+                                        error: state.error!,
                                       );
                                   }
                                 case Status.error:
-                                  return ErrorStateWidget(error: state.error!);
+                                  return Column(
+                                    children: [
+                                      Icon(
+                                        Icons.error,
+                                        size: 34,
+                                        color: AppColors.red,
+                                      ),
+                                      SizedBox(height: screenHeight * 0.02),
+                                      ErrorStateWidget(error: state.error!),
+                                    ],
+                                  );
                               }
-                            case Status.error:
-                              return Column(
-                                children: [
-                                  Icon(
-                                    Icons.error,
-                                    size: 34,
-                                    color: AppColors.red,
+                            },
+                          ),
+                        ],
+                      ),
+                      DraggableScrollableSheet(
+                        maxChildSize: 0.38,
+                        minChildSize: 0.04,
+                        initialChildSize: 0.38,
+                        builder: (context, scrollController) {
+                          return Container(
+                            color: AppColors.white,
+                            child: ListView(
+                              controller: scrollController,
+                              children: [
+                                Center(
+                                  child: Container(
+                                    width: 70,
+                                    height: 4,
+                                    margin: const EdgeInsets.symmetric(
+                                      vertical: 10,
+                                    ),
+                                    decoration: BoxDecoration(
+                                      color: AppColors.mainColor,
+                                      borderRadius:
+                                          const BorderRadius.horizontal(
+                                            left: Radius.circular(10),
+                                            right: Radius.circular(10),
+                                          ),
+                                    ),
                                   ),
-                                  SizedBox(height: screenHeight * 0.02),
-                                  ErrorStateWidget(error: state.error!),
-                                ],
-                              );
-                          }
+                                ),
+                                const Padding(
+                                  padding: EdgeInsets.symmetric(
+                                    horizontal: 16.0,
+                                  ),
+                                  child: Text("Pickup Address"),
+                                ),
+                                const AddressItem(
+                                  title: "unknown",
+                                  address: "address",
+                                  phoneNumber: "01010518801",
+                                ),
+                                const Padding(
+                                  padding: EdgeInsets.symmetric(
+                                    horizontal: 16.0,
+                                  ),
+                                  child: Text("User Address"),
+                                ),
+                                const AddressItem(
+                                  title: "unknown",
+                                  address: "address",
+                                  phoneNumber: "01010518801",
+                                ),
+                              ],
+                            ),
+                          );
                         },
+                      ),
+                      Positioned(
+                        top: 10,
+                        left: 10,
+                        child: InkWell(
+                          onTap: () {},
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: AppColors.mainColor,
+                              shape: BoxShape.circle,
+                            ),
+                            padding: const EdgeInsets.all(8),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                const SizedBox(width: 7),
+                                Icon(
+                                  Icons.arrow_back_ios,
+                                  color: AppColors.white,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
                       ),
                     ],
                   ),
