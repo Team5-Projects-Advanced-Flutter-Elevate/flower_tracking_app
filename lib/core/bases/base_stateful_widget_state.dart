@@ -65,7 +65,7 @@ abstract class BaseStatefulWidgetState<T extends StatefulWidget>
         message: message ?? "",
         messageTextStyle: theme.textTheme.labelMedium!.copyWith(
           color: AppColors.white,
-          fontSize: 14
+          fontSize: 14,
         ),
         contentType: contentType,
       ),

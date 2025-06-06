@@ -52,7 +52,7 @@ class MarkerChildWidget extends BaseStatelessWidget {
                         style: inherit.theme.textTheme.labelMedium!.copyWith(
                           color: AppColors.white,
                           fontWeight: FontWeight.w600,
-                          fontFamily: GoogleFonts.imFellEnglish().fontFamily
+                          fontFamily: GoogleFonts.imFellEnglish().fontFamily,
                         ),
                       ),
                     ),
