@@ -336,7 +336,7 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i166.ValidateFunctions>(
       () => _i166.ValidateFunctions(gh<_i543.AppLocalizations>()),
     );
-    gh.lazySingleton<_i792.ProfileCubit>(
+    gh.factory<_i792.ProfileCubit>(
       () => _i792.ProfileCubit(gh<_i211.GetLoggedDriverDataUseCase>()),
     );
     gh.factory<_i898.LauncherViewModel>(

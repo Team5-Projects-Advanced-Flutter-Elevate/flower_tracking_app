@@ -10,7 +10,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
-
 import '../../../../../core/constants/assets_paths/assets_paths.dart';
 import '../../../../../core/di/injectable_initializer.dart';
 import '../../../../../shared_layers/localization/enums/languages_enum.dart';
@@ -71,35 +70,38 @@ class _ProfileScreenState extends BaseStatefulWidgetState<ProfileScreen> {
           ),
         ],
       ),
-      body: BlocBuilder<ProfileCubit, ProfileState>(
-        builder: (context, state) {
-          switch (state.loadProfileStatus) {
-            case LoadProfileStatus.initial:
-            case LoadProfileStatus.loading:
-              return const LoadingStateWidget();
-            case LoadProfileStatus.success:
-              return Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 24,
-                  vertical: 24,
-                ),
-                child: Column(
-                  children: [
-                    UserCard(state.loggedDriverDataResponseEntity!),
-                    SizedBox(height: screenHeight * 0.03),
-                    VehicleInfoCard(state.loggedDriverDataResponseEntity!),
-                    SizedBox(height: screenHeight * 0.03),
-                    const LanguageRow(),
-                    SizedBox(height: screenHeight * 0.01),
-                    const LogoutRow(),
-                  ],
-                ),
-              );
+      body: BlocProvider(
+        create: (context) => profileCubit,
+        child: BlocBuilder<ProfileCubit, ProfileState>(
+          builder: (context, state) {
+            switch (state.loadProfileStatus) {
+              case LoadProfileStatus.initial:
+              case LoadProfileStatus.loading:
+                return const LoadingStateWidget();
+              case LoadProfileStatus.success:
+                return Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 24,
+                    vertical: 24,
+                  ),
+                  child: Column(
+                    children: [
+                      UserCard(state.loggedDriverDataResponseEntity!),
+                      SizedBox(height: screenHeight * 0.03),
+                      VehicleInfoCard(state.loggedDriverDataResponseEntity!),
+                      SizedBox(height: screenHeight * 0.03),
+                      const LanguageRow(),
+                      SizedBox(height: screenHeight * 0.01),
+                      const LogoutRow(),
+                    ],
+                  ),
+                );
 
-            case LoadProfileStatus.error:
-              return ErrorStateWidget(error: state.loadProfileError!);
-          }
-        },
+              case LoadProfileStatus.error:
+                return ErrorStateWidget(error: state.loadProfileError!);
+            }
+          },
+        ),
       ),
     );
   }

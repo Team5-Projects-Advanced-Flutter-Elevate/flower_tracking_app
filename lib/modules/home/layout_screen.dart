@@ -24,10 +24,7 @@ class _LayoutScreenState extends BaseStatefulWidgetState<LayoutScreen> {
   List<Widget> screens = [
     const HomeScreen(),
     const OrdersScreen(),
-    BlocProvider(
-      create: (context) => getIt<ProfileCubit>(),
-      child:const  ProfileScreen(),
-    ),
+    const  ProfileScreen(),
   ];
 
   @override

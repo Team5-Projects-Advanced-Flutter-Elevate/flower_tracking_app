@@ -9,7 +9,7 @@ import 'package:injectable/injectable.dart';
 
 part 'profile_state.dart';
 
-@lazySingleton
+@injectable
 class ProfileCubit extends Cubit<ProfileState> {
   ProfileCubit(this._getLoggedDriverDataUseCase) : super(const ProfileState());
   final GetLoggedDriverDataUseCase _getLoggedDriverDataUseCase;
