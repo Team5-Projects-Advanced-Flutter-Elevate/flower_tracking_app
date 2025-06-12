@@ -10,8 +10,7 @@ part 'pending_orders_model.g.dart';
 
 @RestApi(baseUrl: ApisEndpoints.baseUrl)
 abstract class OrdersRemoteDataSource {
-  factory OrdersRemoteDataSource(Dio dio,) =
-      _OrdersRemoteDataSource;
+  factory OrdersRemoteDataSource(Dio dio) = _OrdersRemoteDataSource;
 
   @GET(ApisEndpoints.driverOrders)
   Future<PendingOrdersModel> getDriverOrders(
