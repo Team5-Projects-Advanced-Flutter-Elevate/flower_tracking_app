@@ -82,6 +82,8 @@ import '../../modules/authentication/domain/use_cases/forget_password/reset_code
     as _i9;
 import '../../modules/authentication/domain/use_cases/forget_password/reset_password_use_case.dart'
     as _i110;
+import '../../modules/authentication/domain/use_cases/logged_driver_data/get_logged_driver_data_use_case.dart'
+    as _i211;
 import '../../modules/authentication/domain/use_cases/login/login_use_case.dart'
     as _i543;
 import '../../modules/authentication/ui/forget_password/view_model/forget_password_screen_view_model.dart'
@@ -96,6 +98,21 @@ import '../../modules/home/domain/use_cases/get_pending_orders_use_case.dart'
     as _i553;
 import '../../modules/home/ui/cubit/pending_orders/pending_orders_cubit.dart'
     as _i12;
+import '../../modules/home/ui/profile/ui/viewModel/profile_cubit.dart' as _i792;
+import '../../modules/logout/data/api/api_client/logout_api_client.dart'
+    as _i877;
+import '../../modules/logout/data/api/api_client_provider/logout_api_client_provider.dart'
+    as _i894;
+import '../../modules/logout/data/data_sources_contracts/logout/logout_remote_data_source.dart'
+    as _i774;
+import '../../modules/logout/data/data_sources_imp/logout/logout_remote_data_source_imp.dart'
+    as _i892;
+import '../../modules/logout/data/repositories_imp/logout/logout_repo_imp.dart'
+    as _i398;
+import '../../modules/logout/domain/repositories_contracts/logout/logout_repo.dart'
+    as _i607;
+import '../../modules/logout/domain/use_cases/logout/logout_use_case.dart'
+    as _i56;
 import '../../modules/order_details/view_model/order_details_view_model.dart'
     as _i240;
 import '../../modules/whatsapp_call/data/data_source/call_data_source.dart'
@@ -158,6 +175,7 @@ extension GetItInjectableX on _i174.GetIt {
     final applyApiClientProvider = _$ApplyApiClientProvider();
     final authApiClientProvider = _$AuthApiClientProvider();
     final ordersApiClientProvider = _$OrdersApiClientProvider();
+    final logoutApiClientProvider = _$LogoutApiClientProvider();
     final localeInitializer = _$LocaleInitializer();
     final appLocalizationsProvider = _$AppLocalizationsProvider();
     await gh.factoryAsync<_i361.Dio>(
@@ -183,6 +201,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.lazySingleton<_i858.OrdersApiClient>(
       () => ordersApiClientProvider.providerApiClient(gh<_i361.Dio>()),
+    );
+    gh.lazySingleton<_i877.LogoutApiClient>(
+      () => logoutApiClientProvider.provideClient(gh<_i361.Dio>()),
     );
     gh.factory<_i843.ApplyDataSource>(
       () => _i684.ApplyDataSourceImpl(gh<_i780.ApplyApiClient>()),
@@ -218,6 +239,9 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i163.DriverCollection>(),
         gh<_i793.OrderCollection>(),
       ),
+    );
+    gh.factory<_i774.LogoutRemoteDataSource>(
+      () => _i892.LogoutRemoteDataSourceImp(gh<_i877.LogoutApiClient>()),
     );
     gh.factory<_i477.LoginRemoteDataSource>(
       () => _i120.LoginRemoteDataSourceImp(gh<_i343.AuthApiClient>()),
@@ -268,6 +292,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i110.ResetPasswordUseCase>(
       () => _i110.ResetPasswordUseCase(gh<_i731.ResetPasswordRepo>()),
     );
+    gh.factory<_i607.LogoutRepo>(
+      () => _i398.LogoutRepoImp(gh<_i774.LogoutRemoteDataSource>()),
+    );
     gh.factory<_i450.LoginRepo>(
       () => _i641.LoginRepoImp(
         gh<_i477.LoginRemoteDataSource>(),
@@ -280,6 +307,9 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i504.LoggedDriverDataRemoteDataSource>(),
       ),
     );
+    gh.factory<_i211.GetLoggedDriverDataUseCase>(
+      () => _i211.GetLoggedDriverDataUseCase(gh<_i103.LoggedDriverDataRepo>()),
+    );
     await gh.factoryAsync<_i543.AppLocalizations>(
       () => appLocalizationsProvider.provideAppLocalizations(
         gh<String>(instanceName: 'initCurrentLocal'),
@@ -288,6 +318,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i565.WhatsAppUseCase>(
       () => _i565.WhatsAppUseCase(gh<_i281.WhatsAppRepo>()),
+    );
+    gh.factory<_i56.LogoutUseCase>(
+      () => _i56.LogoutUseCase(gh<_i607.LogoutRepo>()),
     );
     gh.factory<_i240.OrderDetailsViewModel>(
       () => _i240.OrderDetailsViewModel(
@@ -311,12 +344,18 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i543.LoginUseCase>(
       () => _i543.LoginUseCase(gh<_i450.LoginRepo>()),
     );
+    gh.lazySingleton<_i792.ProfileCubit>(
+      () => _i792.ProfileCubit(
+        gh<_i211.GetLoggedDriverDataUseCase>(),
+        gh<_i56.LogoutUseCase>(),
+      ),
+    );
     gh.factory<_i1013.ForgetPasswordRepo>(
       () => _i811.ForgetPasswordRepoImpl(
         gh<_i150.ForgetPasswordRemoteDataSource>(),
       ),
     );
-    gh.factory<_i172.ApplyCubit>(
+    gh.lazySingleton<_i172.ApplyCubit>(
       () => _i172.ApplyCubit(
         gh<_i637.ApplyDriverUseCase>(),
         gh<_i900.GetVehiclesUseCase>(),
@@ -324,11 +363,11 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i843.ImagePickerService>(),
       ),
     );
-    gh.lazySingleton<_i166.ValidateFunctions>(
-      () => _i166.ValidateFunctions(gh<_i543.AppLocalizations>()),
-    );
     gh.lazySingleton<_i439.ApiErrorHandler>(
       () => _i439.ApiErrorHandler(gh<_i543.AppLocalizations>()),
+    );
+    gh.lazySingleton<_i166.ValidateFunctions>(
+      () => _i166.ValidateFunctions(gh<_i543.AppLocalizations>()),
     );
     gh.factory<_i898.LauncherViewModel>(
       () => _i898.LauncherViewModel(
@@ -362,6 +401,8 @@ class _$ApplyApiClientProvider extends _i594.ApplyApiClientProvider {}
 class _$AuthApiClientProvider extends _i1019.AuthApiClientProvider {}
 
 class _$OrdersApiClientProvider extends _i290.OrdersApiClientProvider {}
+
+class _$LogoutApiClientProvider extends _i894.LogoutApiClientProvider {}
 
 class _$LocaleInitializer extends _i631.LocaleInitializer {}
 

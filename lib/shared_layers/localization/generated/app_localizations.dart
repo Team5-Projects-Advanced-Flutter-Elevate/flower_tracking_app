@@ -860,6 +860,30 @@ abstract class AppLocalizations {
   /// **'Arrived to destination'**
   String get buttonArrivedDestination;
 
+  /// No description provided for @language.
+  ///
+  /// In en, this message translates to:
+  /// **'Language'**
+  String get language;
+
+  /// No description provided for @english.
+  ///
+  /// In en, this message translates to:
+  /// **'English'**
+  String get english;
+
+  /// No description provided for @logout.
+  ///
+  /// In en, this message translates to:
+  /// **'Logout'**
+  String get logout;
+
+  /// No description provided for @vehicleInfo.
+  ///
+  /// In en, this message translates to:
+  /// **'Vehicle Info'**
+  String get vehicleInfo;
+
   /// No description provided for @buttonOrderDelivered.
   ///
   /// In en, this message translates to:
@@ -889,6 +913,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Order Finished Successfully!'**
   String get orderFinishedSuccessfully;
+
+  /// No description provided for @logoutMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to logout?'**
+  String get logoutMessage;
+
+  /// No description provided for @cancelButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get cancelButton;
+
+  /// No description provided for @confirmButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm'**
+  String get confirmButton;
 }
 
 class _AppLocalizationsDelegate
