@@ -137,5 +137,9 @@
   "loading": "جاري التحميل.....",
   "acceptedSuccessfully": "تم القبول بنجاح!",
   "updatedSuccessfully": "تم التحديث بنجاح!",
-  "orderFinishedSuccessfully": "تم إنهاء الطلب بنجاح!"
+  "orderFinishedSuccessfully": "تم إنهاء الطلب بنجاح!",
+  "logoutTitle": "تسجيل الخروج",
+  "logoutMessage": "هل أنت متأكد أنك تريد تسجيل الخروج؟",
+  "cancelButton": "إلغاء",
+  "confirmButton": "تأكيد"
 }

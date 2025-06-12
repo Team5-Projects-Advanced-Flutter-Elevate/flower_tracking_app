@@ -415,4 +415,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get orderFinishedSuccessfully => 'Order Finished Successfully!';
+
+  @override
+  String get logoutMessage => 'Are you sure you want to logout?';
+
+  @override
+  String get cancelButton => 'Cancel';
+
+  @override
+  String get confirmButton => 'Confirm';
 }

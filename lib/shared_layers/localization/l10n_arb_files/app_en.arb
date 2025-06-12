@@ -136,5 +136,8 @@
   "loading": "Loading.....",
   "acceptedSuccessfully": "Accepted Successfully!",
   "updatedSuccessfully": "Updated Successfully!",
-  "orderFinishedSuccessfully": "Order Finished Successfully!"
+  "orderFinishedSuccessfully": "Order Finished Successfully!",
+  "logoutMessage": "Are you sure you want to logout?",
+  "cancelButton": "Cancel",
+  "confirmButton": "Confirm"
 }

@@ -24,7 +24,10 @@ class _LayoutScreenState extends BaseStatefulWidgetState<LayoutScreen> {
   List<Widget> screens = [
     const HomeScreen(),
     const OrdersScreen(),
-    const  ProfileScreen(),
+    BlocProvider(
+      create: (context) => getIt<ProfileCubit>(),
+      child: const ProfileScreen(),
+    ),
   ];
 
   @override
@@ -45,36 +48,35 @@ class _LayoutScreenState extends BaseStatefulWidgetState<LayoutScreen> {
       bottomNavigationBar: NavigationBarTheme(
         data: NavigationBarThemeData(
           labelTextStyle: WidgetStateProperty.resolveWith<TextStyle>((
-                Set<WidgetState> states,
-              ) {if (states.contains(WidgetState.selected)) {
-                return TextStyle(
-                  fontWeight: FontWeight.w500,
-                  color: AppColors.mainColor, // Selected label color
-                );
-              }
+            Set<WidgetState> states,
+          ) {
+            if (states.contains(WidgetState.selected)) {
               return TextStyle(
                 fontWeight: FontWeight.w500,
-                color: AppColors.gray, // Unselected label color
+                color: AppColors.mainColor, // Selected label color
               );
-            }),
-          ),
-         child: NavigationBar(
-        selectedIndex: currentScreen,
-        backgroundColor: AppColors.white,
-        onDestinationSelected: (value) {
-          setState(() {
-            currentScreen = value;
-          });
-          controller.jumpToPage(currentScreen);
-        },
-        destinations: [
-          NavigationDestination(
-            icon: ImageIcon(
-              color: currentScreen == 0
-                  ? AppColors.mainColor
-                  : AppColors.gray,
-              const AssetImage(
-                AssetsPaths.homeIcon),
+            }
+            return TextStyle(
+              fontWeight: FontWeight.w500,
+              color: AppColors.gray, // Unselected label color
+            );
+          }),
+        ),
+        child: NavigationBar(
+          selectedIndex: currentScreen,
+          backgroundColor: AppColors.white,
+          onDestinationSelected: (value) {
+            setState(() {
+              currentScreen = value;
+            });
+            controller.jumpToPage(currentScreen);
+          },
+          destinations: [
+            NavigationDestination(
+              icon: ImageIcon(
+                color:
+                    currentScreen == 0 ? AppColors.mainColor : AppColors.gray,
+                const AssetImage(AssetsPaths.homeIcon),
               ),
               label: appLocalizations.home,
             ),
@@ -97,6 +99,6 @@ class _LayoutScreenState extends BaseStatefulWidgetState<LayoutScreen> {
           ],
         ),
       ),
-      );
+    );
   }
 }

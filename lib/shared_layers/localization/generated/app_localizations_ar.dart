@@ -415,4 +415,13 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get orderFinishedSuccessfully => 'تم إنهاء الطلب بنجاح!';
+
+  @override
+  String get logoutMessage => 'هل أنت متأكد أنك تريد تسجيل الخروج؟';
+
+  @override
+  String get cancelButton => 'إلغاء';
+
+  @override
+  String get confirmButton => 'تأكيد';
 }
