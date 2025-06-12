@@ -3,7 +3,6 @@ import 'package:flower_tracking_app/core/colors/app_colors.dart';
 import 'package:flower_tracking_app/core/constants/assets_paths/assets_paths.dart';
 import 'package:flower_tracking_app/modules/home/ui/home_screen.dart';
 import 'package:flower_tracking_app/modules/home/ui/orders_screen.dart';
-import 'package:flower_tracking_app/modules/home/ui/profile_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../edit_profile/ui/screens/edit_profile_screen.dart';

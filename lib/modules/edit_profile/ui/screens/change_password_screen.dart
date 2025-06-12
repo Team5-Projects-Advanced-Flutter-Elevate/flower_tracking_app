@@ -8,7 +8,7 @@ import '../../../../core/di/injectable_initializer.dart';
 import '../../../../core/validation/validation_functions.dart';
 import '../../../../core/widgets/loading_state_widget.dart';
 import '../cubit/states.dart';
-import '../cubit/viewModel.dart';
+import '../cubit/view_model.dart';
 
 class ChangePasswordScreen extends StatefulWidget {
   const ChangePasswordScreen({super.key});

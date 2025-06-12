@@ -120,7 +120,7 @@ import '../../modules/edit_profile/domain/usecase/edit_info_usecase.dart'
 import '../../modules/edit_profile/domain/usecase/get_data_usecase.dart'
     as _i736;
 import '../../modules/edit_profile/domain/usecase/upload_image.dart' as _i875;
-import '../../modules/edit_profile/ui/cubit/viewModel.dart' as _i706;
+import '../../modules/edit_profile/ui/cubit/view_model.dart' as _i706;
 import '../../modules/home/data/api/api_client/orders_api_client.dart' as _i290;
 import '../../modules/home/data/models/orders_client_model.dart' as _i858;
 import '../../modules/home/data/repo_impl/orders_repo_impl.dart' as _i823;

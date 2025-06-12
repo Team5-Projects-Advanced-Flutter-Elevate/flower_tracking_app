@@ -11,7 +11,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/di/injectable_initializer.dart';
-import '../../../edit_profile/ui/screens/edit_profile_screen.dart';
 import '../forget_password/view/forget_password_screen.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -133,7 +132,7 @@ class _LoginScreenState extends BaseStatefulWidgetState<LoginScreen> {
                               context,
                               MaterialPageRoute(
                                 builder:
-                                    (context) => const EditProfileScreen(),
+                                    (context) => const ForgetPasswordScreen(),
                               ),
                             );
                           },

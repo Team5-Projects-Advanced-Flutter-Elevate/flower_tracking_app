@@ -10,7 +10,7 @@ import '../../../../core/validation/validation_functions.dart';
 import '../../../../core/widgets/error_state_widget.dart';
 import '../../../../core/widgets/loading_state_widget.dart';
 import '../cubit/states.dart';
-import '../cubit/viewModel.dart';
+import '../cubit/view_model.dart';
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 
 import 'change_password_screen.dart';
