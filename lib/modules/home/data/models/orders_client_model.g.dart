@@ -49,7 +49,7 @@ Map<String, dynamic> _$MetadataToJson(Metadata instance) => <String, dynamic>{
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers,unused_element,unnecessary_string_interpolations
 
 class _OrdersApiClient implements OrdersApiClient {
-  _OrdersApiClient(this._dio, {this.baseUrl, this.errorLogger}) {
+  _OrdersApiClient(this._dio, {this.baseUrl,}) {
     baseUrl ??= 'https://flower.elevateegy.com/';
   }
 
@@ -57,7 +57,7 @@ class _OrdersApiClient implements OrdersApiClient {
 
   String? baseUrl;
 
-  final ParseErrorLogger? errorLogger;
+  ParseErrorLogger? errorLogger;
 
   @override
   Future<PendingOrdersResponse> getPendingOrders({int page = 1}) async {

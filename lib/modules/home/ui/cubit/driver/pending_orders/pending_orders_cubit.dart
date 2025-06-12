@@ -42,7 +42,6 @@ class OrdersCubit extends Cubit<OrdersState> {
 
   Future<void> doIntent(OrdersIntent intent) async {
     if (_isLoading || isClosed) return;
-    print('doIntent called with intent: ${intent.runtimeType}');
     if (intent is LoadOrdersIntent) {
       await _loadOrders(page: 1, isRefresh: false);
     } else if (intent is LoadMoreOrdersIntent) {
@@ -50,7 +49,6 @@ class OrdersCubit extends Cubit<OrdersState> {
     } else if (intent is RefreshOrdersIntent) {
       await _loadOrders(page: 1, isRefresh: true);
     } else if (intent is RejectOrderIntent) {
-      print('Handling RejectOrderIntent with orderId: ${intent.orderId}');
       removeOrder(intent.orderId);
     }
   }
@@ -158,7 +156,6 @@ class OrdersCubit extends Cubit<OrdersState> {
   }
 
   void removeOrder(String orderId) {
-    print('removeOrder called with orderId: $orderId');
     final updatedOrders =
         state.orders.orders.where((order) => order.id != orderId).toList();
     final updatedEntity = PendingOrdersEntity(
