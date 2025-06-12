@@ -8,7 +8,6 @@ import '../../model/upload_image_response.dart';
 
 @lazySingleton
 class UploadImageApiClient {
-
   final Dio dio;
   UploadImageApiClient(this.dio);
   Future<UploadImageResponse> uploadProfileImageWithDio(File imageFile) async {
@@ -37,5 +36,4 @@ class UploadImageApiClient {
 
     return UploadImageResponse.fromJson(response.data);
   }
-
 }

@@ -1,4 +1,3 @@
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flower_tracking_app/core/colors/app_colors.dart';
 import 'package:flutter/material.dart';
@@ -101,14 +100,13 @@ class _EditProfileScreenState
             ErrorStateWidget(error: state.error.toString());
           } else if (state.getProfileDataStatus == EditProfileStatus.loading) {
             const LoadingStateWidget();
-          }
-          else if (state.uploadImageStatus == EditProfileStatus.success) {
+          } else if (state.uploadImageStatus == EditProfileStatus.success) {
             displaySnackBar(
               contentType: ContentType.success,
               title: 'Success',
               message: 'Updated Successfully',
-            );          }
-          else if (state.uploadImageStatus == EditProfileStatus.error) {
+            );
+          } else if (state.uploadImageStatus == EditProfileStatus.error) {
             ErrorStateWidget(error: state.error.toString());
           }
         },
@@ -253,7 +251,13 @@ class _EditProfileScreenState
                         labelText: 'Password',
                         suffix: InkWell(
                           onTap: () {
-                            Navigator.push(context,MaterialPageRoute(builder: (context) => const ChangePasswordScreen(),));
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder:
+                                    (context) => const ChangePasswordScreen(),
+                              ),
+                            );
                           },
                           child: const Text('Change'),
                         ),

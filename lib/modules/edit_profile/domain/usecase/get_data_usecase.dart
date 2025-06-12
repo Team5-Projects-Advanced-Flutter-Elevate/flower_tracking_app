@@ -3,6 +3,7 @@ import 'package:injectable/injectable.dart';
 
 import '../entity/get_data.dart';
 import '../repo/get_data_repo.dart';
+
 @injectable
 class GetDriverDataUseCase {
   final GetLoggedDriverDataRepo _loggedDriverDataRepo;

@@ -15,10 +15,9 @@ class GetLoggedDriverDataOnlineDataSourceImpl
   GetLoggedDriverDataOnlineDataSourceImpl(this._authApiClient);
 
   @override
-  Future<ApiResult<GetDataEntity>>
-  getLoggedDriverData() async {
+  Future<ApiResult<GetDataEntity>> getLoggedDriverData() async {
     var apiResult = await ApiExecutor.executeApi(
-          () => _authApiClient.getLoggedDriverData(),
+      () => _authApiClient.getLoggedDriverData(),
     );
 
     switch (apiResult) {

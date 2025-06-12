@@ -69,9 +69,13 @@ class UserCard extends BaseStatelessWidget {
           const Spacer(),
           GestureDetector(
             onTap: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) => const EditProfileScreen(),));
-
-                        },
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const EditProfileScreen(),
+                ),
+              );
+            },
             child: Icon(Icons.arrow_forward_ios, color: AppColors.gray),
           ),
         ],
