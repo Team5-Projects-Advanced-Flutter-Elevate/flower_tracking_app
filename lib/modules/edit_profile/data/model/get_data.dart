@@ -1,15 +1,12 @@
 import '../../domain/entity/get_data.dart';
 
 class GetData {
-  GetData({
-    required this.message,
-    required this.driver,
-  });
+  GetData({required this.message, required this.driver});
 
   final String? message;
   final Driver? driver;
 
-  factory GetData.fromJson(Map<String, dynamic> json){
+  factory GetData.fromJson(Map<String, dynamic> json) {
     return GetData(
       message: json["message"],
       driver: json["driver"] == null ? null : Driver.fromJson(json["driver"]),
@@ -22,20 +19,14 @@ class GetData {
   };
 
   // Convert model to entity
-  GetDataEntity toEntity() => GetDataEntity(
-    message: message,
-    driver: driver?.toEntity(),
-  );
+  GetDataEntity toEntity() =>
+      GetDataEntity(message: message, driver: driver?.toEntity());
 
-// Convert entity to model
+  // Convert entity to model
   factory GetData.fromEntity(GetDataEntity entity) => GetData(
     message: entity.message,
     driver: entity.driver != null ? Driver.fromEntity(entity.driver!) : null,
   );
-
-
-
-
 }
 
 class Driver {
@@ -73,7 +64,7 @@ class Driver {
   final String? photo;
   final DateTime? createdAt;
 
-  factory Driver.fromJson(Map<String, dynamic> json){
+  factory Driver.fromJson(Map<String, dynamic> json) {
     return Driver(
       role: json["role"],
       id: json["_id"],
@@ -111,7 +102,6 @@ class Driver {
     "createdAt": createdAt?.toIso8601String(),
   };
 
-
   // Convert model to entity
   DriverEntity toEntity() => DriverEntity(
     role: role,
@@ -131,7 +121,7 @@ class Driver {
     createdAt: createdAt,
   );
 
-// Convert entity to model
+  // Convert entity to model
   factory Driver.fromEntity(DriverEntity entity) => Driver(
     role: entity.role,
     id: entity.id,
@@ -149,7 +139,4 @@ class Driver {
     photo: entity.photo,
     createdAt: entity.createdAt,
   );
-
-
-
 }

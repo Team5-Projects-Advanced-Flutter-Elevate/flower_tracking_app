@@ -1,4 +1,3 @@
-
 import '../../domain/entity/upload_image_response_entity.dart';
 
 class UploadImageResponse {

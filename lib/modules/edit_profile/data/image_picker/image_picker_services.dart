@@ -9,7 +9,6 @@ import 'package:device_info_plus/device_info_plus.dart';
 
 import '../../../../core/colors/app_colors.dart';
 
-
 class ImagePickerService {
   final int maxFileSize = 1024 * 1024; // 1MB in bytes
   final int maxDimension = 1200; // Maximum width/height in pixels
@@ -28,7 +27,7 @@ class ImagePickerService {
           if (!permissionStatus.isGranted) return null;
         } else {
           final PermissionStatus permissionStatus =
-          await Permission.photos.request();
+              await Permission.photos.request();
           if (!permissionStatus.isGranted) return null;
         }
       }
@@ -89,38 +88,38 @@ class ImagePickerService {
     return File(result!.path);
   }
 
-  Future<void> showImageSourceDialog(BuildContext context,
-      {required Function(File) onImageSelected}) async {
+  Future<void> showImageSourceDialog(
+    BuildContext context, {
+    required Function(File) onImageSelected,
+  }) async {
     showModalBottomSheet(
       context: context,
-      builder: (context) => SafeArea(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            ListTile(
-              leading: Icon(
-                Icons.camera_alt,
-                color: AppColors.mainColor,
-              ),
-              title: const Text('Take Photo'),
-              onTap: () async {
-                Navigator.pop(context);
-                final image = await pickImage(ImageSource.camera);
-                if (image != null) onImageSelected(image);
-              },
+      builder:
+          (context) => SafeArea(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                ListTile(
+                  leading: Icon(Icons.camera_alt, color: AppColors.mainColor),
+                  title: const Text('Take Photo'),
+                  onTap: () async {
+                    Navigator.pop(context);
+                    final image = await pickImage(ImageSource.camera);
+                    if (image != null) onImageSelected(image);
+                  },
+                ),
+                ListTile(
+                  leading: const Icon(Icons.photo_library),
+                  title: const Text('Choose from Gallery'),
+                  onTap: () async {
+                    Navigator.pop(context);
+                    final image = await pickImage(ImageSource.gallery);
+                    if (image != null) onImageSelected(image);
+                  },
+                ),
+              ],
             ),
-            ListTile(
-              leading: const Icon(Icons.photo_library),
-              title: const Text('Choose from Gallery'),
-              onTap: () async {
-                Navigator.pop(context);
-                final image = await pickImage(ImageSource.gallery);
-                if (image != null) onImageSelected(image);
-              },
-            ),
-          ],
-        ),
-      ),
+          ),
     );
   }
 }

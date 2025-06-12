@@ -52,6 +52,5 @@ extension DioServiceExtension on DioService {
       },
     );
     dio.options = newBaseOptions;
-
   }
 }

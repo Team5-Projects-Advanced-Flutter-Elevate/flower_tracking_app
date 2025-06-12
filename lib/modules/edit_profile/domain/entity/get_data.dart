@@ -1,4 +1,3 @@
-
 class GetDataEntity {
   final String? message;
   final DriverEntity? driver;
