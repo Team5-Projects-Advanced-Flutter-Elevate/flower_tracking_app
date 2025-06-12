@@ -390,6 +390,18 @@ class AppLocalizationsEn extends AppLocalizations {
   String get buttonArrivedDestination => 'Arrived to destination';
 
   @override
+  String get language => 'Language';
+
+  @override
+  String get english => 'English';
+
+  @override
+  String get logout => 'Logout';
+
+  @override
+  String get vehicleInfo => 'Vehicle Info';
+
+  @override
   String get buttonOrderDelivered => 'Order delivered';
 
   @override
@@ -412,4 +424,16 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get completed => 'Completed';
+
+  @override
+  String get logoutTitle => 'Logout';
+
+  @override
+  String get logoutMessage => 'Are you sure you want to logout?';
+
+  @override
+  String get cancelButton => 'Cancel';
+
+  @override
+  String get confirmButton => 'Confirm';
 }

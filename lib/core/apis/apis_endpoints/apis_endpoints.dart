@@ -9,4 +9,5 @@ class ApisEndpoints {
   static const String getVehicles = 'api/v1/vehicles';
   static const String getPendingOrders = 'api/v1/orders/pending-orders';
   static const String driverOrders = 'api/v1/orders/driver-orders';
+  static const String logoutEndpoint = "api/v1/drivers/logout";
 }

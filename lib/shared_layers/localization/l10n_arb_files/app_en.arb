@@ -128,6 +128,10 @@
   "buttonArrivedAtPickup": "Arrived at pickup point",
   "buttonStartDelivery": "Start delivery",
   "buttonArrivedDestination": "Arrived to destination",
+  "language": "Language",
+  "english": "English",
+  "logout": "Logout",
+  "vehicleInfo": "Vehicle Info",
   "buttonOrderDelivered": "Order delivered",
   "loading": "Loading.....",
   "acceptedSuccessfully": "Accepted Successfully!",
@@ -135,5 +139,9 @@
   "orderFinishedSuccessfully": "Order Finished Successfully!",
   "myOrders": "My orders",
   "cancelled": "Cancelled",
-  "completed": "Completed"
+  "completed": "Completed",
+  "logoutTitle": "Logout",
+  "logoutMessage": "Are you sure you want to logout?",
+  "cancelButton": "Cancel",
+  "confirmButton": "Confirm"
 }
