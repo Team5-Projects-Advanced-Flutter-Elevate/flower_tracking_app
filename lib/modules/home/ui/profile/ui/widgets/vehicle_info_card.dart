@@ -19,7 +19,7 @@ class VehicleInfoCard extends BaseStatelessWidget {
           const BoxShadow(
             blurRadius: 4,
             spreadRadius: 0,
-            offset:  Offset(0, 0),
+            offset: Offset(0, 0),
             blurStyle: BlurStyle.outer,
           ),
         ],

@@ -11,6 +11,7 @@ import 'package:flower_tracking_app/shared_layers/localization/generated/app_loc
 import 'package:flower_tracking_app/shared_layers/localization/l10n_manager/localization_manager.dart';
 
 import '../../../../../onboarding/ui/onboarding_screen_test.mocks.dart';
+
 @GenerateMocks([LocalizationManager])
 void main() {
   late AppLocalizations appLocalizations;
@@ -21,7 +22,9 @@ void main() {
     final languageCode = LanguagesEnum.en.getLanguageCode();
 
     // Load localization
-    appLocalizations = await AppLocalizations.delegate.load(Locale(languageCode));
+    appLocalizations = await AppLocalizations.delegate.load(
+      Locale(languageCode),
+    );
 
     // Mock localization manager
     mockLocalizationManager = MockLocalizationManager();
@@ -34,7 +37,9 @@ void main() {
     getIt.registerSingleton<ValidateFunctions>(validateFunctions);
   });
 
-  testWidgets('LogoutRow renders correctly with icons and text', (WidgetTester tester) async {
+  testWidgets('LogoutRow renders correctly with icons and text', (
+    WidgetTester tester,
+  ) async {
     // Act
     await tester.pumpWidget(
       MaterialApp(

@@ -20,10 +20,14 @@ void main() {
   late ValidateFunctions validateFunctions;
 
   setUpAll(() async {
-    final languageCode = LanguagesEnum.en.getLanguageCode(); // Use English or any supported locale
+    final languageCode =
+        LanguagesEnum.en
+            .getLanguageCode(); // Use English or any supported locale
 
     // Load localization
-    appLocalizations = await AppLocalizations.delegate.load(Locale(languageCode));
+    appLocalizations = await AppLocalizations.delegate.load(
+      Locale(languageCode),
+    );
 
     // Create mock localization manager
     mockLocalizationManager = MockLocalizationManager();
@@ -36,7 +40,9 @@ void main() {
     getIt.registerSingleton<ValidateFunctions>(validateFunctions);
   });
 
-  testWidgets('VehicleInfoCard displays vehicle data correctly', (WidgetTester tester) async {
+  testWidgets('VehicleInfoCard displays vehicle data correctly', (
+    WidgetTester tester,
+  ) async {
     // Arrange
     final testDriver = LoggedDriverDataResponseEntity(
       driver: DriverEntityFirestore(
