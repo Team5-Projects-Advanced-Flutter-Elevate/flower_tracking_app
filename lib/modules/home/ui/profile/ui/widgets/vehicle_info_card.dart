@@ -16,11 +16,10 @@ class VehicleInfoCard extends BaseStatelessWidget {
       decoration: BoxDecoration(
         color: AppColors.white,
         boxShadow: [
-          BoxShadow(
-            color: AppColors.gray.withOpacity(0.25),
+          const BoxShadow(
             blurRadius: 4,
             spreadRadius: 0,
-            offset: const Offset(0, 0),
+            offset:  Offset(0, 0),
             blurStyle: BlurStyle.outer,
           ),
         ],

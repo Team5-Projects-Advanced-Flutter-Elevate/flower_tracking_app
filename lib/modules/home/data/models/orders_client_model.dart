@@ -9,7 +9,7 @@ part 'orders_client_model.g.dart';
 
 @RestApi(baseUrl: ApisEndpoints.baseUrl)
 abstract class OrdersApiClient {
-  factory OrdersApiClient(Dio dio, {String baseUrl}) = _OrdersApiClient;
+  factory OrdersApiClient(Dio dio, ) = _OrdersApiClient;
 
   @GET(ApisEndpoints.getPendingOrders)
   Future<PendingOrdersResponse> getPendingOrders({@Query("page") int page = 1});
