@@ -15,7 +15,7 @@ abstract class AppThemes {
         color: AppColors.black,
         fontWeight: FontWeight.w600,
         fontFamily: GoogleFonts.inter().fontFamily,
-      )
+      ),
     ),
     textTheme: TextTheme(
       headlineMedium: TextStyle(
