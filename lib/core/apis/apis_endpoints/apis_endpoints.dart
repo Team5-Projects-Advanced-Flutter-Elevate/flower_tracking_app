@@ -11,4 +11,5 @@ class ApisEndpoints {
   static const String editInfo = 'api/v1/drivers/editProfile';
   static const String uploadProfileImage = 'api/v1/drivers/upload-photo';
   static const String changePassword = 'api/v1/drivers/change-password';
+  static const String logoutEndpoint = "api/v1/drivers/logout";
 }
