@@ -67,6 +67,7 @@ class UserCard extends BaseStatelessWidget {
             ],
           ),
           const Spacer(),
+
           GestureDetector(
             onTap: () {
             Navigator.push(context, MaterialPageRoute(builder: (context) => const EditProfileScreen(),));
