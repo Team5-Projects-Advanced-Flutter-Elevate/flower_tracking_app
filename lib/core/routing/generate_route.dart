@@ -3,7 +3,6 @@ import 'package:flower_tracking_app/modules/application_approved/ui/application_
 import 'package:flower_tracking_app/modules/apply/ui/apply_view.dart';
 import 'package:flower_tracking_app/modules/authentication/domain/entities/logged_driver_data/logged_driver_data_response_entity.dart';
 import 'package:flower_tracking_app/modules/authentication/ui/forget_password/view/forget_password_screen.dart';
-import 'package:flower_tracking_app/modules/edit_vehicle_info/ui/edit_vehicle_info_screen.dart';
 import 'package:flower_tracking_app/modules/home/layout_screen.dart';
 import 'package:flower_tracking_app/modules/home/ui/orders_screen.dart';
 import 'package:flower_tracking_app/modules/home/ui/profile_screen.dart';
@@ -11,6 +10,7 @@ import 'package:flower_tracking_app/modules/onboarding/ui/onboarding_screen.dart
 import 'package:flutter/material.dart';
 
 import '../../modules/authentication/ui/login/login_screen.dart';
+import '../../modules/edit_vehicle_info/ui/edit_vehicle_view.dart';
 import '../../modules/home/ui/home_screen_mine.dart';
 import '../../modules/order_details/order_details_screen.dart';
 

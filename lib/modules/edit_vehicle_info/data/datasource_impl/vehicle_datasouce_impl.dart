@@ -1,6 +1,8 @@
 import 'dart:io';
 
 import 'package:device_info_plus/device_info_plus.dart';
+import 'package:flower_tracking_app/modules/edit_vehicle_info/data/models/edite_profile_response.dart';
+import 'package:flower_tracking_app/modules/edit_vehicle_info/data/models/get_vehicle_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:image_picker/image_picker.dart';
@@ -32,6 +34,36 @@ class VehicleDataSourceImpl implements VehicleDataSource {
       case Success<VehicleResponse>():
         return Success(data: result.data.toEntity());
       case Error<VehicleResponse>():
+        return Error(error: result.error);
+    }
+  }
+
+  @override
+  Future<ApiResult<GetVehicleResponse>> getVehicleById(String id) async {
+    var result = await ApiExecutor.executeApi(
+      () => vehicleApiClient.getVehicleById(id: id),
+    );
+
+    switch (result) {
+      case Success<GetVehicleResponse>():
+        return Success(data: result.data.toEntity());
+      case Error<GetVehicleResponse>():
+        return Error(error: result.error);
+    }
+  }
+
+  @override
+  Future<ApiResult<EditProfileResponse>> editeVehicle(
+    EditVehicleRequest model,
+  ) async {
+    var result = await ApiExecutor.executeApi(
+      () => vehicleApiClient.editVehicleInfo(model),
+    );
+
+    switch (result) {
+      case Success<EditProfileResponse>():
+        return Success(data: result.data);
+      case Error<EditProfileResponse>():
         return Error(error: result.error);
     }
   }

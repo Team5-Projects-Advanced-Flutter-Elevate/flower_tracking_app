@@ -88,6 +88,26 @@ import '../../modules/authentication/ui/forget_password/view_model/forget_passwo
     as _i105;
 import '../../modules/authentication/ui/login/view_model/login_view_model.dart'
     as _i108;
+import '../../modules/edit_vehicle_info/data/api/api_client/vehicle_api_client.dart'
+    as _i548;
+import '../../modules/edit_vehicle_info/data/api/api_provider/vehicle_api_provider.dart'
+    as _i1043;
+import '../../modules/edit_vehicle_info/data/datasource_contract/vehicle_datasource.dart'
+    as _i789;
+import '../../modules/edit_vehicle_info/data/datasource_impl/vehicle_datasouce_impl.dart'
+    as _i981;
+import '../../modules/edit_vehicle_info/data/repo_impl/vehicle_repo_impl.dart'
+    as _i845;
+import '../../modules/edit_vehicle_info/domain/repo_contract/vehicle_repo_contract.dart'
+    as _i898;
+import '../../modules/edit_vehicle_info/domain/usecases/edit_vehicle_use_case.dart'
+    as _i799;
+import '../../modules/edit_vehicle_info/domain/usecases/get_vehicle_by_id_use_case.dart'
+    as _i172;
+import '../../modules/edit_vehicle_info/domain/usecases/get_vehicles_use_case.dart'
+    as _i72;
+import '../../modules/edit_vehicle_info/ui/view_model/vehicle_cubit.dart'
+    as _i212;
 import '../../modules/home/data/api/api_client/orders_api_client.dart' as _i290;
 import '../../modules/home/data/models/orders_client_model.dart' as _i858;
 import '../../modules/home/data/repo_impl/orders_repo_impl.dart' as _i823;
@@ -158,6 +178,7 @@ extension GetItInjectableX on _i174.GetIt {
     final applyApiClientProvider = _$ApplyApiClientProvider();
     final authApiClientProvider = _$AuthApiClientProvider();
     final ordersApiClientProvider = _$OrdersApiClientProvider();
+    final vehicleApiClientProvider = _$VehicleApiClientProvider();
     final localeInitializer = _$LocaleInitializer();
     final appLocalizationsProvider = _$AppLocalizationsProvider();
     await gh.factoryAsync<_i361.Dio>(
@@ -170,6 +191,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i163.DriverCollection>(() => _i1045.DriverCollectionImp());
     gh.factory<_i793.OrderCollection>(() => _i529.OrderCollectionImp());
+    gh.lazySingleton<_i789.ImagePickerService>(
+      () => _i981.DefaultImagePickerService(),
+    );
     gh.factory<_i1028.WhatsAppDataSource>(() => _i882.WhatsAppDataSourceImpl());
     gh.lazySingleton<_i843.ImagePickerService>(
       () => _i684.DefaultImagePickerService(),
@@ -184,11 +208,17 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i858.OrdersApiClient>(
       () => ordersApiClientProvider.providerApiClient(gh<_i361.Dio>()),
     );
-    gh.factory<_i843.ApplyDataSource>(
-      () => _i684.ApplyDataSourceImpl(gh<_i780.VehicleApiClient>()),
+    gh.lazySingleton<_i548.VehicleApiClient>(
+      () => vehicleApiClientProvider.providerApiClient(gh<_i361.Dio>()),
     );
     gh.factory<_i557.CallRepo>(
       () => _i618.CallRepoImpl(gh<_i692.CallDataSource>()),
+    );
+    gh.factory<_i789.VehicleDataSource>(
+      () => _i981.VehicleDataSourceImpl(gh<_i548.VehicleApiClient>()),
+    );
+    gh.factory<_i843.ApplyDataSource>(
+      () => _i684.ApplyDataSourceImpl(gh<_i780.VehicleApiClient>()),
     );
     gh.factory<_i881.ResetPasswordRemoteDataSource>(
       () => _i956.ResetPasswordRemoteDataSourceImpl(gh<_i343.AuthApiClient>()),
@@ -198,6 +228,11 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i544.OrdersRepo>(
       () => _i823.OrdersRepoImpl(apiClient: gh<_i858.OrdersApiClient>()),
+    );
+    gh.factory<_i898.VehicleRepo>(
+      () => _i845.VehicleRepoImpl(
+        vehicleDataSource: gh<_i789.VehicleDataSource>(),
+      ),
     );
     gh.factory<_i487.CallUseCase>(
       () => _i487.CallUseCase(gh<_i557.CallRepo>()),
@@ -222,12 +257,27 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i477.LoginRemoteDataSource>(
       () => _i120.LoginRemoteDataSourceImp(gh<_i343.AuthApiClient>()),
     );
+    gh.factory<_i72.GetVehiclesUseCase>(
+      () => _i72.GetVehiclesUseCase(gh<_i898.VehicleRepo>()),
+    );
     gh.factory<_i504.LoggedDriverDataRemoteDataSource>(
       () =>
           _i493.LoggedDriverDataRemoteDataSourceImp(gh<_i343.AuthApiClient>()),
     );
+    gh.factory<_i61.VehicleRepo>(
+      () => _i792.ApplyRepoImpl(
+        applyDataSource: gh<_i843.ApplyDataSource>(),
+        driverCollection: gh<_i163.DriverCollection>(),
+      ),
+    );
     gh.factory<_i779.ResetCodeRemoteDataSource>(
       () => _i808.ResetCodeRemoteDataSourceImpl(gh<_i343.AuthApiClient>()),
+    );
+    gh.factory<_i799.EditeVehicleUseCase>(
+      () => _i799.EditeVehicleUseCase(gh<_i898.VehicleRepo>()),
+    );
+    gh.factory<_i172.GetVehicleByIdUseCase>(
+      () => _i172.GetVehicleByIdUseCase(gh<_i898.VehicleRepo>()),
     );
     gh.factory<_i34.LoginLocalDataSource>(
       () => _i443.LoginLocalDataSourceImp(
@@ -239,12 +289,6 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i251.ResetCodeRepo>(
       () => _i196.ResetCodeRepoImpl(gh<_i779.ResetCodeRemoteDataSource>()),
-    );
-    gh.factory<_i61.VehicleRepo>(
-      () => _i792.ApplyRepoImpl(
-        applyDataSource: gh<_i843.ApplyDataSource>(),
-        driverCollection: gh<_i163.DriverCollection>(),
-      ),
     );
     gh.factory<_i150.ForgetPasswordRemoteDataSource>(
       () => _i191.ForgetPasswordRemoteDataSourceImpl(gh<_i343.AuthApiClient>()),
@@ -336,6 +380,14 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i487.CallUseCase>(),
       ),
     );
+    gh.lazySingleton<_i212.VehicleCubit>(
+      () => _i212.VehicleCubit(
+        gh<_i799.EditeVehicleUseCase>(),
+        gh<_i900.GetVehiclesUseCase>(),
+        gh<_i843.ImagePickerService>(),
+        gh<_i172.GetVehicleByIdUseCase>(),
+      ),
+    );
     gh.factory<_i823.ForgetPasswordUseCase>(
       () => _i823.ForgetPasswordUseCase(gh<_i1013.ForgetPasswordRepo>()),
     );
@@ -362,6 +414,8 @@ class _$ApplyApiClientProvider extends _i594.ApplyApiClientProvider {}
 class _$AuthApiClientProvider extends _i1019.AuthApiClientProvider {}
 
 class _$OrdersApiClientProvider extends _i290.OrdersApiClientProvider {}
+
+class _$VehicleApiClientProvider extends _i1043.VehicleApiClientProvider {}
 
 class _$LocaleInitializer extends _i631.LocaleInitializer {}
 
