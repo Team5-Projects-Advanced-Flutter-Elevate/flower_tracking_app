@@ -132,5 +132,8 @@
   "loading": "Loading.....",
   "acceptedSuccessfully": "Accepted Successfully!",
   "updatedSuccessfully": "Updated Successfully!",
-  "orderFinishedSuccessfully": "Order Finished Successfully!"
+  "orderFinishedSuccessfully": "Order Finished Successfully!",
+  "myOrders": "My orders",
+  "cancelled": "Cancelled",
+  "completed": "Completed"
 }

@@ -132,5 +132,8 @@
   "loading": "جاري التحميل.....",
   "acceptedSuccessfully": "تم القبول بنجاح!",
   "updatedSuccessfully": "تم التحديث بنجاح!",
-  "orderFinishedSuccessfully": "تم إنهاء الطلب بنجاح!"
+  "orderFinishedSuccessfully": "تم إنهاء الطلب بنجاح!",
+  "myOrders": "طلباتي",
+  "cancelled": "ملغي",
+  "completed": "مكتمل"
 }
