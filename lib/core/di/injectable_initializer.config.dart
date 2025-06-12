@@ -82,6 +82,8 @@ import '../../modules/authentication/domain/use_cases/forget_password/reset_code
     as _i9;
 import '../../modules/authentication/domain/use_cases/forget_password/reset_password_use_case.dart'
     as _i110;
+import '../../modules/authentication/domain/use_cases/logged_driver_data/get_logged_driver_data_use_case.dart'
+    as _i211;
 import '../../modules/authentication/domain/use_cases/login/login_use_case.dart'
     as _i543;
 import '../../modules/authentication/ui/forget_password/view_model/forget_password_screen_view_model.dart'
@@ -120,7 +122,7 @@ import '../../modules/edit_profile/domain/usecase/edit_info_usecase.dart'
 import '../../modules/edit_profile/domain/usecase/get_data_usecase.dart'
     as _i736;
 import '../../modules/edit_profile/domain/usecase/upload_image.dart' as _i875;
-import '../../modules/edit_profile/ui/cubit/view_model.dart' as _i706;
+import '../../modules/edit_profile/ui/cubit/view_model.dart' as _i552;
 import '../../modules/home/data/api/api_client/orders_api_client.dart' as _i290;
 import '../../modules/home/data/models/orders_client_model.dart' as _i858;
 import '../../modules/home/data/repo_impl/orders_repo_impl.dart' as _i823;
@@ -129,6 +131,21 @@ import '../../modules/home/domain/use_cases/get_pending_orders_use_case.dart'
     as _i553;
 import '../../modules/home/ui/cubit/pending_orders/pending_orders_cubit.dart'
     as _i12;
+import '../../modules/home/ui/profile/ui/viewModel/profile_cubit.dart' as _i792;
+import '../../modules/logout/data/api/api_client/logout_api_client.dart'
+    as _i877;
+import '../../modules/logout/data/api/api_client_provider/logout_api_client_provider.dart'
+    as _i894;
+import '../../modules/logout/data/data_sources_contracts/logout/logout_remote_data_source.dart'
+    as _i774;
+import '../../modules/logout/data/data_sources_imp/logout/logout_remote_data_source_imp.dart'
+    as _i892;
+import '../../modules/logout/data/repositories_imp/logout/logout_repo_imp.dart'
+    as _i398;
+import '../../modules/logout/domain/repositories_contracts/logout/logout_repo.dart'
+    as _i607;
+import '../../modules/logout/domain/use_cases/logout/logout_use_case.dart'
+    as _i56;
 import '../../modules/order_details/view_model/order_details_view_model.dart'
     as _i240;
 import '../../modules/whatsapp_call/data/data_source/call_data_source.dart'
@@ -192,6 +209,7 @@ extension GetItInjectableX on _i174.GetIt {
     final authApiClientProvider = _$AuthApiClientProvider();
     final ordersApiClientProvider = _$OrdersApiClientProvider();
     final getDataApiClientProvider = _$GetDataApiClientProvider();
+    final logoutApiClientProvider = _$LogoutApiClientProvider();
     final localeInitializer = _$LocaleInitializer();
     final appLocalizationsProvider = _$AppLocalizationsProvider();
     await gh.factoryAsync<_i361.Dio>(
@@ -223,6 +241,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.lazySingleton<_i737.UploadImageApiClient>(
       () => _i737.UploadImageApiClient(gh<_i361.Dio>()),
+    );
+    gh.lazySingleton<_i877.LogoutApiClient>(
+      () => logoutApiClientProvider.provideClient(gh<_i361.Dio>()),
     );
     gh.factory<_i843.ApplyDataSource>(
       () => _i684.ApplyDataSourceImpl(gh<_i780.ApplyApiClient>()),
@@ -273,6 +294,9 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i458.GetLoggedDriverDataOnlineDataSourceImpl(
         gh<_i984.GetDataApiClient>(),
       ),
+    );
+    gh.factory<_i774.LogoutRemoteDataSource>(
+      () => _i892.LogoutRemoteDataSourceImp(gh<_i877.LogoutApiClient>()),
     );
     gh.factory<_i477.LoginRemoteDataSource>(
       () => _i120.LoginRemoteDataSourceImp(gh<_i343.AuthApiClient>()),
@@ -342,6 +366,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i110.ResetPasswordUseCase>(
       () => _i110.ResetPasswordUseCase(gh<_i731.ResetPasswordRepo>()),
     );
+    gh.factory<_i607.LogoutRepo>(
+      () => _i398.LogoutRepoImp(gh<_i774.LogoutRemoteDataSource>()),
+    );
     gh.factory<_i450.LoginRepo>(
       () => _i641.LoginRepoImp(
         gh<_i477.LoginRemoteDataSource>(),
@@ -354,6 +381,9 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i504.LoggedDriverDataRemoteDataSource>(),
       ),
     );
+    gh.factory<_i211.GetLoggedDriverDataUseCase>(
+      () => _i211.GetLoggedDriverDataUseCase(gh<_i103.LoggedDriverDataRepo>()),
+    );
     await gh.factoryAsync<_i543.AppLocalizations>(
       () => appLocalizationsProvider.provideAppLocalizations(
         gh<String>(instanceName: 'initCurrentLocal'),
@@ -362,6 +392,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i565.WhatsAppUseCase>(
       () => _i565.WhatsAppUseCase(gh<_i281.WhatsAppRepo>()),
+    );
+    gh.factory<_i56.LogoutUseCase>(
+      () => _i56.LogoutUseCase(gh<_i607.LogoutRepo>()),
     );
     gh.factory<_i240.OrderDetailsViewModel>(
       () => _i240.OrderDetailsViewModel(
@@ -393,6 +426,12 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i543.LoginUseCase>(
       () => _i543.LoginUseCase(gh<_i450.LoginRepo>()),
+    );
+    gh.lazySingleton<_i792.ProfileCubit>(
+      () => _i792.ProfileCubit(
+        gh<_i211.GetLoggedDriverDataUseCase>(),
+        gh<_i56.LogoutUseCase>(),
+      ),
     );
     gh.factory<_i1013.ForgetPasswordRepo>(
       () => _i811.ForgetPasswordRepoImpl(
@@ -428,8 +467,8 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i108.LoginViewModel>(
       () => _i108.LoginViewModel(gh<_i543.LoginUseCase>()),
     );
-    gh.factory<_i706.EditProfileViewModel>(
-      () => _i706.EditProfileViewModel(
+    gh.factory<_i552.EditProfileViewModel>(
+      () => _i552.EditProfileViewModel(
         gh<_i736.GetDriverDataUseCase>(),
         gh<_i797.EditInfoUseCase>(),
         gh<_i875.UploadImageUseCase>(),
@@ -458,6 +497,8 @@ class _$AuthApiClientProvider extends _i1019.AuthApiClientProvider {}
 class _$OrdersApiClientProvider extends _i290.OrdersApiClientProvider {}
 
 class _$GetDataApiClientProvider extends _i1073.GetDataApiClientProvider {}
+
+class _$LogoutApiClientProvider extends _i894.LogoutApiClientProvider {}
 
 class _$LocaleInitializer extends _i631.LocaleInitializer {}
 
