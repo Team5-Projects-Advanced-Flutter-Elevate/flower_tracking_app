@@ -886,6 +886,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Order Finished Successfully!'**
   String get orderFinishedSuccessfully;
+
+  /// No description provided for @editProfile.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit profile'**
+  String get editProfile;
+
+  /// No description provided for @update.
+  ///
+  /// In en, this message translates to:
+  /// **'Update'**
+  String get update;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

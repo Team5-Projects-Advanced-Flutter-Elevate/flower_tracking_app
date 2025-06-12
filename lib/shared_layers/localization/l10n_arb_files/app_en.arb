@@ -31,12 +31,10 @@
   "noMatch": "No Match!",
   "pleaseEnterAddress": "Please enter the address",
   "pleaseEnterValidAddress": "Please enter a valid address",
-
   "onboardingScreen____________": "$$$ Comment $$$",
   "onboardingWelcomeMessage": "Welcome to\nFlowery Rider app",
   "applyNow": "Apply Now",
   "pleaseEnterValidRecipient": "Please enter a valid recipient",
-
   "loginScreen___________": "$$ Comment $$",
   "login": "Login",
   "email": "Email",
@@ -132,5 +130,7 @@
   "loading": "Loading.....",
   "acceptedSuccessfully": "Accepted Successfully!",
   "updatedSuccessfully": "Updated Successfully!",
-  "orderFinishedSuccessfully": "Order Finished Successfully!"
+  "orderFinishedSuccessfully": "Order Finished Successfully!",
+  "editProfile": "Edit profile",
+  "update": "Update"
 }

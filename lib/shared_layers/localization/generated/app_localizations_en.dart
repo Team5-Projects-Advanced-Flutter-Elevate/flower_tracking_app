@@ -403,4 +403,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get orderFinishedSuccessfully => 'Order Finished Successfully!';
+
+  @override
+  String get editProfile => 'Edit profile';
+
+  @override
+  String get update => 'Update';
 }
