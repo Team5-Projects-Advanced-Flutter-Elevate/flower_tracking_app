@@ -53,20 +53,16 @@ class ProfileCubit extends Cubit<ProfileState> {
   Future<void> _logout() async {
     if (isClosed) return;
     emit(state.copyWith(logoutStatus: LogoutStatus.loading));
-    print('Starting logout process...');
     var result = await _logoutUseCase.call();
     if (isClosed) return;
     switch (result) {
       case Success<LogoutResponseEntity>():
-        print('Logout successful');
         // Unregister the DriverId from GetIt
         if (getIt.isRegistered<String>(instanceName: FirestoreConstants.driverId)) {
           getIt.unregister<String>(instanceName: FirestoreConstants.driverId);
-          print('DriverId unregistered');
         }
         emit(state.copyWith(logoutStatus: LogoutStatus.success));
       case Error<LogoutResponseEntity>():
-        print('Logout failed: ${result.error}');
         emit(
           state.copyWith(
             logoutStatus: LogoutStatus.error,
