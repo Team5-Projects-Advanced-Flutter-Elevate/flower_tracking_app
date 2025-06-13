@@ -1,4 +1,5 @@
 import 'package:flower_tracking_app/modules/authentication/domain/entities/logged_driver_data/logged_driver_data_response_entity.dart';
+import 'package:flower_tracking_app/modules/edit_profile/ui/screens/edit_profile_screen.dart';
 import 'package:flutter/material.dart';
 import '../../../../../../core/bases/base_inherited_widget.dart';
 import '../../../../../../core/bases/base_statless_widget.dart';
@@ -53,22 +54,28 @@ class UserCard extends BaseStatelessWidget {
                 loggedDriverDataResponseEntity.driver!.email ?? '',
                 style: inherit.theme.textTheme.titleMedium?.copyWith(
                   fontWeight: FontWeight.w400,
-                  fontSize: 12 * (inherit.screenWidth / 375),
+                  fontSize: 10 * (inherit.screenWidth / 375),
                 ),
               ),
               Text(
                 loggedDriverDataResponseEntity.driver!.phone ?? '',
                 style: inherit.theme.textTheme.titleMedium?.copyWith(
                   fontWeight: FontWeight.w400,
-                  fontSize: 12 * (inherit.screenWidth / 375),
+                  fontSize: 10 * (inherit.screenWidth / 375),
                 ),
               ),
             ],
           ),
           const Spacer(),
+
           GestureDetector(
             onTap: () {
-              // Navigate to edit profile screen
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const EditProfileScreen(),
+                ),
+              );
             },
             child: Icon(Icons.arrow_forward_ios, color: AppColors.gray),
           ),

@@ -98,6 +98,7 @@ class _MyAppState extends State<MyApp> {
                 currentAcceptedOrderId: currentAcceptedOrderId,
               );
             },
+            // home: const EditProfileScreen(),
             // //initialRoute: DefinedRoutes.onboardingScreenRoute,
             // onGenerateRoute: GenerateRoute.onGenerateRoute,
             // onGenerateInitialRoutes: (initialRoute) {

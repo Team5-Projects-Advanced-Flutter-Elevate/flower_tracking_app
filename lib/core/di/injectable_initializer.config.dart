@@ -90,6 +90,39 @@ import '../../modules/authentication/ui/forget_password/view_model/forget_passwo
     as _i105;
 import '../../modules/authentication/ui/login/view_model/login_view_model.dart'
     as _i108;
+import '../../modules/edit_profile/data/api/api_client/get_data_api_client.dart'
+    as _i984;
+import '../../modules/edit_profile/data/api/api_client/upload_image_api_client.dart'
+    as _i737;
+import '../../modules/edit_profile/data/api/api_client_provider/get_data_api_client_provider.dart'
+    as _i1073;
+import '../../modules/edit_profile/data/datasource/change_password.dart'
+    as _i329;
+import '../../modules/edit_profile/data/datasource/edit_info.dart' as _i229;
+import '../../modules/edit_profile/data/datasource/get_data.dart' as _i890;
+import '../../modules/edit_profile/data/datasource/upload_image.dart' as _i754;
+import '../../modules/edit_profile/data/datasource_impl/change_password.dart'
+    as _i720;
+import '../../modules/edit_profile/data/datasource_impl/edit_info.dart' as _i93;
+import '../../modules/edit_profile/data/datasource_impl/get_data.dart' as _i458;
+import '../../modules/edit_profile/data/datasource_impl/upload_image.dart'
+    as _i626;
+import '../../modules/edit_profile/data/repo_impl/change_password.dart' as _i97;
+import '../../modules/edit_profile/data/repo_impl/edit_info.dart' as _i213;
+import '../../modules/edit_profile/data/repo_impl/get_data.dart' as _i452;
+import '../../modules/edit_profile/data/repo_impl/image_upload.dart' as _i42;
+import '../../modules/edit_profile/domain/repo/change_password.dart' as _i724;
+import '../../modules/edit_profile/domain/repo/edit_data.dart' as _i272;
+import '../../modules/edit_profile/domain/repo/get_data_repo.dart' as _i382;
+import '../../modules/edit_profile/domain/repo/upload_image.dart' as _i51;
+import '../../modules/edit_profile/domain/usecase/change_password_usecase.dart'
+    as _i165;
+import '../../modules/edit_profile/domain/usecase/edit_info_usecase.dart'
+    as _i797;
+import '../../modules/edit_profile/domain/usecase/get_data_usecase.dart'
+    as _i736;
+import '../../modules/edit_profile/domain/usecase/upload_image.dart' as _i875;
+import '../../modules/edit_profile/ui/cubit/view_model.dart' as _i552;
 import '../../modules/home/data/api/api_client/orders_api_client.dart' as _i290;
 import '../../modules/home/data/api/api_driver/order_api_driver.dart' as _i47;
 import '../../modules/home/data/models/driver/pending_orders_model.dart'
@@ -187,6 +220,7 @@ extension GetItInjectableX on _i174.GetIt {
     final authApiClientProvider = _$AuthApiClientProvider();
     final ordersApiClientProvider = _$OrdersApiClientProvider();
     final ordersApiDriverProvider = _$OrdersApiDriverProvider();
+    final getDataApiClientProvider = _$GetDataApiClientProvider();
     final logoutApiClientProvider = _$LogoutApiClientProvider();
     final localeInitializer = _$LocaleInitializer();
     final appLocalizationsProvider = _$AppLocalizationsProvider();
@@ -216,12 +250,22 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.lazySingleton<_i433.OrdersRemoteDataSource>(
       () => ordersApiDriverProvider.providerApiClient(gh<_i361.Dio>()),
+    gh.lazySingleton<_i984.GetDataApiClient>(
+      () => getDataApiClientProvider.provideApiClient(gh<_i361.Dio>()),
+    );
+    gh.lazySingleton<_i737.UploadImageApiClient>(
+      () => _i737.UploadImageApiClient(gh<_i361.Dio>()),
     );
     gh.lazySingleton<_i877.LogoutApiClient>(
       () => logoutApiClientProvider.provideClient(gh<_i361.Dio>()),
     );
     gh.factory<_i843.ApplyDataSource>(
       () => _i684.ApplyDataSourceImpl(gh<_i780.ApplyApiClient>()),
+    );
+    gh.factory<_i329.ChangePasswordOnlineDataSource>(
+      () => _i720.ChangePasswordOnlineDataSourceImpl(
+        gh<_i984.GetDataApiClient>(),
+      ),
     );
     gh.factory<_i557.CallRepo>(
       () => _i618.CallRepoImpl(gh<_i692.CallDataSource>()),
@@ -231,6 +275,10 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i245.OrdersRepo>(
       () => _i335.OrdersRepositoryImpl(gh<_i433.OrdersRemoteDataSource>()),
+    gh.factory<_i754.UploadImageOnlineDataSource>(
+      () => _i626.UploadImageOnlineDataSourceImpl(
+        gh<_i737.UploadImageApiClient>(),
+      ),
     );
     gh.lazySingleton<_i843.CountryLoaderService>(
       () => _i684.AssetCountryLoaderService(),
@@ -261,6 +309,11 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i793.OrderCollection>(),
       ),
     );
+    gh.factory<_i890.GetLoggedDriverDataOnlineDataSource>(
+      () => _i458.GetLoggedDriverDataOnlineDataSourceImpl(
+        gh<_i984.GetDataApiClient>(),
+      ),
+    );
     gh.factory<_i774.LogoutRemoteDataSource>(
       () => _i892.LogoutRemoteDataSourceImp(gh<_i877.LogoutApiClient>()),
     );
@@ -273,6 +326,17 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i779.ResetCodeRemoteDataSource>(
       () => _i808.ResetCodeRemoteDataSourceImpl(gh<_i343.AuthApiClient>()),
+    );
+    gh.factory<_i724.ChangePasswordRepo>(
+      () => _i97.ChangePasswordRepoImpl(
+        gh<_i329.ChangePasswordOnlineDataSource>(),
+      ),
+    );
+    gh.factory<_i51.UploadImageRepo>(
+      () => _i42.UploadImageRepoImpl(gh<_i754.UploadImageOnlineDataSource>()),
+    );
+    gh.factory<_i229.EditInfoOnlineDataSource>(
+      () => _i93.EditInfoOnlineDataSourceImpl(gh<_i984.GetDataApiClient>()),
     );
     gh.factory<_i34.LoginLocalDataSource>(
       () => _i443.LoginLocalDataSourceImp(
@@ -289,6 +353,11 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i792.ApplyRepoImpl(
         applyDataSource: gh<_i843.ApplyDataSource>(),
         driverCollection: gh<_i163.DriverCollection>(),
+      ),
+    );
+    gh.factory<_i382.GetLoggedDriverDataRepo>(
+      () => _i452.LoggedDriverDataRepoImp(
+        gh<_i890.GetLoggedDriverDataOnlineDataSource>(),
       ),
     );
     gh.factory<_i150.ForgetPasswordRemoteDataSource>(
@@ -312,6 +381,8 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.lazySingleton<_i795.OrdersCubit>(
       () => _i795.OrdersCubit(gh<_i827.GetPendingOrdersUseCase>()),
+    gh.factory<_i165.ChangePasswordUseCase>(
+      () => _i165.ChangePasswordUseCase(gh<_i724.ChangePasswordRepo>()),
     );
     gh.factory<_i110.ResetPasswordUseCase>(
       () => _i110.ResetPasswordUseCase(gh<_i731.ResetPasswordRepo>()),
@@ -359,6 +430,15 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i629.SecureStorageService<dynamic>>(),
       ),
     );
+    gh.factory<_i736.GetDriverDataUseCase>(
+      () => _i736.GetDriverDataUseCase(gh<_i382.GetLoggedDriverDataRepo>()),
+    );
+    gh.factory<_i875.UploadImageUseCase>(
+      () => _i875.UploadImageUseCase(gh<_i51.UploadImageRepo>()),
+    );
+    gh.factory<_i272.EditInfoRepo>(
+      () => _i213.EditInfoRepoImpl(gh<_i229.EditInfoOnlineDataSource>()),
+    );
     gh.factory<_i637.ApplyDriverUseCase>(
       () => _i637.ApplyDriverUseCase(gh<_i61.ApplyRepo>()),
     );
@@ -399,11 +479,22 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i487.CallUseCase>(),
       ),
     );
+    gh.factory<_i797.EditInfoUseCase>(
+      () => _i797.EditInfoUseCase(gh<_i272.EditInfoRepo>()),
+    );
     gh.factory<_i823.ForgetPasswordUseCase>(
       () => _i823.ForgetPasswordUseCase(gh<_i1013.ForgetPasswordRepo>()),
     );
     gh.factory<_i108.LoginViewModel>(
       () => _i108.LoginViewModel(gh<_i543.LoginUseCase>()),
+    );
+    gh.factory<_i552.EditProfileViewModel>(
+      () => _i552.EditProfileViewModel(
+        gh<_i736.GetDriverDataUseCase>(),
+        gh<_i797.EditInfoUseCase>(),
+        gh<_i875.UploadImageUseCase>(),
+        gh<_i165.ChangePasswordUseCase>(),
+      ),
     );
     gh.factory<_i105.ForgetPasswordViewModel>(
       () => _i105.ForgetPasswordViewModel(
@@ -427,7 +518,9 @@ class _$AuthApiClientProvider extends _i1019.AuthApiClientProvider {}
 class _$OrdersApiClientProvider extends _i290.OrdersApiClientProvider {}
 
 class _$OrdersApiDriverProvider extends _i47.OrdersApiDriverProvider {}
-
+      
+class _$GetDataApiClientProvider extends _i1073.GetDataApiClientProvider {}
+      
 class _$LogoutApiClientProvider extends _i894.LogoutApiClientProvider {}
 
 class _$LocaleInitializer extends _i631.LocaleInitializer {}
