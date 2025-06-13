@@ -58,7 +58,9 @@ class ProfileCubit extends Cubit<ProfileState> {
     switch (result) {
       case Success<LogoutResponseEntity>():
         // Unregister the DriverId from GetIt
-        if (getIt.isRegistered<String>(instanceName: FirestoreConstants.driverId)) {
+        if (getIt.isRegistered<String>(
+          instanceName: FirestoreConstants.driverId,
+        )) {
           getIt.unregister<String>(instanceName: FirestoreConstants.driverId);
         }
         emit(state.copyWith(logoutStatus: LogoutStatus.success));
@@ -78,5 +80,3 @@ sealed class ProfileIntent {}
 class LoadProfileIntent extends ProfileIntent {}
 
 class LogoutIntent extends ProfileIntent {}
-
-

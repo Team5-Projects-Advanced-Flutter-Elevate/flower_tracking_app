@@ -61,8 +61,14 @@ class _OrdersScreenState extends BaseStatefulWidgetState<OrdersScreen> {
               children: [
                 SizedBox(width: MediaQuery.of(context).size.width * 0.018),
                 GestureDetector(
-                  onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const LayoutScreen(),),),
-                  child: Icon(Icons.arrow_back_ios,size: screenWidth * 0.06,),
+                  onTap:
+                      () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const LayoutScreen(),
+                        ),
+                      ),
+                  child: Icon(Icons.arrow_back_ios, size: screenWidth * 0.06),
                 ),
                 SizedBox(width: screenWidth * 0.008),
                 Text(
