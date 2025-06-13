@@ -220,8 +220,8 @@ extension GetItInjectableX on _i174.GetIt {
     final authApiClientProvider = _$AuthApiClientProvider();
     final ordersApiClientProvider = _$OrdersApiClientProvider();
     final ordersApiDriverProvider = _$OrdersApiDriverProvider();
-    final getDataApiClientProvider = _$GetDataApiClientProvider();
     final logoutApiClientProvider = _$LogoutApiClientProvider();
+    final getDataApiClientProvider = _$GetDataApiClientProvider();
     final localeInitializer = _$LocaleInitializer();
     final appLocalizationsProvider = _$AppLocalizationsProvider();
     await gh.factoryAsync<_i361.Dio>(
@@ -250,14 +250,15 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.lazySingleton<_i433.OrdersRemoteDataSource>(
       () => ordersApiDriverProvider.providerApiClient(gh<_i361.Dio>()),
-    gh.lazySingleton<_i984.GetDataApiClient>(
-      () => getDataApiClientProvider.provideApiClient(gh<_i361.Dio>()),
+    );
+    gh.lazySingleton<_i877.LogoutApiClient>(
+      () => logoutApiClientProvider.provideClient(gh<_i361.Dio>()),
     );
     gh.lazySingleton<_i737.UploadImageApiClient>(
       () => _i737.UploadImageApiClient(gh<_i361.Dio>()),
     );
-    gh.lazySingleton<_i877.LogoutApiClient>(
-      () => logoutApiClientProvider.provideClient(gh<_i361.Dio>()),
+    gh.lazySingleton<_i984.GetDataApiClient>(
+      () => getDataApiClientProvider.provideApiClient(gh<_i361.Dio>()),
     );
     gh.factory<_i843.ApplyDataSource>(
       () => _i684.ApplyDataSourceImpl(gh<_i780.ApplyApiClient>()),
@@ -273,12 +274,13 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i881.ResetPasswordRemoteDataSource>(
       () => _i956.ResetPasswordRemoteDataSourceImpl(gh<_i343.AuthApiClient>()),
     );
-    gh.factory<_i245.OrdersRepo>(
-      () => _i335.OrdersRepositoryImpl(gh<_i433.OrdersRemoteDataSource>()),
     gh.factory<_i754.UploadImageOnlineDataSource>(
       () => _i626.UploadImageOnlineDataSourceImpl(
         gh<_i737.UploadImageApiClient>(),
       ),
+    );
+    gh.factory<_i245.OrdersRepo>(
+      () => _i335.OrdersRepositoryImpl(gh<_i433.OrdersRemoteDataSource>()),
     );
     gh.lazySingleton<_i843.CountryLoaderService>(
       () => _i684.AssetCountryLoaderService(),
@@ -381,6 +383,7 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.lazySingleton<_i795.OrdersCubit>(
       () => _i795.OrdersCubit(gh<_i827.GetPendingOrdersUseCase>()),
+    );
     gh.factory<_i165.ChangePasswordUseCase>(
       () => _i165.ChangePasswordUseCase(gh<_i724.ChangePasswordRepo>()),
     );
@@ -518,10 +521,10 @@ class _$AuthApiClientProvider extends _i1019.AuthApiClientProvider {}
 class _$OrdersApiClientProvider extends _i290.OrdersApiClientProvider {}
 
 class _$OrdersApiDriverProvider extends _i47.OrdersApiDriverProvider {}
-      
-class _$GetDataApiClientProvider extends _i1073.GetDataApiClientProvider {}
-      
+
 class _$LogoutApiClientProvider extends _i894.LogoutApiClientProvider {}
+
+class _$GetDataApiClientProvider extends _i1073.GetDataApiClientProvider {}
 
 class _$LocaleInitializer extends _i631.LocaleInitializer {}
 
