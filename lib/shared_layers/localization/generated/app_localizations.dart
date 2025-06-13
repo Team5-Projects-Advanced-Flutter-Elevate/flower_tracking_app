@@ -914,6 +914,30 @@ abstract class AppLocalizations {
   /// **'Order Finished Successfully!'**
   String get orderFinishedSuccessfully;
 
+  /// No description provided for @myOrders.
+  ///
+  /// In en, this message translates to:
+  /// **'My orders'**
+  String get myOrders;
+
+  /// No description provided for @cancelled.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancelled'**
+  String get cancelled;
+
+  /// No description provided for @completed.
+  ///
+  /// In en, this message translates to:
+  /// **'Completed'**
+  String get completed;
+
+  /// No description provided for @logoutTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Logout'**
+  String get logoutTitle;
+
   /// No description provided for @logoutMessage.
   ///
   /// In en, this message translates to:

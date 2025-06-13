@@ -124,11 +124,22 @@ import '../../modules/edit_profile/domain/usecase/get_data_usecase.dart'
 import '../../modules/edit_profile/domain/usecase/upload_image.dart' as _i875;
 import '../../modules/edit_profile/ui/cubit/view_model.dart' as _i552;
 import '../../modules/home/data/api/api_client/orders_api_client.dart' as _i290;
+import '../../modules/home/data/api/api_driver/order_api_driver.dart' as _i47;
+import '../../modules/home/data/models/driver/pending_orders_model.dart'
+    as _i433;
 import '../../modules/home/data/models/orders_client_model.dart' as _i858;
+import '../../modules/home/data/repo_impl/driver/orders_repo_impl.dart'
+    as _i335;
 import '../../modules/home/data/repo_impl/orders_repo_impl.dart' as _i823;
+import '../../modules/home/domain/repo_contract/driver/orders_repo.dart'
+    as _i245;
 import '../../modules/home/domain/repo_contract/orders_repo.dart' as _i544;
+import '../../modules/home/domain/use_cases/driver/get_pending_orders_use_case.dart'
+    as _i827;
 import '../../modules/home/domain/use_cases/get_pending_orders_use_case.dart'
     as _i553;
+import '../../modules/home/ui/cubit/driver/pending_orders/pending_orders_cubit.dart'
+    as _i795;
 import '../../modules/home/ui/cubit/pending_orders/pending_orders_cubit.dart'
     as _i12;
 import '../../modules/home/ui/profile/ui/viewModel/profile_cubit.dart' as _i792;
@@ -208,8 +219,9 @@ extension GetItInjectableX on _i174.GetIt {
     final applyApiClientProvider = _$ApplyApiClientProvider();
     final authApiClientProvider = _$AuthApiClientProvider();
     final ordersApiClientProvider = _$OrdersApiClientProvider();
-    final getDataApiClientProvider = _$GetDataApiClientProvider();
+    final ordersApiDriverProvider = _$OrdersApiDriverProvider();
     final logoutApiClientProvider = _$LogoutApiClientProvider();
+    final getDataApiClientProvider = _$GetDataApiClientProvider();
     final localeInitializer = _$LocaleInitializer();
     final appLocalizationsProvider = _$AppLocalizationsProvider();
     await gh.factoryAsync<_i361.Dio>(
@@ -236,14 +248,17 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i858.OrdersApiClient>(
       () => ordersApiClientProvider.providerApiClient(gh<_i361.Dio>()),
     );
-    gh.lazySingleton<_i984.GetDataApiClient>(
-      () => getDataApiClientProvider.provideApiClient(gh<_i361.Dio>()),
+    gh.lazySingleton<_i433.OrdersRemoteDataSource>(
+      () => ordersApiDriverProvider.providerApiClient(gh<_i361.Dio>()),
+    );
+    gh.lazySingleton<_i877.LogoutApiClient>(
+      () => logoutApiClientProvider.provideClient(gh<_i361.Dio>()),
     );
     gh.lazySingleton<_i737.UploadImageApiClient>(
       () => _i737.UploadImageApiClient(gh<_i361.Dio>()),
     );
-    gh.lazySingleton<_i877.LogoutApiClient>(
-      () => logoutApiClientProvider.provideClient(gh<_i361.Dio>()),
+    gh.lazySingleton<_i984.GetDataApiClient>(
+      () => getDataApiClientProvider.provideApiClient(gh<_i361.Dio>()),
     );
     gh.factory<_i843.ApplyDataSource>(
       () => _i684.ApplyDataSourceImpl(gh<_i780.ApplyApiClient>()),
@@ -264,6 +279,9 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i737.UploadImageApiClient>(),
       ),
     );
+    gh.factory<_i245.OrdersRepo>(
+      () => _i335.OrdersRepositoryImpl(gh<_i433.OrdersRemoteDataSource>()),
+    );
     gh.lazySingleton<_i843.CountryLoaderService>(
       () => _i684.AssetCountryLoaderService(),
     );
@@ -283,6 +301,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.singleton<_i629.SecureStorageService<dynamic>>(
       () => _i701.SecureStorageServiceImp(gh<_i558.FlutterSecureStorage>()),
+    );
+    gh.factory<_i827.GetPendingOrdersUseCase>(
+      () => _i827.GetPendingOrdersUseCase(gh<_i245.OrdersRepo>()),
     );
     gh.factory<_i261.FirestoreRepoContract>(
       () => _i271.FirestoreRepoImp(
@@ -359,6 +380,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i9.ResetCodeUseCase>(
       () => _i9.ResetCodeUseCase(gh<_i251.ResetCodeRepo>()),
+    );
+    gh.lazySingleton<_i795.OrdersCubit>(
+      () => _i795.OrdersCubit(gh<_i827.GetPendingOrdersUseCase>()),
     );
     gh.factory<_i165.ChangePasswordUseCase>(
       () => _i165.ChangePasswordUseCase(gh<_i724.ChangePasswordRepo>()),
@@ -496,9 +520,11 @@ class _$AuthApiClientProvider extends _i1019.AuthApiClientProvider {}
 
 class _$OrdersApiClientProvider extends _i290.OrdersApiClientProvider {}
 
-class _$GetDataApiClientProvider extends _i1073.GetDataApiClientProvider {}
+class _$OrdersApiDriverProvider extends _i47.OrdersApiDriverProvider {}
 
 class _$LogoutApiClientProvider extends _i894.LogoutApiClientProvider {}
+
+class _$GetDataApiClientProvider extends _i1073.GetDataApiClientProvider {}
 
 class _$LocaleInitializer extends _i631.LocaleInitializer {}
 

@@ -423,6 +423,18 @@ class AppLocalizationsEn extends AppLocalizations {
   String get orderFinishedSuccessfully => 'Order Finished Successfully!';
 
   @override
+  String get myOrders => 'My orders';
+
+  @override
+  String get cancelled => 'Cancelled';
+
+  @override
+  String get completed => 'Completed';
+
+  @override
+  String get logoutTitle => 'Logout';
+
+  @override
   String get logoutMessage => 'Are you sure you want to logout?';
 
   @override

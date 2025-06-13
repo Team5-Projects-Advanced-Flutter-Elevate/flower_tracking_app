@@ -137,6 +137,10 @@
   "acceptedSuccessfully": "Accepted Successfully!",
   "updatedSuccessfully": "Updated Successfully!",
   "orderFinishedSuccessfully": "Order Finished Successfully!",
+  "myOrders": "My orders",
+  "cancelled": "Cancelled",
+  "completed": "Completed",
+  "logoutTitle": "Logout",
   "logoutMessage": "Are you sure you want to logout?",
   "cancelButton": "Cancel",
   "confirmButton": "Confirm"
