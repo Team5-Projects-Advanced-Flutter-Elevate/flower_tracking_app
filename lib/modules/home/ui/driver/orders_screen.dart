@@ -59,7 +59,7 @@ class _OrdersScreenState extends BaseStatefulWidgetState<OrdersScreen> {
             child: Row(
               children: [
                 SizedBox(width: MediaQuery.of(context).size.width * 0.018),
-                const Icon(Icons.arrow_back_ios),
+                GestureDetector(onTap: () => Navigator.pop(context),child: const Icon(Icons.arrow_back_ios)),
                 SizedBox(width: screenWidth * 0.008),
                 Text(
                   appLocalizations.myOrders,
