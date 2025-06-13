@@ -9,4 +9,9 @@ class ApisEndpoints {
   static const String getVehicles = 'api/v1/vehicles';
   static const String getPendingOrders = 'api/v1/orders/pending-orders';
   static const String editProfile = 'api/v1/drivers/editProfile';
+  static const String driverOrders = 'api/v1/orders/driver-orders';
+  static const String editInfo = 'api/v1/drivers/editProfile';
+  static const String uploadProfileImage = 'api/v1/drivers/upload-photo';
+  static const String changePassword = 'api/v1/drivers/change-password';
+  static const String logoutEndpoint = "api/v1/drivers/logout";
 }
