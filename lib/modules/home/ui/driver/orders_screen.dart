@@ -4,6 +4,7 @@ import 'package:flower_tracking_app/core/bases/base_stateful_widget_state.dart';
 import 'package:flower_tracking_app/core/colors/app_colors.dart';
 import 'package:flower_tracking_app/core/constants/assets_paths/assets_paths.dart';
 import 'package:flower_tracking_app/core/di/injectable_initializer.dart';
+import 'package:flower_tracking_app/modules/home/layout_screen.dart';
 import 'package:flower_tracking_app/modules/home/ui/cubit/driver/pending_orders/pending_orders_state.dart';
 import 'package:flower_tracking_app/modules/home/ui/widget/driver/custom_completed_or_not.dart';
 import 'package:flutter/material.dart';
@@ -59,7 +60,10 @@ class _OrdersScreenState extends BaseStatefulWidgetState<OrdersScreen> {
             child: Row(
               children: [
                 SizedBox(width: MediaQuery.of(context).size.width * 0.018),
-                GestureDetector(onTap: () => Navigator.pop(context),child: const Icon(Icons.arrow_back_ios)),
+                GestureDetector(
+                  onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const LayoutScreen(),),),
+                  child: Icon(Icons.arrow_back_ios,size: screenWidth * 0.06,),
+                ),
                 SizedBox(width: screenWidth * 0.008),
                 Text(
                   appLocalizations.myOrders,
