@@ -9,6 +9,8 @@ import 'package:flower_tracking_app/modules/home/ui/profile/ui/viewModel/profile
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../edit_profile/ui/screens/edit_profile_screen.dart';
+
 class LayoutScreen extends StatefulWidget {
   const LayoutScreen({super.key});
 
@@ -28,6 +30,7 @@ class _LayoutScreenState extends BaseStatefulWidgetState<LayoutScreen> {
       create: (context) => getIt<ProfileCubit>(),
       child: const ProfileScreen(),
     ),
+    const EditProfileScreen(),
   ];
 
   @override
