@@ -1,3 +1,5 @@
+import 'package:flower_tracking_app/modules/apply/domain/entities/vehicle_response_entity.dart';
+
 class GetVehicleResponse {
   String? message;
   Vehicle? vehicle;
@@ -10,8 +12,11 @@ class GetVehicleResponse {
         json['vehicle'] != null ? Vehicle.fromJson(json['vehicle']) : null;
   }
 
-  GetVehicleResponse toEntity() =>
-      GetVehicleResponse(message: message, vehicle: vehicle?.toEntity());
+  VehicleEntity toEntity() => VehicleEntity(
+    id: vehicle?.sId,
+    type: vehicle?.type,
+    image: vehicle?.image,
+  );
 }
 
 class Vehicle {

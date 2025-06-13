@@ -22,7 +22,7 @@ import '../datasource_contract/apply_datasource.dart';
 
 @Injectable(as: ApplyDataSource)
 class ApplyDataSourceImpl implements ApplyDataSource {
-  VehicleApiClient applyApiClient;
+  ApplyApiClient applyApiClient;
 
   ApplyDataSourceImpl(this.applyApiClient);
 

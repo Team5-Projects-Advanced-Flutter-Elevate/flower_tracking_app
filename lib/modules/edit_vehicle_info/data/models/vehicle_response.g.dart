@@ -17,6 +17,10 @@ VehicleResponse _$VehicleResponseFromJson(Map<String, dynamic> json) =>
           (json['vehicles'] as List<dynamic>?)
               ?.map((e) => Vehicle.fromJson(e as Map<String, dynamic>))
               .toList(),
+      vehicle:
+          json['vehicle'] == null
+              ? null
+              : Vehicle.fromJson(json['vehicle'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$VehicleResponseToJson(VehicleResponse instance) =>
@@ -24,6 +28,7 @@ Map<String, dynamic> _$VehicleResponseToJson(VehicleResponse instance) =>
       'message': instance.message,
       'metadata': instance.metadata,
       'vehicles': instance.vehicles,
+      'vehicle': instance.vehicle,
     };
 
 Metadata _$MetadataFromJson(Map<String, dynamic> json) => Metadata(

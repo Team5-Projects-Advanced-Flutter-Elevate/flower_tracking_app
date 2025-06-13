@@ -27,6 +27,7 @@ void main() async {
   FlutterNativeSplash.preserve(
     widgetsBinding: WidgetsFlutterBinding.ensureInitialized(),
   );
+
   Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await configureDependencies();
   final loginLocaleDataSource = getIt.get<LoginLocalDataSource>();

@@ -3,12 +3,13 @@ import 'package:equatable/equatable.dart';
 class VehicleResponseEntity extends Equatable {
   final String? message;
   final List<VehicleEntity>? vehicles;
+  final VehicleEntity? vehicle;
 
-  const VehicleResponseEntity({this.message, this.vehicles});
+  const VehicleResponseEntity({this.message, this.vehicles, this.vehicle});
 
   @override
   // TODO: implement props
-  List<Object?> get props => [message, vehicles];
+  List<Object?> get props => [message, vehicles, vehicle];
 }
 
 class VehicleEntity extends Equatable {

@@ -25,8 +25,9 @@ class _EditVehicleInfoScreenState
   @override
   void initState() {
     super.initState();
-    cubit.doIntent(GetVehicleByIdIntent('676b63c99f3884b3405c149b'));
+
     cubit.doIntent(LoadVehiclesIntent());
+    cubit.doIntent(GetVehicleByIdIntent('676b63ef9f3884b3405c14a5'));
 
     BackButtonInterceptor.add(myInterceptor);
   }

@@ -6,7 +6,7 @@ import '../api_client/apply_api_client.dart';
 @module
 abstract class ApplyApiClientProvider {
   @lazySingleton
-  VehicleApiClient providerApiClient(Dio dio) {
-    return VehicleApiClient(dio);
+  ApplyApiClient providerApiClient(Dio dio) {
+    return ApplyApiClient(dio);
   }
 }

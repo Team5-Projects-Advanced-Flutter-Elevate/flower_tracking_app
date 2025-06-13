@@ -4,10 +4,10 @@ import 'package:flower_tracking_app/modules/apply/data/models/apply_response.dar
 
 import '../../models/vehicle_response.dart';
 
-class VehicleApiClient {
+class ApplyApiClient {
   final Dio _dio;
 
-  VehicleApiClient(this._dio);
+  ApplyApiClient(this._dio);
 
   Future<ApplyResponse> applyDriver(DriverRequestModel model) async {
     final formData = await model.toFormData();

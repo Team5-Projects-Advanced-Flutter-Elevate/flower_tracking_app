@@ -15,7 +15,7 @@ import 'package:mockito/mockito.dart';
 
 import 'apply_datasource_impl_test.mocks.dart';
 
-@GenerateMocks([VehicleApiClient])
+@GenerateMocks([ApplyApiClient])
 void main() {
   late MockApplyApiClient mockApplyApiClient;
   late ApplyDataSourceImpl applyDataSourceImpl;

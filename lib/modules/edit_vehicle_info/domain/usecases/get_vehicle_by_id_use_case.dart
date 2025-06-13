@@ -1,7 +1,7 @@
-import 'package:flower_tracking_app/modules/edit_vehicle_info/data/models/get_vehicle_response.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../core/apis/api_result/api_result.dart';
+import '../entities/vehicle_response_entity.dart';
 import '../repo_contract/vehicle_repo_contract.dart';
 
 @injectable
@@ -10,6 +10,6 @@ class GetVehicleByIdUseCase {
 
   GetVehicleByIdUseCase(this.vehicleRepo);
 
-  Future<ApiResult<GetVehicleResponse>> execute(String id) =>
+  Future<ApiResult<VehicleResponseEntity>> execute(String id) =>
       vehicleRepo.getVehicleById(id);
 }

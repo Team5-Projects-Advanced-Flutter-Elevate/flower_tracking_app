@@ -13,8 +13,15 @@ class VehicleResponse extends Equatable {
   final Metadata? metadata;
   @JsonKey(name: "vehicles")
   final List<Vehicle>? vehicles;
+  @JsonKey(name: "vehicle")
+  final Vehicle? vehicle;
 
-  const VehicleResponse({this.message, this.metadata, this.vehicles});
+  const VehicleResponse({
+    this.message,
+    this.metadata,
+    this.vehicles,
+    this.vehicle,
+  });
 
   factory VehicleResponse.fromJson(Map<String, dynamic> json) {
     return _$VehicleResponseFromJson(json);
@@ -27,11 +34,12 @@ class VehicleResponse extends Equatable {
   VehicleResponseEntity toEntity() => VehicleResponseEntity(
     message: message,
     vehicles: vehicles?.map((vehicle) => vehicle.toEntity()).toList(),
+    vehicle: vehicle?.toEntity(),
   );
 
   @override
   // TODO: implement props
-  List<Object?> get props => [message, metadata, vehicles];
+  List<Object?> get props => [message, metadata, vehicles, vehicle];
 }
 
 @JsonSerializable()

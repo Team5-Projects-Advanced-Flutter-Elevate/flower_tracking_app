@@ -5,12 +5,11 @@ import 'package:image_picker/image_picker.dart';
 
 import '../../../../core/apis/api_result/api_result.dart';
 import '../../domain/entities/vehicle_response_entity.dart';
-import '../models/get_vehicle_response.dart';
 
 abstract interface class VehicleDataSource {
   Future<ApiResult<VehicleResponseEntity>> getVehicles();
 
-  Future<ApiResult<GetVehicleResponse>> getVehicleById(String id);
+  Future<ApiResult<VehicleResponseEntity>> getVehicleById(String id);
 
   Future<ApiResult<EditProfileResponse>> editeVehicle(EditVehicleRequest model);
 }

@@ -1,6 +1,5 @@
 import 'package:flower_tracking_app/modules/edit_vehicle_info/data/datasource_contract/vehicle_datasource.dart';
 import 'package:flower_tracking_app/modules/edit_vehicle_info/data/models/edite_profile_response.dart';
-import 'package:flower_tracking_app/modules/edit_vehicle_info/data/models/get_vehicle_response.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../core/apis/api_result/api_result.dart';
@@ -26,7 +25,7 @@ class VehicleRepoImpl implements VehicleRepo {
   }
 
   @override
-  Future<ApiResult<GetVehicleResponse>> getVehicleById(String id) {
+  Future<ApiResult<VehicleResponseEntity>> getVehicleById(String id) {
     return vehicleDataSource.getVehicleById(id);
   }
 }

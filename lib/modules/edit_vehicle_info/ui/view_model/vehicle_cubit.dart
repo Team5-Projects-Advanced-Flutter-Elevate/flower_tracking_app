@@ -4,8 +4,6 @@ import 'dart:io';
 import 'package:equatable/equatable.dart';
 import 'package:flower_tracking_app/core/apis/api_result/api_result.dart';
 import 'package:flower_tracking_app/modules/apply/data/datasource_contract/apply_datasource.dart';
-import 'package:flower_tracking_app/modules/apply/domain/entities/vehicle_response_entity.dart';
-import 'package:flower_tracking_app/modules/apply/domain/usecases/get_vehicles_use_case.dart';
 import 'package:flower_tracking_app/modules/edit_vehicle_info/data/models/edite_profile_response.dart';
 import 'package:flower_tracking_app/modules/edit_vehicle_info/domain/usecases/edit_vehicle_use_case.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -13,8 +11,9 @@ import 'package:image_picker/image_picker.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../apply/data/models/country_model.dart';
-import '../../data/models/get_vehicle_response.dart';
+import '../../domain/entities/vehicle_response_entity.dart';
 import '../../domain/usecases/get_vehicle_by_id_use_case.dart';
+import '../../domain/usecases/get_vehicles_use_case.dart';
 
 part 'vehicle_state.dart';
 
@@ -57,14 +56,11 @@ class VehicleCubit extends Cubit<VehicleState> {
     emit(state.copyWith(loadVehicleStatus: LoadVehicleStatus.loading));
     var result = await getVehicleByIdUseCase.execute(id);
     switch (result) {
-      case Success<GetVehicleResponse>():
-        emit(
-          state.copyWith(
-            loadVehicleDataStatus: LoadVehicleDataStatus.success,
-            selectedVehicle: result.data.vehicle as VehicleEntity,
-          ),
-        );
-      case Error<GetVehicleResponse>():
+      case Success<VehicleResponseEntity>():
+        print(result.data.vehicle?.type.toString());
+        _selectVehicle(result.data.vehicle);
+
+      case Error<VehicleResponseEntity>():
         emit(
           state.copyWith(
             loadVehicleDataStatus: LoadVehicleDataStatus.error,

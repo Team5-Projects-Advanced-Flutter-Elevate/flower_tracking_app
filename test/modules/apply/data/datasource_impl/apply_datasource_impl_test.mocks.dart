@@ -38,11 +38,11 @@ class _FakeVehicleResponse_1 extends _i1.SmartFake
     : super(parent, parentInvocation);
 }
 
-/// A class which mocks [VehicleApiClient].
+/// A class which mocks [ApplyApiClient].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockVehicleApiClient extends _i1.Mock implements _i4.VehicleApiClient {
-  MockVehicleApiClient() {
+class MockApplyApiClient extends _i1.Mock implements _i4.ApplyApiClient {
+  MockApplyApiClient() {
     _i1.throwOnMissingStub(this);
   }
 

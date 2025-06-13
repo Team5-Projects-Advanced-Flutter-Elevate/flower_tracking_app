@@ -177,8 +177,8 @@ extension GetItInjectableX on _i174.GetIt {
     final storagesInitializer = _$StoragesInitializer();
     final applyApiClientProvider = _$ApplyApiClientProvider();
     final authApiClientProvider = _$AuthApiClientProvider();
-    final ordersApiClientProvider = _$OrdersApiClientProvider();
     final vehicleApiClientProvider = _$VehicleApiClientProvider();
+    final ordersApiClientProvider = _$OrdersApiClientProvider();
     final localeInitializer = _$LocaleInitializer();
     final appLocalizationsProvider = _$AppLocalizationsProvider();
     await gh.factoryAsync<_i361.Dio>(
@@ -199,26 +199,26 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i684.DefaultImagePickerService(),
     );
     gh.factory<_i692.CallDataSource>(() => _i787.CallDataSourceImpl());
-    gh.lazySingleton<_i780.VehicleApiClient>(
+    gh.lazySingleton<_i780.ApplyApiClient>(
       () => applyApiClientProvider.providerApiClient(gh<_i361.Dio>()),
     );
     gh.lazySingleton<_i343.AuthApiClient>(
       () => authApiClientProvider.provideApiClient(gh<_i361.Dio>()),
     );
+    gh.lazySingleton<_i548.VehicleApiClient>(
+      () => vehicleApiClientProvider.providerApiClient(gh<_i361.Dio>()),
+    );
     gh.lazySingleton<_i858.OrdersApiClient>(
       () => ordersApiClientProvider.providerApiClient(gh<_i361.Dio>()),
     );
-    gh.lazySingleton<_i548.VehicleApiClient>(
-      () => vehicleApiClientProvider.providerApiClient(gh<_i361.Dio>()),
+    gh.factory<_i843.ApplyDataSource>(
+      () => _i684.ApplyDataSourceImpl(gh<_i780.ApplyApiClient>()),
     );
     gh.factory<_i557.CallRepo>(
       () => _i618.CallRepoImpl(gh<_i692.CallDataSource>()),
     );
     gh.factory<_i789.VehicleDataSource>(
       () => _i981.VehicleDataSourceImpl(gh<_i548.VehicleApiClient>()),
-    );
-    gh.factory<_i843.ApplyDataSource>(
-      () => _i684.ApplyDataSourceImpl(gh<_i780.VehicleApiClient>()),
     );
     gh.factory<_i881.ResetPasswordRemoteDataSource>(
       () => _i956.ResetPasswordRemoteDataSourceImpl(gh<_i343.AuthApiClient>()),
@@ -306,6 +306,14 @@ extension GetItInjectableX on _i174.GetIt {
         gh<String>(instanceName: 'initCurrentLocal'),
       ),
     );
+    gh.lazySingleton<_i212.VehicleCubit>(
+      () => _i212.VehicleCubit(
+        gh<_i799.EditeVehicleUseCase>(),
+        gh<_i72.GetVehiclesUseCase>(),
+        gh<_i843.ImagePickerService>(),
+        gh<_i172.GetVehicleByIdUseCase>(),
+      ),
+    );
     gh.factory<_i9.ResetCodeUseCase>(
       () => _i9.ResetCodeUseCase(gh<_i251.ResetCodeRepo>()),
     );
@@ -380,14 +388,6 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i487.CallUseCase>(),
       ),
     );
-    gh.lazySingleton<_i212.VehicleCubit>(
-      () => _i212.VehicleCubit(
-        gh<_i799.EditeVehicleUseCase>(),
-        gh<_i900.GetVehiclesUseCase>(),
-        gh<_i843.ImagePickerService>(),
-        gh<_i172.GetVehicleByIdUseCase>(),
-      ),
-    );
     gh.factory<_i823.ForgetPasswordUseCase>(
       () => _i823.ForgetPasswordUseCase(gh<_i1013.ForgetPasswordRepo>()),
     );
@@ -413,9 +413,9 @@ class _$ApplyApiClientProvider extends _i594.ApplyApiClientProvider {}
 
 class _$AuthApiClientProvider extends _i1019.AuthApiClientProvider {}
 
-class _$OrdersApiClientProvider extends _i290.OrdersApiClientProvider {}
-
 class _$VehicleApiClientProvider extends _i1043.VehicleApiClientProvider {}
+
+class _$OrdersApiClientProvider extends _i290.OrdersApiClientProvider {}
 
 class _$LocaleInitializer extends _i631.LocaleInitializer {}
 

@@ -1,4 +1,3 @@
-import 'package:flower_tracking_app/modules/apply/domain/entities/vehicle_response_entity.dart';
 import 'package:flower_tracking_app/modules/edit_vehicle_info/data/models/edite_profile_response.dart';
 import 'package:flower_tracking_app/shared_layers/localization/generated/app_localizations.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +9,7 @@ import '../../../../core/colors/app_colors.dart';
 import '../../../../core/constants/assets_paths/assets_paths.dart';
 import '../../../../core/widgets/error_state_widget.dart';
 import '../../../../core/widgets/loading_state_widget.dart';
+import '../../domain/entities/vehicle_response_entity.dart';
 import '../view_model/vehicle_cubit.dart';
 import 'custom_drop_down.dart';
 
