@@ -81,131 +81,132 @@ class _VehicleTextFormFieldsState
               child: const LoadingStateWidget(),
             );
           case LoadVehicleStatus.success:
-            return Column(
-              children: [
-                CustomDropDown<VehicleEntity>(
-                  onChanged: (val) {
-                    cubit.doIntent(SelectVehicleIntent(val));
-                  },
-                  items:
-                      state.vehicles!
-                          .map(
-                            (vehicle) => DropdownMenuItem<VehicleEntity>(
-                              value: vehicle,
-                              child: Text(vehicle.type ?? ''),
-                            ),
-                          )
-                          .toList(),
-                  label: AppLocalizations.of(context)!.vehicleType,
-                  value: cubit.state.selectedVehicle ?? state.vehicles?.first,
-                ),
-                SizedBox(height: screenHeight * 0.02),
-                TextFormField(
-                  controller: vehicleNumberController,
-
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
-                  keyboardType: TextInputType.number,
-                  focusNode: vehicleNumberFocusNode,
-                  onFieldSubmitted:
-                      (value) => vehicleLicenseFocusNode.requestFocus(),
-                  validator: (val) {
-                    if (val!.isEmpty) {
-                      return AppLocalizations.of(context)!.vehicleNumberPrompt;
-                    }
-                    return null;
-                  },
-                  decoration: InputDecoration(
-                    labelText: AppLocalizations.of(context)!.vehicleNumber,
-                    hintText: AppLocalizations.of(context)!.vehicleNumberHint,
-                  ),
-                ),
-                SizedBox(height: screenHeight * 0.02),
-                BlocBuilder<VehicleCubit, VehicleState>(
-                  builder: (context, state) {
-                    return TextFormField(
-                      controller: vehicleLicenseController,
-                      readOnly: true,
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
-                      focusNode: vehicleLicenseFocusNode,
-                      onFieldSubmitted:
-                          (value) => vehicleLicenseFocusNode.requestFocus(),
-                      validator: (val) {
-                        if (!state.isLicenseImagePicked!) {
-                          return AppLocalizations.of(
-                            context,
-                          )!.vehicleLicensePrompt;
-                        }
-                        return null;
-                      },
-                      decoration: InputDecoration(
-                        suffixIcon: IconButton(
-                          onPressed: () {
-                            FocusManager.instance.primaryFocus?.unfocus();
-                            if (!state.isLicenseImagePicked!) {
-                              showSheet(true);
-                            } else {
-                              cubit.doIntent(UnPickImageIntent(true));
-                            }
-                          },
-                          // icon: Icon(Icons.ios_share),
-                          icon:
-                              !state.isLicenseImagePicked!
-                                  ? const ImageIcon(
-                                    AssetImage(AssetsPaths.shareIcon),
-                                  )
-                                  : const Icon(Icons.close),
-                        ),
-                        prefixIcon:
-                            !state.isLicenseImagePicked!
-                                ? null
-                                : Icon(Icons.image, color: AppColors.mainColor),
-                        labelText: AppLocalizations.of(context)!.vehicleLicense,
-                        hintText:
-                            !state.isLicenseImagePicked!
-                                ? AppLocalizations.of(
-                                  context,
-                                )!.vehicleLicenseHint
-                                : '',
-                      ),
-                    );
-                  },
-                ),
-
-                SizedBox(height: screenHeight * 0.5),
-                BlocBuilder<VehicleCubit, VehicleState>(
-                  builder: (context, state) {
-                    return SizedBox(
-                      width: double.infinity,
-                      child: FilledButton(
-                        onPressed: () async {
-                          FocusManager.instance.primaryFocus?.unfocus();
-                          if (!widget.formKey.currentState!.validate()) {
-                            return;
-                          }
-
-                          cubit.doIntent(
-                            EditVehicleIntent(
-                              EditVehicleRequest(
-                                vehicleLicense: state.pickedLicenseImage,
-                                vehicleNumber: vehicleNumberController.text,
-                                vehicleType: cubit.state.selectedVehicle?.type,
+            return Expanded(
+              child: Column(
+                children: [
+                  CustomDropDown<VehicleEntity>(
+                    onChanged: (val) {
+                      cubit.doIntent(SelectVehicleIntent(val));
+                    },
+                    items:
+                        state.vehicles!
+                            .map(
+                              (vehicle) => DropdownMenuItem<VehicleEntity>(
+                                value: vehicle,
+                                child: Text(vehicle.type ?? ''),
                               ),
-                            ),
-                          );
+                            )
+                            .toList(),
+                    label: AppLocalizations.of(context)!.vehicleType,
+                    value: cubit.state.selectedVehicle ?? state.vehicles?.first,
+                  ),
+                  SizedBox(height: screenHeight * 0.02),
+                  TextFormField(
+                    controller: vehicleNumberController,
+
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    keyboardType: TextInputType.number,
+                    focusNode: vehicleNumberFocusNode,
+                    onFieldSubmitted:
+                        (value) => vehicleLicenseFocusNode.requestFocus(),
+                    validator: (val) {
+                      if (val!.isEmpty) {
+                        return AppLocalizations.of(context)!.vehicleNumberPrompt;
+                      }
+                      return null;
+                    },
+                    decoration: InputDecoration(
+                      labelText: AppLocalizations.of(context)!.vehicleNumber,
+                      hintText: AppLocalizations.of(context)!.vehicleNumberHint,
+                    ),
+                  ),
+                  SizedBox(height: screenHeight * 0.02),
+                  BlocBuilder<VehicleCubit, VehicleState>(
+                    builder: (context, state) {
+                      return TextFormField(
+                        controller: vehicleLicenseController,
+                        readOnly: true,
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
+                        focusNode: vehicleLicenseFocusNode,
+                        onFieldSubmitted:
+                            (value) => vehicleLicenseFocusNode.requestFocus(),
+                        validator: (val) {
+                          if (!state.isLicenseImagePicked!) {
+                            return AppLocalizations.of(
+                              context,
+                            )!.vehicleLicensePrompt;
+                          }
+                          return null;
                         },
-                        child:
-                            state.editVehicleStatus ==
-                                    EditeVehicleStatus.loading
-                                ? CircularProgressIndicator(
-                                  color: AppColors.white,
-                                )
-                                : Text(AppLocalizations.of(context)!.update),
-                      ),
-                    );
-                  },
-                ),
-                SizedBox(height: screenHeight * 0.025),
-              ],
+                        decoration: InputDecoration(
+                          suffixIcon: IconButton(
+                            onPressed: () {
+                              FocusManager.instance.primaryFocus?.unfocus();
+                              if (!state.isLicenseImagePicked!) {
+                                showSheet(true);
+                              } else {
+                                cubit.doIntent(UnPickImageIntent(true));
+                              }
+                            },
+                            // icon: Icon(Icons.ios_share),
+                            icon:
+                                !state.isLicenseImagePicked!
+                                    ? const ImageIcon(
+                                      AssetImage(AssetsPaths.shareIcon),
+                                    )
+                                    : const Icon(Icons.close),
+                          ),
+                          prefixIcon:
+                              !state.isLicenseImagePicked!
+                                  ? null
+                                  : Icon(Icons.image, color: AppColors.mainColor),
+                          labelText: AppLocalizations.of(context)!.vehicleLicense,
+                          hintText:
+                              !state.isLicenseImagePicked!
+                                  ? AppLocalizations.of(
+                                    context,
+                                  )!.vehicleLicenseHint
+                                  : '',
+                        ),
+                      );
+                    },
+                  ),
+                  const Spacer(),
+                  BlocBuilder<VehicleCubit, VehicleState>(
+                    builder: (context, state) {
+                      return SizedBox(
+                        width: double.infinity,
+                        child: FilledButton(
+                          onPressed: () async {
+                            FocusManager.instance.primaryFocus?.unfocus();
+                            if (!widget.formKey.currentState!.validate()) {
+                              return;
+                            }
+
+                            cubit.doIntent(
+                              EditVehicleIntent(
+                                EditVehicleRequest(
+                                  vehicleLicense: state.pickedLicenseImage,
+                                  vehicleNumber: vehicleNumberController.text,
+                                  vehicleType: cubit.state.selectedVehicle?.type,
+                                ),
+                              ),
+                            );
+                          },
+                          child:
+                              state.editVehicleStatus ==
+                                      EditeVehicleStatus.loading
+                                  ? CircularProgressIndicator(
+                                    color: AppColors.white,
+                                  )
+                                  : Text(AppLocalizations.of(context)!.update),
+                        ),
+                      );
+                    },
+                  ),
+                  SizedBox(height: screenHeight * 0.025),
+                ],
+              ),
             );
           case LoadVehicleStatus.error:
             return ErrorStateWidget(error: state.loadVehicleError!);

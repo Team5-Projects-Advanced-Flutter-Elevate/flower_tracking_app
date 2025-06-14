@@ -48,8 +48,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get userNameLength => 'يجب أن يكون اسم المستخدم بين 3 و16 حرفًا.';
 
   @override
-  String get userNameRules =>
-      'يمكن أن يحتوي اسم المستخدم على أحرف وأرقام وشرطات سفلية فقط.';
+  String get userNameRules => 'يمكن أن يحتوي اسم المستخدم على أحرف وأرقام وشرطات سفلية فقط.';
 
   @override
   String get pleaseEnterFirstName => 'الرجاء إدخال الاسم الأول.';
@@ -70,15 +69,13 @@ class AppLocalizationsAr extends AppLocalizations {
   String get pleaseEnterPhoneNumber => 'الرجاء إدخال رقم الهاتف.';
 
   @override
-  String get phoneNumberRules =>
-      'يجب أن يبدأ الرقم بأحد البادئات الصالحة:\n010، 011، 012، أو 015\nيتبعها 8 أرقام.';
+  String get phoneNumberRules => 'يجب أن يبدأ الرقم بأحد البادئات الصالحة:\n010، 011، 012، أو 015\nيتبعها 8 أرقام.';
 
   @override
   String get pleaseEnterPassword => 'الرجاء إدخال كلمة المرور.';
 
   @override
-  String get passwordLength =>
-      'يجب أن تكون كلمة المرور مكونة من 8 أحرف على الأقل.';
+  String get passwordLength => 'يجب أن تكون كلمة المرور مكونة من 8 أحرف على الأقل.';
 
   @override
   String get uppercaseRulePassword => 'حرف كبير واحد على الأقل.';
@@ -90,15 +87,13 @@ class AppLocalizationsAr extends AppLocalizations {
   String get digitRulePassword => 'رقم واحد على الأقل.';
 
   @override
-  String get specialCharactersRulePassword =>
-      'يجب إدراج حرف خاص واحد على الأقل (مثل #?!@\$%^&*-).';
+  String get specialCharactersRulePassword => 'يجب إدراج حرف خاص واحد على الأقل (مثل #?!@\$%^&*-).';
 
   @override
   String get pleaseConfirmPassword => 'الرجاء تأكيد كلمة المرور.';
 
   @override
-  String get namesLengthRule =>
-      'يجب أن تكون الأسماء مكونة من 3 أحرف على الأقل.';
+  String get namesLengthRule => 'يجب أن تكون الأسماء مكونة من 3 أحرف على الأقل.';
 
   @override
   String get noMatch => 'لا يوجد تطابق!';
@@ -281,8 +276,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get applicationSubmitted => 'تم تقديم طلبك!';
 
   @override
-  String get thanksForProvidingApplication =>
-      'شكرًا لتقديم طلبك، سنراجع طلبك وسنعاود الاتصال بك قريبًا.';
+  String get thanksForProvidingApplication => 'شكرًا لتقديم طلبك، سنراجع طلبك وسنعاود الاتصال بك قريبًا.';
 
   @override
   String get successScreenDescription => 'تم توصيل الطلب بنجاح';
@@ -420,9 +414,6 @@ class AppLocalizationsAr extends AppLocalizations {
   String get updatedSuccessfully => 'تم التحديث بنجاح!';
 
   @override
-  String get orderFinishedSuccessfully => 'تم إنهاء الطلب بنجاح!';
-
-  @override
   String get myOrders => 'طلباتي';
 
   @override
@@ -442,6 +433,15 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get confirmButton => 'تأكيد';
+
+  @override
+  String get orderFinishedSuccessfully => 'تم إنهاء الطلب بنجاح!';
+
+  @override
+  String get editProfile => 'تعديل الملف الشخصي';
+
+  @override
+  String get update => 'تحديث';
 
   @override
   String get pickUpLocation________ => '\$\$\$ تعليق \$\$\$';
