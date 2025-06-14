@@ -29,7 +29,6 @@ class LocalizationManager extends ChangeNotifier {
       await getIt.unregister<AppLocalizations>();
     }
     getIt.registerSingleton<AppLocalizations>(appLocalization);
-    print("After register AppLocalizations:---------");
     getIt.get<ValidateFunctions>().appLocalizations =
         getIt.get<AppLocalizations>();
     getIt.get<ApiErrorHandler>().appLocalizations =
