@@ -27,10 +27,11 @@ class AppLocalizationsEn extends AppLocalizations {
   String get connectionError => 'No Internet connection 😑';
 
   @override
-  String get unknown => 'Something Went Wrong 🤔';
+  String get unknownError => 'Something Went Wrong 🤔';
 
   @override
-  String get badCertificate => 'The certificate provided by the server is not valid 📑';
+  String get badCertificate =>
+      'The certificate provided by the server is not valid 📑';
 
   @override
   String get somethingWentWrong => 'Something Went Wrong 🤔';
@@ -45,10 +46,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get pleaseEnterUserName => 'Please enter user name.';
 
   @override
-  String get userNameLength => 'Username must be between 3 and 16 characters long.';
+  String get userNameLength =>
+      'Username must be between 3 and 16 characters long.';
 
   @override
-  String get userNameRules => 'Username can only contain letters, numbers, and underscores.';
+  String get userNameRules =>
+      'Username can only contain letters, numbers, and underscores.';
 
   @override
   String get pleaseEnterFirstName => 'Please enter first name.';
@@ -69,7 +72,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get pleaseEnterPhoneNumber => 'Please enter your phone number.';
 
   @override
-  String get phoneNumberRules => 'Number must start with one of the valid prefixes:\n010, 011, 012, or 015\nfollowed by 8 digits.';
+  String get phoneNumberRules =>
+      'Number must start with one of the valid prefixes:\n010, 011, 012, or 015\nfollowed by 8 digits.';
 
   @override
   String get pleaseEnterPassword => 'Please enter your password.';
@@ -87,7 +91,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get digitRulePassword => 'At least one digit must be there.';
 
   @override
-  String get specialCharactersRulePassword => 'At least one special character(e.g., #?!@\$%^&*-) must be included.';
+  String get specialCharactersRulePassword =>
+      'At least one special character(e.g., #?!@\$%^&*-) must be included.';
 
   @override
   String get pleaseConfirmPassword => 'Please confirm password.';
@@ -276,7 +281,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get applicationSubmitted => 'Your application has been submitted!';
 
   @override
-  String get thanksForProvidingApplication => 'Thank you for providing your application, we will review your application and will get back to you soon.';
+  String get thanksForProvidingApplication =>
+      'Thank you for providing your application, we will review your application and will get back to you soon.';
 
   @override
   String get successScreenDescription => 'The order delivered successfully';
@@ -390,6 +396,18 @@ class AppLocalizationsEn extends AppLocalizations {
   String get buttonArrivedDestination => 'Arrived to destination';
 
   @override
+  String get language => 'Language';
+
+  @override
+  String get english => 'English';
+
+  @override
+  String get logout => 'Logout';
+
+  @override
+  String get vehicleInfo => 'Vehicle Info';
+
+  @override
   String get buttonOrderDelivered => 'Order delivered';
 
   @override
@@ -405,8 +423,38 @@ class AppLocalizationsEn extends AppLocalizations {
   String get orderFinishedSuccessfully => 'Order Finished Successfully!';
 
   @override
-  String get thanksPage_______________ => '\$\$\$ Comment \$\$\$';
+  String get myOrders => 'My orders';
 
   @override
-  String get orderDeliveredSuccessfully => 'The order delivered\nsuccessfully';
+  String get cancelled => 'Cancelled';
+
+  @override
+  String get completed => 'Completed';
+
+  @override
+  String get logoutTitle => 'Logout';
+
+  @override
+  String get logoutMessage => 'Are you sure you want to logout?';
+
+  @override
+  String get cancelButton => 'Cancel';
+
+  @override
+  String get confirmButton => 'Confirm';
+
+  @override
+  String get pickUpLocation________ => '\$\$\$ Comment \$\$\$';
+
+  @override
+  String get errorLoadingTheMap => 'Error Occurred While Loading The Map';
+
+  @override
+  String get user => 'User';
+
+  @override
+  String get flowery => 'Flowery';
+
+  @override
+  String get yourLocation => 'Your Location';
 }

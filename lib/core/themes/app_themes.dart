@@ -10,6 +10,12 @@ abstract class AppThemes {
       backgroundColor: AppColors.white,
       surfaceTintColor: AppColors.white,
       titleSpacing: 0,
+      titleTextStyle: TextStyle(
+        fontSize: 20,
+        color: AppColors.black,
+        fontWeight: FontWeight.w600,
+        fontFamily: GoogleFonts.inter().fontFamily,
+      ),
     ),
     textTheme: TextTheme(
       headlineMedium: TextStyle(
@@ -120,7 +126,7 @@ abstract class AppThemes {
         padding: const EdgeInsets.all(14),
         backgroundColor: AppColors.mainColor,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-        textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+        textStyle: const TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
       ),
     ),
     inputDecorationTheme: InputDecorationTheme(

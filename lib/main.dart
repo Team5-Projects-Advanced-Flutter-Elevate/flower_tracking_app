@@ -70,6 +70,10 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
     FlutterNativeSplash.remove();
+    // Testing when change locale
+    // WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+    //   getIt.get<LocalizationManager>().changeLocal("en");
+    // });
   }
 
   @override
@@ -90,17 +94,16 @@ class _MyAppState extends State<MyApp> {
             themeMode: ThemeMode.light,
             localizationsDelegates: AppLocalizations.localizationsDelegates,
             supportedLocales: AppLocalizations.supportedLocales,
-            locale: Locale(localizationManager.currentLocale),
             navigatorKey: globalNavigatorKey,
-            initialRoute: DefinedRoutes.thanksPageScreenRoute,
+            locale: Locale(localizationManager.currentLocale),
             onGenerateRoute: GenerateRoute.onGenerateRoute,
-            // onGenerateInitialRoutes: (initialRoute) {
-            //   return GenerateRoute.onGenerateInitialRoutes(
-            //     initialRoute: initialRoute,
-            //     loginInfo: loggedDriverData,
-            //     currentAcceptedOrderId: currentAcceptedOrderId,
-            //   );
-            // },
+            onGenerateInitialRoutes: (initialRoute) {
+              return GenerateRoute.onGenerateInitialRoutes(
+                initialRoute: initialRoute,
+                loginInfo: loggedDriverData,
+                currentAcceptedOrderId: currentAcceptedOrderId,
+              );
+            },
           ),
         );
       },

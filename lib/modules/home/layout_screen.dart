@@ -2,13 +2,21 @@ import 'package:flower_tracking_app/core/bases/base_stateful_widget_state.dart';
 import 'package:flower_tracking_app/core/colors/app_colors.dart';
 import 'package:flower_tracking_app/core/constants/assets_paths/assets_paths.dart';
 import 'package:flower_tracking_app/modules/home/ui/constants/home_constants.dart';
+import 'package:flower_tracking_app/core/di/injectable_initializer.dart';
 import 'package:flower_tracking_app/modules/home/ui/home_screen.dart';
-import 'package:flower_tracking_app/modules/home/ui/orders_screen.dart';
-import 'package:flower_tracking_app/modules/home/ui/profile_screen.dart';
+import 'package:flower_tracking_app/modules/home/ui/driver/orders_screen.dart';
+import 'package:flower_tracking_app/modules/home/ui/profile/ui/profile_screen.dart';
+import 'package:flower_tracking_app/modules/home/ui/profile/ui/viewModel/profile_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../edit_profile/ui/screens/edit_profile_screen.dart';
 
 class LayoutScreen extends StatefulWidget {
   const LayoutScreen({super.key});
+
+  static const String routeName = 'Layout Screen';
+
   @override
   State<LayoutScreen> createState() => _LayoutScreenState();
 }
@@ -19,8 +27,13 @@ class _LayoutScreenState extends BaseStatefulWidgetState<LayoutScreen> {
   List<Widget> screens = [
     const HomeScreen(),
     const OrdersScreen(),
-    const ProfileScreen(),
+    BlocProvider(
+      create: (context) => getIt<ProfileCubit>(),
+      child: const ProfileScreen(),
+    ),
+    const EditProfileScreen(),
   ];
+
   @override
   void initState() {
     super.initState();

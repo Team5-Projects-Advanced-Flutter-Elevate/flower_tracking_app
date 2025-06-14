@@ -67,7 +67,7 @@ class _AddressItemState extends BaseStatefulWidgetState<AddressItem> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          widget.title ?? appLocalizations.unknown,
+                          widget.title ?? appLocalizations.unKnown,
                           style: theme.textTheme.bodySmall!.copyWith(
                             fontSize: 13,
                             color: AppColors.gray,

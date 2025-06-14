@@ -27,7 +27,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get connectionError => 'لا يوجد اتصال بالإنترنت 😑';
 
   @override
-  String get unknown => 'حدث خطأ ما 🤔';
+  String get unknownError => 'حدث خطأ ما 🤔';
 
   @override
   String get badCertificate => 'الشهادة المقدمة من الخادم غير صالحة 📑';
@@ -48,7 +48,8 @@ class AppLocalizationsAr extends AppLocalizations {
   String get userNameLength => 'يجب أن يكون اسم المستخدم بين 3 و16 حرفًا.';
 
   @override
-  String get userNameRules => 'يمكن أن يحتوي اسم المستخدم على أحرف وأرقام وشرطات سفلية فقط.';
+  String get userNameRules =>
+      'يمكن أن يحتوي اسم المستخدم على أحرف وأرقام وشرطات سفلية فقط.';
 
   @override
   String get pleaseEnterFirstName => 'الرجاء إدخال الاسم الأول.';
@@ -69,13 +70,15 @@ class AppLocalizationsAr extends AppLocalizations {
   String get pleaseEnterPhoneNumber => 'الرجاء إدخال رقم الهاتف.';
 
   @override
-  String get phoneNumberRules => 'يجب أن يبدأ الرقم بأحد البادئات الصالحة:\n010، 011، 012، أو 015\nيتبعها 8 أرقام.';
+  String get phoneNumberRules =>
+      'يجب أن يبدأ الرقم بأحد البادئات الصالحة:\n010، 011، 012، أو 015\nيتبعها 8 أرقام.';
 
   @override
   String get pleaseEnterPassword => 'الرجاء إدخال كلمة المرور.';
 
   @override
-  String get passwordLength => 'يجب أن تكون كلمة المرور مكونة من 8 أحرف على الأقل.';
+  String get passwordLength =>
+      'يجب أن تكون كلمة المرور مكونة من 8 أحرف على الأقل.';
 
   @override
   String get uppercaseRulePassword => 'حرف كبير واحد على الأقل.';
@@ -87,13 +90,15 @@ class AppLocalizationsAr extends AppLocalizations {
   String get digitRulePassword => 'رقم واحد على الأقل.';
 
   @override
-  String get specialCharactersRulePassword => 'يجب إدراج حرف خاص واحد على الأقل (مثل #?!@\$%^&*-).';
+  String get specialCharactersRulePassword =>
+      'يجب إدراج حرف خاص واحد على الأقل (مثل #?!@\$%^&*-).';
 
   @override
   String get pleaseConfirmPassword => 'الرجاء تأكيد كلمة المرور.';
 
   @override
-  String get namesLengthRule => 'يجب أن تكون الأسماء مكونة من 3 أحرف على الأقل.';
+  String get namesLengthRule =>
+      'يجب أن تكون الأسماء مكونة من 3 أحرف على الأقل.';
 
   @override
   String get noMatch => 'لا يوجد تطابق!';
@@ -243,10 +248,10 @@ class AppLocalizationsAr extends AppLocalizations {
   String get emailHint => 'أدخل بريدك الإلكتروني';
 
   @override
-  String get phoneNumber => 'رقم الهاتف';
+  String get phoneNumber => 'رقم الجوال';
 
   @override
-  String get phoneNumberHint => 'أدخل رقم الهاتف';
+  String get phoneNumberHint => 'ادخل رقم الجوال';
 
   @override
   String get passwordHint => 'أدخل كلمة المرور';
@@ -276,7 +281,8 @@ class AppLocalizationsAr extends AppLocalizations {
   String get applicationSubmitted => 'تم تقديم طلبك!';
 
   @override
-  String get thanksForProvidingApplication => 'شكرًا لتقديم طلبك، سنراجع طلبك وسنعاود الاتصال بك قريبًا.';
+  String get thanksForProvidingApplication =>
+      'شكرًا لتقديم طلبك، سنراجع طلبك وسنعاود الاتصال بك قريبًا.';
 
   @override
   String get successScreenDescription => 'تم توصيل الطلب بنجاح';
@@ -294,19 +300,19 @@ class AppLocalizationsAr extends AppLocalizations {
   String get profile => 'الملف الشخصي';
 
   @override
-  String get floweryRider => 'Flowery Rider';
+  String get floweryRider => 'سائق فلاوري';
 
   @override
-  String get readyForDelivery => 'جاهز للتوصيل';
+  String get readyForDelivery => 'جاهز للتسليم';
 
   @override
-  String get accept => 'قبول';
+  String get accept => 'موافق';
 
   @override
-  String get reject => 'رفض';
+  String get reject => 'رافض';
 
   @override
-  String get noOrdersFound => 'لا توجد طلبات';
+  String get noOrdersFound => 'لا يوجد طلبات';
 
   @override
   String get unKnownProduct => 'منتج غير معروف';
@@ -321,10 +327,10 @@ class AppLocalizationsAr extends AppLocalizations {
   String get unKnown => 'غير معروف';
 
   @override
-  String get eGP => 'جنيه مصري';
+  String get eGP => 'ج م';
 
   @override
-  String get pickUpAddress => 'عنوان الاستلام';
+  String get pickUpAddress => 'عنوان الالتقاط';
 
   @override
   String get userAddress => 'عنوان المستخدم';
@@ -390,6 +396,18 @@ class AppLocalizationsAr extends AppLocalizations {
   String get buttonArrivedDestination => 'وصلت إلى الوجهة';
 
   @override
+  String get language => 'اللغة';
+
+  @override
+  String get english => 'العربية';
+
+  @override
+  String get logout => 'تسجيل الخروج';
+
+  @override
+  String get vehicleInfo => 'معلومات المركبة';
+
+  @override
   String get buttonOrderDelivered => 'تم توصيل الطلب';
 
   @override
@@ -405,8 +423,38 @@ class AppLocalizationsAr extends AppLocalizations {
   String get orderFinishedSuccessfully => 'تم إنهاء الطلب بنجاح!';
 
   @override
-  String get thanksPage_______________ => '\$\$\$ تعليق \$\$\$';
+  String get myOrders => 'طلباتي';
 
   @override
-  String get orderDeliveredSuccessfully => 'تم تسليم الطلب\nبنجاح';
+  String get cancelled => 'ملغي';
+
+  @override
+  String get completed => 'مكتمل';
+
+  @override
+  String get logoutTitle => 'تسجيل الخروج';
+
+  @override
+  String get logoutMessage => 'هل أنت متأكد أنك تريد تسجيل الخروج؟';
+
+  @override
+  String get cancelButton => 'إلغاء';
+
+  @override
+  String get confirmButton => 'تأكيد';
+
+  @override
+  String get pickUpLocation________ => '\$\$\$ تعليق \$\$\$';
+
+  @override
+  String get errorLoadingTheMap => 'حدث خطأ أثناء تحميل الخريطة';
+
+  @override
+  String get user => 'مستخدم';
+
+  @override
+  String get flowery => 'فلوري';
+
+  @override
+  String get yourLocation => 'موقعك';
 }

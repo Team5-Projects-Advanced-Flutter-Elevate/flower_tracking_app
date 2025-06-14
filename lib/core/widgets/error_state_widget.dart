@@ -16,7 +16,7 @@ class ErrorStateWidget extends BaseStatelessWidget {
       child: Text(
         apiErrorHandler.handle(error),
         textAlign: TextAlign.center,
-        style: inherit.theme.textTheme.labelMedium,
+        style: inherit.theme.textTheme.titleMedium,
       ),
     );
   }
