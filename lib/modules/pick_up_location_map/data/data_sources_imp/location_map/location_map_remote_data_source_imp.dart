@@ -29,7 +29,7 @@ class LocationMapRemoteDataSourceImp implements LocationMapRemoteDataSource {
     if (authorization != null) {
       token = authorization.split(' ').toList()[1].trim();
     }
-      DioServiceExtension.clearDefaultHeaders();
+    DioServiceExtension.clearDefaultHeaders();
     var result = await ApiExecutor.executeApi(
       () => _locationMapApiClient.getDirections(
         LocationMapApiConstants.orsApiKey,
