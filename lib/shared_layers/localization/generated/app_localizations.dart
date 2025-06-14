@@ -905,12 +905,6 @@ abstract class AppLocalizations {
   /// **'Updated Successfully!'**
   String get updatedSuccessfully;
 
-  /// No description provided for @orderFinishedSuccessfully.
-  ///
-  /// In en, this message translates to:
-  /// **'Order Finished Successfully!'**
-  String get orderFinishedSuccessfully;
-
   /// No description provided for @myOrders.
   ///
   /// In en, this message translates to:
@@ -952,6 +946,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Confirm'**
   String get confirmButton;
+
+  /// No description provided for @orderFinishedSuccessfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Order Finished Successfully!'**
+  String get orderFinishedSuccessfully;
+
+  /// No description provided for @editProfile.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit profile'**
+  String get editProfile;
+
+  /// No description provided for @update.
+  ///
+  /// In en, this message translates to:
+  /// **'Update'**
+  String get update;
 
   /// No description provided for @pickUpLocation________.
   ///

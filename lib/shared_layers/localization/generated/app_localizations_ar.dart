@@ -414,9 +414,6 @@ class AppLocalizationsAr extends AppLocalizations {
   String get updatedSuccessfully => 'تم التحديث بنجاح!';
 
   @override
-  String get orderFinishedSuccessfully => 'تم إنهاء الطلب بنجاح!';
-
-  @override
   String get myOrders => 'طلباتي';
 
   @override
@@ -436,6 +433,15 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get confirmButton => 'تأكيد';
+
+  @override
+  String get orderFinishedSuccessfully => 'تم إنهاء الطلب بنجاح!';
+
+  @override
+  String get editProfile => 'تعديل الملف الشخصي';
+
+  @override
+  String get update => 'تحديث';
 
   @override
   String get pickUpLocation________ => '\$\$\$ تعليق \$\$\$';
