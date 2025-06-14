@@ -159,6 +159,22 @@ import '../../modules/logout/domain/use_cases/logout/logout_use_case.dart'
     as _i56;
 import '../../modules/order_details/view_model/order_details_view_model.dart'
     as _i240;
+import '../../modules/pick_up_location_map/data/api/api_client/location_map_api_client.dart'
+    as _i619;
+import '../../modules/pick_up_location_map/data/api/api_client_provider/location_map_api_client_provider.dart'
+    as _i1070;
+import '../../modules/pick_up_location_map/data/data_sources_contracts/location_map/location_map_remote_data_source.dart'
+    as _i967;
+import '../../modules/pick_up_location_map/data/data_sources_imp/location_map/location_map_remote_data_source_imp.dart'
+    as _i154;
+import '../../modules/pick_up_location_map/data/repositories_imp/location_map/location_map_repo_imp.dart'
+    as _i428;
+import '../../modules/pick_up_location_map/domain/repositories_contracts/location_map/location_map_repo.dart'
+    as _i548;
+import '../../modules/pick_up_location_map/domain/use_cases/directions/get_directions_use_case.dart'
+    as _i310;
+import '../../modules/pick_up_location_map/ui/view_model/location_map_view_model.dart'
+    as _i369;
 import '../../modules/whatsapp_call/data/data_source/call_data_source.dart'
     as _i692;
 import '../../modules/whatsapp_call/data/data_source/whatsapp_data_source.dart'
@@ -218,10 +234,11 @@ extension GetItInjectableX on _i174.GetIt {
     final storagesInitializer = _$StoragesInitializer();
     final applyApiClientProvider = _$ApplyApiClientProvider();
     final authApiClientProvider = _$AuthApiClientProvider();
+    final getDataApiClientProvider = _$GetDataApiClientProvider();
     final ordersApiClientProvider = _$OrdersApiClientProvider();
     final ordersApiDriverProvider = _$OrdersApiDriverProvider();
     final logoutApiClientProvider = _$LogoutApiClientProvider();
-    final getDataApiClientProvider = _$GetDataApiClientProvider();
+    final locationMapApiClientProvider = _$LocationMapApiClientProvider();
     final localeInitializer = _$LocaleInitializer();
     final appLocalizationsProvider = _$AppLocalizationsProvider();
     await gh.factoryAsync<_i361.Dio>(
@@ -245,6 +262,12 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i343.AuthApiClient>(
       () => authApiClientProvider.provideApiClient(gh<_i361.Dio>()),
     );
+    gh.lazySingleton<_i737.UploadImageApiClient>(
+      () => _i737.UploadImageApiClient(gh<_i361.Dio>()),
+    );
+    gh.lazySingleton<_i984.GetDataApiClient>(
+      () => getDataApiClientProvider.provideApiClient(gh<_i361.Dio>()),
+    );
     gh.lazySingleton<_i858.OrdersApiClient>(
       () => ordersApiClientProvider.providerApiClient(gh<_i361.Dio>()),
     );
@@ -254,11 +277,8 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i877.LogoutApiClient>(
       () => logoutApiClientProvider.provideClient(gh<_i361.Dio>()),
     );
-    gh.lazySingleton<_i737.UploadImageApiClient>(
-      () => _i737.UploadImageApiClient(gh<_i361.Dio>()),
-    );
-    gh.lazySingleton<_i984.GetDataApiClient>(
-      () => getDataApiClientProvider.provideApiClient(gh<_i361.Dio>()),
+    gh.singleton<_i619.LocationMapApiClient>(
+      () => locationMapApiClientProvider.provideApiClient(gh<_i361.Dio>()),
     );
     gh.factory<_i843.ApplyDataSource>(
       () => _i684.ApplyDataSourceImpl(gh<_i780.ApplyApiClient>()),
@@ -325,6 +345,11 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i504.LoggedDriverDataRemoteDataSource>(
       () =>
           _i493.LoggedDriverDataRemoteDataSourceImp(gh<_i343.AuthApiClient>()),
+    );
+    gh.factory<_i967.LocationMapRemoteDataSource>(
+      () => _i154.LocationMapRemoteDataSourceImp(
+        gh<_i619.LocationMapApiClient>(),
+      ),
     );
     gh.factory<_i779.ResetCodeRemoteDataSource>(
       () => _i808.ResetCodeRemoteDataSourceImpl(gh<_i343.AuthApiClient>()),
@@ -442,6 +467,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i272.EditInfoRepo>(
       () => _i213.EditInfoRepoImpl(gh<_i229.EditInfoOnlineDataSource>()),
     );
+    gh.factory<_i548.LocationMapRepo>(
+      () => _i428.LocationMapRepoImp(gh<_i967.LocationMapRemoteDataSource>()),
+    );
     gh.factory<_i637.ApplyDriverUseCase>(
       () => _i637.ApplyDriverUseCase(gh<_i61.ApplyRepo>()),
     );
@@ -482,6 +510,9 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i487.CallUseCase>(),
       ),
     );
+    gh.factory<_i310.GetDirectionsUseCase>(
+      () => _i310.GetDirectionsUseCase(gh<_i548.LocationMapRepo>()),
+    );
     gh.factory<_i797.EditInfoUseCase>(
       () => _i797.EditInfoUseCase(gh<_i272.EditInfoRepo>()),
     );
@@ -506,6 +537,9 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i9.ResetCodeUseCase>(),
       ),
     );
+    gh.factory<_i369.LocationMapViewModel>(
+      () => _i369.LocationMapViewModel(gh<_i310.GetDirectionsUseCase>()),
+    );
     return this;
   }
 }
@@ -518,13 +552,16 @@ class _$ApplyApiClientProvider extends _i594.ApplyApiClientProvider {}
 
 class _$AuthApiClientProvider extends _i1019.AuthApiClientProvider {}
 
+class _$GetDataApiClientProvider extends _i1073.GetDataApiClientProvider {}
+
 class _$OrdersApiClientProvider extends _i290.OrdersApiClientProvider {}
 
 class _$OrdersApiDriverProvider extends _i47.OrdersApiDriverProvider {}
 
 class _$LogoutApiClientProvider extends _i894.LogoutApiClientProvider {}
 
-class _$GetDataApiClientProvider extends _i1073.GetDataApiClientProvider {}
+class _$LocationMapApiClientProvider
+    extends _i1070.LocationMapApiClientProvider {}
 
 class _$LocaleInitializer extends _i631.LocaleInitializer {}
 

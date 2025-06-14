@@ -13,4 +13,9 @@ class ApisEndpoints {
   static const String uploadProfileImage = 'api/v1/drivers/upload-photo';
   static const String changePassword = 'api/v1/drivers/change-password';
   static const String logoutEndpoint = "api/v1/drivers/logout";
+
+  // Open Route Service
+  static const String openRouteServiceBaseUrl =
+      "https://api.openrouteservice.org/";
+  static const String directionsEndPoint = "v2/directions/driving-car/geojson";
 }

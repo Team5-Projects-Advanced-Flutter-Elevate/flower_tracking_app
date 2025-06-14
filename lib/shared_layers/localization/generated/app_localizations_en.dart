@@ -27,7 +27,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get connectionError => 'No Internet connection 😑';
 
   @override
-  String get unknown => 'Something Went Wrong 🤔';
+  String get unknownError => 'Something Went Wrong 🤔';
 
   @override
   String get badCertificate =>
@@ -442,4 +442,19 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get confirmButton => 'Confirm';
+
+  @override
+  String get pickUpLocation________ => '\$\$\$ Comment \$\$\$';
+
+  @override
+  String get errorLoadingTheMap => 'Error Occurred While Loading The Map';
+
+  @override
+  String get user => 'User';
+
+  @override
+  String get flowery => 'Flowery';
+
+  @override
+  String get yourLocation => 'Your Location';
 }

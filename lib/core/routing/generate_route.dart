@@ -4,8 +4,8 @@ import 'package:flower_tracking_app/modules/apply/ui/apply_view.dart';
 import 'package:flower_tracking_app/modules/authentication/domain/entities/logged_driver_data/logged_driver_data_response_entity.dart';
 import 'package:flower_tracking_app/modules/authentication/ui/forget_password/view/forget_password_screen.dart';
 import 'package:flower_tracking_app/modules/home/layout_screen.dart';
-import 'package:flower_tracking_app/modules/home/ui/orders_screen.dart';
 import 'package:flower_tracking_app/modules/onboarding/ui/onboarding_screen.dart';
+import 'package:flower_tracking_app/modules/pick_up_location_map/ui/pick_up_location_map.dart';
 import 'package:flutter/material.dart';
 import '../../modules/authentication/ui/login/login_screen.dart';
 import '../../modules/home/ui/home_screen_mine.dart';
@@ -38,8 +38,6 @@ abstract class GenerateRoute {
           );
         case DefinedRoutes.layoutScreen:
           return MaterialPageRoute(builder: (context) => const LayoutScreen());
-        case DefinedRoutes.ordersScreen:
-          return MaterialPageRoute(builder: (context) => const OrdersScreen());
         case DefinedRoutes.profileScreen:
           return MaterialPageRoute(builder: (context) => const ProfileScreen());
         case DefinedRoutes.apply:
@@ -47,6 +45,13 @@ abstract class GenerateRoute {
         case DefinedRoutes.orderDetailsRoute:
           return MaterialPageRoute(
             builder: (context) => OrderDetailsScreen(orderId: args as String),
+          );
+        case DefinedRoutes.pickUpLocationMap:
+          return MaterialPageRoute(
+            builder:
+                (context) => PickUpLocationMap(
+                  params: args as PickUpLocationMapWidgetParams,
+                ),
           );
         default:
           return _errorRoute();

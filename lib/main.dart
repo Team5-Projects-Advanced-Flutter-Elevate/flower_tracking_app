@@ -20,6 +20,7 @@ import 'core/utilities/dio/dio_service/dio_service.dart';
 GlobalKey<NavigatorState> globalNavigatorKey = GlobalKey<NavigatorState>();
 LoggedDriverDataResponseEntity? loggedDriverData;
 String? currentAcceptedOrderId;
+
 void main() async {
   FlutterNativeSplash.preserve(
     widgetsBinding: WidgetsFlutterBinding.ensureInitialized(),
@@ -68,6 +69,10 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
     FlutterNativeSplash.remove();
+    // Testing when change locale
+    // WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+    //   getIt.get<LocalizationManager>().changeLocal("en");
+    // });
   }
 
   @override
@@ -88,8 +93,8 @@ class _MyAppState extends State<MyApp> {
             themeMode: ThemeMode.light,
             localizationsDelegates: AppLocalizations.localizationsDelegates,
             supportedLocales: AppLocalizations.supportedLocales,
-            locale: Locale(localizationManager.currentLocale),
             navigatorKey: globalNavigatorKey,
+            locale: Locale(localizationManager.currentLocale),
             onGenerateRoute: GenerateRoute.onGenerateRoute,
             onGenerateInitialRoutes: (initialRoute) {
               return GenerateRoute.onGenerateInitialRoutes(
@@ -98,26 +103,6 @@ class _MyAppState extends State<MyApp> {
                 currentAcceptedOrderId: currentAcceptedOrderId,
               );
             },
-            // home: const EditProfileScreen(),
-            // //initialRoute: DefinedRoutes.onboardingScreenRoute,
-            // onGenerateRoute: GenerateRoute.onGenerateRoute,
-            // onGenerateInitialRoutes: (initialRoute) {
-            //   return GenerateRoute.onGenerateInitialRoutes(
-            //     initialRoute: initialRoute,
-            //     loginInfo: loggedDriverData,
-            //   );
-            // },
-            //home: LauncherScreen(),
-            // navigatorKey: globalNavigatorKey,
-            // onGenerateRoute: GenerateRoute.onGenerateRoute,
-            // initialRoute: DefinedRoutes.onboardingScreenRoute,
-            // onGenerateInitialRoutes: (initialRoute) {
-            //   return GenerateRoute.onGenerateInitialRoutes(
-            //     initialRoute: initialRoute,
-            //     loginInfo: null,
-            //     rememberMe: false
-            //   );
-            // },
           ),
         );
       },

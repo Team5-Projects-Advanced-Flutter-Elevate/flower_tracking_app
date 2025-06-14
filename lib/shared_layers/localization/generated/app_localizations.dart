@@ -134,11 +134,11 @@ abstract class AppLocalizations {
   /// **'No Internet connection 😑'**
   String get connectionError;
 
-  /// No description provided for @unknown.
+  /// No description provided for @unknownError.
   ///
   /// In en, this message translates to:
   /// **'Something Went Wrong 🤔'**
-  String get unknown;
+  String get unknownError;
 
   /// No description provided for @badCertificate.
   ///
@@ -955,6 +955,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Confirm'**
   String get confirmButton;
+
+  /// No description provided for @pickUpLocation________.
+  ///
+  /// In en, this message translates to:
+  /// **'\$\$\$ Comment \$\$\$'**
+  String get pickUpLocation________;
+
+  /// No description provided for @errorLoadingTheMap.
+  ///
+  /// In en, this message translates to:
+  /// **'Error Occurred While Loading The Map'**
+  String get errorLoadingTheMap;
+
+  /// No description provided for @user.
+  ///
+  /// In en, this message translates to:
+  /// **'User'**
+  String get user;
+
+  /// No description provided for @flowery.
+  ///
+  /// In en, this message translates to:
+  /// **'Flowery'**
+  String get flowery;
+
+  /// No description provided for @yourLocation.
+  ///
+  /// In en, this message translates to:
+  /// **'Your Location'**
+  String get yourLocation;
 }
 
 class _AppLocalizationsDelegate

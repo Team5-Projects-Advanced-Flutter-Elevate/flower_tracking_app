@@ -27,7 +27,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get connectionError => 'لا يوجد اتصال بالإنترنت 😑';
 
   @override
-  String get unknown => 'حدث خطأ ما 🤔';
+  String get unknownError => 'حدث خطأ ما 🤔';
 
   @override
   String get badCertificate => 'الشهادة المقدمة من الخادم غير صالحة 📑';
@@ -442,4 +442,19 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get confirmButton => 'تأكيد';
+
+  @override
+  String get pickUpLocation________ => '\$\$\$ تعليق \$\$\$';
+
+  @override
+  String get errorLoadingTheMap => 'حدث خطأ أثناء تحميل الخريطة';
+
+  @override
+  String get user => 'مستخدم';
+
+  @override
+  String get flowery => 'فلوري';
+
+  @override
+  String get yourLocation => 'موقعك';
 }
