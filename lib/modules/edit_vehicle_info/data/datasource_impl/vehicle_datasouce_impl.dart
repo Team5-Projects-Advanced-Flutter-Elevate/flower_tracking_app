@@ -1,51 +1,32 @@
 import 'dart:io';
 
 import 'package:device_info_plus/device_info_plus.dart';
-import 'package:flower_tracking_app/core/apis/api_executor/api_executor.dart';
-import 'package:flower_tracking_app/core/apis/api_result/api_result.dart';
-import 'package:flower_tracking_app/modules/apply/data/api/api_client/apply_api_client.dart';
-import 'package:flower_tracking_app/modules/apply/data/models/apply_response.dart';
-import 'package:flower_tracking_app/modules/apply/data/models/vehicle_response.dart';
-import 'package:flower_tracking_app/modules/apply/domain/entities/apply_response_entity.dart';
-import 'package:flower_tracking_app/modules/apply/domain/entities/vehicle_response_entity.dart';
+import 'package:flower_tracking_app/modules/edit_vehicle_info/data/models/edite_profile_response.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:injectable/injectable.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 
+import '../../../../core/apis/api_executor/api_executor.dart';
+import '../../../../core/apis/api_result/api_result.dart';
 import '../../../../core/colors/app_colors.dart';
-import '../../../../core/constants/assets_paths/assets_paths.dart';
-import '../datasource_contract/apply_datasource.dart';
+import '../../domain/entities/vehicle_response_entity.dart';
+import '../api/api_client/vehicle_api_client.dart';
+import '../datasource_contract/vehicle_datasource.dart';
+import '../models/vehicle_response.dart';
 
-@Injectable(as: ApplyDataSource)
-class ApplyDataSourceImpl implements ApplyDataSource {
-  ApplyApiClient applyApiClient;
+@Injectable(as: VehicleDataSource)
+class VehicleDataSourceImpl implements VehicleDataSource {
+  VehicleApiClient vehicleApiClient;
 
-  ApplyDataSourceImpl(this.applyApiClient);
-
-  @override
-  Future<ApiResult<ApplyResponseEntity>> applyDriver(
-    DriverRequestModel model,
-  ) async {
-    var result = await ApiExecutor.executeApi(
-      () => applyApiClient.applyDriver(model),
-    );
-
-    switch (result) {
-      case Success<ApplyResponse>():
-        return Success(data: result.data.toEntity());
-      case Error<ApplyResponse>():
-        return Error(error: result.error);
-    }
-  }
+  VehicleDataSourceImpl(this.vehicleApiClient);
 
   @override
   Future<ApiResult<VehicleResponseEntity>> getVehicles() async {
     var result = await ApiExecutor.executeApi(
-      () => applyApiClient.getVehicles(),
+      () => vehicleApiClient.getVehicles(),
     );
 
     switch (result) {
@@ -55,13 +36,35 @@ class ApplyDataSourceImpl implements ApplyDataSource {
         return Error(error: result.error);
     }
   }
-}
 
-@LazySingleton(as: CountryLoaderService)
-class AssetCountryLoaderService implements CountryLoaderService {
   @override
-  Future<String> loadCountryJson() {
-    return rootBundle.loadString(AssetsPaths.countryJson);
+  Future<ApiResult<VehicleResponseEntity>> getVehicleById(String id) async {
+    var result = await ApiExecutor.executeApi(
+      () => vehicleApiClient.getVehicleById(id: id),
+    );
+
+    switch (result) {
+      case Success<VehicleResponse>():
+        return Success(data: result.data.toEntity());
+      case Error<VehicleResponse>():
+        return Error(error: result.error);
+    }
+  }
+
+  @override
+  Future<ApiResult<EditProfileResponse>> editeVehicle(
+    EditVehicleRequest model,
+  ) async {
+    var result = await ApiExecutor.executeApi(
+      () => vehicleApiClient.editVehicleInfo(model),
+    );
+
+    switch (result) {
+      case Success<EditProfileResponse>():
+        return Success(data: result.data);
+      case Error<EditProfileResponse>():
+        return Error(error: result.error);
+    }
   }
 }
 

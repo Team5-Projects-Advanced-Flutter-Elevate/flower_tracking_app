@@ -420,9 +420,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get updatedSuccessfully => 'Updated Successfully!';
 
   @override
-  String get orderFinishedSuccessfully => 'Order Finished Successfully!';
-
-  @override
   String get myOrders => 'My orders';
 
   @override
@@ -442,6 +439,15 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get confirmButton => 'Confirm';
+
+  @override
+  String get orderFinishedSuccessfully => 'Order Finished Successfully!';
+
+  @override
+  String get editProfile => 'Edit profile';
+
+  @override
+  String get update => 'Update';
 
   @override
   String get pickUpLocation________ => '\$\$\$ Comment \$\$\$';

@@ -40,8 +40,8 @@ import 'package:mockito/src/dummies.dart' as _i8;
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
-class _FakeApplyRepo_0 extends _i1.SmartFake implements _i2.ApplyRepo {
-  _FakeApplyRepo_0(Object parent, Invocation parentInvocation)
+class _FakeVehicleRepo_0 extends _i1.SmartFake implements _i2.VehicleRepo {
+  _FakeVehicleRepo_0(Object parent, Invocation parentInvocation)
     : super(parent, parentInvocation);
 }
 
@@ -55,12 +55,15 @@ class MockApplyDriverUseCase extends _i1.Mock
   }
 
   @override
-  _i2.ApplyRepo get applyRepo =>
+  _i2.VehicleRepo get applyRepo =>
       (super.noSuchMethod(
             Invocation.getter(#applyRepo),
-            returnValue: _FakeApplyRepo_0(this, Invocation.getter(#applyRepo)),
+            returnValue: _FakeVehicleRepo_0(
+              this,
+              Invocation.getter(#applyRepo),
+            ),
           )
-          as _i2.ApplyRepo);
+          as _i2.VehicleRepo);
 
   @override
   _i4.Future<_i5.ApiResult<_i6.ApplyResponseEntity>> execute(
@@ -89,12 +92,15 @@ class MockGetVehiclesUseCase extends _i1.Mock
   }
 
   @override
-  _i2.ApplyRepo get applyRepo =>
+  _i2.VehicleRepo get applyRepo =>
       (super.noSuchMethod(
             Invocation.getter(#applyRepo),
-            returnValue: _FakeApplyRepo_0(this, Invocation.getter(#applyRepo)),
+            returnValue: _FakeVehicleRepo_0(
+              this,
+              Invocation.getter(#applyRepo),
+            ),
           )
-          as _i2.ApplyRepo);
+          as _i2.VehicleRepo);
 
   @override
   _i4.Future<_i5.ApiResult<_i10.VehicleResponseEntity>> execute() =>
