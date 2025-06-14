@@ -27,7 +27,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get connectionError => 'لا يوجد اتصال بالإنترنت 😑';
 
   @override
-  String get unknownError => 'حدث خطأ ما 🤔';
+  String get unknown => 'حدث خطأ ما 🤔';
 
   @override
   String get badCertificate => 'الشهادة المقدمة من الخادم غير صالحة 📑';
@@ -248,10 +248,10 @@ class AppLocalizationsAr extends AppLocalizations {
   String get emailHint => 'أدخل بريدك الإلكتروني';
 
   @override
-  String get phoneNumber => 'رقم الهاتف';
+  String get phoneNumber => 'رقم الجوال';
 
   @override
-  String get phoneNumberHint => 'أدخل رقم الهاتف';
+  String get phoneNumberHint => 'ادخل رقم الجوال';
 
   @override
   String get passwordHint => 'أدخل كلمة المرور';
@@ -300,19 +300,19 @@ class AppLocalizationsAr extends AppLocalizations {
   String get profile => 'الملف الشخصي';
 
   @override
-  String get floweryRider => 'Flowery Rider';
+  String get floweryRider => 'سائق فلاوري';
 
   @override
-  String get readyForDelivery => 'جاهز للتوصيل';
+  String get readyForDelivery => 'جاهز للتسليم';
 
   @override
-  String get accept => 'قبول';
+  String get accept => 'موافق';
 
   @override
-  String get reject => 'رفض';
+  String get reject => 'رافض';
 
   @override
-  String get noOrdersFound => 'لا توجد طلبات';
+  String get noOrdersFound => 'لا يوجد طلبات';
 
   @override
   String get unKnownProduct => 'منتج غير معروف';
@@ -327,10 +327,10 @@ class AppLocalizationsAr extends AppLocalizations {
   String get unKnown => 'غير معروف';
 
   @override
-  String get eGP => 'جنيه مصري';
+  String get eGP => 'ج م';
 
   @override
-  String get pickUpAddress => 'عنوان الاستلام';
+  String get pickUpAddress => 'عنوان الالتقاط';
 
   @override
   String get userAddress => 'عنوان المستخدم';
@@ -396,6 +396,18 @@ class AppLocalizationsAr extends AppLocalizations {
   String get buttonArrivedDestination => 'وصلت إلى الوجهة';
 
   @override
+  String get language => 'اللغة';
+
+  @override
+  String get english => 'العربية';
+
+  @override
+  String get logout => 'تسجيل الخروج';
+
+  @override
+  String get vehicleInfo => 'معلومات المركبة';
+
+  @override
   String get buttonOrderDelivered => 'تم توصيل الطلب';
 
   @override
@@ -411,17 +423,23 @@ class AppLocalizationsAr extends AppLocalizations {
   String get orderFinishedSuccessfully => 'تم إنهاء الطلب بنجاح!';
 
   @override
-  String get pickUpLocation________ => '\$\$\$ تعليق \$\$\$';
+  String get myOrders => 'طلباتي';
 
   @override
-  String get errorLoadingTheMap => 'حدث خطأ أثناء تحميل الخريطة';
+  String get cancelled => 'ملغي';
 
   @override
-  String get user => 'مستخدم';
+  String get completed => 'مكتمل';
 
   @override
-  String get flowery => 'فلوري';
+  String get logoutTitle => 'تسجيل الخروج';
 
   @override
-  String get yourLocation => 'موقعك';
+  String get logoutMessage => 'هل أنت متأكد أنك تريد تسجيل الخروج؟';
+
+  @override
+  String get cancelButton => 'إلغاء';
+
+  @override
+  String get confirmButton => 'تأكيد';
 }

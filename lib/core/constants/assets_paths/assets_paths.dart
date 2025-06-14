@@ -21,6 +21,8 @@ abstract class AssetsPaths {
   static const String locationIcon = 'assets/icons/location_icon.png';
   static const String callIcon = 'assets/icons/call_icon.png';
   static const String whatsappIcon = 'assets/icons/whatsapp_icon.svg';
+  static const String notificationIcon = 'assets/icons/notification_icon.svg';
+  static const String languageIcon = 'assets/icons/language_icon.svg';
   static const String locationPinIcon = 'assets/icons/location_pin_icon.png';
   static const String floweryStoreIcon = 'assets/icons/flowery_store_icon.png';
   static const String userHomeIcon = 'assets/icons/user_home_icon.png';

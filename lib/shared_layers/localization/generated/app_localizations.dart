@@ -134,11 +134,11 @@ abstract class AppLocalizations {
   /// **'No Internet connection 😑'**
   String get connectionError;
 
-  /// No description provided for @unknownError.
+  /// No description provided for @unknown.
   ///
   /// In en, this message translates to:
   /// **'Something Went Wrong 🤔'**
-  String get unknownError;
+  String get unknown;
 
   /// No description provided for @badCertificate.
   ///
@@ -860,6 +860,30 @@ abstract class AppLocalizations {
   /// **'Arrived to destination'**
   String get buttonArrivedDestination;
 
+  /// No description provided for @language.
+  ///
+  /// In en, this message translates to:
+  /// **'Language'**
+  String get language;
+
+  /// No description provided for @english.
+  ///
+  /// In en, this message translates to:
+  /// **'English'**
+  String get english;
+
+  /// No description provided for @logout.
+  ///
+  /// In en, this message translates to:
+  /// **'Logout'**
+  String get logout;
+
+  /// No description provided for @vehicleInfo.
+  ///
+  /// In en, this message translates to:
+  /// **'Vehicle Info'**
+  String get vehicleInfo;
+
   /// No description provided for @buttonOrderDelivered.
   ///
   /// In en, this message translates to:
@@ -890,35 +914,47 @@ abstract class AppLocalizations {
   /// **'Order Finished Successfully!'**
   String get orderFinishedSuccessfully;
 
-  /// No description provided for @pickUpLocation________.
+  /// No description provided for @myOrders.
   ///
   /// In en, this message translates to:
-  /// **'\$\$\$ Comment \$\$\$'**
-  String get pickUpLocation________;
+  /// **'My orders'**
+  String get myOrders;
 
-  /// No description provided for @errorLoadingTheMap.
+  /// No description provided for @cancelled.
   ///
   /// In en, this message translates to:
-  /// **'Error Occurred While Loading The Map'**
-  String get errorLoadingTheMap;
+  /// **'Cancelled'**
+  String get cancelled;
 
-  /// No description provided for @user.
+  /// No description provided for @completed.
   ///
   /// In en, this message translates to:
-  /// **'User'**
-  String get user;
+  /// **'Completed'**
+  String get completed;
 
-  /// No description provided for @flowery.
+  /// No description provided for @logoutTitle.
   ///
   /// In en, this message translates to:
-  /// **'Flowery'**
-  String get flowery;
+  /// **'Logout'**
+  String get logoutTitle;
 
-  /// No description provided for @yourLocation.
+  /// No description provided for @logoutMessage.
   ///
   /// In en, this message translates to:
-  /// **'Your Location'**
-  String get yourLocation;
+  /// **'Are you sure you want to logout?'**
+  String get logoutMessage;
+
+  /// No description provided for @cancelButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get cancelButton;
+
+  /// No description provided for @confirmButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm'**
+  String get confirmButton;
 }
 
 class _AppLocalizationsDelegate

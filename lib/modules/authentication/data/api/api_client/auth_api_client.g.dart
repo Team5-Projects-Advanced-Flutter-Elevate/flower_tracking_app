@@ -11,14 +11,13 @@ part of 'auth_api_client.dart';
 class _AuthApiClient implements AuthApiClient {
   _AuthApiClient(this._dio) {
     baseUrl ??= 'https://flower.elevateegy.com/';
-    errorLogger = null;
   }
 
   final Dio _dio;
 
   String? baseUrl;
 
-  late final ParseErrorLogger? errorLogger;
+  ParseErrorLogger? errorLogger;
 
   @override
   Future<LoginResponseDto> login(LoginRequestDto loginRequestDto) async {
