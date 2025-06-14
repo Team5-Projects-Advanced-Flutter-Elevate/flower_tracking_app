@@ -238,9 +238,9 @@ extension GetItInjectableX on _i174.GetIt {
     final storagesInitializer = _$StoragesInitializer();
     final applyApiClientProvider = _$ApplyApiClientProvider();
     final authApiClientProvider = _$AuthApiClientProvider();
+    final getDataApiClientProvider = _$GetDataApiClientProvider();
     final vehicleApiClientProvider = _$VehicleApiClientProvider();
     final ordersApiClientProvider = _$OrdersApiClientProvider();
-    final getDataApiClientProvider = _$GetDataApiClientProvider();
     final ordersApiDriverProvider = _$OrdersApiDriverProvider();
     final logoutApiClientProvider = _$LogoutApiClientProvider();
     final localeInitializer = _$LocaleInitializer();
@@ -269,17 +269,17 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i343.AuthApiClient>(
       () => authApiClientProvider.provideApiClient(gh<_i361.Dio>()),
     );
-    gh.lazySingleton<_i548.VehicleApiClient>(
-      () => vehicleApiClientProvider.providerApiClient(gh<_i361.Dio>()),
-    );
-    gh.lazySingleton<_i858.OrdersApiClient>(
-      () => ordersApiClientProvider.providerApiClient(gh<_i361.Dio>()),
-    );
     gh.lazySingleton<_i737.UploadImageApiClient>(
       () => _i737.UploadImageApiClient(gh<_i361.Dio>()),
     );
     gh.lazySingleton<_i984.GetDataApiClient>(
       () => getDataApiClientProvider.provideApiClient(gh<_i361.Dio>()),
+    );
+    gh.lazySingleton<_i548.VehicleApiClient>(
+      () => vehicleApiClientProvider.providerApiClient(gh<_i361.Dio>()),
+    );
+    gh.lazySingleton<_i858.OrdersApiClient>(
+      () => ordersApiClientProvider.providerApiClient(gh<_i361.Dio>()),
     );
     gh.lazySingleton<_i433.OrdersRemoteDataSource>(
       () => ordersApiDriverProvider.providerApiClient(gh<_i361.Dio>()),
@@ -422,7 +422,7 @@ extension GetItInjectableX on _i174.GetIt {
         gh<String>(instanceName: 'initCurrentLocal'),
       ),
     );
-    gh.lazySingleton<_i212.VehicleCubit>(
+    gh.factory<_i212.VehicleCubit>(
       () => _i212.VehicleCubit(
         gh<_i799.EditeVehicleUseCase>(),
         gh<_i72.GetVehiclesUseCase>(),
@@ -570,11 +570,11 @@ class _$ApplyApiClientProvider extends _i594.ApplyApiClientProvider {}
 
 class _$AuthApiClientProvider extends _i1019.AuthApiClientProvider {}
 
+class _$GetDataApiClientProvider extends _i1073.GetDataApiClientProvider {}
+
 class _$VehicleApiClientProvider extends _i1043.VehicleApiClientProvider {}
 
 class _$OrdersApiClientProvider extends _i290.OrdersApiClientProvider {}
-
-class _$GetDataApiClientProvider extends _i1073.GetDataApiClientProvider {}
 
 class _$OrdersApiDriverProvider extends _i47.OrdersApiDriverProvider {}
 

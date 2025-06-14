@@ -2,7 +2,6 @@ import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flower_tracking_app/core/apis/api_error/api_error_handler.dart';
 import 'package:flower_tracking_app/core/bases/base_stateful_widget_state.dart';
 import 'package:flower_tracking_app/core/di/injectable_initializer.dart';
-import 'package:flower_tracking_app/core/routing/defined_routes.dart';
 import 'package:flower_tracking_app/modules/edit_vehicle_info/ui/view_model/vehicle_cubit.dart';
 import 'package:flower_tracking_app/modules/edit_vehicle_info/ui/widgets/edit_vehicle_text_form_fields.dart';
 import 'package:flower_tracking_app/shared_layers/localization/generated/app_localizations.dart';
@@ -35,6 +34,11 @@ class _EditVehicleInfoScreenState
   }
 
   @override
+  void dispose() {
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => cubit,
@@ -58,7 +62,7 @@ class _EditVehicleInfoScreenState
           body: BlocListener<VehicleCubit, VehicleState>(
             listener: (context, state) {
               if (state.editVehicleStatus == EditeVehicleStatus.success) {
-                Navigator.pushNamed(context, DefinedRoutes.loginScreenRoute);
+                Navigator.pop(context);
               }
               if (state.editVehicleStatus == EditeVehicleStatus.error) {
                 displaySnackBar(
@@ -102,7 +106,6 @@ class _EditVehicleInfoScreenState
                           contentType: ContentType.success,
                           title: 'Profile updated successfully',
                         );
-                        Navigator.pop(context);
                       },
                     ),
 

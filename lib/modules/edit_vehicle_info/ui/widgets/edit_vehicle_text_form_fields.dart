@@ -36,7 +36,7 @@ class _VehicleTextFormFieldsState
 
   late FocusNode vehicleNumberFocusNode;
   late FocusNode vehicleLicenseFocusNode;
-  bool en = true;
+  bool en = false;
 
   @override
   void initState() {
@@ -68,6 +68,7 @@ class _VehicleTextFormFieldsState
       listener: (context, state) {
         if (state.editVehicleStatus == EditeVehicleStatus.success) {
           /// navigate to apply successfully screen
+
           widget.whenUpdatedSuccess();
         }
       },
@@ -176,29 +177,22 @@ class _VehicleTextFormFieldsState
                     return SizedBox(
                       width: double.infinity,
                       child: FilledButton(
-                        onPressed:
-                            en
-                                ? () async {
-                                  FocusManager.instance.primaryFocus?.unfocus();
-                                  if (!widget.formKey.currentState!
-                                      .validate()) {
-                                    return;
-                                  }
+                        onPressed: () async {
+                          FocusManager.instance.primaryFocus?.unfocus();
+                          if (!widget.formKey.currentState!.validate()) {
+                            return;
+                          }
 
-                                  cubit.doIntent(
-                                    EditVehicleIntent(
-                                      EditVehicleRequest(
-                                        vehicleLicense:
-                                            state.pickedLicenseImage,
-                                        vehicleNumber:
-                                            vehicleNumberController.text,
-                                        vehicleType:
-                                            cubit.state.selectedVehicle?.type,
-                                      ),
-                                    ),
-                                  );
-                                }
-                                : null,
+                          cubit.doIntent(
+                            EditVehicleIntent(
+                              EditVehicleRequest(
+                                vehicleLicense: state.pickedLicenseImage,
+                                vehicleNumber: vehicleNumberController.text,
+                                vehicleType: cubit.state.selectedVehicle?.type,
+                              ),
+                            ),
+                          );
+                        },
                         child:
                             state.editVehicleStatus ==
                                     EditeVehicleStatus.loading

@@ -8,6 +8,8 @@ enum LoadVehicleStatus { initial, loading, success, error }
 
 enum LoadVehicleDataStatus { initial, loading, success, error }
 
+enum ButtonStatus { enable, disable }
+
 class VehicleState extends Equatable {
   final PickImageStatus pickImageStatus;
   final EditeVehicleStatus editVehicleStatus;
@@ -17,7 +19,7 @@ class VehicleState extends Equatable {
   final File? pickedLicenseImage;
   final bool? isLicenseImagePicked;
   final List<VehicleEntity>? vehicles;
-
+  final ButtonStatus buttonStatus;
   final Object? pickImageError;
   final Object? editVehicleError;
   final Object? loadVehicleError;
@@ -34,6 +36,7 @@ class VehicleState extends Equatable {
     this.editVehicleError,
     this.loadVehicleDataStatus = LoadVehicleDataStatus.initial,
     this.loadVehicleError,
+    this.buttonStatus = ButtonStatus.disable,
   });
 
   VehicleState copyWith({
@@ -49,7 +52,9 @@ class VehicleState extends Equatable {
     Object? loadVehicleError,
     Object? editVehicleError,
     LoadVehicleDataStatus? loadVehicleDataStatus,
+    ButtonStatus? buttonStatus,
   }) => VehicleState(
+    buttonStatus: buttonStatus ?? this.buttonStatus,
     pickImageStatus: pickImageStatus ?? this.pickImageStatus,
     editVehicleStatus: editeVehicleStatus ?? editVehicleStatus,
     selectedVehicle: selectedVehicle ?? this.selectedVehicle,

@@ -17,7 +17,7 @@ import '../../domain/usecases/get_vehicles_use_case.dart';
 
 part 'vehicle_state.dart';
 
-@lazySingleton
+@injectable
 class VehicleCubit extends Cubit<VehicleState> {
   VehicleCubit(
     this.editVehicleUseCase,
@@ -49,6 +49,14 @@ class VehicleCubit extends Cubit<VehicleState> {
         _pickImage(intent.source);
       case GetVehicleByIdIntent():
         _getVehicleById(intent.id);
+      case EnableIntent():
+        _en();
+    }
+  }
+
+  _en() {
+    if (state.pickedLicenseImage != null) {
+      emit(state.copyWith(buttonStatus: ButtonStatus.enable));
     }
   }
 
@@ -101,6 +109,7 @@ class VehicleCubit extends Cubit<VehicleState> {
     switch (result) {
       case Success<EditProfileResponse>():
         emit(state.copyWith(editeVehicleStatus: EditeVehicleStatus.success));
+
       case Error<EditProfileResponse>():
         log(result.error.toString());
         emit(
@@ -218,3 +227,5 @@ class GetVehicleByIdIntent extends VehicleIntent {
 
   GetVehicleByIdIntent(this.id);
 }
+
+class EnableIntent extends VehicleIntent {}
