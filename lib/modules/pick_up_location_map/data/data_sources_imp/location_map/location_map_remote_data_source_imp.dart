@@ -23,17 +23,20 @@ class LocationMapRemoteDataSourceImp implements LocationMapRemoteDataSource {
   Future<ApiResult<DirectionsResponseEntity>> getDirection({
     required DirectionsRequestEntity directionRequestEntity,
   }) async {
-    final String authorization =
+    final String? authorization =
         getIt.get<Dio>().options.headers["Authorization"];
-    final String token = authorization.split(' ').toList()[1].trim();
-    DioServiceExtension.clearDefaultHeaders();
+    String token = "";
+    if (authorization != null) {
+      token = authorization.split(' ').toList()[1].trim();
+    }
+      DioServiceExtension.clearDefaultHeaders();
     var result = await ApiExecutor.executeApi(
       () => _locationMapApiClient.getDirections(
         LocationMapApiConstants.orsApiKey,
         DirectionsRequestDto.convertIntoDto(directionRequestEntity).toJson(),
       ),
     );
-    DioServiceExtension.setHeadersToDefault(token);
+    if (authorization != null) DioServiceExtension.setHeadersToDefault(token);
     switch (result) {
       case Success<DirectionsResponseDto>():
         return Success(data: result.data.convertIntoEntity());

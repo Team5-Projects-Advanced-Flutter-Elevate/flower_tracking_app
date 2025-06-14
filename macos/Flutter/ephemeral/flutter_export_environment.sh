@@ -1,7 +1,7 @@
 #!/bin/sh
 # This is a generated file; do not edit or check into version control.
-export "FLUTTER_ROOT=/media/mohammed-khalil/Volume 1/ubuntu/flutter_3.29.3"
-export "FLUTTER_APPLICATION_PATH=/media/mohammed-khalil/5874C9AB5B3DFCDF/StudioProjects/flower_tracking_app"
+export "FLUTTER_ROOT=/home/mk369/flutter"
+export "FLUTTER_APPLICATION_PATH=/media/mk369/Volume4/StudioProjects/flower_tracking_app"
 export "COCOAPODS_PARALLEL_CODE_SIGN=true"
 export "FLUTTER_BUILD_DIR=build"
 export "FLUTTER_BUILD_NAME=1.0.0"

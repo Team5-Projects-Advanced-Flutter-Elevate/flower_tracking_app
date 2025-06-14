@@ -5,7 +5,7 @@
   "receiveTimeout": "Receive timeout in connection with server ⏰",
   "cancel": "Request to server was cancelled ✖",
   "connectionError": "No Internet connection \uD83D\uDE11",
-  "unknown": "Something Went Wrong \uD83E\uDD14",
+  "unknownError": "Something Went Wrong \uD83E\uDD14",
   "badCertificate": "The certificate provided by the server is not valid \uD83D\uDCD1",
   "somethingWentWrong": "Something Went Wrong \uD83E\uDD14",
   "validationFunctions____________": "$$$ Comment $$$",
@@ -132,5 +132,12 @@
   "loading": "Loading.....",
   "acceptedSuccessfully": "Accepted Successfully!",
   "updatedSuccessfully": "Updated Successfully!",
-  "orderFinishedSuccessfully": "Order Finished Successfully!"
+  "orderFinishedSuccessfully": "Order Finished Successfully!",
+
+  "pickUpLocation________": "$$$ Comment $$$",
+  "errorLoadingTheMap": "Error Occurred While Loading The Map",
+  "user": "User",
+  "flowery": "Flowery",
+  "yourLocation": "Your Location"
+
 }

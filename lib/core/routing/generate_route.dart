@@ -51,7 +51,10 @@ abstract class GenerateRoute {
           );
         case DefinedRoutes.pickUpLocationMap:
           return MaterialPageRoute(
-            builder: (context) => const PickUpLocationMap(),
+            builder:
+                (context) => PickUpLocationMap(
+                  params: args as PickUpLocationMapWidgetParams,
+                ),
           );
         default:
           return _errorRoute();

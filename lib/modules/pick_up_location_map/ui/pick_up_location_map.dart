@@ -24,7 +24,11 @@ import '../../order_details/widgets/address_item.dart';
 */
 
 class PickUpLocationMap extends StatefulWidget {
-  const PickUpLocationMap({super.key});
+  final PickUpLocationMapWidgetParams params;
+  const PickUpLocationMap({
+    super.key,
+    this.params = const PickUpLocationMapWidgetParams(),
+  });
 
   @override
   State<PickUpLocationMap> createState() => _PickUpLocationMapState();
@@ -34,13 +38,19 @@ class _PickUpLocationMapState
     extends BaseStatefulWidgetState<PickUpLocationMap> {
   LocationMapViewModel locationMapViewModel = getIt.get<LocationMapViewModel>();
   bool errorLoadingMap = false;
-  bool getRouteCalledOnce = false;
+
   ApiErrorHandler apiErrorHandler = getIt.get<ApiErrorHandler>();
   late OrderEntityFirestore firstOrderEntity, secondOrderEntity;
+  late LatLng destination;
 
   @override
   void initState() {
     super.initState();
+    if (widget.params.showStoreFirst) {
+      destination = const LatLng(30.0561110, 31.3563610);
+    } else {
+      destination = const LatLng(30.7823150, 30.9981280);
+    }
   }
 
   @override
@@ -67,7 +77,7 @@ class _PickUpLocationMapState
                       children: [
                         Icon(Icons.error, color: AppColors.red, size: 40),
                         SizedBox(height: screenHeight * 0.01),
-                        const Text("Error Occurred While Loading The Map"),
+                        Text(appLocalizations.errorLoadingTheMap),
                       ],
                     ),
                   )
@@ -89,7 +99,7 @@ class _PickUpLocationMapState
                                 case Status.error:
                                   displaySnackBar(
                                     contentType: ContentType.failure,
-                                    title: "Error!",
+                                    title: appLocalizations.error,
                                     message: apiErrorHandler.handle(
                                       state.error!,
                                     ),
@@ -110,104 +120,107 @@ class _PickUpLocationMapState
                                     case Status.loading:
                                       return const LoadingStateWidget();
                                     case Status.success:
-                                      if (!getRouteCalledOnce) {
-                                        locationMapViewModel.doIntent(
-                                          GetRoute(
-                                            destination: const LatLng(
-                                              30.7823150,
-                                              30.9981280,
-                                            ),
-                                            // const LatLng(
-                                            //   30.0561110,
-                                            //   31.3563610,
-                                            // ),
-                                            markerWidth: screenWidth * 0.37,
-                                            markerText: "User",
-                                            iconPath: AssetsPaths.userHomeIcon,
-                                          ),
-                                        );
-                                        getRouteCalledOnce = true;
-                                      }
-                                      switch (state
-                                          .getDirectionBetweenPointsStatus) {
-                                        case Status.idle:
-                                        case Status.loading:
-                                          return const LoadingStateWidget();
-                                        default:
-                                          return Expanded(
-                                            child: FlutterMap(
-                                              mapController:
-                                                  locationMapViewModel
-                                                      .mapController,
-                                              options: MapOptions(
-                                                initialCenter: LatLng(
-                                                  locationMapViewModel
-                                                      .currentLocation!
-                                                      .latitude!,
-                                                  locationMapViewModel
-                                                      .currentLocation!
-                                                      .longitude!,
-                                                ),
-                                                initialZoom: 15.0,
-
-                                                onTap: (tapPosition, point) {
-                                                  // print(point.latitude);
-                                                  // print(point.longitude);
-                                                  // setState(() {
-                                                  //   locationMapViewModel.markers.add(
-                                                  //     Marker(
-                                                  //       point: point,
-                                                  //       width: screenWidth * 0.37,
-                                                  //       height: 35,
-                                                  //       child: const MarkerChildWidget(
-                                                  //         iconPath:
-                                                  //             AssetsPaths
-                                                  //                 .locationPinIcon,
-                                                  //         text: "New Location",
-                                                  //       ),
-                                                  //     ),
-                                                  //   );
-                                                  // });
-                                                },
+                                      return ValueListenableBuilder(
+                                        valueListenable:
+                                            locationMapViewModel
+                                                .newLocationNotifier,
+                                        builder: (context, value, child) {
+                                          if (!locationMapViewModel
+                                              .getRouteCalledOnce) {
+                                            locationMapViewModel.doIntent(
+                                              GetRoute(
+                                                destination: destination,
+                                                markerWidth: screenWidth * 0.37,
+                                                markerText:
+                                                    widget.params.showStoreFirst
+                                                        ? appLocalizations
+                                                            .flowery
+                                                        : appLocalizations.user,
+                                                iconPath:
+                                                    widget.params.showStoreFirst
+                                                        ? AssetsPaths
+                                                            .floweryStoreIcon
+                                                        : AssetsPaths
+                                                            .userHomeIcon,
                                               ),
-                                              children: [
-                                                TileLayer(
-                                                  urlTemplate:
-                                                      LocationMapConstants
-                                                          .tileUrl,
-                                                  subdomains: ['a', 'b', 'c'],
-                                                  errorTileCallback: (
-                                                    tile,
-                                                    error,
-                                                    stackTrace,
-                                                  ) {
-                                                    setState(() {
-                                                      errorLoadingMap = true;
-                                                    });
-                                                  },
-                                                ),
-                                                PolylineLayer(
-                                                  polylines: [
-                                                    Polyline(
-                                                      color:
-                                                          AppColors.mainColor,
-                                                      strokeWidth: 5,
-                                                      points:
+                                            );
+                                            locationMapViewModel
+                                                .getRouteCalledOnce = true;
+                                          }
+                                          switch (state
+                                              .getDirectionBetweenPointsStatus) {
+                                            case Status.idle:
+                                            case Status.loading:
+                                              return const LoadingStateWidget();
+                                            default:
+                                              return Expanded(
+                                                child: FlutterMap(
+                                                  mapController:
+                                                      locationMapViewModel
+                                                          .mapController,
+                                                  options: MapOptions(
+                                                    initialCenter: LatLng(
+                                                      locationMapViewModel
+                                                          .currentLocation!
+                                                          .latitude!,
+                                                      locationMapViewModel
+                                                          .currentLocation!
+                                                          .longitude!,
+                                                    ),
+                                                    initialZoom: 15.0,
+
+                                                    onTap:
+                                                        (tapPosition, point) {},
+                                                  ),
+                                                  children: [
+                                                    TileLayer(
+                                                      urlTemplate:
+                                                          LocationMapConstants
+                                                              .tileUrl,
+                                                      subdomains: [
+                                                        'a',
+                                                        'b',
+                                                        'c',
+                                                      ],
+                                                      errorTileCallback: (
+                                                        tile,
+                                                        error,
+                                                        stackTrace,
+                                                      ) {
+                                                        setState(() {
+                                                          errorLoadingMap =
+                                                              true;
+                                                        });
+                                                      },
+                                                    ),
+                                                    PolylineLayer(
+                                                      polylines: [
+                                                        if (locationMapViewModel
+                                                            .routePoints
+                                                            .isNotEmpty)
+                                                          Polyline(
+                                                            color:
+                                                                AppColors
+                                                                    .mainColor,
+                                                            strokeWidth: 5,
+                                                            points:
+                                                                locationMapViewModel
+                                                                    .routePoints,
+                                                          ),
+                                                      ],
+                                                    ),
+
+                                                    MarkerLayer(
+                                                      markers:
                                                           locationMapViewModel
-                                                              .routePoints,
+                                                              .markers,
                                                     ),
                                                   ],
                                                 ),
-
-                                                MarkerLayer(
-                                                  markers:
-                                                      locationMapViewModel
-                                                          .markers,
-                                                ),
-                                              ],
-                                            ),
-                                          );
-                                      }
+                                              );
+                                          }
+                                        },
+                                      );
                                     case Status.error:
                                       return ErrorStateWidget(
                                         error: state.error!,
@@ -234,51 +247,108 @@ class _PickUpLocationMapState
                         maxChildSize: 0.38,
                         minChildSize: 0.04,
                         initialChildSize: 0.38,
+                        snap: true,
                         builder: (context, scrollController) {
                           return Container(
                             color: AppColors.white,
                             child: ListView(
                               controller: scrollController,
                               children: [
-                                Center(
-                                  child: Container(
-                                    width: 70,
-                                    height: 4,
-                                    margin: const EdgeInsets.symmetric(
-                                      vertical: 10,
+                                SizedBox(
+                                  height: screenHeight * 0.04,
+                                  child: Center(
+                                    child: Container(
+                                      width: 70,
+                                      height: 4,
+                                      margin: const EdgeInsets.symmetric(
+                                        vertical: 10,
+                                      ),
+                                      decoration: BoxDecoration(
+                                        color: AppColors.mainColor,
+                                        borderRadius:
+                                            const BorderRadius.horizontal(
+                                              left: Radius.circular(10),
+                                              right: Radius.circular(10),
+                                            ),
+                                      ),
                                     ),
-                                    decoration: BoxDecoration(
-                                      color: AppColors.mainColor,
-                                      borderRadius:
-                                          const BorderRadius.horizontal(
-                                            left: Radius.circular(10),
-                                            right: Radius.circular(10),
-                                          ),
+                                  ),
+                                ),
+                                if (widget.params.showStoreFirst) ...[
+                                  /// Store Address
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 16.0,
                                     ),
+                                    child: Text(appLocalizations.pickUpAddress),
                                   ),
-                                ),
-                                const Padding(
-                                  padding: EdgeInsets.symmetric(
-                                    horizontal: 16.0,
+                                  AddressItem(
+                                    title: widget.params.storeEntity?.name,
+                                    address: widget.params.storeEntity?.address,
+                                    phoneNumber:
+                                        widget.params.storeEntity?.phoneNumber,
                                   ),
-                                  child: Text("Pickup Address"),
-                                ),
-                                const AddressItem(
-                                  title: "unknown",
-                                  address: "address",
-                                  phoneNumber: "01010518801",
-                                ),
-                                const Padding(
-                                  padding: EdgeInsets.symmetric(
-                                    horizontal: 16.0,
+
+                                  /// User Addresss
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 16.0,
+                                    ),
+                                    child: Text(appLocalizations.userAddress),
                                   ),
-                                  child: Text("User Address"),
-                                ),
-                                const AddressItem(
-                                  title: "unknown",
-                                  address: "address",
-                                  phoneNumber: "01010518801",
-                                ),
+                                  AddressItem(
+                                    title:
+                                        widget.params.userEntity?.firstName ==
+                                                    null &&
+                                                widget
+                                                        .params
+                                                        .userEntity
+                                                        ?.lastName ==
+                                                    null
+                                            ? null
+                                            : "${widget.params.userEntity?.firstName ?? ''} ${widget.params.userEntity?.lastName ?? ''}",
+                                    address: widget.params.storeEntity?.address,
+                                    phoneNumber:
+                                        widget.params.userEntity?.phone,
+                                  ),
+                                ] else ...[
+                                  /// User Address
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 16.0,
+                                    ),
+                                    child: Text(appLocalizations.userAddress),
+                                  ),
+                                  AddressItem(
+                                    title:
+                                        widget.params.userEntity?.firstName ==
+                                                    null &&
+                                                widget
+                                                        .params
+                                                        .userEntity
+                                                        ?.lastName ==
+                                                    null
+                                            ? null
+                                            : "${widget.params.userEntity?.firstName ?? ''} ${widget.params.userEntity?.lastName ?? ''}",
+                                    address: widget.params.storeEntity?.address,
+                                    phoneNumber:
+                                        widget.params.userEntity?.phone,
+                                  ),
+
+                                  /// Store Address
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 16.0,
+                                    ),
+                                    child: Text(appLocalizations.pickUpAddress),
+                                  ),
+                                  AddressItem(
+                                    title: widget.params.storeEntity?.name,
+                                    address: widget.params.storeEntity?.address,
+                                    phoneNumber:
+                                        widget.params.storeEntity?.phoneNumber,
+                                  ),
+                                ],
                               ],
                             ),
                           );
@@ -286,9 +356,12 @@ class _PickUpLocationMapState
                       ),
                       Positioned(
                         top: 10,
-                        left: 10,
+                        left: localizationManager.isEnglish ? 10 : null,
+                        right: localizationManager.isEnglish ? null : 10,
                         child: InkWell(
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.pop(context);
+                          },
                           child: Container(
                             decoration: BoxDecoration(
                               color: AppColors.mainColor,
@@ -314,4 +387,16 @@ class _PickUpLocationMapState
       ),
     );
   }
+}
+
+class PickUpLocationMapWidgetParams {
+  final StoreEntity? storeEntity;
+  final UserEntity? userEntity;
+  final bool showStoreFirst;
+
+  const PickUpLocationMapWidgetParams({
+    this.storeEntity,
+    this.userEntity,
+    this.showStoreFirst = true,
+  });
 }

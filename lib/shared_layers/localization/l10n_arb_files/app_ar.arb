@@ -5,7 +5,7 @@
   "receiveTimeout": "انتهت مهلة الاستقبال في الاتصال بالخادم ⏰",
   "cancel": "تم إلغاء الطلب إلى الخادم ✖",
   "connectionError": "لا يوجد اتصال بالإنترنت \uD83D\uDE11",
-  "unknown": "حدث خطأ ما \uD83E\uDD14",
+  "unknownError": "حدث خطأ ما \uD83E\uDD14",
   "badCertificate": "الشهادة المقدمة من الخادم غير صالحة \uD83D\uDCD1",
   "somethingWentWrong": "حدث خطأ ما \uD83E\uDD14",
   "validationFunctions____________": "$$$ تعليق $$$",
@@ -132,5 +132,12 @@
   "loading": "جاري التحميل.....",
   "acceptedSuccessfully": "تم القبول بنجاح!",
   "updatedSuccessfully": "تم التحديث بنجاح!",
-  "orderFinishedSuccessfully": "تم إنهاء الطلب بنجاح!"
+  "orderFinishedSuccessfully": "تم إنهاء الطلب بنجاح!",
+
+  "pickUpLocation________": "$$$ تعليق $$$",
+  "errorLoadingTheMap": "حدث خطأ أثناء تحميل الخريطة",
+  "user": "مستخدم",
+  "flowery": "فلوري",
+  "yourLocation": "موقعك"
+
 }

@@ -120,7 +120,7 @@ abstract class AppThemes {
         padding: const EdgeInsets.all(14),
         backgroundColor: AppColors.mainColor,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-        textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+        textStyle: const TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
       ),
     ),
     inputDecorationTheme: InputDecorationTheme(
@@ -170,7 +170,7 @@ abstract class AppThemes {
     filledButtonTheme: FilledButtonThemeData(
       style: ButtonStyle(
         padding: const WidgetStatePropertyAll(
-          EdgeInsets.symmetric(vertical: 16, horizontal: 24),
+          EdgeInsets.symmetric(vertical: 12, horizontal: 24),
         ),
         textStyle: WidgetStatePropertyAll(
           TextStyle(
@@ -197,7 +197,7 @@ abstract class AppThemes {
       style: OutlinedButton.styleFrom(
         foregroundColor: AppColors.black,
         padding: const EdgeInsetsDirectional.symmetric(
-          vertical: 10,
+          vertical: 12,
           horizontal: 24,
         ),
         textStyle: TextStyle(

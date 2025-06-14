@@ -42,7 +42,7 @@ class ApiErrorHandler {
         case DioExceptionType.connectionError:
           return _appLocalizations.connectionError;
         case DioExceptionType.unknown:
-          return _appLocalizations.unknown;
+          return _appLocalizations.unknownError;
         case DioExceptionType.badCertificate:
           return _appLocalizations.badCertificate;
       }
