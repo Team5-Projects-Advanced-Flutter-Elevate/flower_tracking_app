@@ -111,7 +111,9 @@ class _VehicleTextFormFieldsState
                         (value) => vehicleLicenseFocusNode.requestFocus(),
                     validator: (val) {
                       if (val!.isEmpty) {
-                        return AppLocalizations.of(context)!.vehicleNumberPrompt;
+                        return AppLocalizations.of(
+                          context,
+                        )!.vehicleNumberPrompt;
                       }
                       return null;
                     },
@@ -159,8 +161,12 @@ class _VehicleTextFormFieldsState
                           prefixIcon:
                               !state.isLicenseImagePicked!
                                   ? null
-                                  : Icon(Icons.image, color: AppColors.mainColor),
-                          labelText: AppLocalizations.of(context)!.vehicleLicense,
+                                  : Icon(
+                                    Icons.image,
+                                    color: AppColors.mainColor,
+                                  ),
+                          labelText:
+                              AppLocalizations.of(context)!.vehicleLicense,
                           hintText:
                               !state.isLicenseImagePicked!
                                   ? AppLocalizations.of(
@@ -188,7 +194,8 @@ class _VehicleTextFormFieldsState
                                 EditVehicleRequest(
                                   vehicleLicense: state.pickedLicenseImage,
                                   vehicleNumber: vehicleNumberController.text,
-                                  vehicleType: cubit.state.selectedVehicle?.type,
+                                  vehicleType:
+                                      cubit.state.selectedVehicle?.type,
                                 ),
                               ),
                             );

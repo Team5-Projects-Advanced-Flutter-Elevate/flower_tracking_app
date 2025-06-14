@@ -9,7 +9,7 @@ part of 'logout_api_client.dart';
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers,unused_element,unnecessary_string_interpolations
 
 class _LogoutApiClient implements LogoutApiClient {
-  _LogoutApiClient(this._dio, ) {
+  _LogoutApiClient(this._dio) {
     baseUrl ??= 'https://flower.elevateegy.com/';
     errorLogger = null;
   }
