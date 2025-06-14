@@ -57,7 +57,6 @@ class VehicleCubit extends Cubit<VehicleState> {
     var result = await getVehicleByIdUseCase.execute(id);
     switch (result) {
       case Success<VehicleResponseEntity>():
-        print(result.data.vehicle?.type.toString());
         _selectVehicle(result.data.vehicle);
 
       case Error<VehicleResponseEntity>():

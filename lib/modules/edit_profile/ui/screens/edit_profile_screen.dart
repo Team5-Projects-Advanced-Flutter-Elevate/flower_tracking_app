@@ -1,7 +1,9 @@
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flower_tracking_app/core/colors/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../../../core/bases/base_stateful_widget_state.dart';
 import '../../../../core/di/injectable_initializer.dart';
 import '../../../../core/utilities/image_picker.dart';
@@ -10,8 +12,6 @@ import '../../../../core/widgets/error_state_widget.dart';
 import '../../../../core/widgets/loading_state_widget.dart';
 import '../cubit/states.dart';
 import '../cubit/view_model.dart';
-import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
-
 import 'change_password_screen.dart';
 
 class EditProfileScreen extends StatefulWidget {
@@ -39,7 +39,6 @@ class _EditProfileScreenState
     super.initState();
     editProfileViewModel = getIt.get<EditProfileViewModel>();
     editProfileViewModel.onIntent(EditProfileIntent());
-
     // Attach listeners for dirty-check
     firstName.addListener(_checkDirty);
     lastName.addListener(_checkDirty);

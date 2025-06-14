@@ -17,11 +17,13 @@ class VehicleTextFormFields extends StatefulWidget {
   const VehicleTextFormFields({
     super.key,
     required this.formKey,
-    required this.whenApplySuccess,
+    required this.whenUpdatedSuccess,
+    required this.editVehicleRequest,
   });
 
   final GlobalKey<FormState> formKey;
-  final void Function() whenApplySuccess;
+  final void Function() whenUpdatedSuccess;
+  final EditVehicleRequest editVehicleRequest;
 
   @override
   State<VehicleTextFormFields> createState() => _VehicleTextFormFieldsState();
@@ -34,12 +36,15 @@ class _VehicleTextFormFieldsState
 
   late FocusNode vehicleNumberFocusNode;
   late FocusNode vehicleLicenseFocusNode;
+  bool en = true;
 
   @override
   void initState() {
     super.initState();
 
-    vehicleNumberController = TextEditingController();
+    vehicleNumberController = TextEditingController(
+      text: widget.editVehicleRequest.vehicleNumber,
+    );
     vehicleLicenseController = TextEditingController();
 
     vehicleNumberFocusNode = FocusNode();
@@ -63,7 +68,7 @@ class _VehicleTextFormFieldsState
       listener: (context, state) {
         if (state.editVehicleStatus == EditeVehicleStatus.success) {
           /// navigate to apply successfully screen
-          widget.whenApplySuccess();
+          widget.whenUpdatedSuccess();
         }
       },
       builder: (context, state) {
@@ -171,22 +176,29 @@ class _VehicleTextFormFieldsState
                     return SizedBox(
                       width: double.infinity,
                       child: FilledButton(
-                        onPressed: () async {
-                          FocusManager.instance.primaryFocus?.unfocus();
-                          if (!widget.formKey.currentState!.validate()) {
-                            return;
-                          }
+                        onPressed:
+                            en
+                                ? () async {
+                                  FocusManager.instance.primaryFocus?.unfocus();
+                                  if (!widget.formKey.currentState!
+                                      .validate()) {
+                                    return;
+                                  }
 
-                          cubit.doIntent(
-                            EditVehicleIntent(
-                              EditVehicleRequest(
-                                vehicleLicense: state.pickedLicenseImage,
-                                vehicleNumber: vehicleNumberController.text,
-                                vehicleType: cubit.state.selectedVehicle?.type,
-                              ),
-                            ),
-                          );
-                        },
+                                  cubit.doIntent(
+                                    EditVehicleIntent(
+                                      EditVehicleRequest(
+                                        vehicleLicense:
+                                            state.pickedLicenseImage,
+                                        vehicleNumber:
+                                            vehicleNumberController.text,
+                                        vehicleType:
+                                            cubit.state.selectedVehicle?.type,
+                                      ),
+                                    ),
+                                  );
+                                }
+                                : null,
                         child:
                             state.editVehicleStatus ==
                                     EditeVehicleStatus.loading
@@ -206,11 +218,6 @@ class _VehicleTextFormFieldsState
         }
       },
     );
-  }
-
-  void clearControllers() {
-    vehicleNumberController.clear();
-    vehicleLicenseController.clear();
   }
 
   Future<void> showSheet(bool isLicense) => showModalBottomSheet(

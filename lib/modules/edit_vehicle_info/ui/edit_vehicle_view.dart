@@ -1,5 +1,4 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
-import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:flower_tracking_app/core/apis/api_error/api_error_handler.dart';
 import 'package:flower_tracking_app/core/bases/base_stateful_widget_state.dart';
 import 'package:flower_tracking_app/core/di/injectable_initializer.dart';
@@ -10,8 +9,12 @@ import 'package:flower_tracking_app/shared_layers/localization/generated/app_loc
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../data/models/edite_profile_response.dart';
+
 class EditVehicleInfoScreen extends StatefulWidget {
-  const EditVehicleInfoScreen({super.key});
+  const EditVehicleInfoScreen({super.key, required this.editVehicleRequest});
+
+  final EditVehicleRequest editVehicleRequest;
 
   @override
   State<EditVehicleInfoScreen> createState() => _EditVehicleInfoScreenState();
@@ -25,19 +28,10 @@ class _EditVehicleInfoScreenState
   @override
   void initState() {
     super.initState();
-
     cubit.doIntent(LoadVehiclesIntent());
-    cubit.doIntent(GetVehicleByIdIntent('676b63ef9f3884b3405c14a5'));
-
-    BackButtonInterceptor.add(myInterceptor);
-  }
-
-  bool myInterceptor(bool stopDefaultButtonEvent, RouteInfo info) {
-    Navigator.pushReplacementNamed(
-      context,
-      DefinedRoutes.onboardingScreenRoute,
+    cubit.doIntent(
+      GetVehicleByIdIntent(widget.editVehicleRequest.vehicleType ?? ''),
     );
-    return true;
   }
 
   @override
@@ -45,15 +39,12 @@ class _EditVehicleInfoScreenState
     return BlocProvider(
       create: (context) => cubit,
       child: GestureDetector(
-        onTap: () => unFocusKeyboard(),
+        onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
         child: Scaffold(
           appBar: AppBar(
             leading: IconButton(
               onPressed: () {
-                Navigator.pushReplacementNamed(
-                  context,
-                  DefinedRoutes.onboardingScreenRoute,
-                );
+                Navigator.pop(context);
               },
               icon: const Icon(Icons.arrow_back_ios_new_outlined),
             ),
@@ -104,15 +95,14 @@ class _EditVehicleInfoScreenState
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     VehicleTextFormFields(
+                      editVehicleRequest: widget.editVehicleRequest,
                       formKey: _formKey,
-                      whenApplySuccess: () async {
-                        Navigator.of(
-                          context,
-                        ).popUntil((route) => route.isFirst);
-                        await Navigator.pushReplacementNamed(
-                          context,
-                          DefinedRoutes.applicationApproved,
+                      whenUpdatedSuccess: () async {
+                        displaySnackBar(
+                          contentType: ContentType.success,
+                          title: 'Profile updated successfully',
                         );
+                        Navigator.pop(context);
                       },
                     ),
 
@@ -125,15 +115,5 @@ class _EditVehicleInfoScreenState
         ),
       ),
     );
-  }
-
-  void unFocusKeyboard() {
-    FocusManager.instance.primaryFocus?.unfocus();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    BackButtonInterceptor.remove(myInterceptor);
   }
 }

@@ -9,7 +9,6 @@ import 'package:flower_tracking_app/modules/onboarding/ui/onboarding_screen.dart
 import 'package:flutter/material.dart';
 
 import '../../modules/authentication/ui/login/login_screen.dart';
-import '../../modules/edit_vehicle_info/ui/edit_vehicle_view.dart';
 import '../../modules/home/ui/home_screen_mine.dart';
 import '../../modules/home/ui/profile/ui/profile_screen.dart';
 import '../../modules/order_details/order_details_screen.dart';
@@ -50,10 +49,7 @@ abstract class GenerateRoute {
           return MaterialPageRoute(
             builder: (context) => OrderDetailsScreen(orderId: args as String),
           );
-        case DefinedRoutes.editeVehicleInfoScreen:
-          return MaterialPageRoute(
-            builder: (context) => const EditVehicleInfoScreen(),
-          );
+
         default:
           return _errorRoute();
       }
