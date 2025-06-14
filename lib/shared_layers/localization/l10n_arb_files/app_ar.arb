@@ -5,7 +5,7 @@
   "receiveTimeout": "انتهت مهلة الاستقبال في الاتصال بالخادم ⏰",
   "cancel": "تم إلغاء الطلب إلى الخادم ✖",
   "connectionError": "لا يوجد اتصال بالإنترنت \uD83D\uDE11",
-  "unknown": "حدث خطأ ما \uD83E\uDD14",
+  "unknownError": "حدث خطأ ما \uD83E\uDD14",
   "badCertificate": "الشهادة المقدمة من الخادم غير صالحة \uD83D\uDCD1",
   "somethingWentWrong": "حدث خطأ ما \uD83E\uDD14",
   "validationFunctions____________": "$$$ تعليق $$$",
@@ -144,5 +144,12 @@
   "logoutTitle": "تسجيل الخروج",
   "logoutMessage": "هل أنت متأكد أنك تريد تسجيل الخروج؟",
   "cancelButton": "إلغاء",
-  "confirmButton": "تأكيد"
+  "confirmButton": "تأكيد",
+
+  "pickUpLocation________": "$$$ تعليق $$$",
+  "errorLoadingTheMap": "حدث خطأ أثناء تحميل الخريطة",
+  "user": "مستخدم",
+  "flowery": "فلوري",
+  "yourLocation": "موقعك"
+
 }

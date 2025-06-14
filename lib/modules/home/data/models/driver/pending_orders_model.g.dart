@@ -32,15 +32,16 @@ Map<String, dynamic> _$PendingOrdersModelToJson(PendingOrdersModel instance) =>
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers,unused_element,unnecessary_string_interpolations
 
 class _OrdersRemoteDataSource implements OrdersRemoteDataSource {
-  _OrdersRemoteDataSource(this._dio, {this.baseUrl, this.errorLogger}) {
+  _OrdersRemoteDataSource(this._dio) {
     baseUrl ??= 'https://flower.elevateegy.com/';
+    errorLogger = null;
   }
 
   final Dio _dio;
 
   String? baseUrl;
 
-  final ParseErrorLogger? errorLogger;
+  late final ParseErrorLogger? errorLogger;
 
   @override
   Future<PendingOrdersModel> getDriverOrders(int page, int limit) async {

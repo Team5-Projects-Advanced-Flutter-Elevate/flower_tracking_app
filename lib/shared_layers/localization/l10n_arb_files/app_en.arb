@@ -5,7 +5,7 @@
   "receiveTimeout": "Receive timeout in connection with server ⏰",
   "cancel": "Request to server was cancelled ✖",
   "connectionError": "No Internet connection \uD83D\uDE11",
-  "unknown": "Something Went Wrong \uD83E\uDD14",
+  "unknownError": "Something Went Wrong \uD83E\uDD14",
   "badCertificate": "The certificate provided by the server is not valid \uD83D\uDCD1",
   "somethingWentWrong": "Something Went Wrong \uD83E\uDD14",
   "validationFunctions____________": "$$$ Comment $$$",
@@ -31,10 +31,12 @@
   "noMatch": "No Match!",
   "pleaseEnterAddress": "Please enter the address",
   "pleaseEnterValidAddress": "Please enter a valid address",
+
   "onboardingScreen____________": "$$$ Comment $$$",
   "onboardingWelcomeMessage": "Welcome to\nFlowery Rider app",
   "applyNow": "Apply Now",
   "pleaseEnterValidRecipient": "Please enter a valid recipient",
+
   "loginScreen___________": "$$ Comment $$",
   "login": "Login",
   "email": "Email",
@@ -143,5 +145,12 @@
   "confirmButton": "Confirm",
   "orderFinishedSuccessfully": "Order Finished Successfully!",
   "editProfile": "Edit profile",
-  "update": "Update"
+  "update": "Update",
+
+  "pickUpLocation________": "$$$ Comment $$$",
+  "errorLoadingTheMap": "Error Occurred While Loading The Map",
+  "user": "User",
+  "flowery": "Flowery",
+  "yourLocation": "Your Location"
+
 }

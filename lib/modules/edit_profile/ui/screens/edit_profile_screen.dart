@@ -283,6 +283,7 @@ class _EditProfileScreenState
                               title: const Text('Female'),
                               value: Gender.female,
                               groupValue: _selectedIndex,
+                              contentPadding: EdgeInsets.zero,
                               onChanged:
                                   (value) => _onGenderChanged(value, state),
                             ),
@@ -296,6 +297,7 @@ class _EditProfileScreenState
                               title: const Text('Male'),
                               value: Gender.male,
                               groupValue: _selectedIndex,
+                              contentPadding: EdgeInsets.zero,
                               onChanged:
                                   (value) => _onGenderChanged(value, state),
                             ),

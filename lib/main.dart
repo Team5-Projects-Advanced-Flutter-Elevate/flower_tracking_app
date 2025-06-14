@@ -14,7 +14,6 @@ import 'package:flower_tracking_app/shared_layers/storage/contracts/flutter_secu
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:provider/provider.dart';
-
 import 'core/routing/generate_route.dart';
 import 'core/utilities/dio/dio_service/dio_service.dart';
 
@@ -71,6 +70,10 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
     FlutterNativeSplash.remove();
+    // Testing when change locale
+    // WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+    //   getIt.get<LocalizationManager>().changeLocal("en");
+    // });
   }
 
   @override
@@ -91,8 +94,8 @@ class _MyAppState extends State<MyApp> {
             themeMode: ThemeMode.light,
             localizationsDelegates: AppLocalizations.localizationsDelegates,
             supportedLocales: AppLocalizations.supportedLocales,
-            locale: Locale(localizationManager.currentLocale),
             navigatorKey: globalNavigatorKey,
+            locale: Locale(localizationManager.currentLocale),
             onGenerateRoute: GenerateRoute.onGenerateRoute,
             onGenerateInitialRoutes: (initialRoute) {
               return GenerateRoute.onGenerateInitialRoutes(
@@ -101,25 +104,6 @@ class _MyAppState extends State<MyApp> {
                 currentAcceptedOrderId: currentAcceptedOrderId,
               );
             },
-            // //initialRoute: DefinedRoutes.onboardingScreenRoute,
-            // onGenerateRoute: GenerateRoute.onGenerateRoute,
-            // onGenerateInitialRoutes: (initialRoute) {
-            //   return GenerateRoute.onGenerateInitialRoutes(
-            //     initialRoute: initialRoute,
-            //     loginInfo: loggedDriverData,
-            //   );
-            // },
-            //home: LauncherScreen(),
-            // navigatorKey: globalNavigatorKey,
-            // onGenerateRoute: GenerateRoute.onGenerateRoute,
-            // initialRoute: DefinedRoutes.onboardingScreenRoute,
-            // onGenerateInitialRoutes: (initialRoute) {
-            //   return GenerateRoute.onGenerateInitialRoutes(
-            //     initialRoute: initialRoute,
-            //     loginInfo: null,
-            //     rememberMe: false
-            //   );
-            // },
           ),
         );
       },

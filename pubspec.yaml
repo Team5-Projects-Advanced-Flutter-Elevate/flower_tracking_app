@@ -95,6 +95,11 @@ dependencies:
   flutter_svg: ^2.1.0
   custom_refresh_indicator: ^4.0.1
   bloc: ^9.0.0
+  flutter_polyline_points: ^2.1.0
+  google_maps_flutter: ^2.12.2
+  flutter_map: ^8.1.1
+  location: ^8.0.0
+  latlong2: ^0.9.1
 
 
 
