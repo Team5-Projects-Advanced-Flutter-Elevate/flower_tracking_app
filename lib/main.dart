@@ -1,6 +1,5 @@
 import 'package:flower_tracking_app/core/bases/base_inherited_widget.dart';
 import 'package:flower_tracking_app/core/di/injectable_initializer.dart';
-import 'package:flower_tracking_app/core/routing/generate_route.dart';
 import 'package:flower_tracking_app/core/themes/app_themes.dart';
 import 'package:flower_tracking_app/core/validation/validation_functions.dart';
 import 'package:flower_tracking_app/modules/authentication/data/data_sources_contracts/login/local/login_local_data_source.dart';
@@ -10,12 +9,13 @@ import 'package:flower_tracking_app/shared_layers/localization/l10n_manager/loca
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:provider/provider.dart';
-import 'core/utilities/dio/dio_service/dio_service.dart';
 
+import 'core/utilities/dio/dio_service/dio_service.dart';
 import 'modules/authentication/ui/forget_password/view/forget_password_screen.dart';
 
 GlobalKey<NavigatorState> globalNavigatorKey = GlobalKey<NavigatorState>();
 LoggedDriverDataResponseEntity? loggedDriverData;
+
 void main() async {
   FlutterNativeSplash.preserve(
     widgetsBinding: WidgetsFlutterBinding.ensureInitialized(),
@@ -77,15 +77,9 @@ class _MyAppState extends State<MyApp> {
             supportedLocales: AppLocalizations.supportedLocales,
             locale: Locale(localizationManager.currentLocale),
             navigatorKey: globalNavigatorKey,
-            //initialRoute: DefinedRoutes.onboardingScreenRoute,
-            onGenerateRoute: GenerateRoute.onGenerateRoute,
-            onGenerateInitialRoutes: (initialRoute) {
-              return GenerateRoute.onGenerateInitialRoutes(
-                initialRoute: initialRoute,
-                loginInfo: loggedDriverData,
-              );
-            },
-            //home: ForgetPasswordScreen(),
+
+            //initialRoute: DefinedRoutes.forgetPasswordScreenRoute,
+            home: const ForgetPasswordScreen(),
             // navigatorKey: globalNavigatorKey,
             // onGenerateRoute: GenerateRoute.onGenerateRoute,
             // initialRoute: DefinedRoutes.onboardingScreenRoute,
