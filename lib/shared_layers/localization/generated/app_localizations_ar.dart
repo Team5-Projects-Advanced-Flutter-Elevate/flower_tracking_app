@@ -463,4 +463,10 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get yourLocation => 'موقعك';
+
+  @override
+  String get thanksPage_______________ => '\$\$\$ تعليق \$\$\$';
+
+  @override
+  String get orderDeliveredSuccessfully => 'تم تسليم الطلب\nبنجاح';
 }

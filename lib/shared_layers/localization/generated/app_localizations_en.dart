@@ -463,4 +463,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get yourLocation => 'Your Location';
+
+  @override
+  String get thanksPage_______________ => '\$\$\$ Comment \$\$\$';
+
+  @override
+  String get orderDeliveredSuccessfully => 'The order delivered\nsuccessfully';
 }

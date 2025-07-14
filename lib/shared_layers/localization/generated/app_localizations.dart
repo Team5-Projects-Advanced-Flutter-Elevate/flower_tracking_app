@@ -997,6 +997,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Your Location'**
   String get yourLocation;
+
+  /// No description provided for @thanksPage_______________.
+  ///
+  /// In en, this message translates to:
+  /// **'\$\$\$ Comment \$\$\$'**
+  String get thanksPage_______________;
+
+  /// No description provided for @orderDeliveredSuccessfully.
+  ///
+  /// In en, this message translates to:
+  /// **'The order delivered\nsuccessfully'**
+  String get orderDeliveredSuccessfully;
 }
 
 class _AppLocalizationsDelegate

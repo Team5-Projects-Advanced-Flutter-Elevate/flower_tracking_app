@@ -150,6 +150,8 @@
   "errorLoadingTheMap": "حدث خطأ أثناء تحميل الخريطة",
   "user": "مستخدم",
   "flowery": "فلوري",
-  "yourLocation": "موقعك"
+  "yourLocation": "موقعك",
+  "thanksPage_______________": "$$$ تعليق $$$",
+  "orderDeliveredSuccessfully": "تم تسليم الطلب\nبنجاح"
 
 }

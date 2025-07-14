@@ -151,6 +151,8 @@
   "errorLoadingTheMap": "Error Occurred While Loading The Map",
   "user": "User",
   "flowery": "Flowery",
-  "yourLocation": "Your Location"
+  "yourLocation": "Your Location",
 
+  "thanksPage_______________": "$$$ Comment $$$",
+  "orderDeliveredSuccessfully": "The order delivered\nsuccessfully"
 }

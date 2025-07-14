@@ -11,4 +11,5 @@ abstract class DefinedRoutes {
   static const String profileScreen = 'Profile Screen';
   static const String editeVehicleInfoScreen = 'editeVehicleInfoScreen';
   static const String pickUpLocationMap = 'pickUpLocationMapRoute';
+  static const String thanksPageScreenRoute = "thanksPageScreen";
 }
