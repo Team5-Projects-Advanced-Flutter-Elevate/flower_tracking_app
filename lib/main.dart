@@ -14,7 +14,6 @@ import 'package:flower_tracking_app/shared_layers/storage/contracts/flutter_secu
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:provider/provider.dart';
-import 'core/routing/defined_routes.dart';
 import 'core/routing/generate_route.dart';
 import 'core/utilities/dio/dio_service/dio_service.dart';
 
