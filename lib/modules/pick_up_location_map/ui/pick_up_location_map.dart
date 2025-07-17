@@ -171,6 +171,12 @@ class _PickUpLocationMapState
                                                     LocationMapConstants
                                                         .tileUrl,
                                                 subdomains: ['a', 'b', 'c'],
+                                                tileProvider: NetworkTileProvider(
+                                                  headers: {
+                                                    'User-Agent': 'FloweryTrackingApp/1.0 (klilmohammed9@gmail.com)',
+                                                    'Referer': 'https://floweryTrackingApp.example.com',
+                                                  },
+                                                ),
                                                 errorTileCallback: (
                                                   tile,
                                                   error,
