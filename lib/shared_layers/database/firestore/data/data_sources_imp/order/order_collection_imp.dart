@@ -45,7 +45,7 @@ class OrderCollectionImp implements OrderCollection {
     required String orderId,
   }) async {
     var result = await ApiExecutor.executeApi(
-      () => _getOrderCollectionOfDriver(driverId).doc(orderId).get(),
+      () => _getOrderCollectionOfDriver(driverId).doc(orderId).get(const GetOptions(source: Source.server)),
     );
     switch (result) {
       case Success<DocumentSnapshot<OrderDtoFirestore>>():

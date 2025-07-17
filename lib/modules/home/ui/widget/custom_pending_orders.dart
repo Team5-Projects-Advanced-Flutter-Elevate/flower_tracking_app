@@ -1,12 +1,16 @@
 import 'package:flower_tracking_app/core/bases/base_stateful_widget_state.dart';
 import 'package:flower_tracking_app/core/colors/app_colors.dart';
 import 'package:flower_tracking_app/core/constants/assets_paths/assets_paths.dart';
+import 'package:flower_tracking_app/modules/home/ui/cubit/pending_orders/pending_orders_cubit.dart';
+import 'package:flower_tracking_app/modules/home/ui/cubit/pending_orders/pending_orders_state.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CustomPendingOrders extends StatefulWidget {
   const CustomPendingOrders({
     super.key,
+    required this.orderIndex,
     required this.title,
     required this.price,
     required this.pickUpAddress,
@@ -19,7 +23,7 @@ class CustomPendingOrders extends StatefulWidget {
     required this.onAccept,
     required this.onReject,
   });
-
+  final int orderIndex;
   final String title;
   final String price;
   final String pickUpAddress;
@@ -206,9 +210,31 @@ class _CustomPendingOrdersState
                       ),
                     ),
                     SizedBox(width: screenWidth * 0.016),
-                    FilledButton(
-                      onPressed: widget.onAccept,
-                      child: Text(appLocalizations.accept),
+                    BlocBuilder<OrdersCubit, OrdersState>(
+                      buildWhen: (previous, current) {
+                        if (current.pressedAcceptOfOrderIndex ==
+                            widget.orderIndex) {
+                          return true;
+                        }
+                        return false;
+                      },
+                      builder: (context, state) {
+                        return FilledButton(
+                          onPressed: widget.onAccept,
+                          child:
+                              state.addingOrderToFirestore == Status.loading
+                                  ? const Center(
+                                    child: SizedBox(
+                                      width: 20,
+                                      height: 20,
+                                      child: CircularProgressIndicator(
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  )
+                                  : Text(appLocalizations.accept),
+                        );
+                      },
                     ),
                   ],
                 ),

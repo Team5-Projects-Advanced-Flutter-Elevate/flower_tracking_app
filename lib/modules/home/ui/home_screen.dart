@@ -144,12 +144,8 @@ class _HomeScreenState extends BaseStatefulWidgetState<HomeScreen> {
                         switch (state.addingOrderToFirestore) {
                           case Status.loadingMore:
                           case Status.initial:
-                            break;
                           case Status.loading:
-                            displaySnackBar(
-                              contentType: ContentType.help,
-                              title: appLocalizations.loading,
-                            );
+                            break;
                           case Status.success:
                             displaySnackBar(
                               contentType: ContentType.success,
@@ -213,6 +209,7 @@ class _HomeScreenState extends BaseStatefulWidgetState<HomeScreen> {
                                         ? orderEntity.orderItems![0]
                                         : null;
                                 return CustomPendingOrders(
+                                  orderIndex: index,
                                   title:
                                       orderItem?.product?.title ??
                                       appLocalizations.unKnownProduct,
@@ -241,6 +238,7 @@ class _HomeScreenState extends BaseStatefulWidgetState<HomeScreen> {
                                   onAccept: () {
                                     cubit.doIntent(
                                       OnAcceptButtonClick(
+                                        pendingOrderIndex: index,
                                         driverId: getIt.get(
                                           instanceName:
                                               FirestoreConstants.driverId,
