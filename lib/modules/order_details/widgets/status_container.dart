@@ -26,11 +26,12 @@ class _StatusButtonState extends BaseStatefulWidgetState<StatusButton> {
   void didUpdateWidget(covariant StatusButton oldWidget) {
     super.didUpdateWidget(oldWidget);
     if ((oldWidget.containerStatus == Status.success ||
-        oldWidget.containerStatus == Status.error) &&
+            oldWidget.containerStatus == Status.error) &&
         widget.containerStatus == Status.idle) {
       innerStatus = widget.containerStatus;
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -64,11 +65,17 @@ class _StatusButtonState extends BaseStatefulWidgetState<StatusButton> {
                   ),
                 )
                 : innerStatus == Status.loading
-                ? Center(child: CircularProgressIndicator(color: AppColors.white))
+                ? Center(
+                  child: CircularProgressIndicator(color: AppColors.white),
+                )
                 : innerStatus == Status.success
-                ? const Icon(Icons.check, color: Colors.white,size: 35,)
+                ? const Icon(Icons.check, color: Colors.white, size: 35)
                 : innerStatus == Status.error
-                ? const Icon(Icons.cancel_outlined, color: Colors.white,size: 35,)
+                ? const Icon(
+                  Icons.cancel_outlined,
+                  color: Colors.white,
+                  size: 35,
+                )
                 : const SizedBox(),
       ),
     );

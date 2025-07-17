@@ -264,8 +264,7 @@ class _OrderDetailsScreenState
                                         driverId: driverId,
                                         orderId: widget.orderId,
                                         buttonIndex:
-                                            orderDetailsViewModel
-                                                .selectedIndex,
+                                            orderDetailsViewModel.selectedIndex,
                                       ),
                                     );
                                   },
