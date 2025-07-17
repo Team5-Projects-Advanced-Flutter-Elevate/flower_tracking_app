@@ -136,7 +136,6 @@
   "loading": "Loading.....",
   "acceptedSuccessfully": "Accepted Successfully!",
   "updatedSuccessfully": "Updated Successfully!",
-  "orderFinishedSuccessfully": "Order Finished Successfully!",
   "myOrders": "My orders",
   "cancelled": "Cancelled",
   "completed": "Completed",
@@ -144,11 +143,16 @@
   "logoutMessage": "Are you sure you want to logout?",
   "cancelButton": "Cancel",
   "confirmButton": "Confirm",
+  "orderFinishedSuccessfully": "Order Finished Successfully!",
+  "editProfile": "Edit profile",
+  "update": "Update",
 
   "pickUpLocation________": "$$$ Comment $$$",
   "errorLoadingTheMap": "Error Occurred While Loading The Map",
   "user": "User",
   "flowery": "Flowery",
-  "yourLocation": "Your Location"
+  "yourLocation": "Your Location",
 
+  "thanksPage_______________": "$$$ Comment $$$",
+  "orderDeliveredSuccessfully": "The order delivered\nsuccessfully"
 }

@@ -1,6 +1,7 @@
 import 'package:flower_tracking_app/core/bases/base_stateful_widget_state.dart';
 import 'package:flower_tracking_app/core/colors/app_colors.dart';
 import 'package:flower_tracking_app/core/constants/assets_paths/assets_paths.dart';
+import 'package:flower_tracking_app/modules/home/ui/constants/home_constants.dart';
 import 'package:flower_tracking_app/core/di/injectable_initializer.dart';
 import 'package:flower_tracking_app/modules/home/ui/home_screen.dart';
 import 'package:flower_tracking_app/modules/home/ui/driver/orders_screen.dart';
@@ -42,6 +43,7 @@ class _LayoutScreenState extends BaseStatefulWidgetState<LayoutScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: const Key(HomeConstants.layoutScreenKey),
       body: PageView(
         controller: controller,
         physics: const NeverScrollableScrollPhysics(),

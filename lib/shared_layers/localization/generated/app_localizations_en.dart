@@ -414,9 +414,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get updatedSuccessfully => 'Updated Successfully!';
 
   @override
-  String get orderFinishedSuccessfully => 'Order Finished Successfully!';
-
-  @override
   String get myOrders => 'My orders';
 
   @override
@@ -438,6 +435,15 @@ class AppLocalizationsEn extends AppLocalizations {
   String get confirmButton => 'Confirm';
 
   @override
+  String get orderFinishedSuccessfully => 'Order Finished Successfully!';
+
+  @override
+  String get editProfile => 'Edit profile';
+
+  @override
+  String get update => 'Update';
+
+  @override
   String get pickUpLocation________ => '\$\$\$ Comment \$\$\$';
 
   @override
@@ -451,4 +457,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get yourLocation => 'Your Location';
+
+  @override
+  String get thanksPage_______________ => '\$\$\$ Comment \$\$\$';
+
+  @override
+  String get orderDeliveredSuccessfully => 'The order delivered\nsuccessfully';
 }

@@ -83,7 +83,7 @@ class _OrderDetailsScreenState
                         if (!context.mounted) return;
                         Navigator.pushNamedAndRemoveUntil(
                           context,
-                          DefinedRoutes.layoutScreen,
+                          DefinedRoutes.thanksPageScreenRoute,
                           (route) => false,
                         );
                         displaySnackBar(

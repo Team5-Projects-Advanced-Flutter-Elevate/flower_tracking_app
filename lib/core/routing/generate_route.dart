@@ -11,6 +11,7 @@ import '../../modules/authentication/ui/login/login_screen.dart';
 import '../../modules/home/ui/home_screen_mine.dart';
 import '../../modules/home/ui/profile/ui/profile_screen.dart';
 import '../../modules/order_details/order_details_screen.dart';
+import '../../modules/thanks_page/ui/thanks_page_screen.dart';
 
 abstract class GenerateRoute {
   static Route<dynamic>? onGenerateRoute(RouteSettings routeSettings) {
@@ -52,6 +53,10 @@ abstract class GenerateRoute {
                 (context) => PickUpLocationMap(
                   params: args as PickUpLocationMapWidgetParams,
                 ),
+          );
+        case DefinedRoutes.thanksPageScreenRoute:
+          return MaterialPageRoute(
+            builder: (context) => const ThanksPageScreen(),
           );
         default:
           return _errorRoute();

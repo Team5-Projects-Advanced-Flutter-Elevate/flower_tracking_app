@@ -5,7 +5,7 @@ import 'package:injectable/injectable.dart';
 
 @injectable
 class GetVehiclesUseCase {
-  final ApplyRepo applyRepo;
+  final VehicleRepo applyRepo;
 
   GetVehiclesUseCase(this.applyRepo);
 

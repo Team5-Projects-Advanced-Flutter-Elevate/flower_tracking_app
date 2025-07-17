@@ -905,12 +905,6 @@ abstract class AppLocalizations {
   /// **'Updated Successfully!'**
   String get updatedSuccessfully;
 
-  /// No description provided for @orderFinishedSuccessfully.
-  ///
-  /// In en, this message translates to:
-  /// **'Order Finished Successfully!'**
-  String get orderFinishedSuccessfully;
-
   /// No description provided for @myOrders.
   ///
   /// In en, this message translates to:
@@ -953,6 +947,24 @@ abstract class AppLocalizations {
   /// **'Confirm'**
   String get confirmButton;
 
+  /// No description provided for @orderFinishedSuccessfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Order Finished Successfully!'**
+  String get orderFinishedSuccessfully;
+
+  /// No description provided for @editProfile.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit profile'**
+  String get editProfile;
+
+  /// No description provided for @update.
+  ///
+  /// In en, this message translates to:
+  /// **'Update'**
+  String get update;
+
   /// No description provided for @pickUpLocation________.
   ///
   /// In en, this message translates to:
@@ -982,6 +994,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Your Location'**
   String get yourLocation;
+
+  /// No description provided for @thanksPage_______________.
+  ///
+  /// In en, this message translates to:
+  /// **'\$\$\$ Comment \$\$\$'**
+  String get thanksPage_______________;
+
+  /// No description provided for @orderDeliveredSuccessfully.
+  ///
+  /// In en, this message translates to:
+  /// **'The order delivered\nsuccessfully'**
+  String get orderDeliveredSuccessfully;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
