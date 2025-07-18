@@ -337,7 +337,7 @@ class _EditProfileScreenState
                             state.updateProfileStatus ==
                                     EditProfileStatus.loading
                                 ? const Center(child: LoadingStateWidget())
-                                : ElevatedButton(
+                                : FilledButton(
                                   onPressed:
                                       isDirty
                                           ? () {

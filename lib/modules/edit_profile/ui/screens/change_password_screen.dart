@@ -178,8 +178,7 @@ class _ChangePasswordScreenState
                       // Update Button
                       SizedBox(
                         width: double.infinity,
-
-                        child: ElevatedButton(
+                        child: FilledButton(
                           onPressed: () {
                             FocusManager.instance.primaryFocus?.unfocus();
                             if (_formKey.currentState!.validate()) {

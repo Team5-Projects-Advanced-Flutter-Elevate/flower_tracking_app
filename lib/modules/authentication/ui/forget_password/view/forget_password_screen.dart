@@ -64,10 +64,9 @@ class _ForgetPasswordScreenState
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.04),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  SizedBox(height: screenHeight * 0.05),
+                  SizedBox(height: screenHeight * 0.1),
                   Text(
                     appLocalizations.forgetPassword,
                     style: theme.textTheme.titleLarge,
@@ -101,7 +100,7 @@ class _ForgetPasswordScreenState
                       if (state is EmailLoadingState) {
                         return loadingAlert();
                       }
-                      return ElevatedButton(
+                      return FilledButton(
                         onPressed: () {
                           if (formKey.currentState!.validate()) {
                             emailViewModel.onIntent(
@@ -115,7 +114,7 @@ class _ForgetPasswordScreenState
                     listener: (context, state) {
                       if (state is EmailSuccessState) {
                         alert('success', '');
-                        Navigator.push(
+                        Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
                             builder:

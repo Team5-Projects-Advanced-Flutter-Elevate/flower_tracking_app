@@ -1,3 +1,4 @@
+import 'package:flower_tracking_app/core/routing/defined_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/bases/base_stateful_widget_state.dart';
@@ -53,6 +54,11 @@ class _ResetPasswordScreenState
           listener: (context, state) {
             if (state is PasswordSuccessState) {
               alert('success', '');
+              Navigator.pushNamedAndRemoveUntil(
+                context,
+                DefinedRoutes.loginScreenRoute,
+                (route) => false,
+              );
             } else if (state is PasswordErrorState) {
               alert('failed', state.error.toString());
             }
@@ -166,7 +172,7 @@ class _ResetPasswordScreenState
                           /// Submit Button or Loader
                           state is PasswordLoadingState
                               ? const LoadingStateWidget()
-                              : ElevatedButton(
+                              : FilledButton(
                                 onPressed: () {
                                   if (formKey.currentState!.validate()) {
                                     resetPasswordViewModel.onIntent(

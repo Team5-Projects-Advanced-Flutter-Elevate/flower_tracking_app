@@ -1,4 +1,5 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
+import 'package:flower_tracking_app/core/apis/api_error/api_error_handler.dart';
 import 'package:flower_tracking_app/core/widgets/timer.dart';
 import 'package:flower_tracking_app/modules/authentication/ui/forget_password/view/reset_password_screen.dart';
 import 'package:flutter/material.dart';
@@ -35,8 +36,11 @@ class _ResetCodeScreenState extends BaseStatefulWidgetState<ResetCodeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => resetCodeViewModel,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => resetCodeViewModel),
+        BlocProvider(create: (context) => emailViewModel),
+      ],
       child: BlocConsumer<ResetCodeViewModel, OtpState>(
         builder:
             (context, state) => Scaffold(
@@ -103,6 +107,8 @@ class _ResetCodeScreenState extends BaseStatefulWidgetState<ResetCodeScreen> {
                                     }
                                   },
                                   onCompleted: (code) {
+                                    FocusManager.instance.primaryFocus
+                                        ?.unfocus();
                                     resetCodeViewModel.onIntent(
                                       ResetCodeIntent(code),
                                     );
@@ -114,41 +120,65 @@ class _ResetCodeScreenState extends BaseStatefulWidgetState<ResetCodeScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            appLocalizations.didnotReciveOtp,
+                            "${appLocalizations.didnotReciveOtp} ",
                             style: theme.textTheme.bodyLarge,
                           ),
-                          resend == false
-                              ? Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: <Widget>[
-                                  Timer(
-                                    isLessThan5Minutes: _isLessThan5Minutes,
-                                    examDuration: 30,
-                                    onTimeEnd: () {
+                          BlocConsumer<EmailViewModel, EmailState>(
+                            listener: (context, state) {
+                              if (state is EmailErrorState) {
+                                displaySnackBar(
+                                  contentType: ContentType.failure,
+                                  title: appLocalizations.error,
+                                  message: getIt.get<ApiErrorHandler>().handle(
+                                    state.error,
+                                  ),
+                                );
+                              }
+                            },
+                            builder: (context, state) {
+                              return state is EmailLoadingState
+                                  ? const SizedBox(
+                                    width: 20,
+                                    height: 20,
+                                    child: LoadingStateWidget(),
+                                  )
+                                  : resend == false
+                                  ? Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: <Widget>[
+                                      Timer(
+                                        isLessThan5Minutes: _isLessThan5Minutes,
+                                        examDuration: 40,
+                                        onTimeEnd: () {
+                                          setState(() {
+                                            resend = true;
+                                          });
+                                        },
+                                      ),
+                                    ],
+                                  )
+                                  : InkWell(
+                                    onTap: () {
+                                      emailViewModel.onIntent(
+                                        ForgotPasswordIntent(widget.email),
+                                      );
                                       setState(() {
-                                        resend = true;
+                                        resend = false;
                                       });
                                     },
-                                  ),
-                                ],
-                              )
-                              : InkWell(
-                                onTap: () {
-                                  emailViewModel.onIntent(
-                                    ForgotPasswordIntent(widget.email),
+                                    child: Text(
+                                      appLocalizations.resend,
+                                      style: Theme.of(
+                                        context,
+                                      ).textTheme.bodyLarge?.copyWith(
+                                        color: AppColors.mainColor,
+                                        decoration: TextDecoration.underline,
+                                        decorationColor: AppColors.mainColor,
+                                      ),
+                                    ),
                                   );
-                                },
-                                child: Text(
-                                  appLocalizations.resend,
-                                  style: Theme.of(
-                                    context,
-                                  ).textTheme.bodyLarge?.copyWith(
-                                    color: AppColors.mainColor,
-                                    decoration: TextDecoration.underline,
-                                    decorationColor: AppColors.mainColor,
-                                  ),
-                                ),
-                              ),
+                            },
+                          ),
                         ],
                       ),
                     ],
@@ -159,18 +189,18 @@ class _ResetCodeScreenState extends BaseStatefulWidgetState<ResetCodeScreen> {
         listener: (context, state) {
           if (state is OtpSuccessState) {
             alert('otpSuccess', '');
-            Navigator.push(
+            Navigator.pushReplacement(
               context,
               MaterialPageRoute(
                 builder: (context) => const ResetPasswordScreen(),
               ),
             );
           } else if (state is OtpErrorState) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const ResetPasswordScreen(),
-              ),
+            displaySnackBar(
+              contentType: ContentType.failure,
+              title: appLocalizations.error,
+              message: getIt.get<ApiErrorHandler>().handle(state.error),
+              durationInSeconds: 2,
             );
           } else if (state is PasswordErrorState) {
             setState(() {
