@@ -2,6 +2,10 @@
 Built a package delivery tracking app for E-commerce app using Clean Architecture and MVI pattern. Implemented state management with Cubit and Equatable, and structured API integration using Retrofit. Utilized    Injectable for scalable dependency injection. Ensured code reliability with unit and widget tests using Mockito and bloc_test. Designed with testability, modularity, and maintainability in mind for production-    scale e-commerce environments.
 
 ---
+## App Demo
+https://drive.google.com/drive/folders/1wrnAgrGfn9bBLu4Y4gJCbt2mA-JbKAu8?usp=sharing
+
+---
 
 ## ✨ Features
 
