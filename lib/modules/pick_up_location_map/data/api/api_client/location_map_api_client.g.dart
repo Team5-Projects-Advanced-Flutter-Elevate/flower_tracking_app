@@ -9,13 +9,15 @@ part of 'location_map_api_client.dart';
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers,unused_element,unnecessary_string_interpolations
 
 class _LocationMapApiClient implements LocationMapApiClient {
-  _LocationMapApiClient(this._dio, {this.baseUrl, this.errorLogger});
+  _LocationMapApiClient(this._dio, {this.baseUrl}) {
+    errorLogger = null;
+  }
 
   final Dio _dio;
 
   String? baseUrl;
 
-  final ParseErrorLogger? errorLogger;
+  late final ParseErrorLogger? errorLogger;
 
   @override
   Future<DirectionsResponseDto> getDirections(
