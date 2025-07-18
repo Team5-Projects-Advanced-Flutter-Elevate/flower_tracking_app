@@ -527,12 +527,6 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i56.LogoutUseCase>(
       () => _i56.LogoutUseCase(gh<_i607.LogoutRepo>()),
     );
-    gh.factory<_i240.OrderDetailsViewModel>(
-      () => _i240.OrderDetailsViewModel(
-        gh<_i261.FirestoreRepoContract>(),
-        gh<_i629.SecureStorageService<dynamic>>(),
-      ),
-    );
     gh.factory<_i835.ResetCodeViewModel>(
       () => _i835.ResetCodeViewModel(gh<_i9.ResetCodeUseCase>()),
     );
@@ -602,6 +596,13 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i783.OrderStatusViewModel>(
       () => _i783.OrderStatusViewModel(gh<_i370.UpdateOrderStatusUseCase>()),
+    );
+    gh.factory<_i240.OrderDetailsViewModel>(
+      () => _i240.OrderDetailsViewModel(
+        gh<_i261.FirestoreRepoContract>(),
+        gh<_i629.SecureStorageService<dynamic>>(),
+        gh<_i370.UpdateOrderStatusUseCase>(),
+      ),
     );
     gh.factory<_i898.LauncherViewModel>(
       () => _i898.LauncherViewModel(

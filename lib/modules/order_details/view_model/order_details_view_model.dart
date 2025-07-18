@@ -1,6 +1,8 @@
 import 'package:flower_tracking_app/core/apis/api_result/api_result.dart';
 import 'package:flower_tracking_app/core/utilities/extensions/date_time_extension/date_time_extension.dart';
 import 'package:flower_tracking_app/modules/order_details/view_model/order_details_state.dart';
+import 'package:flower_tracking_app/modules/update_status/domain/entity/order_status.dart';
+import 'package:flower_tracking_app/modules/update_status/domain/usecase/order_status_use_case.dart';
 import 'package:flower_tracking_app/shared_layers/database/firestore/domain/entities/order/order_entity_firestore.dart';
 import 'package:flower_tracking_app/shared_layers/database/firestore/domain/repositories_abstracts/firestore_repo_contract.dart';
 import 'package:flower_tracking_app/shared_layers/storage/constants/storage_constants.dart';
@@ -18,10 +20,14 @@ enum NextOrderStatusAttribute {
 @injectable
 class OrderDetailsViewModel extends Cubit<OrderDetailsState> {
   final FirestoreRepoContract _firestoreRepoContract;
+  final UpdateOrderStatusUseCase _updateOrderStatusUseCase;
   final SecureStorageService _secureStorageService;
 
-  OrderDetailsViewModel(this._firestoreRepoContract, this._secureStorageService)
-    : super(const OrderDetailsState());
+  OrderDetailsViewModel(
+    this._firestoreRepoContract,
+    this._secureStorageService,
+    this._updateOrderStatusUseCase,
+  ) : super(const OrderDetailsState());
 
   void doIntent(OrderDetailsIntent intent) {
     switch (intent) {
@@ -114,15 +120,36 @@ class OrderDetailsViewModel extends Cubit<OrderDetailsState> {
     }
     switch (result) {
       case Success<void>():
-        selectedIndex++;
-        if (selectedIndex == 4) {
-          await _secureStorageService.deleteValue(
-            StorageConstants.currentAcceptedOrderId,
-          );
+        if(selectedIndex == 0 || selectedIndex == 3){
+          var updateUseCaseResult = await _updateOrderStatusUseCase.call(selectedIndex == 0?"pending":"completed", orderId);
+          switch(updateUseCaseResult){
+            case Success<OrderStatusUpdateEntity>():
+              selectedIndex++;
+              if (selectedIndex == 4) {
+                await _secureStorageService.deleteValue(
+                  StorageConstants.currentAcceptedOrderId,
+                );
+              }
+              Future.delayed(const Duration(milliseconds: 300), () {
+                emit(state.copyWith(updateOrderStateStatus: Status.success));
+              });
+            case Error<OrderStatusUpdateEntity>():
+              Future.delayed(const Duration(milliseconds: 300), () {
+                emit(state.copyWith(updateOrderStateStatus: Status.error));
+              });
+          }
+        } else {
+          selectedIndex++;
+          if (selectedIndex == 4) {
+            await _secureStorageService.deleteValue(
+              StorageConstants.currentAcceptedOrderId,
+            );
+          }
+          Future.delayed(const Duration(milliseconds: 300), () {
+            emit(state.copyWith(updateOrderStateStatus: Status.success));
+          });
         }
-        Future.delayed(const Duration(milliseconds: 300), () {
-          emit(state.copyWith(updateOrderStateStatus: Status.success));
-        });
+
       case Error<void>():
         Future.delayed(const Duration(milliseconds: 300), () {
           emit(state.copyWith(updateOrderStateStatus: Status.error));
