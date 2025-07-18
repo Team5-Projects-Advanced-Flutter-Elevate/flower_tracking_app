@@ -9,11 +9,9 @@ part 'status_api_client.g.dart';
 abstract class StateApiClient {
   factory StateApiClient(Dio dio) = _StateApiClient;
 
-
   @PUT('${ApisEndpoints.updateOrderState}/{orderId}')
   Future<OrderStatusUpdate> updateState(
-      @Path('orderId') String orderId,
-      @Body() Map<String, dynamic> body,
-      );
-
+    @Path('orderId') String orderId,
+    @Body() Map<String, dynamic> body,
+  );
 }

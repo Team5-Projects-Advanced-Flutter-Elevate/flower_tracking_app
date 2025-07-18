@@ -40,7 +40,9 @@ class _OrderStateState extends State<OrderState> {
           children: <Widget>[
             GestureDetector(
               onTap: () {
-                callUpdateState.onIntent(UpdateStateIntent('pending','678a9bb63745562ff48ce07b'));
+                callUpdateState.onIntent(
+                  UpdateStateIntent('pending', '678a9bb63745562ff48ce07b'),
+                );
               },
 
               child: const Padding(

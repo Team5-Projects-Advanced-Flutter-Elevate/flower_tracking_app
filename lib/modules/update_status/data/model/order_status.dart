@@ -114,15 +114,8 @@ class OrderItem {
     "quantity": quantity,
     "_id": id,
   };
-
-
-
-
-
-
-
-
 }
+
 extension OrderStatusUpdateMapper on OrderStatusUpdate {
   OrderStatusUpdateEntity toEntity() {
     return OrderStatusUpdateEntity(

@@ -6,19 +6,23 @@ import '../../../../core/apis/api_result/api_result.dart';
 import '../../domain/entity/order_status.dart';
 import '../api/api_client/status_api_client.dart';
 import '../model/order_status.dart';
-@Injectable(as:UpdateOrderStatusOnlineDataSource )
-class UpdateOrderStatusOnlineDataSourceImpl implements UpdateOrderStatusOnlineDataSource{
+
+@Injectable(as: UpdateOrderStatusOnlineDataSource)
+class UpdateOrderStatusOnlineDataSourceImpl
+    implements UpdateOrderStatusOnlineDataSource {
   final StateApiClient _stateApiClient;
-  
+
   UpdateOrderStatusOnlineDataSourceImpl(this._stateApiClient);
-  
+
   @override
-  Future<ApiResult<OrderStatusUpdateEntity>> updateStatus(String state,String orderId) async{
+  Future<ApiResult<OrderStatusUpdateEntity>> updateStatus(
+    String state,
+    String orderId,
+  ) async {
     var result = await ApiExecutor.executeApi(() async {
-      var response = await _stateApiClient.updateState(
-          orderId,
-        {'state':state}
-      );
+      var response = await _stateApiClient.updateState(orderId, {
+        'state': state,
+      });
       return response;
     });
     switch (result) {

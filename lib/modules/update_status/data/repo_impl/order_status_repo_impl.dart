@@ -11,8 +11,11 @@ class UpdateOrderStatusRepoImpl implements UpdateOrderStatusRepo {
 
   UpdateOrderStatusRepoImpl(this.updateOrderStatusOnlineDataSource);
   @override
-  Future<ApiResult<OrderStatusUpdateEntity>> updateStatus(String state,String orderId) {
+  Future<ApiResult<OrderStatusUpdateEntity>> updateStatus(
+    String state,
+    String orderId,
+  ) {
     // TODO: implement updateStatus
-    return updateOrderStatusOnlineDataSource.updateStatus(state,orderId);
+    return updateOrderStatusOnlineDataSource.updateStatus(state, orderId);
   }
 }

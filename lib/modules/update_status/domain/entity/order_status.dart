@@ -2,10 +2,7 @@ class OrderStatusUpdateEntity {
   final String? message;
   final OrdersEntity? orders;
 
-  OrderStatusUpdateEntity({
-    required this.message,
-    required this.orders,
-  });
+  OrderStatusUpdateEntity({required this.message, required this.orders});
 }
 
 class OrdersEntity {
