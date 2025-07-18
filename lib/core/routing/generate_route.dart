@@ -9,7 +9,6 @@ import 'package:flower_tracking_app/modules/onboarding/ui/onboarding_screen.dart
 import 'package:flower_tracking_app/modules/pick_up_location_map/ui/pick_up_location_map.dart';
 import 'package:flutter/material.dart';
 import '../../modules/authentication/ui/login/login_screen.dart';
-import '../../modules/home/ui/home_screen_mine.dart';
 import '../../modules/home/ui/profile/ui/profile_screen.dart';
 import '../../modules/order_details/order_details_screen.dart';
 import '../../modules/thanks_page/ui/thanks_page_screen.dart';
@@ -29,10 +28,6 @@ abstract class GenerateRoute {
         case DefinedRoutes.forgetPasswordScreenRoute:
           return MaterialPageRoute(
             builder: (context) => const ForgetPasswordScreen(),
-          );
-        case DefinedRoutes.homeScreenMineRoute:
-          return MaterialPageRoute(
-            builder: (context) => const HomeScreenMine(),
           );
         case DefinedRoutes.applicationApproved:
           return MaterialPageRoute(

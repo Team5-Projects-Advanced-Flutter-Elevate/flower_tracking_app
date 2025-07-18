@@ -120,10 +120,17 @@ class OrderDetailsViewModel extends Cubit<OrderDetailsState> {
             StorageConstants.currentAcceptedOrderId,
           );
         }
-        emit(state.copyWith(updateOrderStateStatus: Status.success));
+        Future.delayed(const Duration(milliseconds: 300), () {
+          emit(state.copyWith(updateOrderStateStatus: Status.success));
+        });
       case Error<void>():
-        emit(state.copyWith(updateOrderStateStatus: Status.error));
+        Future.delayed(const Duration(milliseconds: 300), () {
+          emit(state.copyWith(updateOrderStateStatus: Status.error));
+        });
     }
+    Future.delayed(const Duration(seconds: 2), () {
+      emit(state.copyWith(updateOrderStateStatus: Status.idle));
+    });
   }
 }
 

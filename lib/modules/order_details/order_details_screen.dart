@@ -9,6 +9,7 @@ import 'package:flower_tracking_app/modules/order_details/widgets/order_details_
 import 'package:flower_tracking_app/modules/order_details/widgets/order_status_section.dart';
 import 'package:flower_tracking_app/modules/order_details/widgets/payment_method_section.dart';
 import 'package:flower_tracking_app/modules/order_details/widgets/section_title_text_item.dart';
+import 'package:flower_tracking_app/modules/order_details/widgets/status_container.dart';
 import 'package:flower_tracking_app/modules/order_details/widgets/total_money_section.dart';
 import 'package:flower_tracking_app/modules/pick_up_location_map/ui/pick_up_location_map.dart';
 import 'package:flutter/material.dart';
@@ -36,7 +37,6 @@ class _OrderDetailsScreenState
   final OrderDetailsViewModel orderDetailsViewModel =
       getIt.get<OrderDetailsViewModel>();
   late String driverId;
-
   @override
   void initState() {
     super.initState();
@@ -66,17 +66,9 @@ class _OrderDetailsScreenState
             listener: (context, state) {
               switch (state.updateOrderStateStatus) {
                 case Status.idle:
-                  break;
                 case Status.loading:
-                  displaySnackBar(
-                    contentType: ContentType.help,
-                    title: appLocalizations.loading,
-                  );
+                  break;
                 case Status.success:
-                  displaySnackBar(
-                    contentType: ContentType.success,
-                    title: appLocalizations.updatedSuccessfully,
-                  );
                   if (orderDetailsViewModel.selectedIndex == 4) {
                     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
                       Future.delayed(const Duration(seconds: 2), () async {
@@ -258,9 +250,9 @@ class _OrderDetailsScreenState
 
                           horizontal: screenWidth * .04,
                         ),
-                        child: FilledButton(
-                          style: FilledButton.styleFrom(),
-                          onPressed:
+                        child: StatusButton(
+                          containerStatus: state.updateOrderStateStatus,
+                          onPress:
                               orderDetailsViewModel.selectedIndex ==
                                       dataList.length - 1
                                   ? null
@@ -275,10 +267,9 @@ class _OrderDetailsScreenState
                                       ),
                                     );
                                   },
-                          child: Text(
-                            dataList[orderDetailsViewModel.selectedIndex]
-                                .getButtonTitle(context),
-                          ),
+                          buttonTitle: dataList[orderDetailsViewModel
+                                  .selectedIndex]
+                              .getButtonTitle(context),
                         ),
                       ),
                     ],

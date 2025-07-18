@@ -9,6 +9,7 @@ class OrdersState extends Equatable {
   final Status loadOrdersStatus;
   final PendingOrdersEntity? orders;
   final Status addingOrderToFirestore;
+  final int? pressedAcceptOfOrderIndex;
   final String? addedOrderIdToFirestore;
   final Object? error;
   final int currentPage;
@@ -16,6 +17,7 @@ class OrdersState extends Equatable {
   const OrdersState({
     this.loadOrdersStatus = Status.initial,
     this.addingOrderToFirestore = Status.initial,
+    this.pressedAcceptOfOrderIndex,
     this.addedOrderIdToFirestore,
     this.orders,
     this.error,
@@ -26,6 +28,7 @@ class OrdersState extends Equatable {
     Status? loadOrdersStatus,
     Status? addingOrderToFirestore,
     String? addedOrderIdToFirestore,
+    int? pressedAcceptOfOrderIndex,
     PendingOrdersEntity? orders,
     Object? error,
     int? currentPage,
@@ -35,6 +38,8 @@ class OrdersState extends Equatable {
         addingOrderToFirestore ?? this.addingOrderToFirestore,
     addedOrderIdToFirestore:
         addedOrderIdToFirestore ?? this.addedOrderIdToFirestore,
+    pressedAcceptOfOrderIndex:
+        pressedAcceptOfOrderIndex ?? this.pressedAcceptOfOrderIndex,
     orders: orders ?? this.orders,
     error: error ?? this.error,
     currentPage: currentPage ?? this.currentPage,
@@ -62,8 +67,13 @@ class RefreshOrdersIntent extends OrdersIntent {}
 class OnAcceptButtonClick extends OrdersIntent {
   String driverId;
   OrderEntityFirestore orderEntity;
+  int pendingOrderIndex;
 
-  OnAcceptButtonClick({required this.driverId, required this.orderEntity});
+  OnAcceptButtonClick({
+    required this.driverId,
+    required this.orderEntity,
+    required this.pendingOrderIndex,
+  });
 }
 
 class RejectOrderIntent {
