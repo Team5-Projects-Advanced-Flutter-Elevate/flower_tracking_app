@@ -37,7 +37,6 @@ class _OrderDetailsScreenState
   final OrderDetailsViewModel orderDetailsViewModel =
       getIt.get<OrderDetailsViewModel>();
   late String driverId;
-  bool isAnimating = true;
   @override
   void initState() {
     super.initState();

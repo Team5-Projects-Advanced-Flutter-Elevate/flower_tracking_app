@@ -306,6 +306,7 @@ class _EditProfileScreenState
                                     ignoring: true,
                                     child: RadioListTile<Gender>(
                                       activeColor: AppColors.mainColor,
+                                      contentPadding: EdgeInsets.zero,
                                       title: const Text('Female'),
                                       value: Gender.female,
                                       groupValue: _selectedIndex,
@@ -320,6 +321,7 @@ class _EditProfileScreenState
                                     ignoring: true,
                                     child: RadioListTile<Gender>(
                                       activeColor: AppColors.mainColor,
+                                      contentPadding: EdgeInsets.zero,
                                       title: const Text('Male'),
                                       value: Gender.male,
                                       groupValue: _selectedIndex,
