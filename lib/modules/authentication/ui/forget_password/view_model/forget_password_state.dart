@@ -10,10 +10,12 @@ class PasswordErrorState extends PasswordState {
 }
 
 class PasswordSuccessState extends PasswordState {}
+
 ///////////////////////////////////Email-State/////////////
 sealed class EmailState {}
 
-class EmailInitialState extends EmailState{}
+class EmailInitialState extends EmailState {}
+
 class EmailLoadingState extends EmailState {}
 
 class EmailErrorState extends EmailState {
@@ -22,9 +24,11 @@ class EmailErrorState extends EmailState {
 }
 
 class EmailSuccessState extends EmailState {}
+
 ////////////////////////////////////OTP-State/////////////
 sealed class OtpState {}
-class OtpInitialState extends OtpState{}
+
+class OtpInitialState extends OtpState {}
 
 class OtpLoadingState extends OtpState {}
 

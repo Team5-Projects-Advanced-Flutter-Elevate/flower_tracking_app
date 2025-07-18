@@ -40,7 +40,7 @@ class _OrdersRemoteDataSource implements OrdersRemoteDataSource {
 
   String? baseUrl;
 
-   ParseErrorLogger? errorLogger;
+  ParseErrorLogger? errorLogger;
 
   @override
   Future<PendingOrdersModel> getDriverOrders(int page, int limit) async {

@@ -57,7 +57,7 @@ class _OrdersApiClient implements OrdersApiClient {
 
   String? baseUrl;
 
-   ParseErrorLogger? errorLogger;
+  ParseErrorLogger? errorLogger;
 
   @override
   Future<PendingOrdersResponse> getPendingOrders({int page = 1}) async {

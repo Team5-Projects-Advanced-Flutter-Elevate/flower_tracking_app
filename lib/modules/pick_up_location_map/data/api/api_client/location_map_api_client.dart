@@ -7,8 +7,7 @@ part 'location_map_api_client.g.dart';
 
 @RestApi()
 abstract class LocationMapApiClient {
-  factory LocationMapApiClient(Dio dio) =
-      _LocationMapApiClient;
+  factory LocationMapApiClient(Dio dio) = _LocationMapApiClient;
 
   @POST(ApisEndpoints.directionsEndPoint)
   Future<DirectionsResponseDto> getDirections(

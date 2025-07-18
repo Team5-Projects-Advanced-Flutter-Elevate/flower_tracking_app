@@ -15,7 +15,7 @@ class _LocationMapApiClient implements LocationMapApiClient {
 
   String? baseUrl;
 
-   ParseErrorLogger? errorLogger;
+  ParseErrorLogger? errorLogger;
 
   @override
   Future<DirectionsResponseDto> getDirections(

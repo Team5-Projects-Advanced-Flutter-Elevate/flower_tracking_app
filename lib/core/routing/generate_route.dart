@@ -60,9 +60,10 @@ abstract class GenerateRoute {
             builder: (context) => const ThanksPageScreen(),
           );
 
-
         case DefinedRoutes.resetPasswordRoute:
-          return MaterialPageRoute(builder: (context) => const ResetPasswordScreen(),);
+          return MaterialPageRoute(
+            builder: (context) => const ResetPasswordScreen(),
+          );
 
         default:
           return _errorRoute();

@@ -17,7 +17,7 @@ class _LogoutApiClient implements LogoutApiClient {
 
   String? baseUrl;
 
-   ParseErrorLogger? errorLogger;
+  ParseErrorLogger? errorLogger;
 
   @override
   Future<LogoutResponseDto> logout() async {

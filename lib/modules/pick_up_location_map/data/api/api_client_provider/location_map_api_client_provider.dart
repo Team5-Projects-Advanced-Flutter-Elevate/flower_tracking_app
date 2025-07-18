@@ -6,8 +6,6 @@ import 'package:injectable/injectable.dart';
 abstract class LocationMapApiClientProvider {
   @singleton
   LocationMapApiClient provideApiClient(Dio dio) {
-    return LocationMapApiClient(
-      dio,
-    );
+    return LocationMapApiClient(dio);
   }
 }
