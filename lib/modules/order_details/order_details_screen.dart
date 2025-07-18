@@ -10,6 +10,7 @@ import 'package:flower_tracking_app/modules/order_details/widgets/order_status_s
 import 'package:flower_tracking_app/modules/order_details/widgets/payment_method_section.dart';
 import 'package:flower_tracking_app/modules/order_details/widgets/section_title_text_item.dart';
 import 'package:flower_tracking_app/modules/order_details/widgets/total_money_section.dart';
+import 'package:flower_tracking_app/modules/pick_up_location_map/ui/pick_up_location_map.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../core/apis/api_error/api_error_handler.dart';
@@ -82,7 +83,7 @@ class _OrderDetailsScreenState
                         if (!context.mounted) return;
                         Navigator.pushNamedAndRemoveUntil(
                           context,
-                          DefinedRoutes.layoutScreen,
+                          DefinedRoutes.thanksPageScreenRoute,
                           (route) => false,
                         );
                         displaySnackBar(
@@ -167,22 +168,51 @@ class _OrderDetailsScreenState
                             SectionTitleTextItem(
                               title: appLocalizations.pickupAddress,
                             ),
-                            AddressItem(
-                              title: orderEntity?.store?.name,
-                              address: orderEntity?.store?.address,
-                              phoneNumber: orderEntity?.store?.phoneNumber,
+                            InkWell(
+                              splashColor: Colors.transparent,
+                              overlayColor: WidgetStateColor.transparent,
+                              onTap: () {
+                                Navigator.pushNamed(
+                                  context,
+                                  DefinedRoutes.pickUpLocationMap,
+                                  arguments: PickUpLocationMapWidgetParams(
+                                    storeEntity: orderEntity?.store,
+                                    userEntity: orderEntity?.user,
+                                  ),
+                                );
+                              },
+                              child: AddressItem(
+                                title: orderEntity?.store?.name,
+                                address: orderEntity?.store?.address,
+                                phoneNumber: orderEntity?.store?.phoneNumber,
+                              ),
                             ),
                             SectionTitleTextItem(
                               title: appLocalizations.userAddress,
                             ),
-                            AddressItem(
-                              title:
-                                  orderEntity?.user?.firstName == null &&
-                                          orderEntity?.user?.lastName == null
-                                      ? null
-                                      : "${orderEntity?.user?.firstName ?? ''} ${orderEntity?.user?.lastName ?? ''}",
-                              address: orderEntity?.store?.address,
-                              phoneNumber: orderEntity?.user?.phone,
+                            InkWell(
+                              splashColor: Colors.transparent,
+                              overlayColor: WidgetStateColor.transparent,
+                              onTap: () {
+                                Navigator.pushNamed(
+                                  context,
+                                  DefinedRoutes.pickUpLocationMap,
+                                  arguments: PickUpLocationMapWidgetParams(
+                                    showStoreFirst: false,
+                                    storeEntity: orderEntity?.store,
+                                    userEntity: orderEntity?.user,
+                                  ),
+                                );
+                              },
+                              child: AddressItem(
+                                title:
+                                    orderEntity?.user?.firstName == null &&
+                                            orderEntity?.user?.lastName == null
+                                        ? null
+                                        : "${orderEntity?.user?.firstName ?? ''} ${orderEntity?.user?.lastName ?? ''}",
+                                address: orderEntity?.store?.address,
+                                phoneNumber: orderEntity?.user?.phone,
+                              ),
                             ),
                             SectionTitleTextItem(
                               title: appLocalizations.orderDetails,
