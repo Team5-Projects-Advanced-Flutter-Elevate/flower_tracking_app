@@ -1,5 +1,4 @@
 import 'dart:math';
-
 import 'package:flower_tracking_app/core/apis/api_result/api_result.dart';
 import 'package:flower_tracking_app/core/utilities/bloc_observer/location_permission_denied.dart';
 import 'package:flower_tracking_app/modules/pick_up_location_map/domain/entities/directions_request/directions_request_entity.dart';
@@ -85,6 +84,7 @@ class LocationMapViewModel extends Cubit<LocationStates> {
       var userLocation = await _location.getLocation();
       currentLocation = userLocation;
       newLocationNotifier = ValueNotifier(userLocation);
+      _whenUserLocationChanges();
       markers.add(
         Marker(
           point: LatLng(userLocation.latitude!, userLocation.longitude!),
@@ -105,10 +105,10 @@ class LocationMapViewModel extends Cubit<LocationStates> {
     }
   }
 
-  void whenUserLocationChanges() {
+  void _whenUserLocationChanges() {
     _location.onLocationChanged.listen((newLocation) {
       if (newLocation.latitude != null && newLocation.longitude != null) {
-        if (_hasMovedAtLeast100Meters(
+        if (_hasMovedAtLeast50Meters(
           currentLocation!.latitude!,
           currentLocation!.longitude!,
           newLocation.latitude!,
@@ -141,7 +141,7 @@ class LocationMapViewModel extends Cubit<LocationStates> {
       currentLocation!.latitude!,
       currentLocation!.longitude!,
     );
-    emit(state.copyWith(getDirectionBetweenPointsStatus: Status.loading));
+    //emit(state.copyWith(getDirectionBetweenPointsStatus: Status.loading));
     var useCaseResult = await _getDirectionsUseCase.call(
       directionRequestEntity: DirectionsRequestEntity(
         coordinates: [
@@ -180,7 +180,7 @@ class LocationMapViewModel extends Cubit<LocationStates> {
     }
   }
 
-  bool _hasMovedAtLeast100Meters(
+  bool _hasMovedAtLeast50Meters(
     double lat1,
     double lon1,
     double lat2,
@@ -201,7 +201,7 @@ class LocationMapViewModel extends Cubit<LocationStates> {
     final c = 2 * atan2(sqrt(a), sqrt(1 - a));
     final distance = earthRadius * c;
 
-    return distance >= 100;
+    return distance >= 50;
   }
 
   double _degreesToRadians(double degrees) {
