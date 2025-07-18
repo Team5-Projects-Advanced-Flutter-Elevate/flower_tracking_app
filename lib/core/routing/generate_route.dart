@@ -3,6 +3,7 @@ import 'package:flower_tracking_app/modules/application_approved/ui/application_
 import 'package:flower_tracking_app/modules/apply/ui/apply_view.dart';
 import 'package:flower_tracking_app/modules/authentication/domain/entities/logged_driver_data/logged_driver_data_response_entity.dart';
 import 'package:flower_tracking_app/modules/authentication/ui/forget_password/view/forget_password_screen.dart';
+import 'package:flower_tracking_app/modules/edit_profile/ui/screens/edit_profile_screen.dart';
 import 'package:flower_tracking_app/modules/home/layout_screen.dart';
 import 'package:flower_tracking_app/modules/authentication/ui/forget_password/view/reset_password_screen.dart';
 import 'package:flower_tracking_app/modules/onboarding/ui/onboarding_screen.dart';
@@ -59,7 +60,10 @@ abstract class GenerateRoute {
           return MaterialPageRoute(
             builder: (context) => const ResetPasswordScreen(),
           );
-
+        case DefinedRoutes.editProfileScreenRoute:
+          return MaterialPageRoute(
+            builder: (context) => const EditProfileScreen(),
+          );
         default:
           return _errorRoute();
       }

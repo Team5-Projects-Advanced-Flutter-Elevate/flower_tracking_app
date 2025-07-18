@@ -20,6 +20,8 @@ class EditProfileViewModel extends Cubit<ProfileState> {
   final EditInfoUseCase editInfoUseCase;
   final UploadImageUseCase uploadImageUseCase;
   final ChangePasswordUseCase changePasswordUseCase;
+  bool didProfileUpdated = false;
+
 
   @factoryMethod
   EditProfileViewModel(
@@ -32,7 +34,7 @@ class EditProfileViewModel extends Cubit<ProfileState> {
   void onIntent(EditIntent intent) {
     switch (intent) {
       case EditProfileIntent():
-        _getLogedData();
+        _getLoggedData();
         break;
 
       case EditInfo():
@@ -54,7 +56,7 @@ class EditProfileViewModel extends Cubit<ProfileState> {
     }
   }
 
-  Future<void> _getLogedData() async {
+  void _getLoggedData() async {
     emit(state.copyWith(getProfileDataStatus: EditProfileStatus.loading));
 
     var result = await getLoggedDriverDataUseCase.call();
@@ -95,10 +97,8 @@ class EditProfileViewModel extends Cubit<ProfileState> {
     var result = await uploadImageUseCase.execute(imageFile: imageFile);
     switch (result) {
       case Success<UploadImageResponseEntity?>():
-        final updatedState = state.copyWith(
-          uploadImageStatus: EditProfileStatus.success,
-        );
-        emit(updatedState.copyWith(initialData: updatedState));
+        didProfileUpdated = true;
+        _getLoggedData();
         break;
 
       case Error<UploadImageResponseEntity?>():
@@ -158,7 +158,7 @@ class EditProfileViewModel extends Cubit<ProfileState> {
           profilePhotoLink: data?.photo,
           gender: data?.gender,
         );
-
+        didProfileUpdated = true;
         // After successful update, reset initial snapshot
         emit(updatedState.copyWith(initialData: updatedState));
         break;

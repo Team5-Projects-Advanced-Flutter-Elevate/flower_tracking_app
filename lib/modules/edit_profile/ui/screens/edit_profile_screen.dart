@@ -1,3 +1,4 @@
+import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flower_tracking_app/core/colors/app_colors.dart';
 import 'package:flutter/material.dart';
@@ -47,6 +48,12 @@ class _EditProfileScreenState
     email.addListener(_checkDirty);
     phoneNumber.addListener(_checkDirty);
     password.addListener(_checkDirty);
+    BackButtonInterceptor.add(myInterceptor);
+  }
+
+  bool myInterceptor(bool stopDefaultButtonEvent, RouteInfo routeInfo) {
+    Navigator.pop(context, editProfileViewModel.didProfileUpdated);
+    return true;
   }
 
   void _checkDirty() {
@@ -124,62 +131,51 @@ class _EditProfileScreenState
                 state.gender == 'male' ? Gender.male : Gender.female;
             _initialized = true;
           }
-          return Scaffold(
-            appBar: AppBar(
-              forceMaterialTransparency: true,
-              automaticallyImplyLeading: false,
-              titleSpacing: 0.0,
-              leading: IconButton(
-                onPressed: () => Navigator.pop(context),
-                icon: Icon(Icons.arrow_back_ios, size: screenWidth * 0.06),
-              ),
-              title: Text(
-                'Edit profile',
-                style: theme.textTheme.headlineMedium?.copyWith(
-                  fontWeight: FontWeight.bold,
+          return GestureDetector(
+            onTap: () {
+              FocusManager.instance.primaryFocus?.unfocus();
+            },
+            child: Scaffold(
+              appBar: AppBar(
+                forceMaterialTransparency: true,
+                automaticallyImplyLeading: false,
+                titleSpacing: 0.0,
+                leading: IconButton(
+                  onPressed:
+                      () => Navigator.pop(
+                        context,
+                        editProfileViewModel.didProfileUpdated,
+                      ),
+                  icon: Icon(Icons.arrow_back_ios, size: screenWidth * 0.06),
+                ),
+                title: Text(
+                  'Edit profile',
+                  style: theme.textTheme.headlineMedium?.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
-            ),
-            body: SingleChildScrollView(
-              physics: const AlwaysScrollableScrollPhysics(),
-              child: Padding(
-                padding: const EdgeInsets.all(15.0),
-                child:
-                    state.getProfileDataStatus == EditProfileStatus.loading
-                        ? SizedBox(
-                          height: screenHeight * 0.7,
-                          child: const Center(child: LoadingStateWidget()),
-                        )
-                        : Column(
-                          spacing: 25,
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: <Widget>[
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                Stack(
-                                  alignment: Alignment.bottomRight,
-                                  children: [
-                                    CircleAvatar(
-                                      radius: 35,
-                                      child:
-                                          state.profilePhotoLink == null
-                                              ? const Icon(Icons.person)
-                                              : CircleAvatar(
-                                                radius: 30,
-                                                backgroundImage:
-                                                    CachedNetworkImageProvider(
-                                                      "${state.profilePhotoLink}",
-                                                    ),
-                                              ),
-                                    ),
-                                    Container(
-                                      padding: const EdgeInsets.all(3.0),
-                                      decoration: BoxDecoration(
-                                        shape: BoxShape.circle,
-                                        color: AppColors.lightPink,
-                                      ),
-                                      child: GestureDetector(
+              body: SingleChildScrollView(
+                physics: const AlwaysScrollableScrollPhysics(),
+                child: Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child:
+                      state.getProfileDataStatus == EditProfileStatus.loading
+                          ? SizedBox(
+                            height: screenHeight * 0.7,
+                            child: const Center(child: LoadingStateWidget()),
+                          )
+                          : Column(
+                            spacing: 25,
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: <Widget>[
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  Stack(
+                                    alignment: Alignment.bottomRight,
+                                    children: [
+                                      GestureDetector(
                                         onTap:
                                             () => ImagePickerService()
                                                 .showImageSourceDialog(
@@ -193,174 +189,201 @@ class _EditProfileScreenState
                                                         );
                                                   },
                                                 ),
+                                        child: CircleAvatar(
+                                          radius: 35,
+                                          child:
+                                              state.profilePhotoLink == null
+                                                  ? const Icon(Icons.person)
+                                                  : CircleAvatar(
+                                                    radius: 30,
+                                                    backgroundImage:
+                                                        CachedNetworkImageProvider(
+                                                          "${state.profilePhotoLink}",
+                                                        ),
+                                                  ),
+                                        ),
+                                      ),
+                                      Container(
+                                        padding: const EdgeInsets.all(3.0),
+                                        decoration: BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          color: AppColors.lightPink,
+                                        ),
                                         child: Icon(
                                           Icons.camera_alt_outlined,
                                           color: AppColors.gray,
                                           size: 18,
                                         ),
                                       ),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                            Row(
-                              children: <Widget>[
-                                Expanded(
-                                  child: TextFormField(
-                                    validator:
-                                        (value) => getIt<ValidateFunctions>()
-                                            .validationOfFullName(value),
-                                    autovalidateMode:
-                                        AutovalidateMode.onUserInteraction,
-                                    controller: firstName,
-                                    decoration: const InputDecoration(
-                                      hintText: 'First Name',
-                                      labelText: 'First name',
-                                    ),
+                                    ],
                                   ),
-                                ),
-                                SizedBox(width: screenWidth * 0.02),
-                                Expanded(
-                                  child: TextFormField(
-                                    validator:
-                                        (value) => getIt<ValidateFunctions>()
-                                            .validationOfFullName(value),
-                                    autovalidateMode:
-                                        AutovalidateMode.onUserInteraction,
-                                    controller: lastName,
-                                    decoration: const InputDecoration(
-                                      hintText: 'Last Name',
-                                      labelText: 'Last name',
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            TextFormField(
-                              validator:
-                                  (value) => getIt<ValidateFunctions>()
-                                      .validationOfEmail(value),
-                              autovalidateMode:
-                                  AutovalidateMode.onUserInteraction,
-                              controller: email,
-                              decoration: const InputDecoration(
-                                hintText: 'Email',
-                                labelText: 'Email',
+                                ],
                               ),
-                            ),
-                            TextFormField(
-                              validator:
-                                  (value) => getIt<ValidateFunctions>()
-                                      .validationOfPhoneNumber(value),
-                              controller: phoneNumber,
-                              autovalidateMode:
-                                  AutovalidateMode.onUserInteraction,
-                              decoration: const InputDecoration(
-                                hintText: 'Phone Number',
-                                labelText: 'Phone number',
-                              ),
-                            ),
-                            TextFormField(
-                              readOnly: true,
-                              obscuringCharacter: '*',
-                              validator:
-                                  (value) => getIt<ValidateFunctions>()
-                                      .validationOfPassword(value),
-                              controller: password,
-                              autovalidateMode:
-                                  AutovalidateMode.onUserInteraction,
-                              obscureText: true,
-                              decoration: InputDecoration(
-                                hintText: 'Password',
-                                labelText: 'Password',
-                                suffix: InkWell(
-                                  onTap: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder:
-                                            (context) =>
-                                                const ChangePasswordScreen(),
+                              Row(
+                                children: <Widget>[
+                                  Expanded(
+                                    child: TextFormField(
+                                      validator:
+                                          (value) => getIt<ValidateFunctions>()
+                                              .validationOfFullName(value),
+                                      autovalidateMode:
+                                          AutovalidateMode.onUserInteraction,
+                                      controller: firstName,
+                                      decoration: const InputDecoration(
+                                        hintText: 'First Name',
+                                        labelText: 'First name',
                                       ),
-                                    );
-                                  },
-                                  child: const Text('Change'),
-                                ),
-                                suffixStyle: theme.textTheme.titleMedium
-                                    ?.copyWith(color: AppColors.mainColor),
+                                    ),
+                                  ),
+                                  SizedBox(width: screenWidth * 0.02),
+                                  Expanded(
+                                    child: TextFormField(
+                                      validator:
+                                          (value) => getIt<ValidateFunctions>()
+                                              .validationOfFullName(value),
+                                      autovalidateMode:
+                                          AutovalidateMode.onUserInteraction,
+                                      controller: lastName,
+                                      decoration: const InputDecoration(
+                                        hintText: 'Last Name',
+                                        labelText: 'Last name',
+                                      ),
+                                    ),
+                                  ),
+                                ],
                               ),
-                            ),
-                            Row(
-                              children: <Widget>[
-                                Text(
-                                  'Gender',
-                                  style: theme.textTheme.titleMedium?.copyWith(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                              TextFormField(
+                                validator:
+                                    (value) => getIt<ValidateFunctions>()
+                                        .validationOfEmail(value),
+                                autovalidateMode:
+                                    AutovalidateMode.onUserInteraction,
+                                controller: email,
+                                decoration: const InputDecoration(
+                                  hintText: 'Email',
+                                  labelText: 'Email',
                                 ),
-                                SizedBox(width: screenWidth * 0.006),
-                                Expanded(
-                                  child: IgnorePointer(
-                                    ignoring: true,
-                                    child: RadioListTile<Gender>(
-                                      activeColor: AppColors.mainColor,
-                                      contentPadding: EdgeInsets.zero,
-                                      title: const Text('Female'),
-                                      value: Gender.female,
-                                      groupValue: _selectedIndex,
-                                      onChanged:
-                                          (value) =>
-                                              _onGenderChanged(value, state),
+                              ),
+                              TextFormField(
+                                validator:
+                                    (value) => getIt<ValidateFunctions>()
+                                        .validationOfPhoneNumber(value),
+                                controller: phoneNumber,
+                                autovalidateMode:
+                                    AutovalidateMode.onUserInteraction,
+                                decoration: const InputDecoration(
+                                  hintText: 'Phone Number',
+                                  labelText: 'Phone number',
+                                ),
+                              ),
+                              TextFormField(
+                                readOnly: true,
+                                obscuringCharacter: '*',
+                                validator:
+                                    (value) => getIt<ValidateFunctions>()
+                                        .validationOfPassword(value),
+                                controller: password,
+                                autovalidateMode:
+                                    AutovalidateMode.onUserInteraction,
+                                obscureText: true,
+                                decoration: InputDecoration(
+                                  hintText: 'Password',
+                                  labelText: 'Password',
+                                  suffix: InkWell(
+                                    onTap: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder:
+                                              (context) =>
+                                                  const ChangePasswordScreen(),
+                                        ),
+                                      );
+                                    },
+                                    child: const Text('Change'),
+                                  ),
+                                  suffixStyle: theme.textTheme.titleMedium
+                                      ?.copyWith(color: AppColors.mainColor),
+                                ),
+                              ),
+                              Row(
+                                children: <Widget>[
+                                  Text(
+                                    'Gender',
+                                    style: theme.textTheme.titleMedium
+                                        ?.copyWith(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                  ),
+                                  SizedBox(width: screenWidth * 0.006),
+                                  Expanded(
+                                    child: IgnorePointer(
+                                      ignoring: true,
+                                      child: RadioListTile<Gender>(
+                                        activeColor: AppColors.mainColor,
+                                        contentPadding: EdgeInsets.zero,
+                                        title: const Text('Female'),
+                                        value: Gender.female,
+                                        groupValue: _selectedIndex,
+                                        onChanged:
+                                            (value) =>
+                                                _onGenderChanged(value, state),
+                                      ),
                                     ),
                                   ),
-                                ),
-                                Expanded(
-                                  child: IgnorePointer(
-                                    ignoring: true,
-                                    child: RadioListTile<Gender>(
-                                      activeColor: AppColors.mainColor,
-                                      contentPadding: EdgeInsets.zero,
-                                      title: const Text('Male'),
-                                      value: Gender.male,
-                                      groupValue: _selectedIndex,
-                                      onChanged:
-                                          (value) =>
-                                              _onGenderChanged(value, state),
+                                  Expanded(
+                                    child: IgnorePointer(
+                                      ignoring: true,
+                                      child: RadioListTile<Gender>(
+                                        activeColor: AppColors.mainColor,
+                                        contentPadding: EdgeInsets.zero,
+                                        title: const Text('Male'),
+                                        value: Gender.male,
+                                        groupValue: _selectedIndex,
+                                        onChanged:
+                                            (value) =>
+                                                _onGenderChanged(value, state),
+                                      ),
                                     ),
                                   ),
-                                ),
-                              ],
-                            ),
-                            const SizedBox(height: 20),
-                            state.updateProfileStatus ==
-                                    EditProfileStatus.loading
-                                ? const Center(child: LoadingStateWidget())
-                                : FilledButton(
-                                  onPressed:
-                                      isDirty
-                                          ? () {
-                                            editProfileViewModel.onIntent(
-                                              EditInfo(
-                                                firstName.text,
-                                                lastName.text,
-                                                email.text,
-                                                phoneNumber.text,
-                                              ),
-                                            );
-                                          }
-                                          : null,
-                                  child: const Text('Update'),
-                                ),
-                          ],
-                        ),
+                                ],
+                              ),
+                              const SizedBox(height: 20),
+                              state.updateProfileStatus ==
+                                      EditProfileStatus.loading
+                                  ? const Center(child: LoadingStateWidget())
+                                  : FilledButton(
+                                    onPressed:
+                                        isDirty
+                                            ? () {
+                                              editProfileViewModel.onIntent(
+                                                EditInfo(
+                                                  firstName.text,
+                                                  lastName.text,
+                                                  email.text,
+                                                  phoneNumber.text,
+                                                ),
+                                              );
+                                            }
+                                            : null,
+                                    child: const Text('Update'),
+                                  ),
+                            ],
+                          ),
+                ),
               ),
             ),
           );
         },
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    BackButtonInterceptor.remove(myInterceptor);
   }
 }
 

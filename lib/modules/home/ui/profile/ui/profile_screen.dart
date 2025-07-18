@@ -31,72 +31,76 @@ class _ProfileScreenState extends BaseStatefulWidgetState<ProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Padding(
-          padding: EdgeInsets.only(
-            left:
-                localizationManager.currentLocale ==
-                        LanguagesEnum.ar.getLanguageCode()
-                    ? 0
-                    : 24,
-            right:
-                localizationManager.currentLocale ==
-                        LanguagesEnum.ar.getLanguageCode()
-                    ? 24
-                    : 0,
-          ),
-          child: Text(appLocalizations.profile),
-        ),
-        actions: [
-          GestureDetector(
-            onTap: () {},
-            child: Padding(
-              padding: EdgeInsets.only(
-                right:
-                    localizationManager.currentLocale ==
-                            LanguagesEnum.ar.getLanguageCode()
-                        ? 0
-                        : 24,
-                left:
-                    localizationManager.currentLocale ==
-                            LanguagesEnum.ar.getLanguageCode()
-                        ? 24
-                        : 0,
-              ),
-              child: SvgPicture.asset(AssetsPaths.notificationIcon),
+    return BlocProvider(
+      create: (context) => profileCubit,
+      child: Scaffold(
+        appBar: AppBar(
+          title: Padding(
+            padding: EdgeInsets.only(
+              left:
+                  localizationManager.currentLocale ==
+                          LanguagesEnum.ar.getLanguageCode()
+                      ? 0
+                      : 24,
+              right:
+                  localizationManager.currentLocale ==
+                          LanguagesEnum.ar.getLanguageCode()
+                      ? 24
+                      : 0,
             ),
+            child: Text(appLocalizations.profile),
           ),
-        ],
-      ),
-      body: BlocBuilder<ProfileCubit, ProfileState>(
-        builder: (context, state) {
-          switch (state.loadProfileStatus) {
-            case LoadProfileStatus.initial:
-            case LoadProfileStatus.loading:
-              return const LoadingStateWidget();
-            case LoadProfileStatus.success:
-              return Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 24,
-                  vertical: 24,
+          actions: [
+            GestureDetector(
+              onTap: () {},
+              child: Padding(
+                padding: EdgeInsets.only(
+                  right:
+                      localizationManager.currentLocale ==
+                              LanguagesEnum.ar.getLanguageCode()
+                          ? 0
+                          : 24,
+                  left:
+                      localizationManager.currentLocale ==
+                              LanguagesEnum.ar.getLanguageCode()
+                          ? 24
+                          : 0,
                 ),
-                child: Column(
-                  children: [
-                    UserCard(state.loggedDriverDataResponseEntity!),
-                    SizedBox(height: screenHeight * 0.03),
-                    VehicleInfoCard(state.loggedDriverDataResponseEntity!),
-                    SizedBox(height: screenHeight * 0.03),
-                    const LanguageRow(),
-                    SizedBox(height: screenHeight * 0.01),
-                    const LogoutRow(),
-                  ],
-                ),
-              );
-            case LoadProfileStatus.error:
-              return ErrorStateWidget(error: state.loadProfileError!);
-          }
-        },
+                child: SvgPicture.asset(AssetsPaths.notificationIcon),
+              ),
+            ),
+          ],
+        ),
+        body: BlocBuilder<ProfileCubit, ProfileState>(
+          builder: (context, state) {
+            debugPrint("Loading profile status ${state.loadProfileStatus.toString()}");
+            switch (state.loadProfileStatus) {
+              case LoadProfileStatus.initial:
+              case LoadProfileStatus.loading:
+                return const LoadingStateWidget();
+              case LoadProfileStatus.success:
+                return Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 24,
+                    vertical: 24,
+                  ),
+                  child: Column(
+                    children: [
+                      UserCard(state.loggedDriverDataResponseEntity!),
+                      SizedBox(height: screenHeight * 0.03),
+                      VehicleInfoCard(state.loggedDriverDataResponseEntity!),
+                      SizedBox(height: screenHeight * 0.03),
+                      const LanguageRow(),
+                      SizedBox(height: screenHeight * 0.01),
+                      const LogoutRow(),
+                    ],
+                  ),
+                );
+              case LoadProfileStatus.error:
+                return ErrorStateWidget(error: state.loadProfileError!);
+            }
+          },
+        ),
       ),
     );
   }

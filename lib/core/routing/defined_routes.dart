@@ -14,4 +14,5 @@ abstract class DefinedRoutes {
   static const String thanksPageScreenRoute = "thanksPageScreen";
   static const String otpScreenRoute = 'otpScreen';
   static const String resetPasswordRoute = 'resetPasswordScreen';
+  static const String editProfileScreenRoute = "editProfileScreen";
 }

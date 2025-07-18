@@ -1,6 +1,5 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flower_tracking_app/core/apis/api_error/api_error_handler.dart';
-import 'package:flower_tracking_app/core/widgets/timer.dart';
 import 'package:flower_tracking_app/modules/authentication/ui/forget_password/view/reset_password_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -29,10 +28,14 @@ class _ResetCodeScreenState extends BaseStatefulWidgetState<ResetCodeScreen> {
   bool sent = true;
   bool resend = false;
   bool _hasError = false;
-  final ValueNotifier<bool> _isLessThan5Minutes = ValueNotifier<bool>(false);
   final _formKey = GlobalKey<FormState>();
   ResetCodeViewModel resetCodeViewModel = getIt.get<ResetCodeViewModel>();
   EmailViewModel emailViewModel = getIt.get<EmailViewModel>();
+  @override
+  void initState() {
+    super.initState();
+    resetCodeViewModel.onIntent(StartTimer(numberOfSeconds: 40));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -125,6 +128,11 @@ class _ResetCodeScreenState extends BaseStatefulWidgetState<ResetCodeScreen> {
                           ),
                           BlocConsumer<EmailViewModel, EmailState>(
                             listener: (context, state) {
+                              if (state is EmailSuccessState) {
+                                resetCodeViewModel.onIntent(
+                                  StartTimer(numberOfSeconds: 40),
+                                );
+                              }
                               if (state is EmailErrorState) {
                                 displaySnackBar(
                                   contentType: ContentType.failure,
@@ -142,40 +150,48 @@ class _ResetCodeScreenState extends BaseStatefulWidgetState<ResetCodeScreen> {
                                     height: 20,
                                     child: LoadingStateWidget(),
                                   )
-                                  : resend == false
-                                  ? Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: <Widget>[
-                                      Timer(
-                                        isLessThan5Minutes: _isLessThan5Minutes,
-                                        examDuration: 40,
-                                        onTimeEnd: () {
-                                          setState(() {
-                                            resend = true;
-                                          });
-                                        },
-                                      ),
-                                    ],
-                                  )
-                                  : InkWell(
-                                    onTap: () {
-                                      emailViewModel.onIntent(
-                                        ForgotPasswordIntent(widget.email),
-                                      );
-                                      setState(() {
-                                        resend = false;
-                                      });
+                                  : ValueListenableBuilder(
+                                    valueListenable:
+                                        resetCodeViewModel.timeRemaining,
+                                    builder: (context, value, child) {
+                                      return value >= 1
+                                          ? Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              const Icon(Icons.timer, size: 25),
+                                              const SizedBox(width: 10),
+                                              Text(
+                                                value > 9
+                                                    ? "00:$value"
+                                                    : "00:0$value",
+                                                style:
+                                                    theme.textTheme.labelMedium,
+                                              ),
+                                            ],
+                                          )
+                                          : InkWell(
+                                            onTap: () {
+                                              emailViewModel.onIntent(
+                                                ForgotPasswordIntent(
+                                                  widget.email,
+                                                ),
+                                              );
+                                            },
+                                            child: Text(
+                                              appLocalizations.resend,
+                                              style: Theme.of(
+                                                context,
+                                              ).textTheme.bodyLarge?.copyWith(
+                                                color: AppColors.mainColor,
+                                                decoration:
+                                                    TextDecoration.underline,
+                                                decorationColor:
+                                                    AppColors.mainColor,
+                                              ),
+                                            ),
+                                          );
                                     },
-                                    child: Text(
-                                      appLocalizations.resend,
-                                      style: Theme.of(
-                                        context,
-                                      ).textTheme.bodyLarge?.copyWith(
-                                        color: AppColors.mainColor,
-                                        decoration: TextDecoration.underline,
-                                        decorationColor: AppColors.mainColor,
-                                      ),
-                                    ),
                                   );
                             },
                           ),

@@ -1,5 +1,4 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
-import 'package:flower_tracking_app/core/di/injectable_initializer.dart';
 import 'package:flower_tracking_app/core/routing/defined_routes.dart';
 import 'package:flower_tracking_app/modules/home/ui/profile/ui/viewModel/profile_cubit.dart';
 import 'package:flower_tracking_app/shared_layers/localization/generated/app_localizations.dart';
@@ -14,6 +13,7 @@ class LogoutRow extends BaseStatelessWidget {
 
   @override
   Widget customBuild(BuildContext context, BaseInheritedWidget inherit) {
+    ProfileCubit profileCubit = BlocProvider.of(context);
     return BlocListener<ProfileCubit, ProfileState>(
       listener: (context, state) {
         if (state.logoutStatus == LogoutStatus.loading) {
@@ -21,7 +21,11 @@ class LogoutRow extends BaseStatelessWidget {
           showLoading(context);
         } else if (state.logoutStatus == LogoutStatus.success) {
           Navigator.pop(context);
-          Navigator.pushNamed(context, DefinedRoutes.loginScreenRoute);
+          Navigator.pushNamedAndRemoveUntil(
+            context,
+            DefinedRoutes.loginScreenRoute,
+            (route) => false,
+          );
         } else if (state.logoutStatus == LogoutStatus.error) {
           displaySnackBar(
             contentType: ContentType.failure,
@@ -40,7 +44,7 @@ class LogoutRow extends BaseStatelessWidget {
           const Spacer(),
           IconButton(
             onPressed: () {
-              _logout(context);
+              _logout(context, profileCubit);
             },
             icon: Icon(Icons.logout, size: 30, color: AppColors.gray),
           ),
@@ -59,7 +63,7 @@ class LogoutRow extends BaseStatelessWidget {
     );
   }
 
-  void _logout(context) {
+  void _logout(context, ProfileCubit profileCubit) {
     showDialog(
       context: context,
       builder:
@@ -73,7 +77,7 @@ class LogoutRow extends BaseStatelessWidget {
               ),
               TextButton(
                 onPressed: () {
-                  getIt<ProfileCubit>().doIntent(LogoutIntent());
+                  profileCubit.doIntent(LogoutIntent());
                 },
                 child: Text(AppLocalizations.of(context)!.confirmButton),
               ),

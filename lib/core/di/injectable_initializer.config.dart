@@ -569,7 +569,7 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i543.LoginUseCase>(
       () => _i543.LoginUseCase(gh<_i450.LoginRepo>()),
     );
-    gh.lazySingleton<_i792.ProfileCubit>(
+    gh.factory<_i792.ProfileCubit>(
       () => _i792.ProfileCubit(
         gh<_i211.GetLoggedDriverDataUseCase>(),
         gh<_i56.LogoutUseCase>(),

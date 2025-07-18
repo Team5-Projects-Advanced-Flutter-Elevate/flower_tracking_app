@@ -1,6 +1,8 @@
+import 'package:flower_tracking_app/core/routing/defined_routes.dart';
 import 'package:flower_tracking_app/modules/authentication/domain/entities/logged_driver_data/logged_driver_data_response_entity.dart';
-import 'package:flower_tracking_app/modules/edit_profile/ui/screens/edit_profile_screen.dart';
+import 'package:flower_tracking_app/modules/home/ui/profile/ui/viewModel/profile_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../../core/bases/base_inherited_widget.dart';
 import '../../../../../../core/bases/base_statless_widget.dart';
 import '../../../../../../core/colors/app_colors.dart';
@@ -70,12 +72,17 @@ class UserCard extends BaseStatelessWidget {
 
           GestureDetector(
             onTap: () {
-              Navigator.push(
+              Navigator.pushNamed(
                 context,
-                MaterialPageRoute(
-                  builder: (context) => const EditProfileScreen(),
-                ),
-              );
+                DefinedRoutes.editProfileScreenRoute,
+              ).then((profileUpdate) {
+                if (profileUpdate == true) {
+                  if (!context.mounted) return;
+                  BlocProvider.of<ProfileCubit>(
+                    context,
+                  ).doIntent(LoadProfileIntent());
+                }
+              });
             },
             child: Icon(Icons.arrow_forward_ios, color: AppColors.gray),
           ),
