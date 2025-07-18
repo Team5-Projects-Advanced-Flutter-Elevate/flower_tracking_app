@@ -33,7 +33,11 @@ class OrdersCubit extends Cubit<OrdersState> {
     } else if (intent is RefreshOrdersIntent) {
       await _loadOrders(page: 1, isRefresh: true);
     } else if (intent is OnAcceptButtonClick) {
-      _onAcceptButtonClick(intent.driverId, intent.orderEntity);
+      _onAcceptButtonClick(
+        intent.pendingOrderIndex,
+        intent.driverId,
+        intent.orderEntity,
+      );
     }
   }
 
@@ -154,10 +158,16 @@ class OrdersCubit extends Cubit<OrdersState> {
   }
 
   void _onAcceptButtonClick(
+    int pendingOrderIndex,
     String driverId,
     OrderEntityFirestore orderEntity,
   ) async {
-    emit(state.copyWith(addingOrderToFirestore: Status.loading));
+    emit(
+      state.copyWith(
+        addingOrderToFirestore: Status.loading,
+        pressedAcceptOfOrderIndex: pendingOrderIndex,
+      ),
+    );
     var result = await _firestoreRepoContract.addOrder(
       driverId: driverId,
       orderEntity: orderEntity,

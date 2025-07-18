@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flower_tracking_app/core/bases/base_inherited_widget.dart';
 import 'package:flower_tracking_app/core/di/injectable_initializer.dart';
@@ -14,11 +15,13 @@ import 'package:flower_tracking_app/shared_layers/storage/contracts/flutter_secu
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:provider/provider.dart';
+
 import 'core/routing/generate_route.dart';
 import 'core/utilities/dio/dio_service/dio_service.dart';
 
 GlobalKey<NavigatorState> globalNavigatorKey = GlobalKey<NavigatorState>();
 LoggedDriverDataResponseEntity? loggedDriverData;
+
 String? currentAcceptedOrderId;
 
 void main() async {
@@ -26,7 +29,10 @@ void main() async {
     widgetsBinding: WidgetsFlutterBinding.ensureInitialized(),
   );
 
-  Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  FirebaseFirestore.instance.settings = const Settings(
+    persistenceEnabled: false,
+  );
   await configureDependencies();
   final loginLocaleDataSource = getIt.get<LoginLocalDataSource>();
   final rememberValue = await loginLocaleDataSource.getRememberMeValue();
@@ -95,6 +101,18 @@ class _MyAppState extends State<MyApp> {
             localizationsDelegates: AppLocalizations.localizationsDelegates,
             supportedLocales: AppLocalizations.supportedLocales,
             navigatorKey: globalNavigatorKey,
+
+            //initialRoute: DefinedRoutes.forgetPasswordScreenRoute,
+            // navigatorKey: globalNavigatorKey,
+            // onGenerateRoute: GenerateRoute.onGenerateRoute,
+            // initialRoute: DefinedRoutes.onboardingScreenRoute,
+            // onGenerateInitialRoutes: (initialRoute) {
+            //   return GenerateRoute.onGenerateInitialRoutes(
+            //     initialRoute: initialRoute,
+            //     loginInfo: null,
+            //     rememberMe: false
+            //   );
+            // },
             locale: Locale(localizationManager.currentLocale),
             onGenerateRoute: GenerateRoute.onGenerateRoute,
             onGenerateInitialRoutes: (initialRoute) {

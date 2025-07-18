@@ -9,7 +9,6 @@ import 'package:flower_tracking_app/modules/home/ui/profile/ui/profile_screen.da
 import 'package:flower_tracking_app/modules/home/ui/profile/ui/viewModel/profile_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../edit_profile/ui/screens/edit_profile_screen.dart';
 
 class LayoutScreen extends StatefulWidget {

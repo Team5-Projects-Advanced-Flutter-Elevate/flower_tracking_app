@@ -5,9 +5,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/bases/base_stateful_widget_state.dart';
 import '../../../../../core/di/injectable_initializer.dart';
 import '../../../../../core/validation/validation_functions.dart';
-import '../../../../../core/widgets/error_state_widget.dart';
 import '../../../../../core/widgets/loading_state_widget.dart';
-import '../view_model/forget_password_screen_view_model.dart';
+import '../view_model/email_view_model.dart';
 import '../view_model/forget_password_state.dart';
 
 class ForgetPasswordScreen extends StatefulWidget {
@@ -21,8 +20,7 @@ late TextEditingController emailController;
 class _ForgetPasswordScreenState
     extends BaseStatefulWidgetState<ForgetPasswordScreen> {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  ForgetPasswordViewModel forgetPasswordViewModel =
-      getIt.get<ForgetPasswordViewModel>();
+  EmailViewModel emailViewModel = getIt.get<EmailViewModel>();
 
   @override
   void initState() {
@@ -39,7 +37,7 @@ class _ForgetPasswordScreenState
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => forgetPasswordViewModel,
+      create: (context) => emailViewModel,
       child: GestureDetector(
         behavior: HitTestBehavior.opaque,
         onTap: () {
@@ -57,8 +55,8 @@ class _ForgetPasswordScreenState
               icon: Icon(Icons.arrow_back_ios, size: screenWidth * 0.06),
             ),
             title: Text(
-              'Password',
-              style: Theme.of(context).textTheme.labelMedium,
+              appLocalizations.password,
+              style: theme.textTheme.headlineMedium,
             ),
           ),
           body: Form(
@@ -71,69 +69,63 @@ class _ForgetPasswordScreenState
                 children: [
                   SizedBox(height: screenHeight * 0.05),
                   Text(
-                    'Forget Password',
-                    style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                      fontSize:
-                          screenWidth * 0.045, // roughly equivalent to 18.sp
-                    ),
+                    appLocalizations.forgetPassword,
+                    style: theme.textTheme.titleLarge,
                     textAlign: TextAlign.center,
                   ),
                   SizedBox(height: screenHeight * 0.02),
                   Text(
-                    'Please enter your email associated to your account',
+                    appLocalizations.forgetPasswordDescription,
                     style: Theme.of(
                       context,
-                    ).textTheme.bodyMedium?.copyWith(color: Colors.grey),
+                    ).textTheme.titleMedium?.copyWith(color: Colors.grey),
                     textAlign: TextAlign.center,
                   ),
                   SizedBox(height: screenHeight * 0.04),
                   TextFormField(
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
                     validator:
                         (value) =>
                             getIt<ValidateFunctions>().validationOfEmail(value),
 
                     controller: emailController,
-                    decoration: const InputDecoration(
+                    decoration: InputDecoration(
                       enabled: true,
-                      hintText: 'Enter Your Email',
-                      labelText: 'Email',
+                      hintText: appLocalizations.enterEmail,
+                      labelText: appLocalizations.email,
                     ),
                   ),
                   SizedBox(height: screenHeight * 0.06),
-                  BlocConsumer<ForgetPasswordViewModel, PasswordState>(
+                  BlocConsumer<EmailViewModel, EmailState>(
                     builder: (context, state) {
-                      if (state is PasswordLoadingState) {
-                        return const LoadingStateWidget();
+                      if (state is EmailLoadingState) {
+                        return loadingAlert();
                       }
                       return ElevatedButton(
                         onPressed: () {
                           if (formKey.currentState!.validate()) {
-                            forgetPasswordViewModel.onIntent(
+                            emailViewModel.onIntent(
                               ForgotPasswordIntent(emailController.text.trim()),
                             );
                           }
                         },
-                        child: const Text('Confirm'),
+                        child: Text(appLocalizations.confirm),
                       );
                     },
                     listener: (context, state) {
-                      if (state is PasswordSuccessState) {
-                        displaySnackBar(
-                          contentType: ContentType.success,
-                          title: 'Success',
-                          message: 'Code Send to Email',
-                        );
-
+                      if (state is EmailSuccessState) {
+                        alert('success', '');
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const ResetCodeScreen(),
+                            builder:
+                                (context) => ResetCodeScreen(
+                                  email: emailController.text.trim(),
+                                ),
                           ),
                         );
-                      } else if (state is PasswordErrorState) {
-                        ErrorStateWidget(error: state.error);
-                      } else if (state is PasswordLoadingState) {
-                        const LoadingStateWidget();
+                      } else if (state is EmailErrorState) {
+                        alert('failed', state.toString());
                       }
                     },
                   ),
@@ -145,4 +137,24 @@ class _ForgetPasswordScreenState
       ),
     );
   }
+
+  Future<void> alert(final String type, final String msg) {
+    if (type == 'success') {
+      return displaySnackBar(
+        contentType: ContentType.success,
+        title: appLocalizations.success,
+        message: appLocalizations.codeSendTitle,
+      );
+    } else {
+      return displaySnackBar(
+        contentType: ContentType.failure,
+        title: appLocalizations.error,
+        message: msg,
+      );
+    }
+  }
+}
+
+Widget loadingAlert() {
+  return const LoadingStateWidget();
 }

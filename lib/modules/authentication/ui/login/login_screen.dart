@@ -128,6 +128,10 @@ class _LoginScreenState extends BaseStatefulWidgetState<LoginScreen> {
                         const Spacer(),
                         GestureDetector(
                           onTap: () {
+                            Navigator.pushNamed(
+                              context,
+                              DefinedRoutes.forgetPasswordScreenRoute,
+                            );
                             Navigator.push(
                               context,
                               MaterialPageRoute(
