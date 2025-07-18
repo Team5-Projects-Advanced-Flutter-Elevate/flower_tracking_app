@@ -4,6 +4,7 @@ import 'package:flower_tracking_app/modules/apply/ui/apply_view.dart';
 import 'package:flower_tracking_app/modules/authentication/domain/entities/logged_driver_data/logged_driver_data_response_entity.dart';
 import 'package:flower_tracking_app/modules/authentication/ui/forget_password/view/forget_password_screen.dart';
 import 'package:flower_tracking_app/modules/home/layout_screen.dart';
+import 'package:flower_tracking_app/modules/authentication/ui/forget_password/view/reset_password_screen.dart';
 import 'package:flower_tracking_app/modules/onboarding/ui/onboarding_screen.dart';
 import 'package:flower_tracking_app/modules/pick_up_location_map/ui/pick_up_location_map.dart';
 import 'package:flutter/material.dart';
@@ -58,6 +59,12 @@ abstract class GenerateRoute {
           return MaterialPageRoute(
             builder: (context) => const ThanksPageScreen(),
           );
+
+        case DefinedRoutes.resetPasswordRoute:
+          return MaterialPageRoute(
+            builder: (context) => const ResetPasswordScreen(),
+          );
+
         default:
           return _errorRoute();
       }

@@ -86,8 +86,14 @@ import '../../modules/authentication/domain/use_cases/logged_driver_data/get_log
     as _i211;
 import '../../modules/authentication/domain/use_cases/login/login_use_case.dart'
     as _i543;
+import '../../modules/authentication/ui/forget_password/view_model/email_view_model.dart'
+    as _i405;
 import '../../modules/authentication/ui/forget_password/view_model/forget_password_screen_view_model.dart'
     as _i105;
+import '../../modules/authentication/ui/forget_password/view_model/reset_code_view_model.dart'
+    as _i835;
+import '../../modules/authentication/ui/forget_password/view_model/reset_password_screen_view_model.dart'
+    as _i943;
 import '../../modules/authentication/ui/login/view_model/login_view_model.dart'
     as _i108;
 import '../../modules/edit_profile/data/api/api_client/get_data_api_client.dart'
@@ -195,6 +201,21 @@ import '../../modules/pick_up_location_map/domain/use_cases/directions/get_direc
     as _i310;
 import '../../modules/pick_up_location_map/ui/view_model/location_map_view_model.dart'
     as _i369;
+import '../../modules/update_status/data/api/api_client/status_api_client.dart'
+    as _i564;
+import '../../modules/update_status/data/api/api_client_provider/auth_api_client_provider.dart'
+    as _i954;
+import '../../modules/update_status/data/datasource/order_status_data_source.dart'
+    as _i675;
+import '../../modules/update_status/data/datasource_impl/order_status_data_source_impl.dart'
+    as _i757;
+import '../../modules/update_status/data/repo_impl/order_status_repo_impl.dart'
+    as _i799;
+import '../../modules/update_status/domain/repo/order_status_repo.dart'
+    as _i797;
+import '../../modules/update_status/domain/usecase/order_status_use_case.dart'
+    as _i370;
+import '../../modules/update_status/ui/cubit/view_model.dart' as _i783;
 import '../../modules/whatsapp_call/data/data_source/call_data_source.dart'
     as _i692;
 import '../../modules/whatsapp_call/data/data_source/whatsapp_data_source.dart'
@@ -255,10 +276,11 @@ extension GetItInjectableX on _i174.GetIt {
     final applyApiClientProvider = _$ApplyApiClientProvider();
     final authApiClientProvider = _$AuthApiClientProvider();
     final getDataApiClientProvider = _$GetDataApiClientProvider();
+    final vehicleApiClientProvider = _$VehicleApiClientProvider();
     final ordersApiClientProvider = _$OrdersApiClientProvider();
     final ordersApiDriverProvider = _$OrdersApiDriverProvider();
     final logoutApiClientProvider = _$LogoutApiClientProvider();
-    final vehicleApiClientProvider = _$VehicleApiClientProvider();
+    final stateApiClientProvider = _$StateApiClientProvider();
     final locationMapApiClientProvider = _$LocationMapApiClientProvider();
     final localeInitializer = _$LocaleInitializer();
     final appLocalizationsProvider = _$AppLocalizationsProvider();
@@ -292,6 +314,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i984.GetDataApiClient>(
       () => getDataApiClientProvider.provideApiClient(gh<_i361.Dio>()),
     );
+    gh.lazySingleton<_i548.VehicleApiClient>(
+      () => vehicleApiClientProvider.providerApiClient(gh<_i361.Dio>()),
+    );
     gh.lazySingleton<_i858.OrdersApiClient>(
       () => ordersApiClientProvider.providerApiClient(gh<_i361.Dio>()),
     );
@@ -301,8 +326,8 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i877.LogoutApiClient>(
       () => logoutApiClientProvider.provideClient(gh<_i361.Dio>()),
     );
-    gh.lazySingleton<_i548.VehicleApiClient>(
-      () => vehicleApiClientProvider.providerApiClient(gh<_i361.Dio>()),
+    gh.lazySingleton<_i564.StateApiClient>(
+      () => stateApiClientProvider.provideApiClient(gh<_i361.Dio>()),
     );
     gh.singleton<_i619.LocationMapApiClient>(
       () => locationMapApiClientProvider.provideApiClient(gh<_i361.Dio>()),
@@ -364,6 +389,11 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i271.FirestoreRepoImp(
         gh<_i163.DriverCollection>(),
         gh<_i793.OrderCollection>(),
+      ),
+    );
+    gh.factory<_i675.UpdateOrderStatusOnlineDataSource>(
+      () => _i757.UpdateOrderStatusOnlineDataSourceImpl(
+        gh<_i564.StateApiClient>(),
       ),
     );
     gh.factory<_i890.GetLoggedDriverDataOnlineDataSource>(
@@ -503,6 +533,9 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i629.SecureStorageService<dynamic>>(),
       ),
     );
+    gh.factory<_i835.ResetCodeViewModel>(
+      () => _i835.ResetCodeViewModel(gh<_i9.ResetCodeUseCase>()),
+    );
     gh.lazySingleton<_i12.OrdersCubit>(
       () => _i12.OrdersCubit(
         gh<_i553.GetPendingOrdersUseCase>(),
@@ -521,6 +554,17 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i900.GetVehiclesUseCase>(
       () => _i900.GetVehiclesUseCase(gh<_i61.VehicleRepo>()),
+    );
+    gh.factory<_i797.UpdateOrderStatusRepo>(
+      () => _i799.UpdateOrderStatusRepoImpl(
+        gh<_i675.UpdateOrderStatusOnlineDataSource>(),
+      ),
+    );
+    gh.factory<_i943.ResetPasswordViewModel>(
+      () => _i943.ResetPasswordViewModel(gh<_i110.ResetPasswordUseCase>()),
+    );
+    gh.factory<_i370.UpdateOrderStatusUseCase>(
+      () => _i370.UpdateOrderStatusUseCase(gh<_i797.UpdateOrderStatusRepo>()),
     );
     gh.factory<_i272.EditInfoRepo>(
       () => _i213.EditInfoRepoImpl(gh<_i229.EditInfoOnlineDataSource>()),
@@ -556,6 +600,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i166.ValidateFunctions>(
       () => _i166.ValidateFunctions(gh<_i543.AppLocalizations>()),
     );
+    gh.factory<_i783.OrderStatusViewModel>(
+      () => _i783.OrderStatusViewModel(gh<_i370.UpdateOrderStatusUseCase>()),
+    );
     gh.factory<_i898.LauncherViewModel>(
       () => _i898.LauncherViewModel(
         gh<_i565.WhatsAppUseCase>(),
@@ -589,6 +636,9 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i9.ResetCodeUseCase>(),
       ),
     );
+    gh.factory<_i405.EmailViewModel>(
+      () => _i405.EmailViewModel(gh<_i823.ForgetPasswordUseCase>()),
+    );
     gh.factory<_i369.LocationMapViewModel>(
       () => _i369.LocationMapViewModel(gh<_i310.GetDirectionsUseCase>()),
     );
@@ -606,13 +656,15 @@ class _$AuthApiClientProvider extends _i1019.AuthApiClientProvider {}
 
 class _$GetDataApiClientProvider extends _i1073.GetDataApiClientProvider {}
 
+class _$VehicleApiClientProvider extends _i1043.VehicleApiClientProvider {}
+
 class _$OrdersApiClientProvider extends _i290.OrdersApiClientProvider {}
 
 class _$OrdersApiDriverProvider extends _i47.OrdersApiDriverProvider {}
 
 class _$LogoutApiClientProvider extends _i894.LogoutApiClientProvider {}
 
-class _$VehicleApiClientProvider extends _i1043.VehicleApiClientProvider {}
+class _$StateApiClientProvider extends _i954.StateApiClientProvider {}
 
 class _$LocationMapApiClientProvider
     extends _i1070.LocationMapApiClientProvider {}
