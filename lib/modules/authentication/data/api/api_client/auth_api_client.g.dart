@@ -17,7 +17,7 @@ class _AuthApiClient implements AuthApiClient {
 
   String? baseUrl;
 
-  ParseErrorLogger? errorLogger;
+   ParseErrorLogger? errorLogger;
 
   @override
   Future<LoginResponseDto> login(LoginRequestDto loginRequestDto) async {

@@ -98,7 +98,6 @@ class _MyAppState extends State<MyApp> {
             navigatorKey: globalNavigatorKey,
 
             //initialRoute: DefinedRoutes.forgetPasswordScreenRoute,
-            home: const ForgetPasswordScreen(),
             // navigatorKey: globalNavigatorKey,
             // onGenerateRoute: GenerateRoute.onGenerateRoute,
             // initialRoute: DefinedRoutes.onboardingScreenRoute,

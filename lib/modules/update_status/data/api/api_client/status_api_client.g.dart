@@ -17,7 +17,7 @@ class _StateApiClient implements StateApiClient {
 
   String? baseUrl;
 
-  ParseErrorLogger? errorLogger;
+   ParseErrorLogger? errorLogger;
 
   @override
   Future<OrderStatusUpdate> updateState(

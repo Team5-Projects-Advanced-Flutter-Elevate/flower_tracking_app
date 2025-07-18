@@ -87,7 +87,6 @@
   "gender": "Gender",
   "male": "Male",
   "female": "Female",
-  "removedImage": "Removed image",
   "forgetPasswordDescription": "Please enter your email associated to your account",
   "confirm": "Confirm",
   "success": "Successfully",
@@ -102,7 +101,7 @@
   "resetPasswordScreenTitle": "Reset password",
   "newPassword":"New Password",
   "confirmNewPassword": "Confirm New Password",
-  "yourPasswordChanged": "Password Changed Successfully"
+  "yourPasswordChanged": "Password Changed Successfully",
 
   "removedImage": "Removed image",
   "thankYou": "Thank You!!",

@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:flower_tracking_app/core/apis/apis_endpoints/apis_endpoints.dart';
 import 'package:flower_tracking_app/modules/pick_up_location_map/data/api/api_client/location_map_api_client.dart';
 import 'package:injectable/injectable.dart';
 
@@ -9,7 +8,6 @@ abstract class LocationMapApiClientProvider {
   LocationMapApiClient provideApiClient(Dio dio) {
     return LocationMapApiClient(
       dio,
-      baseUrl: ApisEndpoints.openRouteServiceBaseUrl,
     );
   }
 }

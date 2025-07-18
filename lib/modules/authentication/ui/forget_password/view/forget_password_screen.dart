@@ -99,7 +99,7 @@ class _ForgetPasswordScreenState
                   BlocConsumer<EmailViewModel, EmailState>(
                     builder: (context, state) {
                       if (state is EmailLoadingState) {
-                        return  loadingAlert();
+                        return loadingAlert();
                       }
                       return ElevatedButton(
                         onPressed: () {
@@ -153,37 +153,8 @@ class _ForgetPasswordScreenState
       );
     }
   }
-                      if (state is PasswordSuccessState) {
-                        displaySnackBar(
-                          contentType: ContentType.success,
-                          title: 'Success',
-                          message: 'Code Send to Email',
-                        );
-
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const ResetCodeScreen(),
-                          ),
-                        );
-                      } else if (state is PasswordErrorState) {
-                        ErrorStateWidget(error: state.error);
-                      } else if (state is PasswordLoadingState) {
-                        const LoadingStateWidget();
-                      }
-                    },
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
 }
 
-}
-Widget loadingAlert(){
+Widget loadingAlert() {
   return const LoadingStateWidget();
 }

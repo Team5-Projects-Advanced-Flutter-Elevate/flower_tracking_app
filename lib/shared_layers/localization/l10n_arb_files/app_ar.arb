@@ -83,7 +83,6 @@
   "gender": "الجنس",
   "male": "ذكر",
   "female": "أنثى",
-  "removedImage": "تمت إزالة الصورة",
   "thankYou": "شكرًا لك!!",
   "applicationSubmitted": "تم تقديم طلبك!",
   "thanksForProvidingApplication": "شكرًا لتقديم طلبك، سنراجع طلبك وسنعاود الاتصال بك قريبًا.",
@@ -152,7 +151,7 @@
   "flowery": "فلوري",
   "yourLocation": "موقعك",
   "thanksPage_______________": "$$$ تعليق $$$",
-  "orderDeliveredSuccessfully": "تم تسليم الطلب\nبنجاح"
+  "orderDeliveredSuccessfully": "تم تسليم الطلب\nبنجاح",
 
   "removedImage": "تمت إزالة الصورة",
   "forgetPasswordDescription": "الرجاء إدخال البريد الإلكتروني المرتبط بحسابك",
