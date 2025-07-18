@@ -11,13 +11,14 @@ part of 'logout_api_client.dart';
 class _LogoutApiClient implements LogoutApiClient {
   _LogoutApiClient(this._dio) {
     baseUrl ??= 'https://flower.elevateegy.com/';
+    errorLogger = null;
   }
 
   final Dio _dio;
 
   String? baseUrl;
 
-  ParseErrorLogger? errorLogger;
+  late final ParseErrorLogger? errorLogger;
 
   @override
   Future<LogoutResponseDto> logout() async {

@@ -11,13 +11,14 @@ part of 'status_api_client.dart';
 class _StateApiClient implements StateApiClient {
   _StateApiClient(this._dio) {
     baseUrl ??= 'https://flower.elevateegy.com/';
+    errorLogger = null;
   }
 
   final Dio _dio;
 
   String? baseUrl;
 
-  ParseErrorLogger? errorLogger;
+  late final ParseErrorLogger? errorLogger;
 
   @override
   Future<OrderStatusUpdate> updateState(

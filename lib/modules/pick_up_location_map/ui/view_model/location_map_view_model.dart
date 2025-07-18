@@ -108,7 +108,7 @@ class LocationMapViewModel extends Cubit<LocationStates> {
   void _whenUserLocationChanges() {
     _location.onLocationChanged.listen((newLocation) {
       if (newLocation.latitude != null && newLocation.longitude != null) {
-        if (_hasMovedAtLeast100Meters(
+        if (_hasMovedAtLeast50Meters(
           currentLocation!.latitude!,
           currentLocation!.longitude!,
           newLocation.latitude!,
@@ -180,7 +180,7 @@ class LocationMapViewModel extends Cubit<LocationStates> {
     }
   }
 
-  bool _hasMovedAtLeast100Meters(
+  bool _hasMovedAtLeast50Meters(
     double lat1,
     double lon1,
     double lat2,
