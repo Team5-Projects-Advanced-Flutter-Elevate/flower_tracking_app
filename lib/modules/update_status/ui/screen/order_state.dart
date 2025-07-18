@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -21,11 +22,17 @@ class _OrderStateState extends State<OrderState> {
       child: BlocListener<OrderStatusViewModel, UpdateStatusState>(
         listener: (context, state) {
           if (state is UpdateStatusLoading) {
-            print('Loading...');
+            if (kDebugMode) {
+              print('Loading...');
+            }
           } else if (state is UpdateStatusSuccess) {
-            print('Status Updated Successfully: ${state.data}');
+            if (kDebugMode) {
+              print('Status Updated Successfully: ${state.data}');
+            }
           } else if (state is UpdateStatusError) {
-            print('Failed to update: ${state.message}');
+            if (kDebugMode) {
+              print('Failed to update: ${state.message}');
+            }
           }
         },
         child: Column(

@@ -73,7 +73,7 @@ class Orders {
   Map<String, dynamic> toJson() => {
     "_id": id,
     "user": user,
-    "orderItems": orderItems.map((x) => x?.toJson()).toList(),
+    "orderItems": orderItems.map((x) => x.toJson()).toList(),
     "totalPrice": totalPrice,
     "paymentType": paymentType,
     "isPaid": isPaid,
