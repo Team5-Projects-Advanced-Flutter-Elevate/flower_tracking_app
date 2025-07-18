@@ -131,11 +131,11 @@ abstract class AppLocalizations {
   /// **'No Internet connection 😑'**
   String get connectionError;
 
-  /// No description provided for @unknown.
+  /// No description provided for @unknownError.
   ///
   /// In en, this message translates to:
   /// **'Something Went Wrong 🤔'**
-  String get unknown;
+  String get unknownError;
 
   /// No description provided for @badCertificate.
   ///
@@ -905,11 +905,29 @@ abstract class AppLocalizations {
   /// **'Updated Successfully!'**
   String get updatedSuccessfully;
 
-  /// No description provided for @orderFinishedSuccessfully.
+  /// No description provided for @myOrders.
   ///
   /// In en, this message translates to:
-  /// **'Order Finished Successfully!'**
-  String get orderFinishedSuccessfully;
+  /// **'My orders'**
+  String get myOrders;
+
+  /// No description provided for @cancelled.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancelled'**
+  String get cancelled;
+
+  /// No description provided for @completed.
+  ///
+  /// In en, this message translates to:
+  /// **'Completed'**
+  String get completed;
+
+  /// No description provided for @logoutTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Logout'**
+  String get logoutTitle;
 
   /// No description provided for @logoutMessage.
   ///
@@ -928,6 +946,66 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Confirm'**
   String get confirmButton;
+
+  /// No description provided for @orderFinishedSuccessfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Order Finished Successfully!'**
+  String get orderFinishedSuccessfully;
+
+  /// No description provided for @editProfile.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit profile'**
+  String get editProfile;
+
+  /// No description provided for @update.
+  ///
+  /// In en, this message translates to:
+  /// **'Update'**
+  String get update;
+
+  /// No description provided for @pickUpLocation________.
+  ///
+  /// In en, this message translates to:
+  /// **'\$\$\$ Comment \$\$\$'**
+  String get pickUpLocation________;
+
+  /// No description provided for @errorLoadingTheMap.
+  ///
+  /// In en, this message translates to:
+  /// **'Error Occurred While Loading The Map'**
+  String get errorLoadingTheMap;
+
+  /// No description provided for @user.
+  ///
+  /// In en, this message translates to:
+  /// **'User'**
+  String get user;
+
+  /// No description provided for @flowery.
+  ///
+  /// In en, this message translates to:
+  /// **'Flowery'**
+  String get flowery;
+
+  /// No description provided for @yourLocation.
+  ///
+  /// In en, this message translates to:
+  /// **'Your Location'**
+  String get yourLocation;
+
+  /// No description provided for @thanksPage_______________.
+  ///
+  /// In en, this message translates to:
+  /// **'\$\$\$ Comment \$\$\$'**
+  String get thanksPage_______________;
+
+  /// No description provided for @orderDeliveredSuccessfully.
+  ///
+  /// In en, this message translates to:
+  /// **'The order delivered\nsuccessfully'**
+  String get orderDeliveredSuccessfully;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

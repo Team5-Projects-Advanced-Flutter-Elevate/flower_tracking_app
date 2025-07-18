@@ -53,4 +53,18 @@ extension DioServiceExtension on DioService {
     );
     dio.options = newBaseOptions;
   }
+
+  static void clearDefaultHeaders() {
+    Dio dio = getIt.get<Dio>();
+    dio.options.headers.clear();
+  }
+
+  static void setHeadersToDefault(String token) {
+    Dio dio = getIt.get<Dio>();
+    dio.options.headers = {
+      "Authorization": 'Bearer $token',
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+    };
+  }
 }

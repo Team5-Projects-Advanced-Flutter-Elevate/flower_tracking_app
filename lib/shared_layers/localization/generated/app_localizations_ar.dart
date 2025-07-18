@@ -27,7 +27,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get connectionError => 'لا يوجد اتصال بالإنترنت 😑';
 
   @override
-  String get unknown => 'حدث خطأ ما 🤔';
+  String get unknownError => 'حدث خطأ ما 🤔';
 
   @override
   String get badCertificate => 'الشهادة المقدمة من الخادم غير صالحة 📑';
@@ -414,7 +414,16 @@ class AppLocalizationsAr extends AppLocalizations {
   String get updatedSuccessfully => 'تم التحديث بنجاح!';
 
   @override
-  String get orderFinishedSuccessfully => 'تم إنهاء الطلب بنجاح!';
+  String get myOrders => 'طلباتي';
+
+  @override
+  String get cancelled => 'ملغي';
+
+  @override
+  String get completed => 'مكتمل';
+
+  @override
+  String get logoutTitle => 'تسجيل الخروج';
 
   @override
   String get logoutMessage => 'هل أنت متأكد أنك تريد تسجيل الخروج؟';
@@ -424,4 +433,34 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get confirmButton => 'تأكيد';
+
+  @override
+  String get orderFinishedSuccessfully => 'تم إنهاء الطلب بنجاح!';
+
+  @override
+  String get editProfile => 'تعديل الملف الشخصي';
+
+  @override
+  String get update => 'تحديث';
+
+  @override
+  String get pickUpLocation________ => '\$\$\$ تعليق \$\$\$';
+
+  @override
+  String get errorLoadingTheMap => 'حدث خطأ أثناء تحميل الخريطة';
+
+  @override
+  String get user => 'مستخدم';
+
+  @override
+  String get flowery => 'فلوري';
+
+  @override
+  String get yourLocation => 'موقعك';
+
+  @override
+  String get thanksPage_______________ => '\$\$\$ تعليق \$\$\$';
+
+  @override
+  String get orderDeliveredSuccessfully => 'تم تسليم الطلب\nبنجاح';
 }

@@ -50,12 +50,13 @@ abstract class BaseStatefulWidgetState<T extends StatefulWidget>
     required ContentType contentType,
     required String title,
     String? message,
+    int? durationInSeconds,
   }) async {
     final snackBar = SnackBar(
       elevation: 0,
       behavior: SnackBarBehavior.floating,
       backgroundColor: Colors.transparent,
-      duration: const Duration(seconds: 2),
+      duration: Duration(seconds: durationInSeconds ?? 2),
       content: AwesomeSnackbarContent(
         title: title,
         titleTextStyle: theme.textTheme.titleMedium!.copyWith(
@@ -64,6 +65,7 @@ abstract class BaseStatefulWidgetState<T extends StatefulWidget>
         message: message ?? "",
         messageTextStyle: theme.textTheme.labelMedium!.copyWith(
           color: AppColors.white,
+          fontSize: 14,
         ),
         contentType: contentType,
       ),

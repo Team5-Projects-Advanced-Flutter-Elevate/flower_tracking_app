@@ -27,7 +27,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get connectionError => 'No Internet connection 😑';
 
   @override
-  String get unknown => 'Something Went Wrong 🤔';
+  String get unknownError => 'Something Went Wrong 🤔';
 
   @override
   String get badCertificate => 'The certificate provided by the server is not valid 📑';
@@ -414,7 +414,16 @@ class AppLocalizationsEn extends AppLocalizations {
   String get updatedSuccessfully => 'Updated Successfully!';
 
   @override
-  String get orderFinishedSuccessfully => 'Order Finished Successfully!';
+  String get myOrders => 'My orders';
+
+  @override
+  String get cancelled => 'Cancelled';
+
+  @override
+  String get completed => 'Completed';
+
+  @override
+  String get logoutTitle => 'Logout';
 
   @override
   String get logoutMessage => 'Are you sure you want to logout?';
@@ -424,4 +433,34 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get confirmButton => 'Confirm';
+
+  @override
+  String get orderFinishedSuccessfully => 'Order Finished Successfully!';
+
+  @override
+  String get editProfile => 'Edit profile';
+
+  @override
+  String get update => 'Update';
+
+  @override
+  String get pickUpLocation________ => '\$\$\$ Comment \$\$\$';
+
+  @override
+  String get errorLoadingTheMap => 'Error Occurred While Loading The Map';
+
+  @override
+  String get user => 'User';
+
+  @override
+  String get flowery => 'Flowery';
+
+  @override
+  String get yourLocation => 'Your Location';
+
+  @override
+  String get thanksPage_______________ => '\$\$\$ Comment \$\$\$';
+
+  @override
+  String get orderDeliveredSuccessfully => 'The order delivered\nsuccessfully';
 }

@@ -1,8 +1,13 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+
 import '../../../../../../core/bases/base_inherited_widget.dart';
 import '../../../../../../core/bases/base_statless_widget.dart';
 import '../../../../../../core/colors/app_colors.dart';
 import '../../../../../authentication/domain/entities/logged_driver_data/logged_driver_data_response_entity.dart';
+import '../../../../../edit_vehicle_info/data/models/edite_profile_response.dart';
+import '../../../../../edit_vehicle_info/ui/edit_vehicle_view.dart';
 
 class VehicleInfoCard extends BaseStatelessWidget {
   const VehicleInfoCard(this.loggedDriverDataResponseEntity, {super.key});
@@ -59,7 +64,30 @@ class VehicleInfoCard extends BaseStatelessWidget {
           const Spacer(),
           GestureDetector(
             onTap: () {
-              // Navigate to edit vehicle info screen
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder:
+                      (context) => EditVehicleInfoScreen(
+                        editVehicleRequest: EditVehicleRequest(
+                          vehicleLicense: File(
+                            loggedDriverDataResponseEntity
+                                    .driver
+                                    ?.vehicleLicense ??
+                                '',
+                          ),
+                          vehicleType:
+                              loggedDriverDataResponseEntity
+                                  .driver
+                                  ?.vehicleType,
+                          vehicleNumber:
+                              loggedDriverDataResponseEntity
+                                  .driver
+                                  ?.vehicleNumber,
+                        ),
+                      ),
+                ),
+              );
             },
             child: Icon(Icons.arrow_forward_ios, color: AppColors.gray),
           ),
