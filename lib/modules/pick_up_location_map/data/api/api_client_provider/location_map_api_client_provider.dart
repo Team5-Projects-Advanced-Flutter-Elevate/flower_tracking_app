@@ -7,6 +7,9 @@ import 'package:injectable/injectable.dart';
 abstract class LocationMapApiClientProvider {
   @singleton
   LocationMapApiClient provideApiClient(Dio dio) {
-    return LocationMapApiClient(dio,baseUrl: ApisEndpoints.openRouteServiceBaseUrl);
+    return LocationMapApiClient(
+      dio,
+      baseUrl: ApisEndpoints.openRouteServiceBaseUrl,
+    );
   }
 }
