@@ -62,7 +62,8 @@ import 'app_localizations_en.dart';
 /// be consistent with the languages listed in the AppLocalizations.supportedLocales
 /// property.
 abstract class AppLocalizations {
-  AppLocalizations(String locale) : localeName = intl.Intl.canonicalizedLocale(locale.toString());
+  AppLocalizations(String locale)
+    : localeName = intl.Intl.canonicalizedLocale(locale.toString());
 
   final String localeName;
 
@@ -70,7 +71,8 @@ abstract class AppLocalizations {
     return Localizations.of<AppLocalizations>(context, AppLocalizations);
   }
 
-  static const LocalizationsDelegate<AppLocalizations> delegate = _AppLocalizationsDelegate();
+  static const LocalizationsDelegate<AppLocalizations> delegate =
+      _AppLocalizationsDelegate();
 
   /// A list of this localizations delegate along with the default localizations
   /// delegates.
@@ -82,17 +84,18 @@ abstract class AppLocalizations {
   /// Additional delegates can be added by appending to this list in
   /// MaterialApp. This list does not have to be used at all if a custom list
   /// of delegates is preferred or required.
-  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates = <LocalizationsDelegate<dynamic>>[
-    delegate,
-    GlobalMaterialLocalizations.delegate,
-    GlobalCupertinoLocalizations.delegate,
-    GlobalWidgetsLocalizations.delegate,
-  ];
+  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates =
+      <LocalizationsDelegate<dynamic>>[
+        delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ];
 
   /// A list of this localizations delegate's supported locales.
   static const List<Locale> supportedLocales = <Locale>[
     Locale('ar'),
-    Locale('en')
+    Locale('en'),
   ];
 
   /// No description provided for @errorMessages________.
@@ -131,11 +134,11 @@ abstract class AppLocalizations {
   /// **'No Internet connection 😑'**
   String get connectionError;
 
-  /// No description provided for @unknown.
+  /// No description provided for @unknownError.
   ///
   /// In en, this message translates to:
   /// **'Something Went Wrong 🤔'**
-  String get unknown;
+  String get unknownError;
 
   /// No description provided for @badCertificate.
   ///
@@ -563,6 +566,18 @@ abstract class AppLocalizations {
   /// **'Enter your email'**
   String get emailHint;
 
+  /// No description provided for @phoneNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone number'**
+  String get phoneNumber;
+
+  /// No description provided for @phoneNumberHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter phone number'**
+  String get phoneNumberHint;
+
   /// No description provided for @passwordHint.
   ///
   /// In en, this message translates to:
@@ -605,98 +620,399 @@ abstract class AppLocalizations {
   /// **'Removed image'**
   String get removedImage;
 
-  /// No description provided for @forgetPasswordDescription.
+  /// No description provided for @thankYou.
   ///
   /// In en, this message translates to:
-  /// **'Please enter your email associated to your account'**
-  String get forgetPasswordDescription;
+  /// **'Thank You!!'**
+  String get thankYou;
 
-  /// No description provided for @confirm.
+  /// No description provided for @applicationSubmitted.
+  ///
+  /// In en, this message translates to:
+  /// **'Your application has been submitted!'**
+  String get applicationSubmitted;
+
+  /// No description provided for @thanksForProvidingApplication.
+  ///
+  /// In en, this message translates to:
+  /// **'Thank you for providing your application, we will review your application and will get back to you soon.'**
+  String get thanksForProvidingApplication;
+
+  /// No description provided for @successScreenDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'The order delivered successfully'**
+  String get successScreenDescription;
+
+  /// No description provided for @done.
+  ///
+  /// In en, this message translates to:
+  /// **'Done'**
+  String get done;
+
+  /// No description provided for @home.
+  ///
+  /// In en, this message translates to:
+  /// **'Home'**
+  String get home;
+
+  /// No description provided for @orders.
+  ///
+  /// In en, this message translates to:
+  /// **'Orders'**
+  String get orders;
+
+  /// No description provided for @profile.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile'**
+  String get profile;
+
+  /// No description provided for @floweryRider.
+  ///
+  /// In en, this message translates to:
+  /// **'Flowery rider'**
+  String get floweryRider;
+
+  /// No description provided for @readyForDelivery.
+  ///
+  /// In en, this message translates to:
+  /// **'Ready for delivery'**
+  String get readyForDelivery;
+
+  /// No description provided for @accept.
+  ///
+  /// In en, this message translates to:
+  /// **'Accept'**
+  String get accept;
+
+  /// No description provided for @reject.
+  ///
+  /// In en, this message translates to:
+  /// **'Reject'**
+  String get reject;
+
+  /// No description provided for @noOrdersFound.
+  ///
+  /// In en, this message translates to:
+  /// **'No orders found'**
+  String get noOrdersFound;
+
+  /// No description provided for @unKnownProduct.
+  ///
+  /// In en, this message translates to:
+  /// **'Unknown Product'**
+  String get unKnownProduct;
+
+  /// No description provided for @unKnownAddress.
+  ///
+  /// In en, this message translates to:
+  /// **'Unknown Address'**
+  String get unKnownAddress;
+
+  /// No description provided for @unKnownStore.
+  ///
+  /// In en, this message translates to:
+  /// **'Unknown Store'**
+  String get unKnownStore;
+
+  /// No description provided for @unKnown.
+  ///
+  /// In en, this message translates to:
+  /// **'UnKnown'**
+  String get unKnown;
+
+  /// No description provided for @eGP.
+  ///
+  /// In en, this message translates to:
+  /// **'EGP'**
+  String get eGP;
+
+  /// No description provided for @pickUpAddress.
+  ///
+  /// In en, this message translates to:
+  /// **'Pickup address'**
+  String get pickUpAddress;
+
+  /// No description provided for @userAddress.
+  ///
+  /// In en, this message translates to:
+  /// **'User address'**
+  String get userAddress;
+
+  /// No description provided for @orderDetailsScreen_________.
+  ///
+  /// In en, this message translates to:
+  /// **'\$\$ Comment \$\$\$'**
+  String get orderDetailsScreen_________;
+
+  /// No description provided for @orderDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'Order Details'**
+  String get orderDetails;
+
+  /// No description provided for @status.
+  ///
+  /// In en, this message translates to:
+  /// **'Status'**
+  String get status;
+
+  /// No description provided for @accepted.
+  ///
+  /// In en, this message translates to:
+  /// **'Accepted'**
+  String get accepted;
+
+  /// No description provided for @orderId.
+  ///
+  /// In en, this message translates to:
+  /// **'Order ID'**
+  String get orderId;
+
+  /// No description provided for @pickupAddress.
+  ///
+  /// In en, this message translates to:
+  /// **'Pickup address'**
+  String get pickupAddress;
+
+  /// No description provided for @floweryStore.
+  ///
+  /// In en, this message translates to:
+  /// **'Flowery store'**
+  String get floweryStore;
+
+  /// No description provided for @egp.
+  ///
+  /// In en, this message translates to:
+  /// **'EGP'**
+  String get egp;
+
+  /// No description provided for @total.
+  ///
+  /// In en, this message translates to:
+  /// **'Total'**
+  String get total;
+
+  /// No description provided for @paymentMethod.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment method'**
+  String get paymentMethod;
+
+  /// No description provided for @cashOnDelivery.
+  ///
+  /// In en, this message translates to:
+  /// **'Cash on delivery'**
+  String get cashOnDelivery;
+
+  /// No description provided for @arrivedAtPickupPoint.
+  ///
+  /// In en, this message translates to:
+  /// **'Arrived at Pickup point'**
+  String get arrivedAtPickupPoint;
+
+  /// No description provided for @orderStatusAccepted.
+  ///
+  /// In en, this message translates to:
+  /// **'Accepted'**
+  String get orderStatusAccepted;
+
+  /// No description provided for @orderStatusPicked.
+  ///
+  /// In en, this message translates to:
+  /// **'Picked'**
+  String get orderStatusPicked;
+
+  /// No description provided for @orderStatusOutForDelivery.
+  ///
+  /// In en, this message translates to:
+  /// **'Out for delivery'**
+  String get orderStatusOutForDelivery;
+
+  /// No description provided for @orderStatusArrived.
+  ///
+  /// In en, this message translates to:
+  /// **'Arrived'**
+  String get orderStatusArrived;
+
+  /// No description provided for @orderStatusDelivered.
+  ///
+  /// In en, this message translates to:
+  /// **'Delivered'**
+  String get orderStatusDelivered;
+
+  /// No description provided for @buttonArrivedAtPickup.
+  ///
+  /// In en, this message translates to:
+  /// **'Arrived at pickup point'**
+  String get buttonArrivedAtPickup;
+
+  /// No description provided for @buttonStartDelivery.
+  ///
+  /// In en, this message translates to:
+  /// **'Start delivery'**
+  String get buttonStartDelivery;
+
+  /// No description provided for @buttonArrivedDestination.
+  ///
+  /// In en, this message translates to:
+  /// **'Arrived to destination'**
+  String get buttonArrivedDestination;
+
+  /// No description provided for @language.
+  ///
+  /// In en, this message translates to:
+  /// **'Language'**
+  String get language;
+
+  /// No description provided for @english.
+  ///
+  /// In en, this message translates to:
+  /// **'English'**
+  String get english;
+
+  /// No description provided for @logout.
+  ///
+  /// In en, this message translates to:
+  /// **'Logout'**
+  String get logout;
+
+  /// No description provided for @vehicleInfo.
+  ///
+  /// In en, this message translates to:
+  /// **'Vehicle Info'**
+  String get vehicleInfo;
+
+  /// No description provided for @buttonOrderDelivered.
+  ///
+  /// In en, this message translates to:
+  /// **'Order delivered'**
+  String get buttonOrderDelivered;
+
+  /// No description provided for @loading.
+  ///
+  /// In en, this message translates to:
+  /// **'Loading.....'**
+  String get loading;
+
+  /// No description provided for @acceptedSuccessfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Accepted Successfully!'**
+  String get acceptedSuccessfully;
+
+  /// No description provided for @updatedSuccessfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Updated Successfully!'**
+  String get updatedSuccessfully;
+
+  /// No description provided for @myOrders.
+  ///
+  /// In en, this message translates to:
+  /// **'My orders'**
+  String get myOrders;
+
+  /// No description provided for @cancelled.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancelled'**
+  String get cancelled;
+
+  /// No description provided for @completed.
+  ///
+  /// In en, this message translates to:
+  /// **'Completed'**
+  String get completed;
+
+  /// No description provided for @logoutTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Logout'**
+  String get logoutTitle;
+
+  /// No description provided for @logoutMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to logout?'**
+  String get logoutMessage;
+
+  /// No description provided for @cancelButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get cancelButton;
+
+  /// No description provided for @confirmButton.
   ///
   /// In en, this message translates to:
   /// **'Confirm'**
-  String get confirm;
+  String get confirmButton;
 
-  /// No description provided for @success.
+  /// No description provided for @orderFinishedSuccessfully.
   ///
   /// In en, this message translates to:
-  /// **'Successfully'**
-  String get success;
+  /// **'Order Finished Successfully!'**
+  String get orderFinishedSuccessfully;
 
-  /// No description provided for @codeSendTitle.
+  /// No description provided for @editProfile.
   ///
   /// In en, this message translates to:
-  /// **'Code send To Email'**
-  String get codeSendTitle;
+  /// **'Edit profile'**
+  String get editProfile;
 
-  /// No description provided for @otpScreenTitle.
+  /// No description provided for @update.
   ///
   /// In en, this message translates to:
-  /// **'Email verification'**
-  String get otpScreenTitle;
+  /// **'Update'**
+  String get update;
 
-  /// No description provided for @otpScreenDescription.
+  /// No description provided for @pickUpLocation________.
   ///
   /// In en, this message translates to:
-  /// **'Please enter your code that send to your email address'**
-  String get otpScreenDescription;
+  /// **'\$\$\$ Comment \$\$\$'**
+  String get pickUpLocation________;
 
-  /// No description provided for @didnotReciveOtp.
+  /// No description provided for @errorLoadingTheMap.
   ///
   /// In en, this message translates to:
-  /// **'Did not receive code?'**
-  String get didnotReciveOtp;
+  /// **'Error Occurred While Loading The Map'**
+  String get errorLoadingTheMap;
 
-  /// No description provided for @resend.
+  /// No description provided for @user.
   ///
   /// In en, this message translates to:
-  /// **'Resend'**
-  String get resend;
+  /// **'User'**
+  String get user;
 
-  /// No description provided for @codeValid.
+  /// No description provided for @flowery.
   ///
   /// In en, this message translates to:
-  /// **'Code is valid'**
-  String get codeValid;
+  /// **'Flowery'**
+  String get flowery;
 
-  /// No description provided for @codeNotvalid.
+  /// No description provided for @yourLocation.
   ///
   /// In en, this message translates to:
-  /// **'Code not valid'**
-  String get codeNotvalid;
+  /// **'Your Location'**
+  String get yourLocation;
 
-  /// No description provided for @resetPasswordScreenDescription.
+  /// No description provided for @thanksPage_______________.
   ///
   /// In en, this message translates to:
-  /// **'Password must not be empty and must contain 6 characters with upper case letter and one number at least'**
-  String get resetPasswordScreenDescription;
+  /// **'\$\$\$ Comment \$\$\$'**
+  String get thanksPage_______________;
 
-  /// No description provided for @resetPasswordScreenTitle.
+  /// No description provided for @orderDeliveredSuccessfully.
   ///
   /// In en, this message translates to:
-  /// **'Reset password'**
-  String get resetPasswordScreenTitle;
-
-  /// No description provided for @newPassword.
-  ///
-  /// In en, this message translates to:
-  /// **'New Password'**
-  String get newPassword;
-
-  /// No description provided for @confirmNewPassword.
-  ///
-  /// In en, this message translates to:
-  /// **'Confirm New Password'**
-  String get confirmNewPassword;
-
-  /// No description provided for @yourPasswordChanged.
-  ///
-  /// In en, this message translates to:
-  /// **'Password Changed Successfully'**
-  String get yourPasswordChanged;
+  /// **'The order delivered\nsuccessfully'**
+  String get orderDeliveredSuccessfully;
 }
 
-class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
+class _AppLocalizationsDelegate
+    extends LocalizationsDelegate<AppLocalizations> {
   const _AppLocalizationsDelegate();
 
   @override
@@ -705,25 +1021,26 @@ class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> 
   }
 
   @override
-  bool isSupported(Locale locale) => <String>['ar', 'en'].contains(locale.languageCode);
+  bool isSupported(Locale locale) =>
+      <String>['ar', 'en'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_AppLocalizationsDelegate old) => false;
 }
 
 AppLocalizations lookupAppLocalizations(Locale locale) {
-
-
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
-    case 'ar': return AppLocalizationsAr();
-    case 'en': return AppLocalizationsEn();
+    case 'ar':
+      return AppLocalizationsAr();
+    case 'en':
+      return AppLocalizationsEn();
   }
 
   throw FlutterError(
     'AppLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
     'an issue with the localizations generation tool. Please file an issue '
     'on GitHub with a reproducible sample app and the gen-l10n configuration '
-    'that was used.'
+    'that was used.',
   );
 }

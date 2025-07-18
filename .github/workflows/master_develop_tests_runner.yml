@@ -6,6 +6,7 @@ on:
       - master
 jobs:
   build:
+    name: develop or master Tests Build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository

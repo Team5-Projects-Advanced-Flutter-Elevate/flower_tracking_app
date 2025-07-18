@@ -10,6 +10,12 @@ abstract class AppThemes {
       backgroundColor: AppColors.white,
       surfaceTintColor: AppColors.white,
       titleSpacing: 0,
+      titleTextStyle: TextStyle(
+        fontSize: 20,
+        color: AppColors.black,
+        fontWeight: FontWeight.w600,
+        fontFamily: GoogleFonts.inter().fontFamily,
+      ),
     ),
     textTheme: TextTheme(
       headlineMedium: TextStyle(
@@ -119,13 +125,8 @@ abstract class AppThemes {
         foregroundColor: AppColors.white,
         padding: const EdgeInsets.all(14),
         backgroundColor: AppColors.mainColor,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
-        ),
-        textStyle: const TextStyle(
-          fontSize: 16,
-          fontWeight: FontWeight.w500,
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        textStyle: const TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
       ),
     ),
     inputDecorationTheme: InputDecorationTheme(
@@ -175,7 +176,7 @@ abstract class AppThemes {
     filledButtonTheme: FilledButtonThemeData(
       style: ButtonStyle(
         padding: const WidgetStatePropertyAll(
-          EdgeInsets.symmetric(vertical: 16, horizontal: 24),
+          EdgeInsets.symmetric(vertical: 12, horizontal: 24),
         ),
         textStyle: WidgetStatePropertyAll(
           TextStyle(
@@ -202,7 +203,7 @@ abstract class AppThemes {
       style: OutlinedButton.styleFrom(
         foregroundColor: AppColors.black,
         padding: const EdgeInsetsDirectional.symmetric(
-          vertical: 10,
+          vertical: 12,
           horizontal: 24,
         ),
         textStyle: TextStyle(
@@ -212,6 +213,32 @@ abstract class AppThemes {
           fontFamily: GoogleFonts.inter().fontFamily,
         ),
       ),
+    ),
+    switchTheme: SwitchThemeData(
+      trackColor: WidgetStateProperty.resolveWith((states) {
+        if (states.contains(WidgetState.selected)) {
+          return AppColors
+              .green; // Fallback to Colors.green if AppColors.green is null
+        }
+        return null; // Use default (colorScheme.surface)
+      }),
+      overlayColor: WidgetStateProperty.resolveWith((states) {
+        if (states.contains(WidgetState.selected)) {
+          return AppColors.green;
+        }
+        return null; // Use default
+      }),
+      thumbColor: WidgetStateProperty.resolveWith((states) {
+        if (states.contains(WidgetState.disabled)) {
+          return AppColors.black;
+        } else if (states.contains(WidgetState.selected)) {
+          return AppColors.white;
+        }
+        return AppColors.black;
+      }),
+      trackOutlineColor: WidgetStateProperty.resolveWith((states) {
+        return AppColors.black; // Subtle outline
+      }),
     ),
   );
 }

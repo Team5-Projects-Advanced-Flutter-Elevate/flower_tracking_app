@@ -131,6 +131,13 @@ class _LoginScreenState extends BaseStatefulWidgetState<LoginScreen> {
                               context,
                               DefinedRoutes.forgetPasswordScreenRoute,
                             );
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder:
+                                    (context) => const ForgetPasswordScreen(),
+                              ),
+                            );
                           },
                           child: Text(
                             appLocalizations.forgetPassword,
@@ -155,7 +162,7 @@ class _LoginScreenState extends BaseStatefulWidgetState<LoginScreen> {
                             );
                             Navigator.pushNamedAndRemoveUntil(
                               context,
-                              DefinedRoutes.homeScreenRoute,
+                              DefinedRoutes.layoutScreen,
                               (route) => false,
                             );
                           case Status.error:

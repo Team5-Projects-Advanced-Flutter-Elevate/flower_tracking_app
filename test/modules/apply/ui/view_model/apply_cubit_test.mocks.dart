@@ -22,6 +22,7 @@ import 'package:flower_tracking_app/modules/apply/domain/usecases/apply_use_case
     as _i3;
 import 'package:flower_tracking_app/modules/apply/domain/usecases/get_vehicles_use_case.dart'
     as _i9;
+import 'package:image_picker/image_picker.dart' as _i13;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:mockito/src/dummies.dart' as _i8;
 
@@ -39,8 +40,8 @@ import 'package:mockito/src/dummies.dart' as _i8;
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
-class _FakeApplyRepo_0 extends _i1.SmartFake implements _i2.ApplyRepo {
-  _FakeApplyRepo_0(Object parent, Invocation parentInvocation)
+class _FakeVehicleRepo_0 extends _i1.SmartFake implements _i2.VehicleRepo {
+  _FakeVehicleRepo_0(Object parent, Invocation parentInvocation)
     : super(parent, parentInvocation);
 }
 
@@ -54,12 +55,15 @@ class MockApplyDriverUseCase extends _i1.Mock
   }
 
   @override
-  _i2.ApplyRepo get applyRepo =>
+  _i2.VehicleRepo get applyRepo =>
       (super.noSuchMethod(
             Invocation.getter(#applyRepo),
-            returnValue: _FakeApplyRepo_0(this, Invocation.getter(#applyRepo)),
+            returnValue: _FakeVehicleRepo_0(
+              this,
+              Invocation.getter(#applyRepo),
+            ),
           )
-          as _i2.ApplyRepo);
+          as _i2.VehicleRepo);
 
   @override
   _i4.Future<_i5.ApiResult<_i6.ApplyResponseEntity>> execute(
@@ -88,12 +92,15 @@ class MockGetVehiclesUseCase extends _i1.Mock
   }
 
   @override
-  _i2.ApplyRepo get applyRepo =>
+  _i2.VehicleRepo get applyRepo =>
       (super.noSuchMethod(
             Invocation.getter(#applyRepo),
-            returnValue: _FakeApplyRepo_0(this, Invocation.getter(#applyRepo)),
+            returnValue: _FakeVehicleRepo_0(
+              this,
+              Invocation.getter(#applyRepo),
+            ),
           )
-          as _i2.ApplyRepo);
+          as _i2.VehicleRepo);
 
   @override
   _i4.Future<_i5.ApiResult<_i10.VehicleResponseEntity>> execute() =>
@@ -143,9 +150,9 @@ class MockImagePickerService extends _i1.Mock
   }
 
   @override
-  _i4.Future<_i12.File?> pickImageFromGallery() =>
+  _i4.Future<_i12.File?> pickImage(_i13.ImageSource? source) =>
       (super.noSuchMethod(
-            Invocation.method(#pickImageFromGallery, []),
+            Invocation.method(#pickImage, [source]),
             returnValue: _i4.Future<_i12.File?>.value(),
           )
           as _i4.Future<_i12.File?>);

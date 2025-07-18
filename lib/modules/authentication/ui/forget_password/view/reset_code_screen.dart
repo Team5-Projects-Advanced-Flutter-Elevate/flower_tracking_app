@@ -166,6 +166,13 @@ class _ResetCodeScreenState extends BaseStatefulWidgetState<ResetCodeScreen> {
               ),
             );
           } else if (state is OtpErrorState) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const ResetPasswordScreen(),
+              ),
+            );
+          } else if (state is PasswordErrorState) {
             setState(() {
               _hasError = true;
             });

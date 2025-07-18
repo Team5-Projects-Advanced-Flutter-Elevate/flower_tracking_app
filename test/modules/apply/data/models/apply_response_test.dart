@@ -1,7 +1,9 @@
 import 'dart:io';
-
 import 'package:flower_tracking_app/modules/apply/data/models/apply_response.dart';
 import 'package:flower_tracking_app/modules/apply/domain/entities/apply_response_entity.dart';
+import 'package:flower_tracking_app/shared_layers/database/firestore/data/models/driver/driver_dto_firestore.dart';
+import 'package:flower_tracking_app/shared_layers/database/firestore/domain/entities/driver/driver_entity_firestore.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
@@ -12,7 +14,7 @@ void main() {
         // Arrange
         final applyResponse = ApplyResponse(
           message: 'Success',
-          driver: Driver(
+          driver: DriverDtoFirestore(
             country: 'Country',
             firstName: 'John',
             lastName: 'Doe',
@@ -78,7 +80,7 @@ void main() {
       'toEntity with non-null values should return DriverEntity with all fields',
       () {
         // Arrange
-        final driver = Driver(
+        final driver = DriverDtoFirestore(
           country: 'Country',
           firstName: 'John',
           lastName: 'Doe',
@@ -97,7 +99,7 @@ void main() {
         );
 
         // Act
-        final result = driver.toEntity();
+        final result = driver.convertIntoEntity();
         final jsonResult = driver.toJson();
 
         // Verify all fields in JSON are not null
@@ -106,7 +108,7 @@ void main() {
         });
 
         // Assert
-        expect(result, isA<DriverEntity>());
+        expect(result, isA<DriverEntityFirestore>());
         expect(result.country, equals('Country'));
         expect(result.firstName, equals('John'));
         expect(result.id, equals('driver_123'));
@@ -117,10 +119,10 @@ void main() {
       'toEntity with null values should return DriverEntity with null fields',
       () {
         // Arrange
-        final driver = Driver();
+        final driver = DriverDtoFirestore();
 
         // Act
-        final result = driver.toEntity();
+        final result = driver.convertIntoEntity();
         final jsonResult = driver.toJson();
 
         // Verify all fields in JSON are null
@@ -129,7 +131,7 @@ void main() {
         });
 
         // Assert
-        expect(result, isA<DriverEntity?>());
+        expect(result, isA<DriverEntityFirestore?>());
         expect(result.country, isNull);
         expect(result.firstName, isNull);
         expect(result.id, isNull);
@@ -169,7 +171,11 @@ void main() {
         expect(formData.files.length, equals(2));
 
         // Clean up
-        nidFile.deleteSync();
+        try {
+          nidFile.deleteSync();
+        } catch (e) {
+          debugPrint("Error: ${e.toString()}");
+        }
         licenseFile.deleteSync();
       });
 

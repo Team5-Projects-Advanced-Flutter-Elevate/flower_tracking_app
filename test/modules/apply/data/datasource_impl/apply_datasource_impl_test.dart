@@ -1,4 +1,5 @@
 import 'dart:io';
+
 import 'package:dio/dio.dart';
 import 'package:flower_tracking_app/core/apis/api_result/api_result.dart';
 import 'package:flower_tracking_app/modules/apply/data/api/api_client/apply_api_client.dart';
@@ -7,6 +8,7 @@ import 'package:flower_tracking_app/modules/apply/data/models/apply_response.dar
 import 'package:flower_tracking_app/modules/apply/data/models/vehicle_response.dart';
 import 'package:flower_tracking_app/modules/apply/domain/entities/apply_response_entity.dart';
 import 'package:flower_tracking_app/modules/apply/domain/entities/vehicle_response_entity.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
@@ -67,7 +69,11 @@ void main() {
           verify(mockApplyApiClient.applyDriver(mockRequestModel)).called(1);
 
           // Clean up
-          nidFile.deleteSync();
+          try {
+            nidFile.deleteSync();
+          } catch (e) {
+            debugPrint(e.toString());
+          }
           licenseFile.deleteSync();
         },
       );

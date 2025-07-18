@@ -1,11 +1,11 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:country_flags/country_flags.dart';
-import 'package:flower_tracking_app/core/di/injectable_initializer.dart';
 import 'package:flower_tracking_app/modules/apply/domain/entities/vehicle_response_entity.dart';
 import 'package:flower_tracking_app/modules/apply/ui/widgets/select_gender_row.dart';
 import 'package:flower_tracking_app/shared_layers/localization/generated/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:image_picker/image_picker.dart';
 import '../../../../core/bases/base_stateful_widget_state.dart';
 import '../../../../core/colors/app_colors.dart';
 import '../../../../core/constants/assets_paths/assets_paths.dart';
@@ -16,9 +16,14 @@ import '../view_model/apply_cubit.dart';
 import 'custom_drop_down.dart';
 
 class ApplyTextFormFields extends StatefulWidget {
-  const ApplyTextFormFields({super.key, required this.formKey});
+  const ApplyTextFormFields({
+    super.key,
+    required this.formKey,
+    required this.whenApplySuccess,
+  });
 
   final GlobalKey<FormState> formKey;
+  final void Function() whenApplySuccess;
 
   @override
   State<ApplyTextFormFields> createState() => _ApplyTextFormFieldsState();
@@ -31,6 +36,7 @@ class _ApplyTextFormFieldsState
   late TextEditingController vehicleNumberController;
   late TextEditingController vehicleLicenseController;
   late TextEditingController emailController;
+  late TextEditingController phoneNumberController;
   late TextEditingController idNumberController;
   late TextEditingController idImageController;
   late TextEditingController passwordController;
@@ -41,12 +47,11 @@ class _ApplyTextFormFieldsState
   late FocusNode vehicleNumberFocusNode;
   late FocusNode vehicleLicenseFocusNode;
   late FocusNode emailFocusNode;
+  late FocusNode phoneNumberFocusNode;
   late FocusNode idNumberFocusNode;
   late FocusNode idImageFocusNode;
   late FocusNode passwordFocusNode;
   late FocusNode confirmPasswordFocusNode;
-
-  ApplyCubit cubit = getIt<ApplyCubit>();
 
   @override
   void initState() {
@@ -56,6 +61,7 @@ class _ApplyTextFormFieldsState
     vehicleNumberController = TextEditingController();
     vehicleLicenseController = TextEditingController();
     emailController = TextEditingController();
+    phoneNumberController = TextEditingController();
     idNumberController = TextEditingController();
     idImageController = TextEditingController();
     passwordController = TextEditingController();
@@ -66,6 +72,7 @@ class _ApplyTextFormFieldsState
     vehicleNumberFocusNode = FocusNode();
     vehicleLicenseFocusNode = FocusNode();
     emailFocusNode = FocusNode();
+    phoneNumberFocusNode = FocusNode();
     idNumberFocusNode = FocusNode();
     idImageFocusNode = FocusNode();
     passwordFocusNode = FocusNode();
@@ -91,12 +98,15 @@ class _ApplyTextFormFieldsState
     confirmPasswordFocusNode.dispose();
   }
 
+  late ApplyCubit cubit;
   @override
   Widget build(BuildContext context) {
+    cubit = BlocProvider.of<ApplyCubit>(context);
     return BlocConsumer<ApplyCubit, ApplyState>(
       listener: (context, state) {
         if (state.applyDriverStatus == ApplyDriverStatus.success) {
           /// navigate to apply successfully screen
+          widget.whenApplySuccess();
         }
       },
       builder: (context, state) {
@@ -240,8 +250,9 @@ class _ApplyTextFormFieldsState
                       decoration: InputDecoration(
                         suffixIcon: IconButton(
                           onPressed: () {
+                            FocusManager.instance.primaryFocus?.unfocus();
                             if (!state.isLicenseImagePicked!) {
-                              cubit.doIntent(PickLicenseImageIntent());
+                              showSheet(true);
                             } else {
                               cubit.doIntent(UnPickImageIntent(true));
                             }
@@ -278,10 +289,25 @@ class _ApplyTextFormFieldsState
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   keyboardType: TextInputType.emailAddress,
                   focusNode: emailFocusNode,
-                  onFieldSubmitted: (value) => idImageFocusNode.requestFocus(),
+                  onFieldSubmitted: (value) => idNumberFocusNode.requestFocus(),
                   decoration: InputDecoration(
                     labelText: AppLocalizations.of(context)!.email,
                     hintText: AppLocalizations.of(context)!.emailHint,
+                  ),
+                ),
+                SizedBox(height: screenHeight * 0.02),
+                TextFormField(
+                  controller: phoneNumberController,
+                  validator: (inputText) {
+                    return validateFunctions.validationOfPhoneNumber(inputText);
+                  },
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  keyboardType: TextInputType.phone,
+                  focusNode: phoneNumberFocusNode,
+                  onFieldSubmitted: (value) => idImageFocusNode.requestFocus(),
+                  decoration: InputDecoration(
+                    labelText: AppLocalizations.of(context)!.phoneNumber,
+                    hintText: AppLocalizations.of(context)!.phoneNumberHint,
                   ),
                 ),
                 SizedBox(height: screenHeight * 0.02),
@@ -323,8 +349,9 @@ class _ApplyTextFormFieldsState
                       decoration: InputDecoration(
                         suffixIcon: IconButton(
                           onPressed: () {
+                            FocusManager.instance.primaryFocus?.unfocus();
                             if (!state.isIdImagePicked!) {
-                              cubit.doIntent(PickIdImageIntent());
+                              showSheet(false);
                             } else {
                               cubit.doIntent(UnPickImageIntent(false));
                             }
@@ -406,13 +433,13 @@ class _ApplyTextFormFieldsState
                 SizedBox(height: screenHeight * 0.02),
                 const SelectGenderRow(),
                 SizedBox(height: screenHeight * 0.02),
-
                 BlocBuilder<ApplyCubit, ApplyState>(
                   builder: (context, state) {
                     return SizedBox(
                       width: double.infinity,
                       child: FilledButton(
                         onPressed: () async {
+                          FocusManager.instance.primaryFocus?.unfocus();
                           if (state.selectedGender == null) {
                             displaySnackBar(
                               contentType: ContentType.failure,
@@ -425,7 +452,6 @@ class _ApplyTextFormFieldsState
                             return;
                           }
                           if (state.selectedGender == null) return;
-
                           cubit.doIntent(
                             ApplyDriverIntent(
                               DriverRequestModel(
@@ -442,6 +468,7 @@ class _ApplyTextFormFieldsState
                                 nid: idNumberController.text,
                                 nIDImg: cubit.state.pickedIdImage,
                                 email: emailController.text,
+                                phone: getPhoneNumberFormat(),
                                 password: passwordController.text,
                                 rePassword: confirmPasswordController.text,
                                 gender: cubit.state.selectedGender,
@@ -461,6 +488,7 @@ class _ApplyTextFormFieldsState
                     );
                   },
                 ),
+                SizedBox(height: screenHeight * 0.025),
               ],
             );
           case LoadApplyDataStatus.error:
@@ -475,6 +503,13 @@ class _ApplyTextFormFieldsState
     );
   }
 
+  String getPhoneNumberFormat() {
+    if (!(phoneNumberController.text.trim().startsWith('+20'))) {
+      return "+20${phoneNumberController.text}";
+    }
+    return phoneNumberController.text;
+  }
+
   void clearControllers() {
     firstNameController.clear();
     lastNameController.clear();
@@ -486,4 +521,40 @@ class _ApplyTextFormFieldsState
     passwordController.clear();
     confirmPasswordController.clear();
   }
+
+  Future<void> showSheet(bool isLicense) => showModalBottomSheet(
+    context: context,
+    builder:
+        (context) => SafeArea(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              ListTile(
+                leading: Icon(Icons.camera_alt, color: AppColors.mainColor),
+                title: const Text('Take Photo'),
+                onTap: () async {
+                  Navigator.pop(context);
+                  isLicense
+                      ? cubit.doIntent(
+                        PickLicenseImageIntent(ImageSource.camera),
+                      )
+                      : cubit.doIntent(PickIdImageIntent(ImageSource.camera));
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.photo_library),
+                title: const Text('Choose from Gallery'),
+                onTap: () async {
+                  Navigator.pop(context);
+                  isLicense
+                      ? cubit.doIntent(
+                        PickLicenseImageIntent(ImageSource.gallery),
+                      )
+                      : cubit.doIntent(PickIdImageIntent(ImageSource.gallery));
+                },
+              ),
+            ],
+          ),
+        ),
+  );
 }

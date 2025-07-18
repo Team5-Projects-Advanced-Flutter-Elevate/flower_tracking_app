@@ -9,8 +9,8 @@ import 'package:flower_tracking_app/modules/apply/domain/entities/vehicle_respon
 import 'package:flower_tracking_app/modules/apply/domain/usecases/apply_use_case.dart';
 import 'package:flower_tracking_app/modules/apply/domain/usecases/get_vehicles_use_case.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:injectable/injectable.dart';
-
 import '../../data/models/apply_response.dart';
 import '../../data/models/country_model.dart';
 
@@ -47,15 +47,15 @@ class ApplyCubit extends Cubit<ApplyState> {
       case SelectGenderIntent():
         _selectGender(intent.gender);
       case PickLicenseImageIntent():
-        _pickLicenseImage();
+        _pickLicenseImage(intent.source);
       case PickIdImageIntent():
-        _pickIdImage();
+        _pickIdImage(intent.source);
       case UnPickImageIntent():
         _unPickImage(intent.isLicenseImagePicked);
       case LoadVehiclesIntent():
         _loadVehicles();
       case PickImageIntent():
-        _pickImage();
+        _pickImage(intent.source);
     }
   }
 
@@ -169,8 +169,8 @@ class ApplyCubit extends Cubit<ApplyState> {
     );
   }
 
-  void _pickLicenseImage() async {
-    var pickedImage = await _pickImage();
+  void _pickLicenseImage(ImageSource source) async {
+    var pickedImage = await _pickImage(source);
     emit(
       state.copyWith(
         pickedLicenseImage: pickedImage,
@@ -180,8 +180,8 @@ class ApplyCubit extends Cubit<ApplyState> {
     );
   }
 
-  void _pickIdImage() async {
-    var pickedImage = await _pickImage();
+  void _pickIdImage(ImageSource source) async {
+    var pickedImage = await _pickImage(source);
     emit(
       state.copyWith(
         pickedIdImage: pickedImage,
@@ -213,10 +213,10 @@ class ApplyCubit extends Cubit<ApplyState> {
     }
   }
 
-  Future<File?> _pickImage() async {
+  Future<File?> _pickImage(ImageSource source) async {
     try {
       emit(state.copyWith(pickImageStatus: PickImageStatus.loading));
-      final pickedFile = await imagePickerService.pickImageFromGallery();
+      final pickedFile = await imagePickerService.pickImage(source);
       if (pickedFile != null) {
         emit(
           state.copyWith(
@@ -271,11 +271,23 @@ class SelectGenderIntent extends ApplyIntent {
   SelectGenderIntent(this.gender);
 }
 
-class PickLicenseImageIntent extends ApplyIntent {}
+class PickLicenseImageIntent extends ApplyIntent {
+  ImageSource source;
 
-class PickIdImageIntent extends ApplyIntent {}
+  PickLicenseImageIntent(this.source);
+}
 
-class PickImageIntent extends ApplyIntent {}
+class PickIdImageIntent extends ApplyIntent {
+  ImageSource source;
+
+  PickIdImageIntent(this.source);
+}
+
+class PickImageIntent extends ApplyIntent {
+  ImageSource source;
+
+  PickImageIntent(this.source);
+}
 
 class UnPickImageIntent extends ApplyIntent {
   final bool isLicenseImagePicked;

@@ -1,16 +1,17 @@
 name: Check Branch Name
 on:
-  push:
+  pull_request:
+    types: [opened, edited]
     branches:
       - '**'
 jobs:
   check-branch-name:
+    name: Check Branch Name
     runs-on: ubuntu-latest
     steps:
       - name: Check branch name format
         run: |
-          BRANCH_NAME="${{ github.ref }}"
-          BRANCH_NAME="${BRANCH_NAME#refs/heads/}"
+          BRANCH_NAME="${GITHUB_HEAD_REF}"
           if [[ ! "$BRANCH_NAME" =~ ^(master|develop|((feature|bugfix|hotfix|release)/[A-Z]+-[0-9]+-[a-z]+([-_ ][a-z]+)*))$ ]]; then
             echo "❌ **Invalid branch name format:** $BRANCH_NAME"
             echo "Please use the format: branch-type/{Ticket-Id - TicketNum}-task_name (e.g., feature/ECOM-27-initialize project)"

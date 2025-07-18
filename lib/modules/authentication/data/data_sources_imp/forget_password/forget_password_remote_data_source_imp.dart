@@ -7,23 +7,26 @@ import '../../models/forget_password/forget_password_response.dart';
 import '../../models/forget_password/user.dart';
 
 @Injectable(as: ForgetPasswordRemoteDataSource)
-class ForgetPasswordRemoteDataSourceImpl extends ForgetPasswordRemoteDataSource{
+class ForgetPasswordRemoteDataSourceImpl
+    extends ForgetPasswordRemoteDataSource {
   AuthApiClient apiClient;
   @factoryMethod
   ForgetPasswordRemoteDataSourceImpl(this.apiClient);
   @override
-  Future<ApiResult<ForgetPasswordResponse?>> forgetPassword(String email) async{
-    var result = await ApiExecutor.executeApi(() async{
-       var response =   await apiClient.forgetPassword(User(email: email).toJson());
-       return response;
+  Future<ApiResult<ForgetPasswordResponse?>> forgetPassword(
+    String email,
+  ) async {
+    var result = await ApiExecutor.executeApi(() async {
+      var response = await apiClient.forgetPassword(
+        User(email: email).toJson(),
+      );
+      return response;
     });
-    switch(result){
-      case Success<ForgetPasswordResponse?>() :
+    switch (result) {
+      case Success<ForgetPasswordResponse?>():
         return Success(data: result.data);
       case Error<ForgetPasswordResponse?>():
         return Error(error: result.error);
     }
   }
-
-
 }
