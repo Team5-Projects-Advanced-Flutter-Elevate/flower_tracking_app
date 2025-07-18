@@ -614,6 +614,96 @@ abstract class AppLocalizations {
   /// **'Female'**
   String get female;
 
+  /// No description provided for @forgetPasswordDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter your email associated to your account'**
+  String get forgetPasswordDescription;
+
+  /// No description provided for @confirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm'**
+  String get confirm;
+
+  /// No description provided for @success.
+  ///
+  /// In en, this message translates to:
+  /// **'Successfully'**
+  String get success;
+
+  /// No description provided for @codeSendTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Code send To Email'**
+  String get codeSendTitle;
+
+  /// No description provided for @otpScreenTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Email verification'**
+  String get otpScreenTitle;
+
+  /// No description provided for @otpScreenDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter your code that send to your email address'**
+  String get otpScreenDescription;
+
+  /// No description provided for @didnotReciveOtp.
+  ///
+  /// In en, this message translates to:
+  /// **'Did not receive code?'**
+  String get didnotReciveOtp;
+
+  /// No description provided for @resend.
+  ///
+  /// In en, this message translates to:
+  /// **'Resend'**
+  String get resend;
+
+  /// No description provided for @codeValid.
+  ///
+  /// In en, this message translates to:
+  /// **'Code is valid'**
+  String get codeValid;
+
+  /// No description provided for @codeNotvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'Code not valid'**
+  String get codeNotvalid;
+
+  /// No description provided for @resetPasswordScreenDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Password must not be empty and must contain 6 characters with upper case letter and one number at least'**
+  String get resetPasswordScreenDescription;
+
+  /// No description provided for @resetPasswordScreenTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset password'**
+  String get resetPasswordScreenTitle;
+
+  /// No description provided for @newPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'New Password'**
+  String get newPassword;
+
+  /// No description provided for @confirmNewPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm New Password'**
+  String get confirmNewPassword;
+
+  /// No description provided for @yourPasswordChanged.
+  ///
+  /// In en, this message translates to:
+  /// **'Password Changed Successfully'**
+  String get yourPasswordChanged;
+
   /// No description provided for @removedImage.
   ///
   /// In en, this message translates to:

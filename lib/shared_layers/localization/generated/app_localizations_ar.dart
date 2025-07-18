@@ -272,6 +272,54 @@ class AppLocalizationsAr extends AppLocalizations {
   String get female => 'أنثى';
 
   @override
+  String get forgetPasswordDescription =>
+      'الرجاء إدخال البريد الإلكتروني المرتبط بحسابك';
+
+  @override
+  String get confirm => 'تاكيد';
+
+  @override
+  String get success => 'تمت بنجاح';
+
+  @override
+  String get codeSendTitle => 'تم ارسال الكود الي الحسابٍ';
+
+  @override
+  String get otpScreenTitle => 'تفعيل البريد الالكتروني';
+
+  @override
+  String get otpScreenDescription =>
+      'الرجاء إدخال الرمز الذي سيتم إرساله إلى عنوان بريدك الإلكتروني';
+
+  @override
+  String get didnotReciveOtp => 'لم تستلم الرمز؟';
+
+  @override
+  String get resend => 'اعاده ارسال';
+
+  @override
+  String get codeValid => 'الكود صحيح';
+
+  @override
+  String get codeNotvalid => 'الكود ليس صحيح';
+
+  @override
+  String get resetPasswordScreenDescription =>
+      'يجب ألا تكون كلمة المرور فارغة ويجب أن تحتوي على 6 أحرف بحرف كبير ورقم واحد على الأقل';
+
+  @override
+  String get resetPasswordScreenTitle => 'اعاده تعيين الرقم السري';
+
+  @override
+  String get newPassword => 'رقم سري جديد';
+
+  @override
+  String get confirmNewPassword => 'تاكيد الرقم السري';
+
+  @override
+  String get yourPasswordChanged => 'تم تغير الرقم السري بنجاح';
+
+  @override
   String get removedImage => 'تمت إزالة الصورة';
 
   @override

@@ -51,14 +51,13 @@ Map<String, dynamic> _$MetadataToJson(Metadata instance) => <String, dynamic>{
 class _OrdersApiClient implements OrdersApiClient {
   _OrdersApiClient(this._dio) {
     baseUrl ??= 'https://flower.elevateegy.com/';
-    errorLogger = null;
   }
 
   final Dio _dio;
 
   String? baseUrl;
 
-  late final ParseErrorLogger? errorLogger;
+  ParseErrorLogger? errorLogger;
 
   @override
   Future<PendingOrdersResponse> getPendingOrders({int page = 1}) async {

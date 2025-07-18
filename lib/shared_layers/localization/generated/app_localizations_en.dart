@@ -272,6 +272,54 @@ class AppLocalizationsEn extends AppLocalizations {
   String get female => 'Female';
 
   @override
+  String get forgetPasswordDescription =>
+      'Please enter your email associated to your account';
+
+  @override
+  String get confirm => 'Confirm';
+
+  @override
+  String get success => 'Successfully';
+
+  @override
+  String get codeSendTitle => 'Code send To Email';
+
+  @override
+  String get otpScreenTitle => 'Email verification';
+
+  @override
+  String get otpScreenDescription =>
+      'Please enter your code that send to your email address';
+
+  @override
+  String get didnotReciveOtp => 'Did not receive code?';
+
+  @override
+  String get resend => 'Resend';
+
+  @override
+  String get codeValid => 'Code is valid';
+
+  @override
+  String get codeNotvalid => 'Code not valid';
+
+  @override
+  String get resetPasswordScreenDescription =>
+      'Password must not be empty and must contain 6 characters with upper case letter and one number at least';
+
+  @override
+  String get resetPasswordScreenTitle => 'Reset password';
+
+  @override
+  String get newPassword => 'New Password';
+
+  @override
+  String get confirmNewPassword => 'Confirm New Password';
+
+  @override
+  String get yourPasswordChanged => 'Password Changed Successfully';
+
+  @override
   String get removedImage => 'Removed image';
 
   @override
