@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/di/injectable_initializer.dart';
 import '../cubit/state.dart';
-import '../cubit/viewModel.dart';
+import '../cubit/view_model.dart';
 
 class OrderState extends StatefulWidget {
   const OrderState({super.key});
