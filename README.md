@@ -4,18 +4,6 @@ A modern delivery tracking app built for our Flower E-commerce platform. This ap
 
 ---
 
-## 🎥 App Demo
-
-📂 [View App Demo on Google Drive](https://drive.google.com/drive/folders/1wrnAgrGfn9bBLu4Y4gJCbt2mA-JbKAu8?usp=sharing)
-
----
-
-## 🎞️ Presentation Slides
-
-📊 [View Presentaion Slides](https://gamma.app/docs/Copy-of-FlowerEcommerce-App-fazaljw0my9mhzn)
-
----
-
 ## ✨ Features
 
 - 🧾 View orders with real-time delivery status
@@ -68,3 +56,7 @@ Clone the repository:
 ```bash
 git clone https://github.com/Team5-Projects-Advanced-Flutter-Elevate/flower_tracking_app.git
 cd tracking-app
+```
+## 🎥 Demo & Presentation
+📂 [View App Demo on Google Drive](https://drive.google.com/drive/folders/1wrnAgrGfn9bBLu4Y4gJCbt2mA-JbKAu8?usp=sharing)
+📊 [View Presentaion Slides](https://gamma.app/docs/Copy-of-FlowerEcommerce-App-fazaljw0my9mhzn)
